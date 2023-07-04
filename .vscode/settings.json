@@ -1,0 +1,160 @@
+{
+    "atlascode.showWelcomeOnInstall": false,
+    "atlascode.bitbucket.enabled": false,
+    "atlascode.helpExplorerEnabled": false,
+    "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
+        "feature",
+        "bugfix",
+        "hotfix"
+    ],
+    "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}-{{{summary}}}",
+    "atlascode.jira.jqlList": [
+        {
+            "id": "3a924b39-dcff-47ec-87d6-6496b982d3d9",
+            "siteId": "761bc841-c2a1-4d4e-b699-edf0145893f9",
+            "name": "DWB",
+            "query": "project = NWI AND resolution = Unresolved AND statusCategory != 3 AND assignee = currentUser() ORDER BY Sprint, priority",
+            "enabled": true,
+            "monitor": true
+        },
+        {
+            "id": "a2868c6f-f053-46d5-a15c-00cd043265c1",
+            "siteId": "761bc841-c2a1-4d4e-b699-edf0145893f9",
+            "name": "DWB - Current Sprint",
+            "query": "project = NWI AND resolution = Unresolved AND statusCategory != 3 AND Sprint in openSprints() AND component in (\"DWB - Cloud Backend\",  \"DWB - Fiori\") ORDER BY Sprint, priority",
+            "enabled": true,
+            "monitor": true
+        }
+    ],
+    "commit-message-editor.staticTemplate": [
+        "feat: Short description",
+        "",
+        "Message body",
+        "",
+        "Message footer"
+    ],
+    "commit-message-editor.dynamicTemplate": [
+        "{type}{scope}{breaking_change}: {jira_issue}{description}",
+        "",
+        "{body}",
+        "",
+        "{footer}"
+    ],
+    "commit-message-editor.tokens": [
+        {
+            "label": "JIRA Issue",
+            "name": "jira_issue",
+            "description": "JIRA task NWI-...",
+            "type": "text",
+            "suffix": ": "
+        },
+        {
+            "label": "Type",
+            "name": "type",
+            "type": "enum",
+            "options": [
+                {
+                    "label": "---",
+                    "value": ""
+                },
+                {
+                    "label": "feat",
+                    "description": "A new feature"
+                },
+                {
+                    "label": "fix",
+                    "description": "A bug fix"
+                },
+                {
+                    "label": "perf",
+                    "description": "A code change that improves performance"
+                },
+                {
+                    "label": "test",
+                    "description": "Adding missing tests or correcting existing tests"
+                },
+                {
+                    "label": "build",
+                    "description": "Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"
+                },
+                {
+                    "label": "chore",
+                    "description": "Updating grunt tasks etc; no production code change"
+                },
+                {
+                    "label": "ci",
+                    "description": "Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"
+                },
+                {
+                    "label": "docs",
+                    "description": "Documentation only changes"
+                },
+                {
+                    "label": "refactor",
+                    "description": "A code change that neither fixes a bug nor adds a feature"
+                },
+                {
+                    "label": "revert"
+                },
+                {
+                    "label": "style",
+                    "description": "Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)"
+                }
+            ],
+            "description": "Type of changes"
+        },
+        {
+            "label": "Scope",
+            "name": "scope",
+            "description": "A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., \"feat(parser): add ability to parse arrays\".",
+            "type": "text",
+            "multiline": false,
+            "prefix": "(",
+            "suffix": ")"
+        },
+        {
+            "label": "Short description",
+            "name": "description",
+            "description": "Short description in the subject line.",
+            "type": "text",
+            "multiline": false
+        },
+        {
+            "label": "Body",
+            "name": "body",
+            "description": "Optional body",
+            "type": "text",
+            "multiline": true,
+            "lines": 5,
+            "maxLines": 10
+        },
+        {
+            "label": "Breaking change",
+            "name": "breaking_change",
+            "type": "boolean",
+            "value": "!",
+            "default": false
+        },
+        {
+            "label": "Footer",
+            "name": "footer",
+            "description": "Optional footer",
+            "type": "text",
+            "multiline": true
+        }
+    ],
+    "cds.releaseNotes.showAutomatically": false,
+    "rainbow_csv.csv_lint_detect_trailing_spaces": true,
+    "cds.semanticHighlighting.enabled": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[xml]": {
+        "editor.defaultFormatter": "SAPOSS.vscode-ui5-language-assistant"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+}

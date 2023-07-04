@@ -1,0 +1,22 @@
+module.exports = (raw) => ({
+    id: raw.Model,
+    brand_code: raw.Brand,
+    year: raw.ModelYear?.toString() || null,
+    code: raw.ModelCode,
+    technicalKey: raw.TechnicalKey,
+    category_code: raw.Category || '',
+    engine_id: raw._Engine?.Engine || null,
+    transmission_id: raw._Transmission?.Transmission || null,
+    salesType_brand_code: raw._SalesType?.Brand || null,
+    salesType_id: raw._SalesType?.Type || null,
+    bodyType_brand_code: raw._BodyType?.Brand || null,
+    bodyType_id: raw._BodyType?.Type || null,
+    releasedForImporteur: raw.ReleaseState == 'I' || raw.ReleaseState == 'H',
+    releasedForPartner: raw.ReleaseState == 'H',
+    validFrom: raw.ValidFrom || '1970-01-01',
+    validTo: raw.ValidTo || '9999-12-31',
+    orderableFrom: raw.OrderableFrom || raw.ValidFrom || '1970-01-01',
+    orderableTo: raw.OrderableTo || raw.ValidTo || '9999-12-31',
+    isOEMBuildableCheckActive: raw.IsOEMBuildableCheckActive,
+    isNetSalesPrices: raw.IsNetSalesPrices
+})

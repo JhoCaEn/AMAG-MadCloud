@@ -1,0 +1,223 @@
+{
+	"_version": "1.29.0",
+	"sap.app": {
+		"id": "ch.amag.retail.dwb.offers",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				"de",
+				"it",
+				"fr",
+				"en"
+			],
+			"fallbackLocale": "en"
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"dataSources": {
+			"mainService": {
+				"uri": "app/backend/offers/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"DWBOffer-manage": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBOffer",
+					"action": "manage",
+					"title": "{{appTitle}}",
+					"subTitle": "{{appDescription}}"
+				}
+			},
+			"outbounds": {
+				"CarConfigurator": {
+					"semanticObject": "DWBCarConfigurator",
+					"action": "edit"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.102.1",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {},
+				"sap.ui.integration": {}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.offers::Offer": {
+						"controllerName": "ch.amag.retail.dwb.offers.controller.Offer"
+					}
+				}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			}
+		},
+		"routing": {
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "Offers",
+					"target": "Offers"
+				},
+				{
+					"pattern": "Offers({key}):?query:",
+					"name": "Offer",
+					"target": "Offer"
+				},
+				{
+					"pattern": "Offers({key})/carConfigurationEquipments({key2}):?query:",
+					"name": "CarConfigurationEquipments",
+					"target": "CarConfigurationEquipments"
+				},
+				{
+					"pattern": "Offers({key})/selectableBrands:?query:",
+					"name": "SelectableBrands",
+					"target": "SelectableBrands"
+				}
+			],
+			"targets": {
+				"Offers": {
+					"type": "Component",
+					"id": "Offers",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "Offers",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"Offers": {
+									"detail": {
+										"route": "Offer"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
+						}
+					},
+					"--controlAggregation": "beginColumnPages",
+					"contextPattern": ""
+				},
+				"Offer": {
+					"type": "Component",
+					"id": "Offer",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"entitySet": "Offers",
+							"editableHeaderContent": false,
+							"sectionLayout": "Tabs",
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.FieldGroup#General_Vehicle": {
+									"actions": {
+										"createCarConfiguration": {
+											"text": "{i18n>actions.createCarConfiguration}",
+											"press": "ch.amag.retail.dwb.offers.actions.createCarConfiguration.invoke",
+											"visible": "{= ${IsActiveEntity} === false }",
+											"enabled": "{= ${hasSalesPartner} === true }"
+										}
+									}
+								}
+							}
+						}
+					},
+					"--controlAggregation": "beginColumnPages",
+					"contextPattern": "/Offers({key})"
+				},
+				"CarConfigurationEquipments": {
+					"type": "Component",
+					"id": "CarConfigurationEquipments",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"entitySet": "CarConfigurationEquipments"
+						}
+					},
+					"contextPattern": "/Offers({key})/carConfigurationEquipments({key2})"				
+				},
+				"SelectableBrands": {
+					"type": "Component",
+					"id": "SelectableBrands",
+					"name": "sap.fe.core.fpm",
+					"options": {
+						"settings": {
+							"viewName": "ch.amag.retail.dwb.offers.view.SelectableBrands",
+							"entitySet": "Offers"
+						}
+					},
+					"--controlAggregation": "midColumnPages",
+					"contextPattern": "/Offers({key})"
+				}
+			},
+			"config": {
+				"flexibleColumnLayout": {
+					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+				},
+				"routerClass": "sap.f.routing.Router"
+			}
+		},
+		"--rootView": {
+			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
+			"type": "XML",
+			"async": true,
+			"id": "appRootView"
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.fe": {
+		"app": {
+			"silentlyKeepDraftOnForwardNavigation": true
+		}
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "ch.amag.retail.dwb"
+	}
+}

@@ -1,0 +1,13 @@
+brand_code,characteristic_code,value
+SEAT,model,ZNN
+SEAT,brand,ZNN
+SEAT,exteriorColor,ZNN
+SEAT,configurationDate,ZNN
+SKOD,exteriorColor,ZNM00020
+VWNF,transmission,ZNN
+VWNF,model,ZNN
+AUDI,configurationDate,ZNM00027
+AUDI,transmission,ZNM00027
+AUDI,brand,ZNM00027
+AUDI,interiorColor,ZNM00027
+VW,configurationDate,ZNM00008

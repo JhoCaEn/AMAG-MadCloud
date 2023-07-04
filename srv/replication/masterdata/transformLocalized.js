@@ -1,0 +1,1 @@
+module.exports = (texts, property) => texts?.filter(({ locale }) => locale === 'de')?.[0]?.[property] ?? null

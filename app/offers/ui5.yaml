@@ -1,0 +1,16 @@
+specVersion: "3.0"
+type: application
+metadata:
+  name: offers
+
+builder:
+  resources:
+    excludes:
+      - "/test/**"
+      - "/localService/**"
+    
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: offers

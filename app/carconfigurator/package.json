@@ -1,0 +1,14 @@
+{
+    "name": "carconfigurator",
+    "version": "1.0.0",
+    "description": "Car Configurator",
+    "license": "UNLICENSED",
+    "main": "webapp/index.html",    
+    "scripts": {
+        "build": "ui5 build preload --clean-dest"
+    },
+    "devDependencies": {
+        "ui5-task-zipper": "^0"
+    }
+
+}

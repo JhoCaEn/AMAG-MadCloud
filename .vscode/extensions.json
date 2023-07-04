@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "adam-bender.commit-message-editor",
+        "atlassian.atlascode",
+        "aaron-bond.better-comments",
+        "sapse.vscode-cds",
+        "mechatroner.rainbow-csv",
+        "redhat.vscode-yaml",
+        "saposs.vscode-ui5-language-assistant"
+    ]
+}

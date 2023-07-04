@@ -1,0 +1,1 @@
+using AppVehiclesService as service from '../../../srv';

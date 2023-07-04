@@ -1,0 +1,35 @@
+{
+    "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended"
+    ],
+    "env": {
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2020
+    },
+    "ignorePatterns": ["**/gen/**/*.js", "**/dist/**/*.js"],
+    "globals": {
+        "SELECT": true,
+        "INSERT": true,
+        "UPDATE": true,
+        "DELETE": true,
+        "CREATE": true,
+        "DROP": true,
+        "cds": true,
+        "sap": true
+    },
+    "rules": {
+        "no-console": "error",
+        "no-unsafe-optional-chaining": "error",
+        "no-promise-executor-return": "error",
+        "no-template-curly-in-string": "warn",
+        "no-unreachable-loop": "error",
+        "require-atomic-updates": "off"
+    }
+  }
+  
+  

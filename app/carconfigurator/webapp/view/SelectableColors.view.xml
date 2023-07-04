@@ -1,0 +1,41 @@
+<mvc:View
+    controllerName="ch.amag.retail.dwb.carconfigurator.controller.SelectableColors"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.f"
+>
+<!--
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>colors}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <List
+                id='colorList'
+                mode="MultiSelect"
+                items="{path: 'selectableColors', parameters: {$select: 'colorTypeName'}, sorter: {	path: 'colorTypeName', descending: false, group: true}}"
+                selectionChange="onColorSelection"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <SearchField
+                            search="onSearchColor"
+                            width="70%"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <StandardListItem
+                    selected="{selected}"
+                    title="{colorName}"
+                    type="Active"
+                />
+            </List>
+        </f:content>
+    </f:DynamicPage>
+    -->
+</mvc:View>

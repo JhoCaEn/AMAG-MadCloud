@@ -1,0 +1,30 @@
+<mvc:View xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:macros="sap.fe.macros"
+    xmlns:macrosTable="sap.fe.macros.table"
+    controllerName="ch.amag.retail.dwb.carconfigurator.controller.SelectableModels">
+
+    <!--
+    <Page id="Main">
+        <content>
+            <VBox id="MyVBox"
+                class="sapUiSmallMargin">
+                    <macros:FilterBar metaPath="selectableModels/@com.sap.vocabularies.UI.v1.SelectionFields" id="FilterBar" liveMode="true" />
+                    <macros:Table rowPress='onModelPress' selectionMode='Single' metaPath="selectableModels/@com.sap.vocabularies.UI.v1.LineItem" readOnly="true"  id="ModelsMacroTable" filterBar="FilterBar">
+                    	<macros:actions>
+							<macrosTable:Action
+								key="customAction"
+								text="{i18n>actions.selectModel}"
+								press=".onModelActionPress"
+								placement="After"
+								anchor="DataFieldForAction::Service.toggleBoolean"
+								requiresSelection="true"
+							/>
+						</macros:actions>
+                    </macros:Table>
+            </VBox>
+        </content>
+    </Page>
+    -->
+</mvc:View>

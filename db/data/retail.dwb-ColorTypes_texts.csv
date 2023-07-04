@@ -1,0 +1,13 @@
+locale,code,name
+en,E,Exterior
+en,I,Interior
+en,R,Roof
+de,E,Aussen
+de,I,Innen
+de,R,Verdeck
+fr,E,Extérieur
+fr,I,Intérieur
+fr,R,Toiture
+it,E,Esterno
+it,I,Interno
+it,R,Tetto

@@ -1,0 +1,181 @@
+{
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.carconfigurator",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "en"
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/carconfigurator/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBCarConfigurator-edit": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBCarConfigurator",
+                    "action": "edit",
+                    "title": "{{appTitle}}",
+                    "subTitle": "{{appSubtitle}}",
+                    "icon": ""
+                }
+            },
+            "outbounds": {
+                "Offers": {
+                    "semanticObject": "DWBOffer",
+                    "action": "manage"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "extends": {
+            "--extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.carconfigurator::Configuration": {
+                        "controllerName": "ch.amag.retail.dwb.carconfigurator.ext.controllers.ConfigurationOP"
+                    }
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Configurations",
+                    "target": "Configurations"
+                },                
+                {
+                    "pattern": "Configurations({key}):?query:",
+                    "name": "Configuration",
+                    "target": "Configuration"
+                }
+            ],
+            "targets": {
+				"Configurations": {
+					"type": "Component",
+					"id": "Configurations",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "Configurations",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"Configurations": {
+									"detail": {
+										"route": "Configuration"
+									}
+								}
+							}
+						}
+					},
+					"contextPattern": ""
+				},                
+                "Configuration": {
+                    "type": "Component",
+                    "id": "Configuration",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Configurations",
+                            "editableHeaderContent": false
+                        }
+                    },
+                    "contextPattern": "/Configurations({key})"
+                },
+                "--SelectableModels": {
+                    "type": "Component",
+                    "id": "SelectableModels",
+                    "name": "sap.fe.core.fpm",
+                    "options": {
+                        "settings": {
+                            "viewName": "ch.amag.retail.dwb.carconfigurator.view.SelectableModels",
+                            "entitySet": "Configurations"
+                        }
+                    },
+                    "contextPattern": "/Configurations({key})"
+                },                
+                "--SelectableColors": {
+                    "type": "Component",
+                    "id": "SelectableColors",
+                    "name": "sap.fe.core.fpm",
+                    "options": {
+                        "settings": {
+                            "viewName": "ch.amag.retail.dwb.carconfigurator.view.SelectableColors",
+                            "entitySet": "Configurations"
+                        }
+                    },
+                    "contextPattern": "/Configurations({key})"
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.fe": {
+        "app": {
+            "silentlyKeepDraftOnForwardNavigation": true
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
+}

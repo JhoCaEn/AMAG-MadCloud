@@ -1,0 +1,49 @@
+brand_code,id,unit,name
+AUDI,BE,l,Benzin
+AUDI,BEMH,l,Benzin / mHEV
+AUDI,BIFU,l / kg,Benzin / Gas
+AUDI,DI,l,Diesel
+AUDI,DIMH,l,Diesel / mHEV
+AUDI,EL,kWh,elektrisch
+AUDI,GAS,kg,Gas
+AUDI,PIHB,l / kWh,Benzin / elektrisch
+AUDI,PIHD,l / kWh,Diesel / elektrisch
+PORS,BE,l,Benzin
+SEAT,BE,l,Benzin
+SEAT,BEMH,l,Benzin / mHEV
+SEAT,BIFU,l / kg,Benzin / Gas
+SEAT,BUILD2,T / KM,Test Betriebsstoff
+SEAT,DI,l,Diesel
+SEAT,DIMH,l,Diesel / mHEV
+SEAT,EL,kWh,elektrisch
+SEAT,GAS,kg,Gas
+SEAT,PIHB,l / kWh,Benzin / elektrisch
+SEAT,PIHD,l / kWh,Diesel / elektrisch
+SEAT,TEST,T / KM,Test Betriebsstoff
+SKOD,BE,l,Benzin
+SKOD,BEMH,l,Benzin / mHEV
+SKOD,BIFU,l / kg,Benzin / Gas
+SKOD,DI,l,Diesel
+SKOD,DIMH,l,Diesel / mHEV
+SKOD,EL,kWh,elektrisch
+SKOD,GAS,kg,Gas
+SKOD,PIHB,l / kWh,Benzin / elektrisch
+SKOD,PIHD,l / kWh,Diesel / elektrisch
+VW,BE,l,Benzin
+VW,BEMH,l,Benzin / mHEV
+VW,BIFU,l / kg,Benzin / Gas
+VW,DI,l,Diesel
+VW,DIMH,l,Diesel / mHEV
+VW,EL,kWh,elektrisch
+VW,GAS,kg,Gas
+VW,PIHB,l / kWh,Benzin / elektrisch
+VW,PIHD,l / kWh,Diesel / elektrisch
+VWNF,BE,l,Benzin
+VWNF,BEMH,l,Benzin / mHEV
+VWNF,BIFU,l / kg,Benzin / Gas
+VWNF,DI,l,Diesel
+VWNF,DIMH,l,Diesel / mHEV
+VWNF,EL,kWh,elektrisch
+VWNF,GAS,kg,Gas
+VWNF,PIHB,l / kWh,Benzin / elektrisch
+VWNF,PIHD,l / kWh,Diesel / elektrisch

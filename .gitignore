@@ -1,0 +1,33 @@
+_out
+*.db
+*.sqlite
+*.sqlite-journal
+connection.properties
+default-*.json
+*.env
+gen/
+node_modules/
+target/
+app/**/node_modules
+app/**/dist
+.cdsrc-private.json
+db/yarn.lock
+package-lock.json
+
+# Web IDE, App Studio
+.che/
+.gen/
+
+# MTA
+*_mta_build_tmp
+*.mtar
+mta_archives/
+Makefile_*
+
+# Other
+.DS_Store
+*.orig
+*.log
+
+*.iml
+*.flattened-pom.xml

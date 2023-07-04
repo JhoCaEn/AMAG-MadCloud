@@ -1,0 +1,145 @@
+{
+	"_version": "1.29.0",
+	"sap.app": {
+		"id": "ch.amag.retail.dwb.backoffice-transmissions",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				"de",
+				"it",
+				"fr",
+				"en"
+			],
+			"fallbackLocale": "de"
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{AppTitle}}",
+		"description": "{{AppSubtitle}}",
+		"dataSources": {
+			"mainService": {
+				"uri": "app/backend/backoffice/transmissions/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"DWBBOTransmission-manage": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBBOTransmission",
+					"action": "manage",
+					"title": "{{AppTitle}}",
+					"subTitle": "{{AppSubtitle}}",
+					"icon": ""
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.102.1",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {},
+				"sap.ui.integration": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": ["de", "it", "fr", "en"],
+                    "fallbackLocale": "de"
+                }
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			}
+		},
+		"routing": {
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "Transmissions",
+					"target": "Transmissions"
+				},
+				{
+					"pattern": "Transmissions({key}):?query:",
+					"name": "Transmission",
+					"target": "Transmission"
+				}
+			],
+			"targets": {
+				"Transmissions": {
+					"type": "Component",
+					"id": "Transmissions",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "Transmissions",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"Transmissions": {
+									"detail": {
+										"route": "Transmission"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
+						}
+					},
+					"contextPattern": ""
+				},
+				"Transmission": {
+					"type": "Component",
+					"id": "Transmission",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"entitySet": "Transmissions"
+						}
+					},
+					"contextPattern": "/Transmissions({key})"
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "ch.amag.retail.dwb"
+	}
+}

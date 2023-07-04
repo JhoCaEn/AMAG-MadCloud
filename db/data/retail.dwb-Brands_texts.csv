@@ -1,0 +1,21 @@
+locale,code,name
+en,AUDI,Audi
+en,SEAT,Seat
+en,SKOD,Skoda
+en,VW,Volkswagen
+en,VWNF,VW commercial vehicles
+de,AUDI,Audi
+de,SEAT,Seat
+de,SKOD,Skoda
+de,VW,Volkswagen
+de,VWNF,VW Nutzfahrzeuge
+fr,AUDI,Audi
+fr,SEAT,Seat
+fr,SKOD,Skoda
+fr,VW,Volkswagen
+fr,VWNF,VW Véhicules Utilitaires
+it,AUDI,Audi
+it,SEAT,Seat
+it,SKOD,Skoda
+it,VW,Volkswagen
+it,VWNF,VW Veicoli Commerciali

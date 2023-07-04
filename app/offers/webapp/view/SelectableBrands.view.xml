@@ -1,0 +1,80 @@
+<mvc:View
+    controllerName="ch.amag.retail.dwb.offers.controller.SelectableBrands"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.f"
+>
+
+    <f:DynamicPage>
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>selectableBrands}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:content>
+            <l:Grid
+                hSpacing="0"
+                vSpacing="0"
+                containerQuery='true'
+                defaultSpan='L3 M6 S12'
+                content="{selectableBrands}"
+            >
+                <l:content>
+                    <GenericTile
+                        header="{name}"
+                        class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom sapUiTinyMarginTop tileLayout"
+                        press=".onTilePress"
+                    >
+                        <TileContent>
+                            <FlexBox
+                                alignItems="Center"
+                                justifyContent="Center"
+                            >
+                                <Image
+                                    src="{ path: 'code', formatter: '.getImageURL' }"
+                                    width="5.5rem"
+                                    height="5.5rem"
+                                />
+                            </FlexBox>
+                        </TileContent>
+                    </GenericTile>
+                </l:content>
+            </l:Grid>       
+        </f:content>
+    </f:DynamicPage>
+<!--
+    <Page title="{i18n>selectableBrands}">
+        <l:Grid
+            hSpacing="0"
+            vSpacing="0"
+            containerQuery='true'
+            defaultSpan='L3 M6 S12'
+            content="{selectableBrands}"
+        >
+            <l:content>
+                <GenericTile
+                    header="{name}"
+                    class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom sapUiTinyMarginTop tileLayout"
+                    press=".onTilePress"
+                >
+                    <TileContent>
+                        <FlexBox
+                            alignItems="Center"
+                            justifyContent="Center"
+                        >
+                            <Image
+                                src="{ path: 'code', formatter: '.getImageURL' }"
+                                width="5.5rem"
+                                height="5.5rem"
+                            />
+                        </FlexBox>
+                    </TileContent>
+                </GenericTile>
+            </l:content>
+        </l:Grid>
+    </Page>
+-->
+</mvc:View>

@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [{
+        "command": "cds run",
+        "name": "cds run",
+        "request": "launch",
+        "type": "node-terminal",
+        "skipFiles": [ "<node_internals>/**" ]
+    },{
+        "command": "cds run --profile hybrid",
+        "name": "cds run hybrid",
+        "request": "launch",
+        "type": "node-terminal",
+        "skipFiles": [ "<node_internals>/**" ]
+    }]
+}

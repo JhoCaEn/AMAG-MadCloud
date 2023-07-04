@@ -1,0 +1,129 @@
+brand_code,id,characteristicName,name,isVisible,isVisibleInConfigurator,isVisibleInSellingSystem
+AUDI,AKT,ZNK00002,Aktionen Normfaktura,false,false,false
+AUDI,AMP,ZNI00020,Ausstattung Schweiz,true,true,true
+AUDI,AUS,ZNA00029,Aussen,true,true,true
+AUDI,DIV,ZNA00053,Diverses,true,true,true
+AUDI,ELA,ZNA00082,Ausstattung E-Fahrzeuge,true,true,true
+AUDI,EXK,ZNA00057,Audi exclusive,true,true,true
+AUDI,FAH,ZNA00026,Fahrwerk,true,true,true
+AUDI,IA1,ZNI00009,IAZA (alle Ebenen),true,true,false
+AUDI,IA2,ZNI00010,IAZA (Händler Anzeige),true,false,false
+AUDI,IA3,ZNN00005,IAZA Intern (nur Importeur),false,false,false
+AUDI,IA4,ZNI00045,IAZA (Konfigurator nur Anz.),false,true,false
+AUDI,IA5,ZNI00027,IAZA (DWB Anz., KIS Offerte),true,false,true
+AUDI,IA6,ZNI00033,IAZA (brutto nur Anzeige),true,false,true
+AUDI,IA7,ZNI00060,IAZA RV-Stg (nur Konfig.),false,true,false
+AUDI,INN,ZNA00028,Innen,true,true,true
+AUDI,IRW,ZNI00035,Zus. Preisnachlässe netto I,true,true,true
+AUDI,KEY,ZNA00062,Technische Codes,false,false,false
+AUDI,LKZ,ZNT00013,Länderkennzeichen,true,false,false
+AUDI,PAK,ZNA00077,Pakete,true,true,true
+AUDI,PRW,ZNA00066,Zus. Preisnachlässe netto,true,true,true
+AUDI,RAD,ZNA00030,Radio,true,true,true
+AUDI,SEI,ZNI00040,Service IAZA,true,false,true
+AUDI,SEN,ZNI00049,Service Pakete,true,true,true
+AUDI,SEP,ZNA00071,Garantie & Service,true,true,true
+AUDI,SIE,ZNA00025,Sicherheit,true,true,true
+AUDI,SIT,ZNA00027,Sitze,true,true,true
+AUDI,SPO,ZNA00076,Audi Sport,true,true,true
+SEAT,AKT,ZNK00004,Aktionen Normfaktura,false,false,false
+SEAT,AMP,ZNI00018,Ausstattung Schweiz,true,true,true
+SEAT,AUS,ZNA00017,Aussen,true,true,true
+SEAT,DIV,ZNA00051,Diverses,true,true,true
+SEAT,ELA,ZNA00083,Ausstattung E-Fahrzeuge,true,true,true
+SEAT,FAH,ZNA00014,Fahrwerk,true,true,true
+SEAT,IA1,ZNI00005,IAZA (alle Ebenen),true,true,false
+SEAT,IA2,ZNI00006,IAZA (Händler Anzeige),true,false,false
+SEAT,IA3,ZNN00003,IAZA Intern (nur Importeur),false,false,false
+SEAT,IA4,ZNI00046,IAZA (Konfigurator nur Anz.),true,true,false
+SEAT,IA5,ZNI00025,IAZA (DWB Anz., KIS Offerte),true,false,true
+SEAT,IA6,ZNI00032,IAZA (brutto nur Anzeige),true,false,true
+SEAT,IA7,ZNI00061,IAZA RV-Stg (nur Konfig.),false,true,false
+SEAT,INN,ZNA00016,Innen,true,true,true
+SEAT,IRW,ZNI00036,Zus. Preisnachlässe netto I,true,true,true
+SEAT,KEY,ZNA00060,Technische Codes,false,false,false
+SEAT,LKZ,ZNT00011,Länderkennzeichen,true,false,false
+SEAT,PAK,ZNA00079,Pakete,true,true,true
+SEAT,PRW,ZNA00067,Zus. Preisnachlässe netto,true,true,true
+SEAT,RAD,ZNA00018,Radio,true,true,true
+SEAT,SEI,ZNI00041,Service IAZA,true,true,true
+SEAT,SEN,ZNI00050,Service Pakete,true,true,true
+SEAT,SEP,ZNA00072,Garantie & Service,true,true,true
+SEAT,SIE,ZNA00013,Sicherheit,true,true,true
+SEAT,SIT,ZNA00015,Sitze,true,true,true
+SKOD,AKT,ZNK00005,Aktionen Normfaktura,false,false,false
+SKOD,AMP,ZNI00019,Ausstattung Schweiz,true,true,true
+SKOD,AUS,ZNA00023,Aussen,true,true,true
+SKOD,DIV,ZNA00052,Diverses,true,true,true
+SKOD,ELA,ZNA00084,Ausstattung E-Fahrzeuge,true,true,true
+SKOD,FAH,ZNA00020,Fahrwerk,true,true,true
+SKOD,IA1,ZNI00007,IAZA (alle Ebenen),true,true,false
+SKOD,IA2,ZNI00008,IAZA (Händler Anzeige),true,false,false
+SKOD,IA3,ZNN00004,IAZA Intern (nur Importeur),false,false,false
+SKOD,IA4,ZNI00047,IAZA (Konfigurator nur Anz.),true,true,false
+SKOD,IA5,ZNI00026,IAZA (DWB Anz., KIS Offerte),true,false,true
+SKOD,IA6,ZNI00034,IAZA (brutto nur Anzeige),true,false,true
+SKOD,IA7,ZNI00062,IAZA RV-Stg (nur Konfig.),false,true,false
+SKOD,INN,ZNA00022,Innen,true,true,true
+SKOD,IRW,ZNI00037,Zus. Preisnachlässe netto I,true,true,true
+SKOD,KEY,ZNA00061,Technische Codes,false,false,false
+SKOD,LKZ,ZNT00012,Länderkennzeichen,true,false,false
+SKOD,PAK,ZNA00080,Pakete,true,true,true
+SKOD,PRW,ZNA00068,Zus. Preisnachlässe netto,true,true,true
+SKOD,RAD,ZNA00024,Radio,true,true,true
+SKOD,SEI,ZNI00042,Service IAZA,true,false,true
+SKOD,SEN,ZNI00051,Service Pakete,true,true,true
+SKOD,SEP,ZNA00073,Garantie & Service,true,true,true
+SKOD,SIE,ZNA00019,Sicherheit,true,true,true
+SKOD,SIT,ZNA00021,Sitze,true,true,true
+VW,AKT,ZNK00001,Aktionen Normfaktura,false,false,false
+VW,AMP,ZNI00017,Ausstattung Schweiz,true,true,true
+VW,AUS,ZNA00011,Aussen,true,true,true
+VW,DIV,ZNA00050,Diverses,true,true,true
+VW,EXK,ZNA00065,Volkswagen R GmbH,true,true,true
+VW,FAH,ZNA00008,Fahrwerk / Räder,true,true,true
+VW,IA1,ZNI00003,IAZA (alle Ebenen),true,true,false
+VW,IA2,ZNI00004,IAZA (Händler Anzeige),true,false,false
+VW,IA3,ZNN00002,IAZA Intern (nur Importeur),false,false,false
+VW,IA4,ZNI00023,IAZA (Konfigurator nur Anz.),true,true,false
+VW,IA5,ZNI00024,IAZA (DWB Anz., KIS Offerte),true,false,true
+VW,IA6,ZNI00030,IAZA (brutto nur Anzeige),true,false,true
+VW,IA7,ZNI00059,IAZA RV-Stg (nur Konfig.),false,true,false
+VW,INN,ZNA00010,Innen,true,true,true
+VW,IRW,ZNI00038,Zus. Preisnachlässe netto I,true,true,true
+VW,KEY,ZNA00059,Technische Codes,false,false,false
+VW,LKZ,ZNT00009,Länderkennzeichen,true,false,false
+VW,PAK,ZNA00078,Pakete,true,true,true
+VW,PRW,ZNA00069,Zus. Preisnachlässe netto,true,true,true
+VW,RAD,ZNA00012,Radio,true,true,true
+VW,SEI,ZNI00043,Service IAZA,true,false,true
+VW,SEN,ZNI00052,Service Pakete,true,true,true
+VW,SEP,ZNA00074,Garantie & Service,true,true,true
+VW,SIE,ZNA00007,Sicherheit,true,true,true
+VW,SIT,ZNA00009,Sitze,true,true,true
+VW,TOU,ZNV00006,Kunden- /Lagerflag,true,true,true
+VWNF,AKT,ZNK00006,Aktionen Normfaktura,false,false,false
+VWNF,AMP,ZNI00022,Ausstattung Schweiz,true,true,true
+VWNF,AUS,ZNA00041,Aussen,true,true,true
+VWNF,DIV,ZNA00055,Diverses,true,true,true
+VWNF,FAH,ZNA00038,Fahrwerk,true,true,true
+VWNF,IA1,ZNI00013,IAZA (alle Ebenen),true,true,false
+VWNF,IA2,ZNI00014,IAZA (Händler Anzeige),true,false,false
+VWNF,IA3,ZNN00007,IAZA Intern (nur Importeur),false,false,false
+VWNF,IA4,ZNI00048,IAZA (Konfigurator nur Anz.),true,true,false
+VWNF,IA5,ZNI00029,IAZA (DWB Anz., KIS Offerte),true,false,true
+VWNF,IA6,ZNI00031,IAZA (brutto nur Anzeige),true,false,true
+VWNF,IA7,ZNI00063,IAZA RV-Stg (nur Konfig.),false,true,false
+VWNF,INN,ZNA00040,Innen,true,true,true
+VWNF,IRW,ZNI00039,Zus. Preisnachlässe netto I,true,true,true
+VWNF,KEY,ZNA00064,Technische Codes,false,false,false
+VWNF,LKZ,ZNT00015,Länderkennzeichen,true,false,false
+VWNF,PAK,ZNA00081,Pakete,true,true,true
+VWNF,PRW,ZNA00070,Zus. Preisnachlässe netto,true,true,true
+VWNF,RAD,ZNA00042,Radio,true,true,true
+VWNF,SEI,ZNI00044,Service IAZA,true,true,true
+VWNF,SEN,ZNI00053,Service Pakete,true,true,true
+VWNF,SEP,ZNA00075,Garantie & Service (bis M030),true,true,true
+VWNF,SIE,ZNA00037,Sicherheit,true,true,true
+VWNF,SIT,ZNA00039,Sitze,true,true,true
+VWNF,ZOP,ZNA00056,Z-Optionen,true,true,true

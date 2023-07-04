@@ -1,0 +1,189 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.backoffice-partners",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "de"
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/backoffice/partners/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBBOPartner-manage": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBBOPartner",
+                    "action": "manage",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.115.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
+                    "fallbackLocale": "de"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Partners",
+                    "target": "Partners"
+                },
+                {
+                    "pattern": "Partners({key}):?query:",
+                    "name": "Partner",
+                    "target": "Partner"
+                },
+                {
+                    "pattern": "Partners({key})/brands({key2}):?query:",
+                    "name": "PartnerBrand",
+                    "target": "PartnerBrand"
+                },
+                {
+                    "pattern": "Partners({key})/brands({key2})/contracts({key3}):?query:",
+                    "name": "PartnerBrandContract",
+                    "target": "PartnerBrandContract"
+                }
+            ],
+            "targets": {
+                "Partners": {
+                    "type": "Component",
+                    "id": "Partners",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Partners",
+                            "variantManagement": "Page",
+                            "initialLoad": true,
+                            "navigation": {
+                                "Partners": {
+                                    "detail": {
+                                        "route": "Partner"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Partner": {
+                    "type": "Component",
+                    "id": "Partner",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Partners",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "brands": {
+                                    "detail": {
+                                        "route": "PartnerBrand"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "PartnerBrand": {
+                    "type": "Component",
+                    "id": "PartnerBrand",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrands",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "contracts": {
+                                    "detail": {
+                                        "route": "PartnerBrandContract"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "PartnerBrandContract":{
+                    "type": "Component",
+                    "id": "PartnerBrandContract",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrandContracts"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
+}

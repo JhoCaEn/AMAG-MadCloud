@@ -1,0 +1,33 @@
+code,locale,name
+"",en,General
+"",de,Allgemein
+"",fr,Générale
+"",it,Generale
+A,en,A8/S8
+A,de,A8/S8
+A,fr,A8/S8
+A,it,A8/S8
+C,en,Commerce
+C,de,Commerce
+C,fr,Commerce
+C,it,Commerce
+L,en,Life
+L,de,Life
+L,fr,Life
+L,it,Life
+R,en,RS/R8
+R,de,RS/R8
+R,fr,RS/R8
+R,it,RS/R8
+T,en,Camper
+T,de,Camper
+T,fr,Camper
+T,it,Camper
+U,en,Cupra
+U,de,Cupra
+U,fr,Cupra
+U,it,Cupra
+Z,en,ID Life
+Z,de,ID Life
+Z,fr,ID Life
+Z,it,ID Life

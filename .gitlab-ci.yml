@@ -1,0 +1,8 @@
+include:
+  - project: 'amag_web/sap/pipeline/sap_pipeline_templates'
+    file: 'sap_cap.gitlab-ci.yml'
+    ref: 'main'
+
+variables:
+  CDS_VERSION: 6
+  NODE_VERSION: 18

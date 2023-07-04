@@ -1,0 +1,301 @@
+{
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.backoffice-brands",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "de"
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/backoffice/brands/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBBOBrand-manage": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBBOBrand",
+                    "action": "manage",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": ["de", "it", "fr", "en"],
+                    "fallbackLocale": "de"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Brands",
+                    "target": "Brands"
+                },
+                {
+                    "pattern": "Brands({key}):?query:",
+                    "name": "Brand",
+                    "target": "Brand"
+                },
+                {
+                    "pattern": "Brands({key})/modelSeries({key2}):?query:",
+                    "name": "ModelSerie",
+                    "target": "ModelSerie"
+                },
+                {
+                    "pattern": "Brands({key})/salesTypes({key2}):?query:",
+                    "name": "SalesType",
+                    "target": "SalesType"
+                },
+                {
+                    "pattern": "Brands({key})/bodyTypes({key2}):?query:",
+                    "name": "BodyType",
+                    "target": "BodyType"
+                },
+                {
+                    "pattern": "Brands({key})/fuelTypes({key2}):?query:",
+                    "name": "FuelType",
+                    "target": "FuelType"
+                },
+                {
+                    "pattern": "Brands({key})/driveTypes({key2}):?query:",
+                    "name": "DriveType",
+                    "target": "DriveType"
+                },
+                {
+                    "pattern": "Brands({key})/transmissionTypes({key2}):?query:",
+                    "name": "TransmissionType",
+                    "target": "TransmissionType"
+                },
+                {
+                    "pattern": "Brands({key})/equipmentChapters({key2}):?query:",
+                    "name": "EquipmentChapter",
+                    "target": "EquipmentChapter"
+                },
+                {
+                    "pattern": "Brands({key})/equipmentCategories({key2}):?query:",
+                    "name": "EquipmentCategory",
+                    "target": "EquipmentCategory"
+                }
+            ],
+            "targets": {
+                "Brands": {
+                    "type": "Component",
+                    "id": "Brands",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Brands",
+                            "variantManagement": "Page",
+                            "initialLoad": true,
+                            "navigation": {
+                                "Brands": {
+                                    "detail": {
+                                        "route": "Brand"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Brand": {
+                    "type": "Component",
+                    "id": "Brand",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Brands",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "modelSeries": {
+                                    "detail": {
+                                        "route": "ModelSerie"
+                                    }
+                                },
+                                "salesTypes": {
+                                    "detail": {
+                                        "route": "SalesType"
+                                    }
+                                },
+                                "bodyTypes": {
+                                    "detail": {
+                                        "route": "BodyType"
+                                    }
+                                },
+                                "fuelTypes": {
+                                    "detail": {
+                                        "route": "FuelType"
+                                    }
+                                },
+                                "driveTypes": {
+                                    "detail": {
+                                        "route": "DriveType"
+                                    }
+                                },
+                                "transmissionTypes": {
+                                    "detail": {
+                                        "route": "TransmissionType"
+                                    }
+                                },
+                                "equipmentChapters": {
+                                    "detail": {
+                                        "route": "EquipmentChapter"
+                                    }
+                                },
+                                "equipmentCategories": {
+                                    "detail": {
+                                        "route": "EquipmentCategory"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ModelSerie": {
+                    "type": "Component",
+                    "id": "ModelSerie",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelSeries"
+                        }
+                    }
+                },
+                "SalesType": {
+                    "type": "Component",
+                    "id": "SalesType",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "SalesTypes"
+                        }
+                    }
+                },
+                "BodyType": {
+                    "type": "Component",
+                    "id": "BodyType",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "BodyTypes"
+                        }
+                    }
+                },
+                "FuelType": {
+                    "type": "Component",
+                    "id": "FuelType",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "FuelTypes"
+                        }
+                    }
+                },
+                "DriveType": {
+                    "type": "Component",
+                    "id": "DriveType",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "DriveTypes"
+                        }
+                    }
+                },
+                "TransmissionType": {
+                    "type": "Component",
+                    "id": "TransmissionType",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "TransmissionTypes"
+                        }
+                    }
+                },
+                "EquipmentChapter": {
+                    "type": "Component",
+                    "id": "EquipmentChapter",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "EquipmentChapters"
+                        }
+                    }
+                },
+                "EquipmentCategory": {
+                    "type": "Component",
+                    "id": "EquipmentCategory",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "EquipmentCategories"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
+}

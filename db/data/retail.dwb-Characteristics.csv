@@ -1,0 +1,14 @@
+code,name
+configurationDate,Konfigurationsdatum
+brand,Marke
+salesType,Verkaufstyp
+engine,Motor
+transmission,Getriebe
+model,Modell
+modelYear,Modelljahr
+exteriorColor,Aussenfarbe
+interiorColor,Innenfarbe
+roofColor,Verdeckfarbe
+equipment,Ausstattung
+internalWork,Innenauftrag
+additionalWork,Zusatzauftrag

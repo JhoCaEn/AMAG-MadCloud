@@ -1,0 +1,1 @@
+module.exports = (raw = [], code) => raw.map(({ Locale, Name }) => ({ locale: Locale.toLowerCase(), name: Name, displayName: `[${code}] ${Name}` }))

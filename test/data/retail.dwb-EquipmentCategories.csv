@@ -1,0 +1,204 @@
+brand_code,id,name
+AUDI,ABLAGE,Ablagenpaket
+AUDI,AHK,Anhängevorrichtung
+AUDI,AKZENT,Akzentflächen
+AUDI,ASSIST,Assistenzsysteme
+AUDI,AUSSP,Aussenspiegel
+AUDI,BLENDEN,Dekorblenden
+AUDI,BORDLIT,Bordliteratur
+AUDI,BREMSEN,Bremsscheiben
+AUDI,BUSINES,BusinessPlus
+AUDI,CARBID,Carbidbremsen
+AUDI,CONNECT,Audi connect
+AUDI,DACHHI,Dachhimmel
+AUDI,DACHREL,Dachreling
+AUDI,DEKOR,Dekoreinlagen
+AUDI,DEKOR Q,Dekoreinlagen Audi exclusive
+AUDI,DES SPO,Design Paket Sport
+AUDI,DESIGN,Design-Pakete
+AUDI,DIBKOM,Komfortschlüssel
+AUDI,DVD,DVD-Abspielgerät
+AUDI,E-TRON,Einstiegsleisten
+AUDI,EINSTIE,Einstiegsleisten
+AUDI,FAHRWER,Fahrwerke
+AUDI,FINISH,Finish
+AUDI,FIS,Fahrerinformationssystem
+AUDI,FOLIE D,Foliensätze Dachbogen
+AUDI,FOLIE V,Foliensätze V-Design
+AUDI,GARANTI,Anschlussgarantie
+AUDI,HOMOLOG,Homologation
+AUDI,INT,Interieurelemente
+AUDI,KAMERA,Kamera
+AUDI,KERAMIK,Keramikbremsen
+AUDI,KLIMA,Komfortklimaautomatik
+AUDI,LADE,Ladesystem
+AUDI,LEDER,Lederpakete
+AUDI,LENK,Lenkräder
+AUDI,LENK MF,Multifunktionslenkräder
+AUDI,LENKUNG,Lenkung
+AUDI,LICHTPA,Lichtpaket
+AUDI,LIT ALZ,Bordpapier FLZ
+AUDI,LITWERK,Bordpapier Werk
+AUDI,NAVI,Navigationssysteme
+AUDI,NORMFAK,Normfaktura
+AUDI,OPTIKPK,Optikpakete
+AUDI,PARK,Parksystem
+AUDI,RADIO,Radio
+AUDI,RADNAV,Radio und Navigation
+AUDI,ROWI,Rollwiderstandsreifen
+AUDI,RÄDER,Räder
+AUDI,RÄDER A,Räder AUDI AG
+AUDI,RÄDER Q,Räder Audi Sport
+AUDI,RÄDER16,Räder 16"
+AUDI,RÄDER17,Räder 17"
+AUDI,RÄDER18,Räder 18"
+AUDI,RÄDER19,Räder 19"
+AUDI,RÄDER20,Räder 20"
+AUDI,RÄDER21,Räder 21"
+AUDI,RÄDER22,Räder 22"
+AUDI,RÄDER23,Räder 23"
+AUDI,RÜCKSIT,Rücksitzbank
+AUDI,S LINE,S Line
+AUDI,SB A,Sitzbezüge AUDI AG
+AUDI,SB EX,Sitzbezüge individuell
+AUDI,SB Q,Sitzbezüge S line
+AUDI,SCHEINW,Scheinwerfer
+AUDI,SITZBEL,Sitzbelüftung
+AUDI,SITZBEZ,Sitzbezüge
+AUDI,SITZBSL,Sitzbezüge S line
+AUDI,SITZE,Sitze
+AUDI,SITZE V,Vordersitze
+AUDI,SITZHEI,Sitzheizung
+AUDI,SITZVER,Sitzeinstellung vorne
+AUDI,SOUND,Lautsprecher
+AUDI,TELEFON,Telefon
+AUDI,VERGLAS,Verglasung
+AUDI,VIRTUAL,Audi virtual cockpit
+AUDI,WÄRME-K,Wärme-Komfort-Paket
+AUDI,XENON,Xenon
+SEAT,7SITZE,Paket 7 Sitze
+SEAT,ABCD,TEST 16.03.2023
+SEAT,ADVANCE,Advanced
+SEAT,BLUB,BLUB
+SEAT,BUILD2,BUILD 2 Kategorie
+SEAT,CON BOX,Connect Box
+SEAT,DISTANZ,Ateca WAC
+SEAT,ELEKTRI,
+SEAT,FAHRASS,Fahrassistent
+SEAT,FELGEN,Felgen
+SEAT,FINISH,Finish
+SEAT,GARANTI,Werksgarantieverlängerungen
+SEAT,HECKKLA,Ateca el. Heckklappe
+SEAT,HOMOLOG,Homologation
+SEAT,KIND,Kindersitze
+SEAT,KLIMA,Klimaanlage
+SEAT,LENK,Lenkrad
+SEAT,LICHT,Licht
+SEAT,LINK,FULL LINK
+SEAT,LIT FLZ,Bordliteratur FLZ
+SEAT,LITWERK,Bordliteratur ab Werk
+SEAT,MEDIASY,CONNECT Mediasystem
+SEAT,NAVHIGH,CONNECT NAVI HIGH
+SEAT,NAVI,CONNECT NAVI
+SEAT,NORMFAK,Normfaktura
+SEAT,PARKASS,Parkassistent
+SEAT,PERFORM,Performance Pack
+SEAT,PRÄMIE,Prämie
+SEAT,RADIO,Radio und Navigation
+SEAT,RÄDER,Räder
+SEAT,SICHER,Sicherheit
+SEAT,SITZBEZ,Sitzbezüge
+SEAT,SITZE,Sitze
+SEAT,SITZHEI,Sitzheizung
+SEAT,SOUND,CONNECT SOUNDSYSTEM
+SEAT,TEST,Test Kat
+SEAT,TÜREN,Türen
+SEAT,ZZZZ,ZZZZ
+SKOD,ANHANG,Anhängerkupplung
+SKOD,AUSSEN,Aussen
+SKOD,AUSSP,Aussenspiegel
+SKOD,DACH,Schiebedach
+SKOD,DIV,Diverses
+SKOD,FAHRWER,Fahrwerk
+SKOD,FELGEN,Felgen
+SKOD,FINISH,Finish
+SKOD,GARANT.,Werksgarantieverlängerung
+SKOD,HOMOLOG,Homologation
+SKOD,INN,Innen
+SKOD,KLI,Klima
+SKOD,LENK,
+SKOD,LENKRAD,Lenkräder
+SKOD,LIT FLZ,Bordliteratur FLZ
+SKOD,LITWERK,Bordliteratur ab Werk
+SKOD,NORMFAK,Normfaktura
+SKOD,RADIO,Radio und Navigation
+SKOD,RES.RAD,Reserve Räder
+SKOD,RÄDER,Räder
+SKOD,SICHER,Sicherheit - ABS....
+SKOD,SITZBEZ,Sitzbezüge
+SKOD,SITZEIN,Sitzeinstellung
+SKOD,TEL,Telefon
+VW,AKTION,Verkaufsförderungen
+VW,ALU,Räder
+VW,DEKOR,Dekoreinlagen
+VW,ELE,Elektrik-Pakete
+VW,FAMILY,Family
+VW,FINISH,Finish
+VW,FLEET,Fleet
+VW,GARANTI,Werksgarantieverlängerungen
+VW,HOMOLOG,Homologation
+VW,KESSY,Schliess-Systeme
+VW,KINDER,Kindersitze
+VW,KLI,Klimaanlagen
+VW,LENKRAD,Lenkräder
+VW,LIGHTAS,Light Assist
+VW,LIT ALZ,Bordliteratur FLZ
+VW,LITWERK,Bordliteratur ab Werk
+VW,NAVI,Navigationsgeräte
+VW,PARKPIL,Einparkhilfen
+VW,RADIO,Radio
+VW,SCHEINW,Scheinwerfer
+VW,SITZBEZ,Sitzbezüge
+VW,SITZE,Sitze
+VW,TELE,Telefon
+VW,VSSP,VSSP
+VWNF,A-GARAN,Anschlussgarantie
+VWNF,ALURAD,Alufelgen
+VWNF,AUFSTLD,Aufstelldach California
+VWNF,AUSSP,Aussenspiegel
+VWNF,BEIFAHR,Beifahrersitz
+VWNF,BODEN,Boden
+VWNF,DEKOR,Dekorleisten
+VWNF,FAHRER,Fahrersitz
+VWNF,FAHRWRK,Federung / Dämpfung / Fahrwerk
+VWNF,FHL,Fenster hinten links
+VWNF,FHR,Fenster hinten rechts
+VWNF,FINISH,Finish
+VWNF,FML,Fenster mitte links
+VWNF,FMR,Fenster mitte rechts
+VWNF,FVL,Fenster vorne links
+VWNF,FVR,Fenster vorne rechts
+VWNF,HOMOLOG,Homologation
+VWNF,KLIMA,Klimaanlage
+VWNF,LIT ALZ,Bordliteratur ALZ
+VWNF,LITWERK,Bordliteratur ab Werk
+VWNF,MODBEZ,Schriftzugsatz
+VWNF,NAV,Radio-Navigationssystem
+VWNF,NORMFAK,Normfaktura
+VWNF,RADIO,Radio und Navigation
+VWNF,RADNAV,Radio/Navi
+VWNF,RE-RAD,Reserverad
+VWNF,RÄDER,Räder
+VWNF,SCHIENE,Schiene
+VWNF,SEITENW,Seitenwand
+VWNF,SIT-1.R,Sitze 1.Sitzreihe Fahrgastraum
+VWNF,SIT-2.R,Sitze 2.Sitzreihe Fahrgastraum
+VWNF,SIT-3.R,Sitze 3.Sitzreihe Fahrgastraum
+VWNF,SITZBEZ,Sitzbezüge
+VWNF,SITZE,Sitze
+VWNF,STLRAD,Stahlfelgen
+VWNF,TELVORB,Handy-Vorbereitung
+VWNF,TRENNW,Trennwand
+VWNF,VANCARE,VanCare
+VWNF,VERBL,Verblechung by AMAG Import
+VWNF,ZWT,2. Wärmetauscher

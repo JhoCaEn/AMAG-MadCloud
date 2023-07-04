@@ -1,0 +1,9 @@
+using from './characteristics';
+using from './equipmentchapters';
+using from './salestypes';
+using from './modelseries';
+using from './bodytypes';
+using from './equipmentcategories';
+using from './drivetypes';
+using from './transmissiontypes';
+using from './fueltypes';

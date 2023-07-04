@@ -1,0 +1,13 @@
+code,locale,name
+ALLRAD,en,all wheel drive
+ALLRAD,de,Allradantrieb
+ALLRAD,fr,4 roues motrices
+ALLRAD,it,4 ruote motrici
+FRONT,en,front wheel drive
+FRONT,de,Frontantrieb
+FRONT,fr,traction avant
+FRONT,it,trazione anteriore
+HECK,en,rear wheel drive
+HECK,de,Heckantrieb
+HECK,fr,propulsion
+HECK,it,trazione posteriore

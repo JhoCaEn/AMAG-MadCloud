@@ -1,0 +1,27 @@
+locale,code,name
+en,configurationDate,Configuration Date
+en,brand,Brand
+en,salesType,Sales Type
+en,engine,Engine
+en,transmission,Transmission
+en,model,Model
+en,modelYear,Model Year
+en,exteriorColor,Exterior Color
+en,interiorColor,Interior Color
+en,roofColor,Roof Color
+en,equipment,Equipment
+en,internalWork,Internal Work
+en,additionalWork,Additional Work
+de,configurationDate,Konfigurationsdatum
+de,brand,Marke
+de,salesType,Verkaufstyp
+de,engine,Motor
+de,transmission,Getriebe
+de,model,Modell
+de,modelYear,Modelljahr
+de,exteriorColor,Aussenfarbe
+de,interiorColor,Innenfarbe
+de,roofColor,Verdeckfarbe
+de,equipment,Ausstattung
+de,internalWork,Innenauftrag
+de,additionalWork,Zusatzauftrag

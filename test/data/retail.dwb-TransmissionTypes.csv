@@ -1,0 +1,36 @@
+brand_code,id,shift_code,name
+AUDI,AUS,AUTOMAT,Automatisiertes Schaltgetriebe
+AUDI,AUT,AUTOMAT,Automat
+AUDI,DSG,AUTOMAT,Direkt-Schaltgetriebe DSG
+AUDI,LOW,MANUELL,Low Range
+AUDI,MAN,MANUELL,manuell
+AUDI,MULTI,AUTOMAT,Multitronic
+AUDI,R TRON,AUTOMAT,R tronic
+AUDI,S TRON,AUTOMAT,Direkt-Schaltgetriebe S tronic
+AUDI,TIP,AUTOMAT,Tiptronic
+SEAT,ASG,AUTOMAT,Automatisiertes Schaltgetriebe
+SEAT,AUT,AUTOMAT,Automat
+SEAT,BUILD2,AUTOMAT,Tiptronic
+SEAT,DSG,AUTOMAT,DSG
+SEAT,MAN,MANUELL,manuell
+SEAT,MULTI,AUTOMAT,Multitronic
+SEAT,NEU,AUTOMAT,TEST DSG
+SEAT,TEST,MANUELL,Test Schaltung
+SEAT,TEST2,AUTOMAT,TEST DSG
+SEAT,TEST3,MANUELL,manuell
+SEAT,TEST4,AUTOMAT,TEST4
+SEAT,TIP,AUTOMAT,Tiptronic
+SKOD,ASG,AUTOMAT,Automatisiertes Schaltgetriebe
+SKOD,AUT,AUTOMAT,Automat
+SKOD,DSG,AUTOMAT,DSG
+SKOD,MAN,MANUELL,manuell
+SKOD,TIP,AUTOMAT,Tiptronic
+VW,ASG,AUTOMAT,Automatisiertes Schaltgetriebe
+VW,AUT,AUTOMAT,Automat
+VW,DSG,AUTOMAT,Automat DSG
+VW,MAN,MANUELL,manuell
+VW,TIP,AUTOMAT,Tiptronic
+VWNF,ASG,AUTOMAT,Automatisiertes Schaltgetriebe
+VWNF,AUT,AUTOMAT,Automat
+VWNF,DSG,AUTOMAT,Automat DSG
+VWNF,MAN,MANUELL,Manuell

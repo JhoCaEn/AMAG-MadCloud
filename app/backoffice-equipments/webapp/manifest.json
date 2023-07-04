@@ -1,0 +1,144 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.backoffice-equipments",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "en"
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/backoffice/equipments/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBBOEquipment-manage": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBBOEquipment",
+                    "action": "manage",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
+                    "icon": ""
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.115.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
+                    "fallbackLocale": "en"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Equipments",
+                    "target": "Equipments"
+                },
+                {
+                    "pattern": "Equipments({key}):?query:",
+                    "name": "Equipment",
+                    "target": "Equipment"
+                }
+            ],
+            "targets": {
+                "Equipments": {
+                    "type": "Component",
+                    "id": "Equipments",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Equipments",
+                            "variantManagement": "Page",
+                            "initialLoad": true,
+                            "navigation": {
+                                "Equipments": {
+                                    "detail": {
+                                        "route": "Equipment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "Equipment": {
+                    "type": "Component",
+                    "id": "Equipment",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Equipments"
+                        }
+                    },
+                    "contextPattern": "/Equipments({key})"
+                }
+            }
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
+}

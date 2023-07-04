@@ -1,0 +1,13 @@
+{
+    "name": "deploy",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "@sap/hdi-deploy": "^4"
+    },
+    "engines": {
+        "node": "14 || 16 || 18"
+    },
+    "scripts": {
+        "start": "node node_modules/@sap/hdi-deploy/deploy.js --auto-undeploy"
+    }
+}

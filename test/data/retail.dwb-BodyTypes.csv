@@ -1,0 +1,38 @@
+brand_code,id,name
+AUDI,AV,Avant
+AUDI,CAB,Cabriolet
+AUDI,COUPE,Coupé
+AUDI,LIM,Limousine
+AUDI,ROAD,Roadster
+AUDI,SUV,Sport Utility Vehicle
+SEAT,CUV,CUV
+SEAT,KOMB,Kombi
+SEAT,LIM,Limousine
+SEAT,MPV,Grossraumlimousine
+SEAT,MSV,Multi Sports Vehicle
+SEAT,NEU,Cabriowetter
+SEAT,SUV,SUV
+SEAT,VARIO,Vario
+SKOD,COMB,Combi
+SKOD,KAST,Kastenwagen
+SKOD,LIM,Limousine
+SKOD,MPV,MPV
+SKOD,SEDAN,Sedan
+SKOD,SUV,SUV
+VW,CAB,Cabriolet
+VW,COU,Coupé
+VW,CUV,Crossover Utility Vehicle
+VW,LIM,Limousine
+VW,MPV,Grossraumlimousine
+VW,SUV,Sport Utility Vehicle
+VW,VAR,Variant
+VWNF,CAMPER,Camper
+VWNF,CARA,Caravelle
+VWNF,CHKA,Chassis-Kabine
+VWNF,DOKA,Chassis-Doppelkabine
+VWNF,KAST,Kastenwagen
+VWNF,KOMB,Kombi
+VWNF,MULTI,Multivan
+VWNF,PICKUP,Pick Up
+VWNF,SHUT,Shuttle
+VWNF,ZUKO,Zugkopf
