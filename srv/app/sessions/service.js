@@ -1,4 +1,4 @@
-module.exports = class AppOrdersService extends cds.ApplicationService {
+module.exports = class AppSessionsService extends cds.ApplicationService {
     async init() {
 
         return super.init()

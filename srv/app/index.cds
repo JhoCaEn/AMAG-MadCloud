@@ -11,3 +11,5 @@ using from './orders';
 using from './vehicles';
 
 using from './sessions';
+using from './order-releases';
+using from './sales-mesages';

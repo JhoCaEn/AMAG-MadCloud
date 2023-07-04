@@ -13,3 +13,4 @@ using from './backoffice-transmissions/annotations';
 using from './backoffice-equipments/annotations';
 
 using from './sessions/annotations';
+using from './order-releases/annotations';

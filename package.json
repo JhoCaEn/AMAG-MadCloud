@@ -177,6 +177,7 @@
     "app/backoffice-brands",
     "app/backoffice-transmissions",
     "app/backoffice-equipments",
-    "app/sessions"
+    "app/sessions",
+    "app/order-releases"
   ]
 }

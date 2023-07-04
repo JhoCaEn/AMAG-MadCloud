@@ -1,7 +1,7 @@
 {
   "_version": "1.49.0",
   "sap.app": {
-    "id": "sessions",
+    "id": "ch.amag.retail.dwb.sessions",
     "type": "application",
     "i18n": {
 			"bundleUrl": "i18n/i18n.properties",
