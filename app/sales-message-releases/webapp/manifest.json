@@ -1,7 +1,7 @@
 {
     "_version": "1.49.0",
     "sap.app": {
-        "id": "ch.amag.retail.dwb.orderreleases",
+        "id": "ch.amag.retail.dwb.salesmessagereleases",
         "type": "application",
         "i18n": {
             "bundleUrl": "i18n/i18n.properties",
@@ -20,21 +20,23 @@
         "description": "{{appDescription}}",
         "dataSources": {
             "mainService": {
-                "uri": "/app/backend/order/releases/",
+                "uri": "/app/backend/sales-message/releases/",
                 "type": "OData",
                 "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
                     "odataVersion": "4.0"
                 }
             }
         },
         "crossNavigation": {
             "inbounds": {
-                "DWBOrder-release": {
+                "DWBSalesMessage-release": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "DWBOrder",
+                    "semanticObject": "DWBSalesMessage",
                     "action": "release",
                     "title": "{{appTitle}}",
                     "subTitle": "{{appSubtitle}}",
@@ -45,14 +47,6 @@
     },
     "sap.ui": {
         "technology": "UI5",
-        "icons": {
-            "icon": "",
-            "favIcon": "",
-            "phone": "",
-            "phone@2": "",
-            "tablet": "",
-            "tablet@2": ""
-        },
         "deviceTypes": {
             "desktop": true,
             "tablet": true,
@@ -67,8 +61,7 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {},
-                "sap.f": {}
+                "sap.fe.templates": {}
             }
         },
         "contentDensities": {
@@ -78,9 +71,7 @@
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleName": "ch.amag.retail.dwb.orderreleases.i18n.i18n"
-                }
+                "uri": "i18n/i18n.properties"
             },
             "": {
                 "dataSource": "mainService",
@@ -91,14 +82,7 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true
                 }
-            },
-            "@i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
             }
-        },
-        "resources": {
-            "css": []
         },
         "routing": {
             "routes": [],

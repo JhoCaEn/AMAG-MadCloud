@@ -1,17 +1,7 @@
-_schema-version: '3.1'
+_schema-version: "3.1"
 ID: dwb
-version: 1.0.0
 description: Dealer Workbench
-
-parameters:
-  enable-parallel-deployments: true
-
-build-parameters:
-  before-all:
-    - builder: custom
-      commands:
-        - yarn run build:cds
-
+version: 1.0.0
 modules:
 - name: dwb-srv
   type: nodejs
@@ -168,6 +158,14 @@ modules:
       - order-releases.zip
       name: dwb-app-order-releases
       target-path: resources/
+    - artifacts:
+      - fleet-applications.zip
+      name: dwb-app-fleet-applications
+      target-path: resources/
+    - artifacts:
+      - sales-message-releases.zip
+      name: dwb-app-sales-message-releases
+      target-path: resources/
 - name: dwb-app-offers
   type: html5
   path: app/offers
@@ -288,6 +286,26 @@ modules:
     - yarn install
     - yarn run build:cf
     supported-platforms: []
+- name: dwb-app-fleet-applications
+  type: html5
+  path: app/fleet-applications
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build:cf
+    supported-platforms: []
+- name: dwb-app-sales-message-releases
+  type: html5
+  path: app/sales-message-releases
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build:cf
+    supported-platforms: []
 resources:
 - name: dwb-db
   type: com.sap.xs.hdi-container
@@ -354,3 +372,11 @@ resources:
   type: org.cloudfoundry.existing-service
   parameters:
     service-name: job-scheduler
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - yarn run build:cds

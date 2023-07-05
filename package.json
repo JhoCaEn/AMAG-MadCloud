@@ -20,9 +20,10 @@
     },
     "devDependencies": {
         "@amag-ch/sap_cap_common_launchpad": "^1.1.0",
+        "@sap/ux-specification": "^1.108.8",
+        "rimraf": "^3.0.2",
         "sqlite3": "^5",
-        "tunnel-agent": "^0.6.0",
-        "rimraf": "^3.0.2"
+        "tunnel-agent": "^0.6.0"
     },
     "scripts": {
         "start": "cds-serve",
@@ -33,7 +34,10 @@
         "cf:deploy": "cf deploy deployment.mtar",
         "undeploy": "cf undeploy dwb --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+        "watch-sales-messages-releases": "cds watch --open sales-messages-releases/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-sales-message-releases": "cds watch --open sales-message-releases/webapp/index.html?sap-ui-xx-viewCache=false",
+        "watch-fleet-applications": "cds watch --open fleet-applications/webapp/index.html?sap-ui-xx-viewCache=false"
     },
     "cds": {
         "i18n": {
@@ -187,6 +191,8 @@
         "app/backoffice-equipments",
         "app/sessions",
         "app/order-releases",
-        "app/sales-messages"
+        "app/sales-messages",
+        "app/sales-message-releases",
+        "app/fleet-applications"
     ]
 }
