@@ -1,55 +1,47 @@
 {
     "_version": "1.49.0",
     "sap.app": {
-        "id": "ch.amag.retail.dwb.sessions",
+        "id": "ch.amag.retail.dwb.salesmessages",
         "type": "application",
         "i18n": {
-            "bundleUrl": "i18n/i18n.properties",
-            "supportedLocales": [
-                "de",
-                "it",
-                "fr",
-                "en"
-            ],
-            "fallbackLocale": "en"
-        },
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				"de",
+				"it",
+				"fr",
+				"en"
+			],
+			"fallbackLocale": "en"
+		},
         "applicationVersion": {
             "version": "0.0.1"
         },
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
-        "resources": "resources.json",
-        "sourceTemplate": {
-            "id": "@sap/generator-fiori:lrop",
-            "version": "1.9.6",
-            "toolsId": "3d327915-4987-4a6a-bb1f-f8e6d9e1fe01"
-        },
         "dataSources": {
-            "mainService": {
-                "uri": "/app/backend/sessions/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
-                    "odataVersion": "4.0"
-                }
-            }
-        },
+			"mainService": {
+				"uri": "app/backend/sales-messages/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		},
         "crossNavigation": {
-            "inbounds": {
-                "DWBSession-manage": {
-                    "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
-                    },
-                    "semanticObject": "DWBSession",
-                    "action": "manage",
-                    "title": "{{appTitle}}",
-                    "subTitle": "{{appSubTitle}}",
-                    "icon": ""
-                }
-            }
-        }
+			"inbounds": {
+				"DWBSalesMessage-display": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBSalesMessage",
+					"action": "display",
+					"title": "{{appTitle}}",
+					"subTitle": "{{appSubtitle}}",
+					"icon": ""
+				}
+			}
+		}
     },
     "sap.ui": {
 		"technology": "UI5",
@@ -91,17 +83,17 @@
             }
         },
         "routing": {
+            "routes": [
+            ],
+            "targets": {
+            },
             "config": {
 				"flexibleColumnLayout": {
 					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
 					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
 				},
 				"routerClass": "sap.f.routing.Router"
-			},
-            "routes": [
-            ],
-            "targets": {
-            }
+			}
         },
 		"rootView": {
 			"viewName": "sap.fe.templates.RootContainer.view.Fcl",

@@ -1,7 +1,7 @@
 {
     "_version": "1.49.0",
     "sap.app": {
-        "id": "ch.amag.retail.dwb.sessions",
+        "id": "ch.amag.retail.dwb.orderreleases",
         "type": "application",
         "i18n": {
             "bundleUrl": "i18n/i18n.properties",
@@ -18,47 +18,47 @@
         },
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
-        "resources": "resources.json",
-        "sourceTemplate": {
-            "id": "@sap/generator-fiori:lrop",
-            "version": "1.9.6",
-            "toolsId": "3d327915-4987-4a6a-bb1f-f8e6d9e1fe01"
-        },
         "dataSources": {
             "mainService": {
-                "uri": "/app/backend/sessions/",
+                "uri": "/app/backend/order/releases",
                 "type": "OData",
                 "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
                     "odataVersion": "4.0"
                 }
             }
         },
         "crossNavigation": {
             "inbounds": {
-                "DWBSession-manage": {
+                "DWBOrder-manage": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "DWBSession",
+                    "semanticObject": "DWBOrder",
                     "action": "manage",
                     "title": "{{appTitle}}",
-                    "subTitle": "{{appSubTitle}}",
+                    "subTitle": "{{appSubtitle}}",
                     "icon": ""
                 }
             }
         }
     },
     "sap.ui": {
-		"technology": "UI5",
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
-	},
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
@@ -67,7 +67,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -76,9 +77,11 @@
         },
         "models": {
             "i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "ch.amag.retail.dwb.orderreleases.i18n.i18n"
+                }
+            },
             "": {
                 "dataSource": "mainService",
                 "preload": true,
@@ -88,30 +91,35 @@
                     "autoExpandSelect": true,
                     "earlyRequests": true
                 }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
             }
+        },
+        "resources": {
+            "css": []
         },
         "routing": {
+            "routes": [],
+            "targets": {},
             "config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
-				},
-				"routerClass": "sap.f.routing.Router"
-			},
-            "routes": [
-            ],
-            "targets": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
             }
         },
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
-		}
-	},
-	"sap.cloud": {
-		"public": true,
-		"service": "ch.amag.retail.dwb"
-	}
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
 }
