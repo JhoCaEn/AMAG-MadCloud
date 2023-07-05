@@ -20,7 +20,6 @@
     },
     "devDependencies": {
         "@amag-ch/sap_cap_common_launchpad": "^1.1.0",
-        "@sap/ux-specification": "^1.108.8",
         "sqlite3": "^5",
         "tunnel-agent": "^0.6.0",
         "rimraf": "^3.0.2"
@@ -32,9 +31,6 @@
         "build:mta": "mbt build -p=cf --strict=true --source=. --target=. --mtar deployment.mtar && rm -rf gen",
         "cf:target": "cf target -o amag-dev -s Retail",
         "cf:deploy": "cf deploy deployment.mtar",
-        "watch-sessions": "cds watch --open sessions/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-order-releases": "cds watch --open order-releases/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-sales-messages": "cds watch --open sales-messages/webapp/index.html?sap-ui-xx-viewCache=false",
         "undeploy": "cf undeploy dwb --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
@@ -67,9 +63,15 @@
         "requires": {
             "middlewares": true,
             "db": {
-                "kind": "sqlite",
+                "kind": "sql",
                 "credentials": {
-                    "database": "db/db.sqlite.db"
+                    "database": "db/local.sqlite"
+                },
+                "[production]": {
+                    "kind": "hana-cloud",
+                    "pool": {
+                        "acquireTimeoutMillis": 60000
+                    }
                 }
             },
             "auth": {

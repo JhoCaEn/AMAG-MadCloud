@@ -52,13 +52,13 @@
         }
     },
     "sap.ui": {
-		"technology": "UI5",
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
-	},
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
@@ -76,9 +76,9 @@
         },
         "models": {
             "i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
             "": {
                 "dataSource": "mainService",
                 "preload": true,
@@ -92,26 +92,24 @@
         },
         "routing": {
             "config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
-				},
-				"routerClass": "sap.f.routing.Router"
-			},
-            "routes": [
-            ],
-            "targets": {
-            }
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
+            "routes": [],
+            "targets": {}
         },
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
-		}
-	},
-	"sap.cloud": {
-		"public": true,
-		"service": "ch.amag.retail.dwb"
-	}
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
+    }
 }

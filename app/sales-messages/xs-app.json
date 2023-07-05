@@ -3,8 +3,8 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/app/(.*)$",
-      "target": "/app/$1",
+      "source": "^app/(.*)$",
+      "target": "app/$1",
       "destination": "dwb-srv-api",
       "authenticationType": "xsuaa",
       "csrfProtection": false

@@ -13,289 +13,344 @@ build-parameters:
         - yarn run build:cds
 
 modules:
-
-  - name: dwb-srv
-    type: nodejs
-    path: gen/srv
-    parameters:
-      memory: 512M
-      disk-qouta: 256M
-      instances: 1
-      buildpack: nodejs_buildpack
-    properties:
-      OPTIMIZE_MEMORY: true       
-    deployed-after:
-      - dwb-db-deployer
-    build-parameters:
-      ignore:  ['.*', 'node_modules']
-      builder: custom
-      commands: []
-    requires:
-      - name: dwb-auth
-      - name: dwb-db
-      - name: dwb-destination
-      - name: dwb-messaging
-      - name: dwb-connectivity
-      - name: dwb-logging
-      - name: job-scheduler
-    provides:
-      - name: srv-api
-        properties:
-          url: '${protocol}://${org}-${space}-dwb-srv.${domain}'
-
-
-  - name: dwb-db-deployer
-    type: hdb
-    path: gen/db  
-    parameters:
-      memory: 128M
-      disk-quota: 256M
-      buildpack: nodejs_buildpack
-    properties:
-      OPTIMIZE_MEMORY: true
-      EXIT: 1
-    build-parameters:
-      ignore: ['manifest.yml', '.*', 'data', 'node_modules', '*.db', '*.sqlite']
-      builder: custom
-      commands: []
-    requires:
-      - name: dwb-db
-
-
-  - name: dwb-destination-deployer
-    type: com.sap.application.content
-    build-parameters:
-      no-source: true
-    requires:
-      - name: dwb-destination
-        parameters:
-          content-target: true
-          service-key:
-            name: destination-deployer
-      - name: dwb-html5
-        parameters:
-          service-key:
-          name: destination-html5
-      - name: dwb-auth
-        parameters:
-          service-key:
-            name: destination-auth
-      - name: srv-api
-    parameters:
-      content:
-        instance:
-          existing_destinations_policy: update
-          destinations:
-          - Name: html5
-            ServiceInstanceName: dwb-html5
-            ServiceKeyName: destination-html5
-            sap.cloud.service: ch.amag.retail.dwb
-          - Name: auth
-            Authentication: OAuth2UserTokenExchange
-            ServiceInstanceName: dwb-auth
-            ServiceKeyName: destination-uaa
-            sap.cloud.service: ch.amag.retail.dwb
-        subaccount:
-          existing_destinations_policy: update
-          destinations:          
-            - Name: ${space}-dwb-sso
-              Authentication: OAuth2UserTokenExchange
-              TokenServiceInstanceName: dwb-auth
-              TokenServiceKeyName: destination-auth
-              URL: '~{srv-api/url}'
-              sap.cloud.service: ch.amag.retail.dwb
-              HTML5.DynamicDestination: true
-
-
-  - name: dwb-html5-deployer
-    type: com.sap.application.content
-    path: gen
-    requires:
-    - name: dwb-html5
-      parameters:
-        content-target: true
-        service-key:
-          name: html5-deployer
-    build-parameters:
-      build-result: resources
-      requires:
-        - name: dwb-app-offers
-          target-path: resources
-          artifacts: ['offers.zip']
-        - name: dwb-app-carconfigurator
-          target-path: resources
-          artifacts: ['carconfigurator.zip']
-        - name: dwb-app-orders
-          target-path: resources
-          artifacts: ['orders.zip']
-        - name: dwb-app-vehicles
-          target-path: resources
-          artifacts: ['orders.zip']
-        - name: dwb-app-backoffice-engines
-          target-path: resources
-          artifacts: ['backoffice-engines.zip']
-        - name: dwb-app-backoffice-brands
-          target-path: resources
-          artifacts: ['backoffice-brands.zip']
-        - name: dwb-app-backoffice-transmissions
-          target-path: resources
-          artifacts: ['backoffice-transmissions.zip']
-        - name: dwb-app-backoffice-partners
-          target-path: resources
-          artifacts: ['backoffice-partners.zip']
-        - name: dwb-app-backoffice-equipments
-          target-path: resources
-          artifacts: ['backoffice-equipments.zip']
-
-  - name: dwb-app-offers
-    type: html5
-    path: app/offers
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-carconfigurator
-    type: html5
-    path: app/carconfigurator
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-orders
-    type: html5
-    path: app/orders
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-  
-  - name: dwb-app-vehicles
-    type: html5
-    path: app/vehicles
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-backoffice-engines
-    type: html5
-    path: app/backoffice-engines
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-backoffice-brands
-    type: html5
-    path: app/backoffice-brands
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-backoffice-transmissions
-    type: html5
-    path: app/backoffice-transmissions
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-backoffice-partners
-    type: html5
-    path: app/backoffice-partners
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-  - name: dwb-app-backoffice-equipments
-    type: html5
-    path: app/backoffice-equipments
-    build-parameters:
-      build-result: dist
-      builder: custom
-      commands:
-        - yarn install
-        - yarn run build
-      supported-platforms: []
-
-resources:
-  - name: dwb-db
-    type: com.sap.xs.hdi-container
-    parameters:
-      service: hana  
-      service-plan: hdi-shared
-
+- name: dwb-srv
+  type: nodejs
+  path: gen/srv
+  properties:
+    OPTIMIZE_MEMORY: true
+  requires:
   - name: dwb-auth
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: xsuaa
-      service-plan: application  
-      path: ./config/auth.json
-      config:
-        xsappname: ${space}-dwb
-        tenant-mode: dedicated       
-
+  - name: dwb-db
   - name: dwb-destination
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: destination
-      service-plan: lite
-      path: ./config/destination.json
-
-  - name: dwb-connectivity
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service-plan: lite
-      service: connectivity
-
   - name: dwb-messaging
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: enterprise-messaging
-      service-plan: default
-      path: ./config/messaging.json
-
+  - name: dwb-connectivity
   - name: dwb-logging
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: application-logs
-      service-plan: lite
-
-  - name: dwb-html5
-    type: org.cloudfoundry.managed-service
-    parameters:
-      service: html5-apps-repo
-      service-plan: app-host       
-
   - name: job-scheduler
-    type: org.cloudfoundry.existing-service
+  provides:
+  - name: srv-api
+    properties:
+      url: ${protocol}://${org}-${space}-dwb-srv.${domain}
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-qouta: 256M
+    instances: 1
+    memory: 512M
+  build-parameters:
+    builder: custom
+    commands: []
+    ignore:
+    - .*
+    - node_modules
+  deployed-after:
+  - dwb-db-deployer
+- name: dwb-db-deployer
+  type: hdb
+  path: gen/db
+  properties:
+    EXIT: 1
+    OPTIMIZE_MEMORY: true
+  requires:
+  - name: dwb-db
+  parameters:
+    buildpack: nodejs_buildpack
+    disk-quota: 256M
+    memory: 128M
+  build-parameters:
+    builder: custom
+    commands: []
+    ignore:
+    - manifest.yml
+    - .*
+    - data
+    - node_modules
+    - '*.db'
+    - '*.sqlite'
+- name: dwb-destination-deployer
+  type: com.sap.application.content
+  requires:
+  - name: dwb-destination
     parameters:
-      service-name: job-scheduler
+      content-target: true
+      service-key:
+        name: destination-deployer
+  - name: dwb-html5
+    parameters:
+      name: destination-html5
+      service-key: null
+  - name: dwb-auth
+    parameters:
+      service-key:
+        name: destination-auth
+  - name: srv-api
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: html5
+          ServiceInstanceName: dwb-html5
+          ServiceKeyName: destination-html5
+          sap.cloud.service: ch.amag.retail.dwb
+        - Authentication: OAuth2UserTokenExchange
+          Name: auth
+          ServiceInstanceName: dwb-auth
+          ServiceKeyName: destination-uaa
+          sap.cloud.service: ch.amag.retail.dwb
+        existing_destinations_policy: update
+      subaccount:
+        destinations:
+        - Authentication: OAuth2UserTokenExchange
+          HTML5.DynamicDestination: true
+          Name: ${space}-dwb-sso
+          TokenServiceInstanceName: dwb-auth
+          TokenServiceKeyName: destination-auth
+          URL: ~{srv-api/url}
+          sap.cloud.service: ch.amag.retail.dwb
+        existing_destinations_policy: update
+  build-parameters:
+    no-source: true
+- name: dwb-html5-deployer
+  type: com.sap.application.content
+  path: gen
+  requires:
+  - name: dwb-html5
+    parameters:
+      content-target: true
+      service-key:
+        name: html5-deployer
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - offers.zip
+      name: dwb-app-offers
+      target-path: resources
+    - artifacts:
+      - carconfigurator.zip
+      name: dwb-app-carconfigurator
+      target-path: resources
+    - artifacts:
+      - orders.zip
+      name: dwb-app-orders
+      target-path: resources
+    - artifacts:
+      - orders.zip
+      name: dwb-app-vehicles
+      target-path: resources
+    - artifacts:
+      - backoffice-engines.zip
+      name: dwb-app-backoffice-engines
+      target-path: resources
+    - artifacts:
+      - backoffice-brands.zip
+      name: dwb-app-backoffice-brands
+      target-path: resources
+    - artifacts:
+      - backoffice-transmissions.zip
+      name: dwb-app-backoffice-transmissions
+      target-path: resources
+    - artifacts:
+      - backoffice-partners.zip
+      name: dwb-app-backoffice-partners
+      target-path: resources
+    - artifacts:
+      - backoffice-equipments.zip
+      name: dwb-app-backoffice-equipments
+      target-path: resources
+    - artifacts:
+      - sessions.zip
+      name: dwb-app-sessions
+      target-path: resources/
+    - artifacts:
+      - sales-messages.zip
+      name: dwb-app-sales-messages
+      target-path: resources/
+    - artifacts:
+      - order-releases.zip
+      name: dwb-app-order-releases
+      target-path: resources/
+- name: dwb-app-offers
+  type: html5
+  path: app/offers
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-carconfigurator
+  type: html5
+  path: app/carconfigurator
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-orders
+  type: html5
+  path: app/orders
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-vehicles
+  type: html5
+  path: app/vehicles
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-backoffice-engines
+  type: html5
+  path: app/backoffice-engines
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-backoffice-brands
+  type: html5
+  path: app/backoffice-brands
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-backoffice-transmissions
+  type: html5
+  path: app/backoffice-transmissions
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-backoffice-partners
+  type: html5
+  path: app/backoffice-partners
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-backoffice-equipments
+  type: html5
+  path: app/backoffice-equipments
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build
+    supported-platforms: []
+- name: dwb-app-sessions
+  type: html5
+  path: app/sessions
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build:cf
+    supported-platforms: []
+- name: dwb-app-sales-messages
+  type: html5
+  path: app/sales-messages
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build:cf
+    supported-platforms: []
+- name: dwb-app-order-releases
+  type: html5
+  path: app/order-releases
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - yarn install
+    - yarn run build:cf
+    supported-platforms: []
+resources:
+- name: dwb-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: dwb-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      tenant-mode: dedicated
+      xsappname: ${space}-dwb
+    path: ./config/auth.json
+    service: xsuaa
+    service-plan: application
+- name: dwb-destination
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: dwb-srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
+          existing_destinations_policy: update
+    path: ./config/destination.json
+    service: destination
+    service-plan: lite
+  requires:
+  - name: srv-api
+- name: dwb-connectivity
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: connectivity
+    service-plan: lite
+- name: dwb-messaging
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./config/messaging.json
+    service: enterprise-messaging
+    service-plan: default
+- name: dwb-logging
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: application-logs
+    service-plan: lite
+- name: dwb-html5
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: job-scheduler
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: job-scheduler
