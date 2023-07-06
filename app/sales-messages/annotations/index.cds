@@ -1,1 +1,1 @@
-using AppSalesMessagesService as service from '../../../srv';
+using AppSalesMessageReleasesService as service from '../../../srv';

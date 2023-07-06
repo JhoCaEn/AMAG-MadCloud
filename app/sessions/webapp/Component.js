@@ -1,12 +1,11 @@
-sap.ui.define(
-    ["sap/fe/core/AppComponent"],
-    function (Component) {
-        "use strict";
+sap.ui.define([
+    'sap/fe/core/AppComponent'
+], function (AppComponent) {
+    'use strict';
 
-        return Component.extend("ch.amag.retail.dwb.sessions.Component", {
-            metadata: {
-                manifest: "json"
-            }
-        });
-    }
-);
+    return AppComponent.extend('ch.amag.retail.dwb.sessions.Component', {
+        metadata: {
+            manifest: 'json'
+        }
+    });
+});

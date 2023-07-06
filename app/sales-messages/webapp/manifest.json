@@ -1,107 +1,108 @@
 {
-    "_version": "1.49.0",
-    "sap.app": {
-        "id": "ch.amag.retail.dwb.salesmessages",
-        "type": "application",
-        "i18n": {
-            "bundleUrl": "i18n/i18n.properties",
-            "supportedLocales": [
-                "de",
-                "it",
-                "fr",
-                "en"
-            ],
-            "fallbackLocale": "en"
-        },
-        "applicationVersion": {
-            "version": "0.0.1"
-        },
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "dataSources": {
-            "mainService": {
-                "uri": "app/backend/sales-messages/",
-                "type": "OData",
-                "settings": {
-                    "odataVersion": "4.0"
-                }
-            }
-        },
-        "crossNavigation": {
-            "inbounds": {
-                "DWBSalesMessage-display": {
-                    "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
-                    },
-                    "semanticObject": "DWBSalesMessage",
-                    "action": "display",
-                    "title": "{{appTitle}}",
-                    "subTitle": "{{appSubtitle}}",
-                    "icon": ""
-                }
-            }
-        }
-    },
-    "sap.ui": {
-        "technology": "UI5",
-        "deviceTypes": {
-            "desktop": true,
-            "tablet": true,
-            "phone": true
-        }
-    },
-    "sap.ui5": {
-        "flexEnabled": true,
-        "dependencies": {
-            "minUI5Version": "1.115.1",
-            "libs": {
-                "sap.m": {},
-                "sap.ui.core": {},
-                "sap.ushell": {},
-                "sap.fe.templates": {}
-            }
-        },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
-        },
-        "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
-            },
-            "": {
-                "dataSource": "mainService",
-                "preload": true,
-                "settings": {
-                    "synchronizationMode": "None",
-                    "operationMode": "Server",
-                    "autoExpandSelect": true,
-                    "earlyRequests": true
-                }
-            }
-        },
-        "routing": {
-            "routes": [],
-            "targets": {},
-            "config": {
-                "flexibleColumnLayout": {
-                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-                    "defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
-                },
-                "routerClass": "sap.f.routing.Router"
-            }
-        },
-        "rootView": {
-            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-            "type": "XML",
-            "async": true,
-            "id": "appRootView"
-        }
-    },
-    "sap.cloud": {
-        "public": true,
-        "service": "ch.amag.retail.dwb"
-    }
+	"_version": "1.29.0",
+	"sap.app": {
+		"id": "ch.amag.retail.dwb.sales-messages",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				"de",
+				"it",
+				"fr",
+				"en"
+			],
+			"fallbackLocale": "en"
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{AppTitle}}",
+		"description": "{{AppSubtitle}}",
+		"dataSources": {
+			"mainService": {
+				"uri": "app/backend/sales-messages/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"DWBSalesMessage-manage": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBSalesMessage",
+					"action": "manage",
+					"title": "{{AppTitle}}",
+					"subTitle": "{{AppSubtitle}}",
+					"icon": ""
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.102.1",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {},
+				"sap.ui.integration": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},			
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			}
+		},
+		"routing": {
+			"routes": [
+			],
+			"targets": {
+			},
+			"config": {
+				"flexibleColumnLayout": {
+					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+				},
+				"routerClass": "sap.f.routing.Router"
+			}
+		},
+		"rootView": {
+			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
+			"type": "XML",
+			"async": true,
+			"id": "appRootView"
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "ch.amag.retail.dwb"
+	}
 }

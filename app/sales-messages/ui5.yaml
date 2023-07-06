@@ -1,4 +1,16 @@
-specVersion: "2.5"
-metadata:
-  name: ch.amag.retail.dwb.salesmessages
+specVersion: "3.0"
 type: application
+metadata:
+  name: sales-messages
+
+builder:
+  resources:
+    excludes:
+      - "/test/**"
+      - "/localService/**"
+    
+  customTasks:
+    - name: ui5-task-zipper
+      afterTask: generateCachebusterInfo
+      configuration:
+        archiveName: sales-messages
