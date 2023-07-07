@@ -1,0 +1,151 @@
+{
+	"_version": "1.29.0",
+	"sap.app": {
+		"id": "ch.amag.retail.dwb.backoffice-colors",
+		"type": "application",
+		"i18n": {
+			"bundleUrl": "i18n/i18n.properties",
+			"supportedLocales": [
+				"de",
+				"it",
+				"fr",
+				"en"
+			],
+			"fallbackLocale": "de"
+		},
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{AppTitle}}",
+		"description": "{{AppSubtitle}}",
+		"dataSources": {
+			"mainService": {
+				"uri": "app/backend/backoffice/colors/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"DWBBOColor-manage": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBBOColor",
+					"action": "manage",
+					"title": "{{AppTitle}}",
+					"subTitle": "{{AppSubtitle}}",
+					"icon": ""
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.102.1",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {},
+				"sap.ui.integration": {}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleUrl": "i18n/i18n.properties",
+					"supportedLocales": [
+						"de",
+						"it",
+						"fr",
+						"en"
+					],
+					"fallbackLocale": "de"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			}
+		},
+		"routing": {
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "Colors",
+					"target": "Colors"
+				},
+				{
+					"pattern": "Colors({key}):?query:",
+					"name": "Color",
+					"target": "Color"
+				}
+			],
+			"targets": {
+				"Colors": {
+					"type": "Component",
+					"id": "Colors",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "Colors",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"Colors": {
+									"detail": {
+										"route": "Color"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
+						}
+					},
+					"contextPattern": ""
+				},
+				"Color": {
+					"type": "Component",
+					"id": "Color",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"sectionLayout": "Tabs",
+							"entitySet": "Colors"
+						}
+					},
+					"contextPattern": "/Colors({key})"
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		}
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "ch.amag.retail.dwb"
+	}
+}

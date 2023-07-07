@@ -5,8 +5,7 @@ annotate service.Partners with @Common.SemanticKey: [id];
 annotate service.Partners with @UI: {
     SelectionFields    : [
         id,
-        hasBrands,
-        hasContracts
+        isSalesPartner
     ],
 
     PresentationVariant: {
@@ -28,12 +27,7 @@ annotate service.Partners with @UI: {
         },
         {
             $Type            : 'UI.DataField',
-            Value            : hasBrands,
-            ![@UI.Importance]: #High
-        },
-        {
-            $Type            : 'UI.DataField',
-            Value            : hasContracts,
+            Value            : isSalesPartner,
             ![@UI.Importance]: #High
         },
         {

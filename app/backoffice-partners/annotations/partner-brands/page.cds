@@ -21,7 +21,6 @@ annotate service.PartnerBrands with @UI: {
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'PartnerBrandContractsSection',
-            Label : '{i18n>BackofficePartners.PartnerBrandContracts}',
             Facets: [{
                 $Type : 'UI.CollectionFacet',
                 ID    : 'PartnerBrandContractsSubSection',
@@ -39,6 +38,10 @@ annotate service.PartnerBrands with @UI: {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.General}',
         Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: isRepresentative
+            },
             {
                 $Type: 'UI.DataField',
                 Value: hasContracts

@@ -6,13 +6,20 @@ service AppBackofficeTransmissionsService {
 
     @readonly
     entity Transmissions       as projection on db.Transmissions {
-        *,
+        id,
+        gears,
+        name,
+        brand,
         driveType @cds.api.ignore,
         driveType.id as driveTypeId,
         driveType.train,
         type      @cds.api.ignore,
         type.id      as typeId,
-        type.shift
+        type.shift,
+        createdAt,
+        modifiedAt,
+        models,
+        texts
     } actions {
         action synchronise(in : $self);
     };
@@ -56,6 +63,15 @@ service AppBackofficeTransmissionsService {
     entity Brands              as projection on db.Brands {
         code,
         name
+    };
+
+    @readonly
+    entity Models              as projection on db.Models {
+        id,
+        code,
+        year,
+        name,
+        transmission
     };
 
 }

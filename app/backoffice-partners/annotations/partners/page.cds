@@ -33,11 +33,10 @@ annotate service.Partners with @UI: {
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'PartnerBrandsSection',
-            Label : '{i18n>BackofficePartners.PartnerBrands}',
             Facets: [{
                 $Type : 'UI.CollectionFacet',
                 ID    : 'PartnerBrandsSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrands}',
+                Label : '{i18n>BackofficePartners.PartnerBrands}',                
                 Facets: [{
                     $Type : 'UI.ReferenceFacet',
                     ID    : 'PartnerBrandsFacet',
@@ -51,6 +50,10 @@ annotate service.Partners with @UI: {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.General}',
         Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: isSalesPartner
+            },            
             {
                 $Type: 'UI.DataField',
                 Value: hasBrands

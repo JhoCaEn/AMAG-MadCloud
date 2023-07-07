@@ -2,7 +2,7 @@ using AppBackofficeBrandsService as service from '../../../../srv';
 
 annotate service.SalesTypes with @UI: {
 
-    PresentationVariant: {
+    PresentationVariant             : {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
         RequestAtLeast: [id],
@@ -12,7 +12,7 @@ annotate service.SalesTypes with @UI: {
         }, ],
     },
 
-    LineItem           : [
+    LineItem                        : [
         {
             $Type                : 'UI.DataField',
             Value                : id,
@@ -35,5 +35,30 @@ annotate service.SalesTypes with @UI: {
             Label : '{i18n>General.Actions.synchronise}',
             Action: 'AppBackofficeBrandsService.synchroniseSalesType'
         },
+    ],
+
+    PresentationVariant #ModelSeries: {
+        $Type         : 'UI.PresentationVariantType',
+        Visualizations: ['@UI.LineItem#ModelSeries'],
+        RequestAtLeast: [id],
+        SortOrder     : [{
+            Property  : id,
+            Descending: false,
+        }, ],
+    },
+
+    LineItem #ModelSeries           : [
+        {
+            $Type                : 'UI.DataField',
+            Value                : id,
+            ![@UI.Importance]    : #High,
+            ![@HTML5.CssDefaults]: {width: '5rem'}
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : name,
+            ![@UI.Importance]    : #Low,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        }
     ],
 };

@@ -12,7 +12,6 @@ app/**/node_modules
 app/**/dist
 .cdsrc-private.json
 db/yarn.lock
-package-lock.json
 
 # Web IDE, App Studio
 .che/

@@ -17,7 +17,8 @@ service AppBackofficeBrandsService {
         driveTypes,
         transmissionTypes,
         equipmentChapters,
-        equipmentCategories
+        equipmentCategories,
+        characteristics
     };
 
     @readonly
@@ -28,13 +29,25 @@ service AppBackofficeBrandsService {
     };
 
     @readonly
+    entity BrandCharacteristics      as projection on db.BrandCharacteristics {
+        brand,
+        characteristic,
+        value,
+        modifiedAt,
+        createdAt
+    } actions {
+        action synchroniseCharacteristic(in : $self);
+    }
+
+    @readonly
     entity ModelSeries               as projection on db.ModelSeries {
         brand,
         id,
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        salesTypes
     } actions {
         action synchroniseModelSeries(in : $self);
     };
@@ -55,7 +68,8 @@ service AppBackofficeBrandsService {
         salesOrganisation,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        modelSeries
     } actions {
         action synchroniseSalesType(in : $self);
     };
@@ -74,7 +88,8 @@ service AppBackofficeBrandsService {
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        models
     } actions {
         action synchroniseBodyType(in : $self);
     };
@@ -94,7 +109,8 @@ service AppBackofficeBrandsService {
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        engines
     } actions {
         action synchroniseFuelType(in : $self);
     };
@@ -114,7 +130,8 @@ service AppBackofficeBrandsService {
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        transmissions
     } actions {
         action synchroniseDriveType(in : $self);
     };
@@ -140,7 +157,8 @@ service AppBackofficeBrandsService {
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        transmissions
     } actions {
         action synchroniseTransmissionType(in : $self);
     };
@@ -169,7 +187,8 @@ service AppBackofficeBrandsService {
         isVisibleInSellingSystem,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        equipments
     } actions {
         action synchroniseEquipmentChapter(in : $self);
     };
@@ -188,15 +207,47 @@ service AppBackofficeBrandsService {
         name,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        equipments
     } actions {
         action synchroniseEquipmentCategory(in : $self);
     };
 
     @readonly
     entity EquipmentCategories.texts as projection on db.EquipmentCategories.texts;
+
     extend projection EquipmentCategories.texts with {
         language : Association to one Languages on language.code = locale
     };
 
+    @readonly
+    entity Transmissions             as projection on db.Transmissions {
+        id,
+        name,
+        type,
+        driveType
+    }
+
+    @readonly
+    entity Models                    as projection on db.Models {
+        code,
+        year,
+        name,
+        bodyType
+    }
+
+    @readonly
+    entity Engines                   as projection on db.Engines {
+        id,
+        name,
+        fuelType
+    }
+
+    @readonly
+    entity Equipments                as projection on db.Equipments {
+        id,
+        name,
+        chapter,
+        category
+    }
 }

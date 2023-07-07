@@ -3,6 +3,8 @@ using from './backoffice-equipments';
 using from './backoffice-transmissions';
 using from './backoffice-partners';
 using from './backoffice-brands';
+using from './backoffice-models';
+using from './backoffice-colors';
 
 using from './carconfigurator';
 

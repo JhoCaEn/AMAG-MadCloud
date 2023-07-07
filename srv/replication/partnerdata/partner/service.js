@@ -18,14 +18,15 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 
             if (!id) return
 
-            // TODO: replace with real logic
-            if (id.length > 4) return
+            const salesPartner = !!id.length <= 4
 
             try {
-                const raw = await getSalesPartner(id)
+                const raw = await getRaw(id, salesPartner)
                 LOG._debug && LOG.debug('raw', raw)
 
-                const transformed = await transformSalesPartner(raw)
+                if (!raw) return
+
+                const transformed = await transform(raw, salesPartner)
                 LOG._debug && LOG.debug('transformed', transformed)
 
                 return save(transformed)
@@ -39,11 +40,26 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
             }
         }
 
+        const getRaw = async (id, salesPartner) => {
+            if (salesPartner) return getSalesPartner(id)
+            else {
+                const exists = await db.exists(Partners, id).forUpdate()
+
+                if (exists) return getPartner(id)
+            }
+
+            return null
+        }
+
         const getSalesPartner = async (id) => {
             return client.getSalesPartner({
                 id,
-                $expand: '_BrandCharacteristics'
+                $expand: '_BrandCharacteristics,_Roles($expand=_RolePartner)'
             })
+        }
+
+        const getPartner = async (id) => {
+            return client.getPartner({ id })
         }
 
         const save = async (data) => {
@@ -63,11 +79,17 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
                 return db.delete(Partners, id)
         }
 
+        const transform = async (raw, salesPartner) => {
+            if (salesPartner) return transformSalesPartner(raw)
+            else return transformPartner(raw)
+        }
+
         const transformSalesPartner = async (raw) => {
             const transformed = transformHeader(raw)
             const brandCharacteristics = transformBrandCharacteristics(raw?._BrandCharacteristics)
+            const roles = transformRoles(raw?._Roles)
 
-            transformed.brands = transformBrands(brandCharacteristics)
+            transformed.brands = transformBrands(brandCharacteristics, roles)
             transformed.hasBrands = !!transformed.brands?.length
 
             transformed.brands.forEach(({ hasContracts, validFrom, validTo }) => {
@@ -80,6 +102,14 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
                     transformed.validTo = validTo
             })
 
+            transformed.isSalesPartner = transformed.hasBrands && transformed.hasContracts
+
+            return transformed
+        }
+
+        const transformPartner = async (raw) => {
+            const transformed = transformHeader(raw)
+
             return transformed
         }
 
@@ -90,3 +120,4 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 const transformHeader = require('./transformHeader')
 const transformBrandCharacteristics = require('./transformBrandCharacteristics')
 const transformBrands = require('./transformBrands')
+const transformRoles = require('./transformRoles')

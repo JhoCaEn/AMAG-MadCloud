@@ -1,18 +1,20 @@
 using {retail.dwb as db} from '../../../db';
 
 annotate db.PartnerBrands with {
-    partner      @title: '{i18n>Partner}';
-    brand        @title: '{i18n>Brand}';
-    hasContracts @title: '{i18n>Partner.hasContracts}';
-    validFrom    @title: '{i18n>General.validFrom}';
-    validTo      @title: '{i18n>General.validTo}';
-    createdAt    @title: '{i18n>replicated.createdAt}';
-    modifiedAt   @title: '{i18n>replicated.modifiedAt}';
+    partner          @title: '{i18n>Partner}';
+    brand            @title: '{i18n>Brand}';
+    validFrom        @title: '{i18n>General.validFrom}';
+    validTo          @title: '{i18n>General.validTo}';
+    hasContracts     @title: '{i18n>Partner.hasContracts}';
+    isRepresentative @title: '{i18n>Partner.isRepresentative}';
+    createdAt        @title: '{i18n>replicated.createdAt}';
+    modifiedAt       @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.PartnerBrands with @Common.SemanticKey: [
     partner_id,
-    brand_code
+    brand_code,
+    validFrom
 ];
 
 annotate db.PartnerBrands with @UI: {HeaderInfo: {

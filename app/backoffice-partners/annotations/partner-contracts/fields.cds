@@ -8,11 +8,19 @@ annotate service.PartnerBrandContracts with {
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
-    type  @UI.HiddenFilter;
+    type  @UI.Hidden;
 };
 
 annotate service.PartnerBrandContracts with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
     TypeName      : '{i18n>BackofficePartners.PartnerBrandContract}',
     TypeNamePlural: '{i18n>BackofficePartners.PartnerBrandContracts}',
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: code
+    },
+    Description         : {
+        $Type: 'UI.DataField',
+        Value: name
+    }          
 }};

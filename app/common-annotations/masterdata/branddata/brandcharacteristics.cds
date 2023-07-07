@@ -1,19 +1,24 @@
 using {retail.dwb as db} from '../../../../db';
 
 annotate db.BrandCharacteristics with {
-    // configurationDateName @title: '{i18n>BrandCharacteristics.configurationDateName}';
-    // brandName             @title: '{i18n>BrandCharacteristics.brandName}';
-    // salesTypeName         @title: '{i18n>BrandCharacteristics.salesTypeName}';
-    // engineName            @title: '{i18n>BrandCharacteristics.engineName}';
-    // transmissionName      @title: '{i18n>BrandCharacteristics.transmissionName}';
-    // modelName             @title: '{i18n>BrandCharacteristics.modelName}';
-    // modelYearName         @title: '{i18n>BrandCharacteristics.modelYearName}';
-    // exteriorColorName     @title: '{i18n>BrandCharacteristics.exteriorColorName}';
-    // interiorColorName     @title: '{i18n>BrandCharacteristics.interiorColorName}';
-    // roofColorName         @title: '{i18n>BrandCharacteristics.roofColorName}';
-    // equipmentName         @title: '{i18n>BrandCharacteristics.equipmentName}';
-    // internalWorkName      @title: '{i18n>BrandCharacteristics.internalWorkName}';
-    // additionalWorkName    @title: '{i18n>BrandCharacteristics.additionalWorkName}';
-    createdAt  @title: '{i18n>replicated.createdAt}';
-    modifiedAt @title: '{i18n>replicated.modifiedAt}';
+    brand          @title: '{i18n>Brand}';
+    characteristic @title: '{i18n>BrandCharacteristic}';
+    value          @title: '{i18n>BrandCharacteristics.value}';
+    createdAt      @title: '{i18n>replicated.createdAt}';
+    modifiedAt     @title: '{i18n>replicated.modifiedAt}';
 };
+
+annotate db.BrandCharacteristics with @Common.SemanticKey: [
+    brand_code,
+    characteristic_code
+];
+
+annotate db.BrandCharacteristics with @UI: {HeaderInfo: {
+    $Type         : 'UI.HeaderInfoType',
+    TypeName      : '{i18n>BrandCharacteristic}',
+    TypeNamePlural: '{i18n>BrandCharacteristics}',
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: characteristic_code
+    }
+}};

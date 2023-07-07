@@ -6,11 +6,20 @@ service AppBackofficeEquipmentsService {
 
     @readonly
     entity Equipments       as projection on db.Equipments {
-        *,
-        chapter @cds.api.ignore,
+        id,
+        code,
+        technicalKey,
+        name,
+        displayName,
+        brand,
+        chapter  @cds.api.ignore,
         chapter.id  as chapterId,
         category @cds.api.ignore,
-        category.id as categoryId
+        category.id as categoryId,
+        createdAt,
+        modifiedAt,
+        models,
+        texts
     } actions {
         action synchronise(in : $self);
     };
@@ -41,4 +50,13 @@ service AppBackofficeEquipmentsService {
         code,
         name
     };
+
+    @readonly
+    entity ModelEquipments as projection on db.ModelEquipments {
+        model.id as model_id,
+        model.code,
+        model.year,
+        model.name,
+        equipment
+    }
 }

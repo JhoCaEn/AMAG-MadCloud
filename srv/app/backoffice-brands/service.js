@@ -2,6 +2,30 @@ module.exports = class AppBackofficeBrandsService extends cds.ApplicationService
 
     async init() {
 
+        this.on('synchroniseCharacteristic', async ({ params: [, { brand_code: brand, characteristic_code } = {}] = [] } = {}) => {
+            const replication = await cds.connect.to('ReplicationMasterdataBrandCharacteristicService')
+
+            const characteristics = {
+                configurationDate: 'DA',
+                brand: 'MA',
+                salesType: 'TY',
+                engine: 'MO',
+                transmission: 'GE',
+                model: 'MD',
+                modelYear: 'MJ',
+                exteriorColor: 'AU',
+                interiorColor: 'IN',
+                roofColor: 'VD',
+                equipment: 'KI',
+                internalWork: 'Z1',
+                additionalWork: 'Z2',
+            }
+
+            const type = characteristics[characteristic_code]
+
+            return replication.send('replicate', { brand, type })
+        })
+
         this.on('synchroniseModelSeries', async ({ params: [, { brand_code: brand, id } = {}] = [] } = {}) => {
             const replication = await cds.connect.to('ReplicationMasterdataModelSeriesService')
 

@@ -1,7 +1,22 @@
 using {retail.dwb as db} from '../../../db';
 
 annotate db.ColorTypes with {
-    //code    @Common : { Text : name, TextArrangement : #TextOnly };
-    //code    @UI.Hidden;
-    name    @title : '{i18n>name}';
+    code @title: '{i18n>General.code}';
+    name @title: '{i18n>name}';
 };
+
+annotate db.ColorTypes with @Common.SemanticKey: [code];
+
+annotate db.ColorTypes with @UI: {HeaderInfo: {
+    $Type         : 'UI.HeaderInfoType',
+    TypeName      : '{i18n>ColorType}',
+    TypeNamePlural: '{i18n>ColorTypes}',
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: code
+    },
+    Description   : {
+        $Type: 'UI.DataField',
+        Value: name
+    }
+}};

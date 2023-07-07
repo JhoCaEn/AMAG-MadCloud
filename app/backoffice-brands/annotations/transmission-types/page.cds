@@ -18,16 +18,46 @@ annotate service.TransmissionTypes with @UI: {
 
     Facets                  : [
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'GeneralFacet',
+            $Type : 'UI.CollectionFacet',
+            ID    : 'GeneralSection',
             Label : '{i18n>General.FieldGroup.General}',
-            Target: '@UI.FieldGroup#General'
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'GeneralSubSection',
+                    Label : '{i18n>General.FieldGroup.General}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'GeneralFacet',
+                        Target: '@UI.FieldGroup#General'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'TranslationsSubSection',
+                    Label : '{i18n>General.FieldGroup.Translations}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'TranslationsFacet',
+                        Target: 'texts/@UI.PresentationVariant'
+                    }]
+                },
+            ],
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'TranslationsFacet',
-            Label : '{i18n>General.FieldGroup.Translations}',
-            Target: 'texts/@UI.PresentationVariant'
+            $Type : 'UI.CollectionFacet',
+            ID    : 'TransmissionsSection',
+            Label : '{i18n>Transmissions}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'TransmissionsSubSection',
+                Label : '{i18n>Transmissions}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'TransmissionsFacet',
+                    Target: 'transmissions/@UI.PresentationVariant'
+                }]
+            }],
         }
     ],
 

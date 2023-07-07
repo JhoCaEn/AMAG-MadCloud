@@ -1,7 +1,7 @@
 module.exports = (brand, codes) => {
     const transformed = [{
         type_brand_code: brand,
-        type_code: ''
+        type_code: 'G'
     }]
 
     if (codes)

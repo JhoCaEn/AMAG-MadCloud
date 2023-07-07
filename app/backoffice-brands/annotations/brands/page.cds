@@ -148,8 +148,23 @@ annotate service.Brands with @UI: {
                     ID    : 'EquipmentCategoriesFacet',
                     Target: 'equipmentCategories/@UI.PresentationVariant'
                 }]
-            }, ]
+            }]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'CharacteristicsSection',
+            Label : '{i18n>Characteristics}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'CharacteristicsSubSection',
+                Label : '{i18n>Characteristics}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'CharacteristicsFacet',
+                    Target: 'characteristics/@UI.PresentationVariant'
+                }]
+            }]
+        }
     ],
 
     FieldGroup #General: {

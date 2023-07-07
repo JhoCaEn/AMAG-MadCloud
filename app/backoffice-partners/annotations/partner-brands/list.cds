@@ -15,15 +15,9 @@ annotate service.PartnerBrands with @(UI: {
 
     LineItem           : [
         {
-            $Type                : 'UI.DataField',
-            Value                : brand_code,
-            ![@UI.Importance]    : #High,
-            ![@HTML5.CssDefaults]: {width: 'auto'}
-        },
-        {
             $Type            : 'UI.DataField',
-            Value            : hasContracts,
-            ![@UI.Importance]: #Low
+            Value            : brand_code,
+            ![@UI.Importance]: #High
         },
         {
             $Type            : 'UI.DataField',
@@ -34,6 +28,17 @@ annotate service.PartnerBrands with @(UI: {
             $Type            : 'UI.DataField',
             Value            : validTo,
             ![@UI.Importance]: #Low
+        },
+        {
+            $Type            : 'UI.DataField',
+            Value            : isRepresentative,
+            ![@UI.Importance]: #High
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : hasContracts,
+            ![@UI.Importance]    : #Low,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
         },
     ]
 });

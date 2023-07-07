@@ -1,27 +1,49 @@
-module.exports = (raw = {}) => {
-    const transformed = Object.entries(raw).map(([key, value]) => {
-        const transformed = {
-            brand_code: key,
-            validFrom: value.H_EINTRITT,
-            validTo: value.H_AUSTRITT,
-            contracts: transformContracts(key, value.VERTRAGSART)
+module.exports = (raw = {}, roles = []) => {
+    const transformed = []
+
+    Object.entries(raw).forEach(([key, value]) => {
+
+        const transform = (key, value, validFrom, validTo, roles) => {
+            const transformed = {
+                brand_code: key,
+                validFrom: validFrom,
+                validTo: validTo,
+                contracts: transformContracts(key, value.VERTRAGSART)
+            }
+        
+            transformed.hasContracts = !!transformed?.contracts?.length
+            transformed.isRepresentative = !!value.VAS_EINTRITT
+        
+            if (!transformed.validTo)
+                transformed.validTo = transformed.validFrom
+                    ? '9999-12-31'
+                    : '1970-01-01'
+        
+            if (transformed.validTo == '1970-01-01') return null
+        
+            if (!transformed.validFrom)
+                transformed.validFrom = '1970-01-01'
+        
+            transformed.soldToPartners = transformPartner(roles?.[key]?.AG, transformed.validFrom, transformed.validTo)
+            transformed.shipToPartners = transformPartner(roles?.[key]?.WE, transformed.validFrom, transformed.validTo)
+            transformed.billToPartners = transformPartner(roles?.[key]?.RE, transformed.validFrom, transformed.validTo)
+            transformed.paidByPartners = transformPartner(roles?.[key]?.RG, transformed.validFrom, transformed.validTo)
+        
+            return transformed
         }
 
-        transformed.hasContracts = !!transformed?.contracts?.length
+        const validFromH = transform(key, value, value.H_EINTRITT, value.H_AUSTRITT, roles)
+        const validFromVas = transform(key, value, value.VAS_EINTRITT, value.VAS_AUSTRITT, roles)
 
-        if (!transformed.validTo)
-            transformed.validTo = transformed.validFrom
-                ? '9999-12-31'
-                : '1970-01-01'
+        if (validFromH)
+            transformed.push(validFromH)
 
-        if (!transformed.validFrom)
-            transformed.validFrom = '1970-01-01'
-
-        return transformed
+        if (validFromVas)
+            transformed.push(validFromVas)
     })
 
-    return transformed.filter(({ validTo }) => validTo !== '1970-01-01')
+    return transformed
 }
 
-
 const transformContracts = require('./transformContracts')
+const transformPartner =require('./transformPartners')

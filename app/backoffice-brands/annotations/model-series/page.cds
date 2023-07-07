@@ -15,12 +15,38 @@ annotate service.ModelSeries with @UI: {
         Target: '@UI.FieldGroup#Synchronised'
     }, ],
 
-    Facets                  : [{
-        $Type : 'UI.ReferenceFacet',
-        ID    : 'TranslationsFacet',
-        Label : '{i18n>General.FieldGroup.Translations}',
-        Target: 'texts/@UI.PresentationVariant'
-    }],
+    Facets                  : [
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'GeneralSection',
+            Label : '{i18n>General.FieldGroup.General}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'TranslationsSubSection',
+                Label : '{i18n>General.FieldGroup.Translations}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'TranslationsFacet',
+                    Target: 'texts/@UI.PresentationVariant'
+                }]
+            }]
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'SalesTypesSection',
+            Label : '{i18n>SalesTypes}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'SalesTypesSubSection',
+                Label : '{i18n>SalesTypes}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'SalesTypesFacet',
+                    Target: 'salesTypes/@UI.PresentationVariant'
+                }]
+            }]
+        }
+    ],
 
     FieldGroup #Synchronised: {
         $Type: 'UI.FieldGroupType',

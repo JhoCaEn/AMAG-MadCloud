@@ -1,5 +1,10 @@
 using AppBackofficeBrandsService as service from '.';
 
+annotate service.BrandCharacteristics actions {
+    synchroniseCharacteristic @Common.SideEffects: {
+        TargetProperties: ['in']
+    };
+}
 
 annotate service.ModelSeries actions {
     synchroniseModelSeries @Common.SideEffects: {

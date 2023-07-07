@@ -9,6 +9,7 @@ service AppBackofficePartnersService {
         name,
         hasBrands,
         hasContracts,
+        isSalesPartner,
         validFrom,
         validTo,
         createdAt,
@@ -22,16 +23,19 @@ service AppBackofficePartnersService {
     entity PartnerBrands         as projection on db.PartnerBrands {
         partner,
         brand,
-        hasContracts,
         validFrom,
         validTo,
+        isRepresentative,
+        hasContracts,
         contracts
     };
 
     @readonly
     entity PartnerBrandContracts as projection on db.PartnerBrandContracts {
         brand,
-        type
+        type,
+        type.code,
+        type.name
     };
 
     @readonly
@@ -41,7 +45,7 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity BrandContractTypes as projection on db.BrandContractTypes {
+    entity BrandContractTypes    as projection on db.BrandContractTypes {
         brand,
         code,
         name

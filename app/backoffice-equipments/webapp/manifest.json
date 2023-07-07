@@ -129,6 +129,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+							"sectionLayout": "Tabs",
                             "entitySet": "Equipments"
                         }
                     },

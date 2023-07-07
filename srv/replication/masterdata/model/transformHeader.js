@@ -4,7 +4,7 @@ module.exports = (raw) => ({
     year: raw.ModelYear?.toString() || null,
     code: raw.ModelCode,
     technicalKey: raw.TechnicalKey,
-    category_code: raw.Category || '',
+    category_code: raw.Category || 'G',
     engine_id: raw._Engine?.Engine || null,
     transmission_id: raw._Transmission?.Transmission || null,
     salesType_brand_code: raw._SalesType?.Brand || null,

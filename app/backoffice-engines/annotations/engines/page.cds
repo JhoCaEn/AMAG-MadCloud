@@ -7,31 +7,60 @@ annotate service.Engines with @UI.Identification: [{
 }];
 
 annotate service.Engines with @UI: {
-    HeaderFacets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'SynchronisedFacet',
-            Label : '{i18n>General.FieldGroup.Synchronised}',
-            Target: '@UI.FieldGroup#Synchronised'
-        },    
-    ],
 
-    Facets             : [
+    HeaderFacets            : [{
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'SynchronisedFacet',
+        Label : '{i18n>General.FieldGroup.Synchronised}',
+        Target: '@UI.FieldGroup#Synchronised'
+    }, ],
+
+    Facets                  : [
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'GeneralFacet',
+            $Type : 'UI.CollectionFacet',
+            ID    : 'GeneralSection',
             Label : '{i18n>General.FieldGroup.General}',
-            Target: '@UI.FieldGroup#General'
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'GeneralSubSection',
+                    Label : '{i18n>General.FieldGroup.General}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'GeneralFacet',
+                        Target: '@UI.FieldGroup#General'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'TranslationsSubSection',
+                    Label : '{i18n>General.FieldGroup.Translations}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'TranslationsFacet',
+                        Target: 'texts/@UI.PresentationVariant'
+                    }]
+                },
+            ],
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'TranslationsFacet',
-            Label : '{i18n>General.FieldGroup.Translations}',
-            Target: 'texts/@UI.PresentationVariant'
+            $Type : 'UI.CollectionFacet',
+            ID    : 'ModelsSection',
+            Label : '{i18n>Models}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'ModelsSubSection',
+                Label : '{i18n>Models}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'ModelsFacet',
+                    Target: 'models/@UI.PresentationVariant'
+                }]
+            }],
         }
     ],
 
-    FieldGroup #General: {
+    FieldGroup #General     : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.General}',
         Data : [
@@ -66,13 +95,13 @@ annotate service.Engines with @UI: {
         ]
     },
 
-    FieldGroup #Synchronised : {
+    FieldGroup #Synchronised: {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.Synchronised}',
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: createdAt,
+                Value: createdA,
                 Label: '{i18n>General.FieldGroup.Synchronised.createdAt}'
             },
             {
@@ -80,10 +109,10 @@ annotate service.Engines with @UI: {
                 Value: modifiedAt,
                 Label: '{i18n>General.FieldGroup.Synchronised.modifiedAt}'
             },
-        ]     
+        ]
     },
 
-    FieldGroup #Header : {
+    FieldGroup #Header      : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.Header}',
         Data : [

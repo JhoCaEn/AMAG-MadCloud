@@ -20,8 +20,6 @@
     },
     "devDependencies": {
         "@amag-ch/sap_cap_common_launchpad": "^1.1.0",
-        "@sap/ux-specification": "^1.108.8",
-        "rimraf": "^3.0.2",
         "sqlite3": "^5",
         "tunnel-agent": "^0.6.0"
     },
@@ -31,13 +29,7 @@
         "build:cds": "cds build --production && $(cp yarn.lock gen/srv/ || true)",
         "build:mta": "mbt build -p=cf --strict=true --source=. --target=. --mtar deployment.mtar && rm -rf gen",
         "cf:target": "cf target -o amag-dev -s Retail",
-        "cf:deploy": "cf deploy deployment.mtar",
-        "undeploy": "cf undeploy dwb --delete-services --delete-service-keys --delete-service-brokers",
-        "build": "rimraf resources mta_archives && mbt build --mtar archive",
-        "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-        "watch-sales-messages-releases": "cds watch --open sales-messages-releases/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-sales-message-releases": "cds watch --open sales-message-releases/webapp/index.html?sap-ui-xx-viewCache=false",
-        "watch-fleet-applications": "cds watch --open fleet-applications/webapp/index.html?sap-ui-xx-viewCache=false"
+        "cf:deploy": "cf deploy deployment.mtar"
     },
     "cds": {
         "i18n": {
@@ -185,10 +177,12 @@
         "app/orders",
         "app/vehicles",
         "app/backoffice-engines",
+        "app/backoffice-models",
         "app/backoffice-partners",
         "app/backoffice-brands",
         "app/backoffice-transmissions",
         "app/backoffice-equipments",
+        "app/backoffice-colors",
         "app/sessions",
         "app/order-releases",
         "app/sales-messages",

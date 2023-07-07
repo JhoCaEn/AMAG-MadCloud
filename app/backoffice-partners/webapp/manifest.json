@@ -140,7 +140,6 @@
                     "options": {
                         "settings": {
                             "entitySet": "Partners",
-                            "sectionLayout": "Tabs",
                             "navigation": {
                                 "brands": {
                                     "detail": {
@@ -158,7 +157,6 @@
                     "options": {
                         "settings": {
                             "entitySet": "PartnerBrands",
-                            "sectionLayout": "Tabs",
                             "navigation": {
                                 "contracts": {
                                     "detail": {

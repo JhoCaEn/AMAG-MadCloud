@@ -64,9 +64,14 @@
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
+                "settings": {
                     "bundleUrl": "i18n/i18n.properties",
-                    "supportedLocales": ["de", "it", "fr", "en"],
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
                     "fallbackLocale": "de"
                 }
             },
@@ -132,6 +137,11 @@
                     "pattern": "Brands({key})/equipmentCategories({key2}):?query:",
                     "name": "EquipmentCategory",
                     "target": "EquipmentCategory"
+                },
+                {
+                    "pattern": "Brands({key})/characteristics({key2}):?query:",
+                    "name": "Characteristic",
+                    "target": "Characteristic"
                 }
             ],
             "targets": {
@@ -163,6 +173,11 @@
                             "entitySet": "Brands",
                             "sectionLayout": "Tabs",
                             "navigation": {
+                                "characteristics": {
+                                    "detail": {
+                                        "route": "Characteristic"
+                                    }
+                                },
                                 "modelSeries": {
                                     "detail": {
                                         "route": "ModelSerie"
@@ -207,12 +222,23 @@
                         }
                     }
                 },
+                "Characteristic": {
+                    "type": "Component",
+                    "id": "Characteristic",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "BrandCharacteristics"
+                        }
+                    }
+                },
                 "ModelSerie": {
                     "type": "Component",
                     "id": "ModelSerie",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "ModelSeries"
                         }
                     }
@@ -233,6 +259,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "BodyTypes"
                         }
                     }
@@ -243,6 +270,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "FuelTypes"
                         }
                     }
@@ -253,6 +281,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "DriveTypes"
                         }
                     }
@@ -263,6 +292,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "TransmissionTypes"
                         }
                     }
@@ -273,6 +303,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "EquipmentChapters"
                         }
                     }
@@ -283,6 +314,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "sectionLayout": "Tabs",
                             "entitySet": "EquipmentCategories"
                         }
                     }

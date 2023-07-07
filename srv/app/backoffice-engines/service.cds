@@ -6,10 +6,20 @@ service AppBackofficeEnginesService {
 
     @readonly
     entity Engines       as projection on db.Engines {
-        *,
+        id,
+        capacity,
+        powerHP,
+        powerKW,
+        cylinders,
+        name,
+        brand,
+        createdAt,
+        modifiedAt,
         fuelType @cds.api.ignore,
         fuelType.id as fuelTypeId,
-        fuelType.unit
+        fuelType.unit,
+        models,
+        texts
     } actions {
         action synchronise(in : $self);
     };
@@ -33,5 +43,14 @@ service AppBackofficeEnginesService {
     entity Brands        as projection on db.Brands {
         code,
         name
+    };
+
+    @readonly
+    entity Models        as projection on db.Models {
+        id,
+        code,
+        year,
+        name,
+        engine
     };
 }
