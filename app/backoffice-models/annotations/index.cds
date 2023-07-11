@@ -1,6 +1,7 @@
 using from './color-combinations';
 using from './color-restriction-constraints';
 using from './color-restriction-options';
+using from './color-restriction-options-rules';
 using from './color-restrictions';
 using from './colors';
 using from './equipment-package-content';
@@ -9,3 +10,7 @@ using from './models';
 using from './restriction-rules';
 using from './restrictions';
 using from './sales-prices';
+using from './equipment-restrictions';
+using from './equipment-restrictions-constraints';
+using from './equipment-restrictions-options';
+using from './equipment-restrictions-options-rules';

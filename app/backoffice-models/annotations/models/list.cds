@@ -20,7 +20,7 @@ annotate service.Models with @UI: {
             {
                 $Type : 'Common.SortOrderType',
                 Property : id,
-                Descending : true,
+                Descending : false,
             },
         ]
     },
@@ -50,6 +50,7 @@ annotate service.Models with @UI: {
             $Type            : 'UI.DataField',
             Value            : name,
             ![@UI.Importance]: #Medium,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
         },
                 {
             $Type            : 'UI.DataField',
