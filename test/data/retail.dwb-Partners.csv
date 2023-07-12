@@ -1,50 +1,51 @@
-id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo,hasBrands,hasContracts
-100,AMAG RETAIL Bern,false,false,false,1970-01-01,9999-12-31,true,true
-1000,AMAG Import AG,false,false,false,1970-01-01,9999-12-31,true,true
-106,Garage R. Grünig AG,true,true,true,2023-03-17,9999-12-31,true,true
-126,Garage Gautschi AG,true,true,true,2005-01-01,9999-12-31,true,true
-129,AMAG Liestal,false,false,false,1970-01-01,9999-12-31,true,true
-137,AMAG Muttenz,false,false,false,1970-01-01,9999-12-31,true,true
-21,Garage G. Bürgisser,false,false,false,1970-01-01,9999-12-31,true,true
-220,AMAG RETAIL Fribourg,false,false,false,1970-01-01,9999-12-31,true,true
-24,Garage Gloor AG,false,false,false,1970-01-01,9999-12-31,true,true
-30,Auto Käppeli AG,false,false,false,1970-01-01,9999-12-31,true,true
-320,AMAG Lausanne,false,false,false,1970-01-01,9999-12-31,true,true
-3250,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,true,true
-340,TOGNETTI AUTO SA,false,false,false,1970-01-01,9999-12-31,true,true
-3518,Garage F. Heggli AG,false,false,false,1970-01-01,9999-12-31,true,true
-3537,AMAG RETAIL Aarau,false,false,false,1970-01-01,9999-12-31,true,true
-3606,Nidfeld-Garage AG,false,false,false,1970-01-01,9999-12-31,true,true
-3654,Garage Blaser AG,false,false,false,1970-01-01,9999-12-31,true,true
-373,AMAG Noranco,false,false,false,1970-01-01,9999-12-31,true,true
-376,AMAG RETAIL Sursee,false,false,false,1970-01-01,9999-12-31,true,true
-404,Auto Inderbitzin AG,false,false,false,1970-01-01,9999-12-31,true,true
-430,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,true,true
-493,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,true,true
-524,Schmid-Garage AG,false,false,false,1970-01-01,9999-12-31,true,true
-536,Kreuz-Garage E. Bischof AG,false,false,false,1970-01-01,9999-12-31,true,true
-577,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,true,true
-581,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,true,true
-582,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,true,true
-604,Gachnang SA,false,false,false,1970-01-01,9999-12-31,true,true
-619,Garage Gmür AG,false,false,false,1970-01-01,9999-12-31,true,true
-635,Audi Center AMAG Zug,false,false,false,1970-01-01,9999-12-31,true,true
-645,AMAG RETAIL Cham,false,false,false,1970-01-01,9999-12-31,true,true
-6470,Garage Olympic A. Antille Sierre SA,true,true,true,2023-02-01,9999-12-31,true,true
-655,AMAG Occasions Center Sihlbrugg,false,false,false,1970-01-01,9999-12-31,true,true
-666,Auto Sauter AG,false,false,false,1970-01-01,9999-12-31,true,true
-6878,Mastercar Automobiltechnik,true,true,true,2022-01-01,9999-12-31,true,true
-6892,P356 Sagl,true,true,true,2022-12-01,9999-12-31,true,true
-69,Dorfgarage A. Tommer AG,false,false,false,1970-01-01,9999-12-31,true,true
-698,AMAG RETAIL Autowelt Zürich,true,true,true,2005-01-01,9999-12-31,true,true
-715,JENATSCHGARAGE J. Nadlinger AG,true,true,true,2023-03-01,9999-12-31,true,true
-720,Scania Schweiz AG,false,false,false,1970-01-01,9999-12-31,true,true
-760,AMAG RETAIL Jona,false,false,false,1970-01-01,9999-12-31,true,true
-794,Autocenter Bülach-Süd AG,false,false,false,1970-01-01,9999-12-31,true,true
-798,Audi Center AMAG Zürich,false,false,false,1970-01-01,9999-12-31,true,true
-81,hoffmann automobile ag,false,false,false,1970-01-01,9999-12-31,true,true
-84,Garage Ruedi Strub AG,false,false,false,1970-01-01,9999-12-31,true,true
-90,AMAG Bellinzona,false,false,false,1970-01-01,9999-12-31,true,true
-943,Europcar,false,false,false,1970-01-01,9999-12-31,true,true
-954,AMAG Leasing AG,false,false,false,1970-01-01,9999-12-31,true,true
-9999901,Invalid Partner,true,true,true,1970-01-01,2000-12-31,true,true
+id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo
+100,AMAG RETAIL Bern,false,false,false,1970-01-01,9999-12-31
+1000,AMAG Import AG,false,false,false,1970-01-01,9999-12-31
+106,Garage R. Grünig AG,true,true,true,2023-03-17,9999-12-31
+126,Garage Gautschi AG,true,true,true,2005-01-01,9999-12-31
+129,AMAG Liestal,false,false,false,1970-01-01,9999-12-31
+137,AMAG Muttenz,false,false,false,1970-01-01,9999-12-31
+21,Garage G. Bürgisser,false,false,false,1970-01-01,9999-12-31
+220,AMAG RETAIL Fribourg,false,false,false,1970-01-01,9999-12-31
+24,Garage Gloor AG,false,false,false,1970-01-01,9999-12-31
+30,Auto Käppeli AG,false,false,false,1970-01-01,9999-12-31
+320,AMAG Lausanne,false,false,false,1970-01-01,9999-12-31
+3250,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31
+340,TOGNETTI AUTO SA,false,false,false,1970-01-01,9999-12-31
+3518,Garage F. Heggli AG,false,false,false,1970-01-01,9999-12-31
+3537,AMAG RETAIL Aarau,false,false,false,1970-01-01,9999-12-31
+3606,Nidfeld-Garage AG,false,false,false,1970-01-01,9999-12-31
+3654,Garage Blaser AG,false,false,false,1970-01-01,9999-12-31
+373,AMAG Noranco,false,false,false,1970-01-01,9999-12-31
+376,AMAG RETAIL Sursee,false,false,false,1970-01-01,9999-12-31
+404,Auto Inderbitzin AG,false,false,false,1970-01-01,9999-12-31
+430,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31
+493,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31
+524,Schmid-Garage AG,false,false,false,1970-01-01,9999-12-31
+536,Kreuz-Garage E. Bischof AG,false,false,false,1970-01-01,9999-12-31
+577,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31
+581,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31
+582,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31
+604,Gachnang SA,false,false,false,1970-01-01,9999-12-31
+619,Garage Gmür AG,false,false,false,1970-01-01,9999-12-31
+635,Audi Center AMAG Zug,false,false,false,1970-01-01,9999-12-31
+645,AMAG RETAIL Cham,false,false,false,1970-01-01,9999-12-31
+6470,Garage Olympic A. Antille Sierre SA,true,true,true,2023-02-01,9999-12-31
+655,AMAG Occasions Center Sihlbrugg,false,false,false,1970-01-01,9999-12-31
+666,Auto Sauter AG,false,false,false,1970-01-01,9999-12-31
+6878,Mastercar Automobiltechnik,true,true,true,2022-01-01,9999-12-31
+6892,P356 Sagl,true,true,true,2022-12-01,9999-12-31
+69,Dorfgarage A. Tommer AG,false,false,false,1970-01-01,9999-12-31
+698,AMAG RETAIL Autowelt Zürich,true,true,true,2005-01-01,9999-12-31
+715,JENATSCHGARAGE J. Nadlinger AG,true,true,true,2023-03-01,9999-12-31
+720,Scania Schweiz AG,false,false,false,1970-01-01,9999-12-31
+760,AMAG RETAIL Jona,false,false,false,1970-01-01,9999-12-31
+794,Autocenter Bülach-Süd AG,false,false,false,1970-01-01,9999-12-31
+798,Audi Center AMAG Zürich,false,false,false,1970-01-01,9999-12-31
+81,hoffmann automobile ag,false,false,false,1970-01-01,9999-12-31
+84,Garage Ruedi Strub AG,false,false,false,1970-01-01,9999-12-31
+90,AMAG Bellinzona,false,false,false,1970-01-01,9999-12-31
+943,Europcar,false,false,false,1970-01-01,9999-12-31
+954,AMAG Leasing AG,false,false,false,1970-01-01,9999-12-31
+2008576,Avis Budget Autovermietung AG,false,false,false,1970-01-01,9999-12-31
+9999901,Invalid Partner,true,true,true,1970-01-01,2000-12-31

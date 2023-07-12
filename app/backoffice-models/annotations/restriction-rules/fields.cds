@@ -6,12 +6,4 @@ annotate service.ModelRestrictionRules with {
         Text           : category.name,
         TextArrangement: #TextOnly
     };
-    color @Common: {
-        Text           : color.name,
-        TextArrangement: #TextOnly
-    };
-    equipment @Common: {
-        Text           : equipment.name,
-        TextArrangement: #TextOnly
-    };
 };

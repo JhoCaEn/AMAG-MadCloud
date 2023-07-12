@@ -14,7 +14,8 @@ service AppBackofficePartnersService {
         validTo,
         createdAt,
         modifiedAt,
-        brands
+        brands,
+        brandSolds
     } actions {
         action synchronise(in : $self);
     };
@@ -28,6 +29,15 @@ service AppBackofficePartnersService {
         isRepresentative,
         hasContracts,
         contracts
+    };
+
+    @readonly
+    entity PartnerBrandSoldToPartners as projection on db.PartnerBrandSoldToPartners {
+        brand,
+        partner,
+        validFrom,
+        validTo,
+        isDefault
     };
 
     @readonly

@@ -11,7 +11,7 @@
 				"fr",
 				"en"
 			],
-			"fallbackLocale": "en"
+			"fallbackLocale": "de"
 		},
 		"applicationVersion": {
 			"version": "1.0.0"
@@ -64,8 +64,17 @@
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
-				"uri": "i18n/i18n.properties"
-			},			
+				"settings": {
+					"bundleUrl": "i18n/i18n.properties",
+					"supportedLocales": [
+						"de",
+						"it",
+						"fr",
+						"en"
+					],
+					"fallbackLocale": "de"
+				}
+			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
@@ -78,10 +87,8 @@
 			}
 		},
 		"routing": {
-			"routes": [
-			],
-			"targets": {
-			},
+			"routes": [],
+			"targets": {},
 			"config": {
 				"flexibleColumnLayout": {
 					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",

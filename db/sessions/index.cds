@@ -1,1 +1,1 @@
-using from './sessions';
+namespace retail.dwb;

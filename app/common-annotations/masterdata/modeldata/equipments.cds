@@ -6,6 +6,7 @@ annotate db.ModelEquipments with {
     isPackage  @title: '{i18n>ModelEquipments.isPackage}';
 };
 
+
 annotate db.ModelEquipments with @Common.SemanticKey: [
     model_id,
     equipment_id
@@ -13,8 +14,8 @@ annotate db.ModelEquipments with @Common.SemanticKey: [
 
 annotate db.ModelEquipments with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
-    TypeName      : '{i18n>Equipment}',
-    TypeNamePlural: '{i18n>Equipments}',
+    TypeName      : '{i18n>ModelEquipment}',
+    TypeNamePlural: '{i18n>ModelEquipments}',
     Title         : {
         $Type: 'UI.DataField',
         Value: equipment_id

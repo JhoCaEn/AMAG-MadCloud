@@ -30,9 +30,16 @@ annotate service.ModelRestrictionRules with @UI: {
             ![@UI.Importance]: #Medium,
         },
         {
-            $Type            : 'UI.DataField',
-            Value            : equipment_id,
-            ![@UI.Importance]: #Medium,
+            $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+            Value         : equipment_id,
+            Label         : '{i18n>Equipment}',
+            SemanticObject: 'DWBBOEquipment',
+            Action        : 'manage',
+            Mapping       : [{
+                $Type                 : 'Common.SemanticObjectMappingType',
+                LocalProperty         : equipment_id,
+                SemanticObjectProperty: 'id',
+            }, ]
         },
         {
             $Type            : 'UI.DataField',
@@ -45,9 +52,9 @@ annotate service.ModelRestrictionRules with @UI: {
             ![@UI.Importance]: #High,
         },
         {
-            $Type            : 'UI.DataField',
-            Value            : modifiedAt,
-            ![@UI.Importance]: #Low,
+            $Type                : 'UI.DataField',
+            Value                : modifiedAt,
+            ![@UI.Importance]    : #Low,
             ![@HTML5.CssDefaults]: {width: 'auto'}
         }
     ]

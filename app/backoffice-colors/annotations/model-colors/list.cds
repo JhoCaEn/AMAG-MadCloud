@@ -5,10 +5,10 @@ annotate service.ModelColors with @UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [model_id],
+        RequestAtLeast: [id],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : model_id,
+            Property  : id,
             Descending: false
         }]
     },
@@ -16,7 +16,7 @@ annotate service.ModelColors with @UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : model_id,
+            Value            : id,
             ![@UI.Importance]: #High,
         },
         {

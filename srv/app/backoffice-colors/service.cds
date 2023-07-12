@@ -39,11 +39,12 @@ service AppBackofficeColorsService {
     };
 
     @readonly
-    entity ModelColors                    as projection on db.ModelColors {
-        model.id as model_id,
+    entity ModelColors  as projection on db.ModelColors {
+        model.id,
         model.code,
         model.year,
         model.name,
+        model @cds.api.ignore,
         color
     }
 }

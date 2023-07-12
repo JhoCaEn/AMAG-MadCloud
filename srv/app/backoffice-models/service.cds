@@ -71,6 +71,7 @@ service AppBackofficeModelsService {
     entity ModelColors                          as projection on db.ModelColors {
         model,
         color,
+        color.id,
         modifiedAt
     };
 

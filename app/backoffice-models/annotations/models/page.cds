@@ -134,7 +134,19 @@ annotate service.Models with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: name,
-            }
+            },
+            {
+                $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+                Value         : transmission_id,
+                Label         : '{i18n>Transmission}',
+                SemanticObject: 'DWBBOTransmission',
+                Action        : 'manage',
+                Mapping       : [{
+                    $Type                 : 'Common.SemanticObjectMappingType',
+                    LocalProperty         : transmission_id,
+                    SemanticObjectProperty: 'id',
+                }, ]
+            },
         ]
     },
 

@@ -8,12 +8,11 @@ using from './backoffice-colors';
 
 using from './carconfigurator';
 
+using from './sessions';
 using from './offers';
 using from './orders';
-using from './vehicles';
-
-using from './sessions';
 using from './order-releases';
 using from './sales-mesages';
 using from './sales-message-releases';
 using from './fleet-applications';
+using from './vehicles';

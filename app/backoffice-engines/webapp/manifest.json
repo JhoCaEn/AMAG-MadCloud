@@ -40,6 +40,12 @@
 					"subTitle": "{{AppSubtitle}}",
 					"icon": ""
 				}
+			},
+			"outbounds": {
+				"Model": {
+					"semanticObject": "DWBBOModel",
+					"action": "manage"
+				}
 			}
 		}
 	},
@@ -59,6 +65,15 @@
 				"sap.ui.core": {},
 				"sap.fe.templates": {},
 				"sap.ui.integration": {}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-engines::Engine": {
+						"controllerName": "ch.amag.retail.dwb.backoffice-engines.controller.Engine"
+					}
+				}
 			}
 		},
 		"models": {
@@ -127,7 +142,15 @@
 					"options": {
 						"settings": {
 							"sectionLayout": "Tabs",
-							"entitySet": "Engines"
+							"entitySet": "Engines",
+							"navigation": {
+								"models": {
+									"detail": {
+										"path": "sap.apps.crossNavigation.outbounds",
+										"outbound": "Model"
+									}
+								}
+							}
 						}
 					},
 					"contextPattern": "/Engines({key})"

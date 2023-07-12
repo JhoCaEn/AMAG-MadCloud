@@ -108,6 +108,11 @@
                     "target": "PartnerBrand"
                 },
                 {
+                    "pattern": "Partners({key})/brandsSold({key2}):?query:",
+                    "name": "PartnerBrandSoldToPartner",
+                    "target": "PartnerBrandSoldToPartner"
+                },
+                {
                     "pattern": "Partners({key})/brands({key2})/contracts({key3}):?query:",
                     "name": "PartnerBrandContract",
                     "target": "PartnerBrandContract"
@@ -145,6 +150,11 @@
                                     "detail": {
                                         "route": "PartnerBrand"
                                     }
+                                },
+                                "brandSolds": {
+                                    "detail": {
+                                        "route": "PartnerBrandSoldToPartner"
+                                    }
                                 }
                             }
                         }
@@ -167,7 +177,18 @@
                         }
                     }
                 },
-                "PartnerBrandContract":{
+                "PartnerBrandSoldToPartner": {
+                    "type": "Component",
+                    "id": "PartnerBrandSoldToPartner",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrandSoldToPartners",
+                            "navigation": {}
+                        }
+                    }
+                },
+                "PartnerBrandContract": {
                     "type": "Component",
                     "id": "PartnerBrandContract",
                     "name": "sap.fe.templates.ObjectPage",
@@ -177,6 +198,11 @@
                         }
                     }
                 }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
             }
         }
     },

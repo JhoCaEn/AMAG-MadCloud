@@ -18,18 +18,34 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 
             if (!id) return
 
-            const salesPartner = !!id.length <= 4
-
             try {
-                const raw = await getRaw(id, salesPartner)
-                LOG._debug && LOG.debug('raw', raw)
+                if (id.length <= 4) {
 
-                if (!raw) return
+                    const raw = await getSalesPartner(id)
+                    LOG._debug && LOG.debug('raw', raw)
 
-                const transformed = await transform(raw, salesPartner)
-                LOG._debug && LOG.debug('transformed', transformed)
+                    if (!raw) return remove(id)
 
-                return save(transformed)
+                    const transformed = await transformSalesPartner(raw)
+                    LOG._debug && LOG.debug('transformed', transformed)
+
+                    return save(transformed)
+
+                } else {
+
+                    if (!(await db.exists(Partners, id)))
+                        return
+
+                    const raw = await getPartner(id)
+                    LOG._debug && LOG.debug('raw', raw)
+    
+                    if (!raw) return remove(id)
+    
+                    const transformed = await transformPartner(raw)
+                    LOG._debug && LOG.debug('transformed', transformed)
+    
+                    return save(transformed)                        
+                }
 
             } catch (err) {
                 if (err instanceof NotFoundError)
@@ -38,17 +54,6 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
                 LOG.warn(err)
                 throw err
             }
-        }
-
-        const getRaw = async (id, salesPartner) => {
-            if (salesPartner) return getSalesPartner(id)
-            else {
-                const exists = await db.exists(Partners, id).forUpdate()
-
-                if (exists) return getPartner(id)
-            }
-
-            return null
         }
 
         const getSalesPartner = async (id) => {
@@ -79,11 +84,6 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
                 return db.delete(Partners, id)
         }
 
-        const transform = async (raw, salesPartner) => {
-            if (salesPartner) return transformSalesPartner(raw)
-            else return transformPartner(raw)
-        }
-
         const transformSalesPartner = async (raw) => {
             const transformed = transformHeader(raw)
             const brandCharacteristics = transformBrandCharacteristics(raw?._BrandCharacteristics)
@@ -109,6 +109,9 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 
         const transformPartner = async (raw) => {
             const transformed = transformHeader(raw)
+
+            transformed.validFrom = '1970-01-01'
+            transformed.validTo = '9999-12-31'
 
             return transformed
         }

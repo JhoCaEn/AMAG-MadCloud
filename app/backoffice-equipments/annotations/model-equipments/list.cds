@@ -4,18 +4,24 @@ annotate service.ModelEquipments with @UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [model_id],
+        RequestAtLeast: [id],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : model_id,
+            Property  : id,
             Descending: false
         }]
+    },
+
+    HeaderInfo         : {
+        $Type         : 'UI.HeaderInfoType',
+        TypeName      : '{i18n>BackofficeEquipments.ModelEquipment}',
+        TypeNamePlural: '{i18n>BackofficeEquipments.ModelEquipments}'
     },
 
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : model_id,
+            Value            : id,
             ![@UI.Importance]: #High,
         },
         {
