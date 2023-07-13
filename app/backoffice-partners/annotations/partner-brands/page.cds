@@ -46,6 +46,20 @@ annotate service.PartnerBrands with @UI: {
                 }]
             }, ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandShipToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandShipToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandShipToPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandShipToPartnersFacet',
+                    Target: 'shipToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General: {

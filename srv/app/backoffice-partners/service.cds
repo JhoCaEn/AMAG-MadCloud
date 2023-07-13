@@ -28,7 +28,8 @@ service AppBackofficePartnersService {
         isRepresentative,
         hasContracts,
         contracts,
-        soldToPartners
+        soldToPartners,
+        shipToPartners
     };
 
     @readonly

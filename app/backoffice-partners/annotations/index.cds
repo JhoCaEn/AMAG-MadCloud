@@ -5,3 +5,4 @@ using from './partner-contracts';
 using from './brand-contract-types';
 using from './sold-to-partners';
 using from './partner-contracts-model-categories';
+using from './ship-to-partners';
