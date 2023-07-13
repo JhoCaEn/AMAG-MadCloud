@@ -35,12 +35,6 @@
           "subTitle": "{{AppSubtitle}}",
           "icon": ""
         }
-      },
-      "outbounds": {
-        "Color": {
-          "semanticObject": "DWBBOColor",
-          "action": "manage"
-        }
       }
     }
   },
@@ -61,7 +55,7 @@
         "sap.fe.templates": {},
         "sap.ui.integration": {}
       }
-    }, 
+    },
     "extends": {
       "extensions": {
         "sap.ui.controllerExtensions": {
@@ -79,6 +73,9 @@
           },
           "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestriction": {
             "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestriction"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColor": {
+            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColor"
           }
         }
       }
@@ -114,6 +111,11 @@
           "pattern": "Models({key}):?query:",
           "name": "Model",
           "target": "Model"
+        },
+        {
+          "pattern": "Models({key})/colors({key2}):?query:",
+          "name": "ModelColor",
+          "target": "ModelColor"
         },
         {
           "pattern": "Models({key})/restrictions({key2}):?query:",
@@ -198,8 +200,7 @@
                 },
                 "colors": {
                   "detail": {
-                    "path": "sap.apps.crossNavigation.outbounds",
-                    "outbound": "Color"
+                    "route": "ModelColor"
                   }
                 },
                 "equipments": {
@@ -260,6 +261,17 @@
             }
           },
           "contextPattern": "/Models({key})/equipments({key2})"
+        },
+        "ModelColor": {
+          "type": "Component",
+          "id": "ModelColor",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "ModelColors"
+            }
+          },
+          "contextPattern": "/Models({key})/colors({key2})"
         },
         "ModelColorRestriction": {
           "type": "Component",

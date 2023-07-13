@@ -38,15 +38,27 @@ annotate service.ModelColorCombinations with @UI: {
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: interior_id,
+                Value: validFrom,
             },
             {
                 $Type: 'UI.DataField',
-                Value: exterior_id,
+                Value: validTo,
             },
             {
                 $Type: 'UI.DataField',
-                Value: roof_id,
+                Value: orderableFrom,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableTo,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: createdAt,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: modifiedAt,
             }
         ]
     },

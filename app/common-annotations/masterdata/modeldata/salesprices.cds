@@ -9,10 +9,12 @@ annotate db.ModelSalesPrices with {
     value      @Measures.ISOCurrency: currency;
     modifiedAt @title               : '{i18n>replicated.modifiedAt}';
     createdAt  @title               : '{i18n>replicated.createdAt}';
-
 };
 
-annotate db.ModelSalesPrices with @Common.SemanticKey: [validFrom];
+annotate db.ModelSalesPrices with @Common.SemanticKey: [
+    model_id,
+    validTo
+];
 
 
 annotate db.ModelSalesPrices with @UI: {HeaderInfo: {

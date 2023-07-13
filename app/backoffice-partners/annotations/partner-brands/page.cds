@@ -32,6 +32,20 @@ annotate service.PartnerBrands with @UI: {
                 }]
             }, ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandSoldToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandSoldToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandSoldToPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandSoldToPartnersFacet',
+                    Target: 'soldToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General: {

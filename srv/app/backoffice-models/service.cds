@@ -18,6 +18,7 @@ service AppBackofficeModelsService {
         colorCombinations,
         equipments,
         restrictions,
+        createdAt,
         modifiedAt,
         texts
     } actions {
@@ -73,7 +74,12 @@ service AppBackofficeModelsService {
         color,
         color.id,
         color.type,
-        modifiedAt
+        createdAt,
+        modifiedAt,
+        validFrom,
+        validTo,
+        orderableFrom,
+        orderableTo
     };
 
     @readonly
@@ -86,6 +92,7 @@ service AppBackofficeModelsService {
         model,
         id,
         modifiedAt,
+        createdAt,
         rules
     };
 
@@ -95,7 +102,13 @@ service AppBackofficeModelsService {
         exterior,
         interior,
         roof,
-        restrictions
+        restrictions,
+        validFrom,
+        validTo,
+        orderableFrom,
+        orderableTo,
+        createdAt,
+        modifiedAt
     };
 
     @readonly
@@ -104,7 +117,9 @@ service AppBackofficeModelsService {
         type,
         constraint,
         constraints,
-        options
+        options,
+        createdAt, 
+        modifiedAt
     };
 
     @readonly
@@ -118,7 +133,9 @@ service AppBackofficeModelsService {
     entity ModelColorRestrictionOptions         as projection on db.ModelColorRestrictionOptions {
         restriction,
         rules,
-        id
+        id,
+        createdAt,
+        modifiedAt
     };
 
     @readonly

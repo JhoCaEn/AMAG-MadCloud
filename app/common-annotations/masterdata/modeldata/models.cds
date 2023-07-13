@@ -12,6 +12,8 @@ annotate db.Models with {
     modifiedAt @title : '{i18n>replicated.modifiedAt}';
 };
 
+annotate db.Models with @Common.SemanticKey: [id];
+
 annotate db.Models with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
     TypeName      : '{i18n>Model}',

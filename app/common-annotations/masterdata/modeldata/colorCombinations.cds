@@ -9,7 +9,17 @@ annotate db.ModelColorCombinations with {
     validTo       @title: '{i18n>General.validTo}';
     orderableFrom @title: '{i18n>orderableFrom}';
     orderableTo   @title: '{i18n>orderableTo}';
+    createdAt   @title: '{i18n>replicated.createdAt}';
+    modifiedAt   @title: '{i18n>General.FieldGroup.Synchronised.modifiedAt}';
 };
+
+annotate db.ModelColorCombinations with @Common.SemanticKey: [
+    model_id,
+    interior_id,
+    exterior_id,
+    roof_id
+];
+
 
 annotate db.ModelColorCombinations with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
@@ -21,7 +31,3 @@ annotate db.ModelColorCombinations with @UI: {HeaderInfo: {
     }
 }};
 
-annotate db.ModelColorCombinations with @Common.SemanticKey: [
-    interior_id,
-    exterior_id
-];

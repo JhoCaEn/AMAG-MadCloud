@@ -14,8 +14,7 @@ service AppBackofficePartnersService {
         validTo,
         createdAt,
         modifiedAt,
-        brands,
-        brandSolds
+        brands
     } actions {
         action synchronise(in : $self);
     };
@@ -28,7 +27,8 @@ service AppBackofficePartnersService {
         validTo,
         isRepresentative,
         hasContracts,
-        contracts
+        contracts,
+        soldToPartners
     };
 
     @readonly
