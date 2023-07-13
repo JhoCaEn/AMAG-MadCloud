@@ -25,9 +25,16 @@ annotate service.ModelRestrictionRules with @UI: {
             ![@UI.Importance]: #Medium,
         },
         {
-            $Type            : 'UI.DataField',
-            Value            : color_id,
-            ![@UI.Importance]: #Medium,
+            $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+            Value         : color_id,
+            Label         : '{i18n>Color}',
+            SemanticObject: 'DWBBOColor',
+            Action        : 'manage',
+            Mapping       : [{
+                $Type                 : 'Common.SemanticObjectMappingType',
+                LocalProperty         : color_id,
+                SemanticObjectProperty: 'id',
+            }, ]
         },
         {
             $Type         : 'UI.DataFieldWithIntentBasedNavigation',
@@ -50,12 +57,6 @@ annotate service.ModelRestrictionRules with @UI: {
             $Type            : 'UI.DataField',
             Value            : isForbidden,
             ![@UI.Importance]: #High,
-        },
-        {
-            $Type                : 'UI.DataField',
-            Value                : modifiedAt,
-            ![@UI.Importance]    : #Low,
-            ![@HTML5.CssDefaults]: {width: 'auto'}
         }
     ]
 };

@@ -9,8 +9,4 @@ cds.on('bootstrap', app => {
     })
 })
 
-if (process.env.NODE_ENV !== 'production') {
-    cds.once('bootstrap', () => new (require('@amag-ch/sap_cap_common_launchpad'))({ version: '1.114.0' }))
-}
-
 module.exports = cds.server

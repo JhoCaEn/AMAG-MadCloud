@@ -130,7 +130,7 @@ modules:
           artifacts: ['orders.zip']
         - name: dwb-app-vehicles
           target-path: resources
-          artifacts: ['orders.zip']
+          artifacts: ['vehicles.zip']
         - name: dwb-app-backoffice-engines
           target-path: resources
           artifacts: ['backoffice-engines.zip']
@@ -167,6 +167,9 @@ modules:
         - name: dwb-app-sales-message-releases
           target-path: resources
           artifacts: ['sales-message-releases.zip']
+        - name: dwb-app-callbacks
+          target-path: resources
+          artifacts: ['callbacks.zip']
 
   - name: dwb-app-offers
     type: html5
@@ -175,8 +178,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-carconfigurator
@@ -186,8 +188,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-orders
@@ -197,8 +198,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
   
   - name: dwb-app-vehicles
@@ -208,8 +208,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-engines
@@ -219,8 +218,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-models
@@ -230,8 +228,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-brands
@@ -241,8 +238,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-transmissions
@@ -252,8 +248,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-partners
@@ -263,8 +258,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-equipments
@@ -274,8 +268,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-backoffice-colors
@@ -285,8 +278,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-sessions
@@ -296,8 +288,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-sales-messages
@@ -307,8 +298,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-order-releases
@@ -318,8 +308,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
 
   - name: dwb-app-fleet-applications
@@ -329,8 +318,7 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
       supported-platforms: []
       
   - name: dwb-app-sales-message-releases
@@ -340,8 +328,17 @@ modules:
       build-result: dist
       builder: custom
       commands:
-        - yarn install
-        - yarn run build
+        - yarn build
+      supported-platforms: []
+  
+  - name: dwb-app-callbacks
+    type: html5
+    path: app/callbacks
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
       supported-platforms: []
 
 resources:

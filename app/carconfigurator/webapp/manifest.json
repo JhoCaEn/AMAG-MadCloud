@@ -11,13 +11,13 @@
                 "fr",
                 "en"
             ],
-            "fallbackLocale": "en"
+            "fallbackLocale": "de"
         },
         "applicationVersion": {
             "version": "1.0.0"
         },
-        "title": "{{appTitle}}",
-        "description": "{{appSubtitle}}",
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
         "dataSources": {
             "mainService": {
                 "uri": "app/backend/carconfigurator/",
@@ -36,8 +36,8 @@
                     },
                     "semanticObject": "DWBCarConfigurator",
                     "action": "edit",
-                    "title": "{{appTitle}}",
-                    "subTitle": "{{appSubtitle}}",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
                     "icon": ""
                 }
             },
@@ -79,7 +79,16 @@
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
+                "settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
+                    "fallbackLocale": "de"
+                }
             },
             "": {
                 "dataSource": "mainService",

@@ -20,6 +20,13 @@ sap.ui.define([
 
                         aKeys.filter(key => !aTransmissionKeys.includes(key)).map(key => oSelectionVariant.removeSelectOption(key))
                     }
+
+                    if (oTargetInfo?.action === "manage" && oTargetInfo?.semanticObject === "DWBBOEngine") {
+                        let aKeys = oSelectionVariant.getSelectOptionsPropertyNames()
+                        const aTransmissionKeys = ['engine_id']
+
+                        aKeys.filter(key => !aTransmissionKeys.includes(key)).map(key => oSelectionVariant.removeSelectOption(key))
+                    }
                 }
             }
         }

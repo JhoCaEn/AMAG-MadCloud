@@ -11,13 +11,13 @@
 				"fr",
 				"en"
 			],
-			"fallbackLocale": "en"
+			"fallbackLocale": "de"
 		},
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
+		"title": "{{AppTitle}}",
+		"description": "{{AppSubtitle}}",
 		"dataSources": {
 			"mainService": {
 				"uri": "app/backend/offers/",
@@ -36,8 +36,8 @@
 					},
 					"semanticObject": "DWBOffer",
 					"action": "manage",
-					"title": "{{appTitle}}",
-					"subTitle": "{{appDescription}}"
+					"title": "{{AppTitle}}",
+					"subTitle": "{{AppSubtitle}}"
 				}
 			},
 			"outbounds": {

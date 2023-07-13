@@ -1,49 +1,41 @@
-module.exports = (raw = {}, roles = []) => {
+module.exports = (raw = {}, brandRoles = []) => {
     const transformed = []
 
-    Object.entries(raw).forEach(([key, value]) => {
+    Object.entries(raw).forEach(([brand_code, raw]) => {
 
-        const transform = (key, value, validFrom, validTo, roles) => {
+        const transform = (validFrom, validTo) => {
             const transformed = {
-                brand_code: key,
-                validFrom: validFrom,
-                validTo: validTo,
-                contracts: transformContracts(key, value.VERTRAGSART)
+                brand_code,
+                validFrom,
+                validTo: validTo || '9999-12-31',
+                hasContracts: false,
+                contracts: transformContracts(brand_code, raw.VERTRAGSART)
             }
         
-            transformed.hasContracts = !!transformed?.contracts?.length
-            transformed.isRepresentative = !!value.VAS_EINTRITT
+            transformed.hasContracts = !!transformed.contracts?.length
         
-            if (!transformed.validTo)
-                transformed.validTo = transformed.validFrom
-                    ? '9999-12-31'
-                    : '1970-01-01'
-        
-            if (transformed.validTo == '1970-01-01') return null
-        
-            if (!transformed.validFrom)
-                transformed.validFrom = '1970-01-01'
-        
-            transformed.soldToPartners = transformPartner(roles?.[key]?.AG, transformed.validFrom, transformed.validTo)
-            transformed.shipToPartners = transformPartner(roles?.[key]?.WE, transformed.validFrom, transformed.validTo)
-            transformed.billToPartners = transformPartner(roles?.[key]?.RE, transformed.validFrom, transformed.validTo)
-            transformed.paidByPartners = transformPartner(roles?.[key]?.RG, transformed.validFrom, transformed.validTo)
+            transformed.soldToPartners = transformRoles(brandRoles[brand_code]?.AG, transformed.validFrom, transformed.validTo)
+            transformed.shipToPartners = transformRoles(brandRoles[brand_code]?.WE, transformed.validFrom, transformed.validTo)
+            transformed.billToPartners = transformRoles(brandRoles[brand_code]?.RE, transformed.validFrom, transformed.validTo)
+            transformed.paidByPartners = transformRoles(brandRoles[brand_code]?.RG, transformed.validFrom, transformed.validTo)
         
             return transformed
         }
 
-        const validFromH = transform(key, value, value.H_EINTRITT, value.H_AUSTRITT, roles)
-        const validFromVas = transform(key, value, value.VAS_EINTRITT, value.VAS_AUSTRITT, roles)
+        if (raw.H_EINTRITT) {
+            const dealer = transform(raw.H_EINTRITT, raw.H_AUSTRITT)
+            transformed.push(dealer)
+        }
 
-        if (validFromH)
-            transformed.push(validFromH)
-
-        if (validFromVas)
-            transformed.push(validFromVas)
+        if (raw.VAS_EINTRITT) {
+            const representative = transform(raw.VAS_EINTRITT, raw.VAS_AUSTRITT)
+            representative.isRepresentative = true
+            transformed.push(representative)
+        }
     })
 
     return transformed
 }
 
 const transformContracts = require('./transformContracts')
-const transformPartner =require('./transformPartners')
+const transformRoles =require('./transformRoles')

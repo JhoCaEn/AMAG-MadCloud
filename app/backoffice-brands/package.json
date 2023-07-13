@@ -1,14 +1,10 @@
 {
     "name": "backoffice-brands",
     "version": "1.0.0",
-    "description": "Engines",
-    "license": "UNLICENSED",
-    "main": "webapp/index.html",    
+    "description": "Backoffice - Brands",
+    "license": "UNLICENSED",   
     "scripts": {
-        "build": "ui5 build preload --clean-dest"
-    },
-    "devDependencies": {
-        "ui5-task-zipper": "^0"
+        "build": "ui5 build --clean-dest",
+        "postbuild": "cd dist && bestzip $npm_package_name.zip *"
     }
-
 }

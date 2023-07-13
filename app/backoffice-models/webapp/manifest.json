@@ -61,15 +61,24 @@
         "sap.fe.templates": {},
         "sap.ui.integration": {}
       }
-    },
+    }, 
     "extends": {
       "extensions": {
         "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ListReport.ListReportController#ch.amag.retail.dwb.backoffice-models::Models": {
+            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Models"
+          },
           "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::Model": {
             "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Model"
           },
           "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelRestriction": {
             "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelRestriction"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestrictionOptions": {
+            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestrictionOptions"
+          },
+          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestriction": {
+            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestriction"
           }
         }
       }

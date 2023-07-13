@@ -11,6 +11,7 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 
         this.on('replication-partnerdata:BusinessPartner/Created/v1', async ({ data: { BusinessPartner } = {} } = {}) => replicate(BusinessPartner))
         this.on('replication-partnerdata:BusinessPartner/Changed/v1', async ({ data: { BusinessPartner } = {} } = {}) => replicate(BusinessPartner))
+        this.on('self:partner/replicate', async ({ data: { id } = {} } = {}) => replicate(id))
         this.on('replicate', async ({ data: { id } = {} } = {}) => replicate(id))
 
         const replicate = async (id) => {
@@ -18,34 +19,26 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 
             if (!id) return
 
+            return id.length <= 4
+                ? replicateSalesPartner(id)
+                : replicatePartner(id)
+        }
+
+        const replicatePartner = async (id) => {
             try {
-                if (id.length <= 4) {
 
-                    const raw = await getSalesPartner(id)
-                    LOG._debug && LOG.debug('raw', raw)
+                if (!(await db.exists(Partners, id)))
+                    return
 
-                    if (!raw) return remove(id)
+                const raw = await getPartner(id)
+                LOG._debug && LOG.debug('raw', raw)
 
-                    const transformed = await transformSalesPartner(raw)
-                    LOG._debug && LOG.debug('transformed', transformed)
+                if (!raw) return remove(id)
 
-                    return save(transformed)
+                const transformed = await transformPartner(raw)
+                LOG._debug && LOG.debug('transformed', transformed)
 
-                } else {
-
-                    if (!(await db.exists(Partners, id)))
-                        return
-
-                    const raw = await getPartner(id)
-                    LOG._debug && LOG.debug('raw', raw)
-    
-                    if (!raw) return remove(id)
-    
-                    const transformed = await transformPartner(raw)
-                    LOG._debug && LOG.debug('transformed', transformed)
-    
-                    return save(transformed)                        
-                }
+                return save(transformed)
 
             } catch (err) {
                 if (err instanceof NotFoundError)
@@ -56,10 +49,32 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
             }
         }
 
+        const replicateSalesPartner = async (id) => {
+            try {
+
+                const raw = await getSalesPartner(id)
+                LOG._debug && LOG.debug('raw', raw)
+
+                if (!raw) throw new NotFoundError()
+
+                const transformed = await transformSalesPartner(raw)
+                LOG._debug && LOG.debug('transformed', transformed)
+
+                return save(transformed)
+
+            } catch (err) {
+                if (err instanceof NotFoundError)
+                    return replicatePartner(id)
+
+                LOG.warn(err)
+                throw err
+            }
+        }
+
         const getSalesPartner = async (id) => {
             return client.getSalesPartner({
                 id,
-                $expand: '_BrandCharacteristics,_Roles($expand=_RolePartner)'
+                $expand: '_BrandCharacteristics,_Roles($expand=_RolePartner($select=Partner))'
             })
         }
 
@@ -68,13 +83,38 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
         }
 
         const save = async (data) => {
-            const { id } = data
+            const { id, brands = [] } = data
 
             const exists = await db.exists(Partners, id).forUpdate()
 
-            return exists
+            await (exists
                 ? db.update(Partners, id).set(data)
                 : db.create(Partners, data)
+            )
+
+            const rolePartners = [...new Set([
+                brands.map(({ soldToPartners, shipToPartners, billToPartners, paidByPartners }) => ([
+                    soldToPartners?.map(({ partner_id }) => partner_id),
+                    shipToPartners?.map(({ partner_id }) => partner_id),
+                    billToPartners?.map(({ partner_id }) => partner_id),
+                    paidByPartners?.map(({ partner_id }) => partner_id)
+                ])),
+            ].flat(3))]
+
+            if (!rolePartners.length)
+                return
+
+            const knownPartners = await db.read(Partners, ['id']).where({ id: rolePartners })
+                .then(result => result.map(({ id }) => id))
+
+            const missingPartners = rolePartners.filter(id => !knownPartners.includes(id))
+
+            if (!missingPartners.length)
+                return
+
+            await db.create(Partners, missingPartners.map(id => ({ id })))
+
+            await Promise.all(missingPartners.map(id => this.emit('partner/replicate', { id })))
         }
 
         const remove = async (id) => {
@@ -87,9 +127,9 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
         const transformSalesPartner = async (raw) => {
             const transformed = transformHeader(raw)
             const brandCharacteristics = transformBrandCharacteristics(raw?._BrandCharacteristics)
-            const roles = transformRoles(raw?._Roles)
+            const brandRoles = transformBrandRoles(raw?._Roles)
 
-            transformed.brands = transformBrands(brandCharacteristics, roles)
+            transformed.brands = transformBrands(brandCharacteristics, brandRoles)
             transformed.hasBrands = !!transformed.brands?.length
 
             transformed.brands.forEach(({ hasContracts, validFrom, validTo }) => {
@@ -123,4 +163,4 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
 const transformHeader = require('./transformHeader')
 const transformBrandCharacteristics = require('./transformBrandCharacteristics')
 const transformBrands = require('./transformBrands')
-const transformRoles = require('./transformRoles')
+const transformBrandRoles = require('./transformBrandRoles')

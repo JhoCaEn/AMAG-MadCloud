@@ -147,6 +147,18 @@ annotate service.Models with @UI: {
                     SemanticObjectProperty: 'id',
                 }, ]
             },
+            {
+                $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+                Value         : engine_id,
+                Label         : '{i18n>Engine}',
+                SemanticObject: 'DWBBOEngine',
+                Action        : 'manage',
+                Mapping       : [{
+                    $Type                 : 'Common.SemanticObjectMappingType',
+                    LocalProperty         : engine_id,
+                    SemanticObjectProperty: 'id',
+                }]
+            }
         ]
     },
 

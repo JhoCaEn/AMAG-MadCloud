@@ -3,9 +3,9 @@ sap.ui.define([
 ], function (AppComponent) {
     'use strict';
 
-    return AppComponent.extend("ch.amag.retail.dwb.vehicles.Component", {
+    return AppComponent.extend('ch.amag.retail.dwb.vehicles.Component', {
         metadata: {
-            manifest: "json"
+            manifest: 'json'
         }
     });
 });

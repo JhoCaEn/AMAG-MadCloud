@@ -1,8 +1,5 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 
-
-annotate service.ModelSalesPrices with @Common.SemanticKey: [validFrom];
-
 annotate service.ModelSalesPrices with @UI: {
 
     PresentationVariant: {

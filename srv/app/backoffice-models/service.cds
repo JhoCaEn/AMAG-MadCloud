@@ -72,11 +72,15 @@ service AppBackofficeModelsService {
         model,
         color,
         color.id,
+        color.type,
         modifiedAt
     };
 
     @readonly
     entity Colors                               as projection on db.Colors;
+
+    @readonly
+    entity ColorTypes                           as projection on db.ColorTypes;
 
     entity ModelRestrictions                    as projection on db.ModelRestrictions {
         model,

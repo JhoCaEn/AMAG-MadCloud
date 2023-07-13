@@ -1,7 +1,5 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 
-annotate service.ModelColorCombinations with @Common.SemanticKey: [exterior_id];
-
 annotate service.ModelColorCombinations with @UI: {
 
     PresentationVariant: {

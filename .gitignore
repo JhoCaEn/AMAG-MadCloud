@@ -10,6 +10,7 @@ node_modules/
 target/
 app/**/node_modules
 app/**/dist
+app/**/yarn.lock
 .cdsrc-private.json
 db/yarn.lock
 

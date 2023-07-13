@@ -1,16 +1,16 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 
-annotate service.ModelColors with @Common.SemanticKey: [color_id];
+annotate service.ModelColors with @Common.SemanticKey: [id];
 
 annotate service.ModelColors with @UI: {
 
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [color_id],
+        RequestAtLeast: [id],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : color_id,
+            Property  : id,
             Descending: false,
         }, ]
     },
@@ -18,7 +18,7 @@ annotate service.ModelColors with @UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : color_id,
+            Value            : id,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: '8rem'}
         },
@@ -33,11 +33,6 @@ annotate service.ModelColors with @UI: {
             Value            : color.displayName,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: 'auto'}
-        },
-        {
-            $Type                : 'UI.DataField',
-            Value                : modifiedAt,
-            ![@UI.Importance]    : #High
-        },
+        }
     ]
 };

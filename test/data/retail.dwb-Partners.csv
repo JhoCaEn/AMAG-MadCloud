@@ -5,6 +5,7 @@ id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo
 126,Garage Gautschi AG,true,true,true,2005-01-01,9999-12-31
 129,AMAG Liestal,false,false,false,1970-01-01,9999-12-31
 137,AMAG Muttenz,false,false,false,1970-01-01,9999-12-31
+184,Garage Gautschi AG,false,false,false,1970-01-01,9999-12-31
 21,Garage G. Bürgisser,false,false,false,1970-01-01,9999-12-31
 220,AMAG RETAIL Fribourg,false,false,false,1970-01-01,9999-12-31
 24,Garage Gloor AG,false,false,false,1970-01-01,9999-12-31
@@ -48,4 +49,6 @@ id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo
 943,Europcar,false,false,false,1970-01-01,9999-12-31
 954,AMAG Leasing AG,false,false,false,1970-01-01,9999-12-31
 2008576,Avis Budget Autovermietung AG,false,false,false,1970-01-01,9999-12-31
+6831,AMAG Uster,false,false,false,1970-01-01,9999-12-31
+10001,AMAG (NW),false,false,false,1970-01-01,9999-12-31
 9999901,Invalid Partner,true,true,true,1970-01-01,2000-12-31

@@ -8,9 +8,3 @@ builder:
     excludes:
       - "/test/**"
       - "/localService/**"
-    
-  customTasks:
-    - name: ui5-task-zipper
-      afterTask: generateCachebusterInfo
-      configuration:
-        archiveName: order-releases

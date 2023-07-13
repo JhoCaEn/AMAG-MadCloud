@@ -4,7 +4,7 @@ using {retail.dwb as db} from '../../../db';
 service AppBackofficePartnersService {
 
     @readonly
-    entity Partners              as projection on db.Partners {
+    entity Partners                         as projection on db.Partners {
         id,
         name,
         hasBrands,
@@ -21,7 +21,7 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrands         as projection on db.PartnerBrands {
+    entity PartnerBrands                    as projection on db.PartnerBrands {
         partner,
         brand,
         validFrom,
@@ -48,16 +48,28 @@ service AppBackofficePartnersService {
         type.name
     };
 
+    extend projection PartnerBrandContracts with {
+        modelCategories : Association to many BrandContractTypeModelCategories on modelCategories.brandContractType = type
+    }
+
     @readonly
-    entity Brands                as projection on db.Brands {
+    entity Brands                           as projection on db.Brands {
         code,
         name
     }
 
     @readonly
-    entity BrandContractTypes    as projection on db.BrandContractTypes {
+    entity BrandContractTypes               as projection on db.BrandContractTypes {
         brand,
         code,
         name
+    }
+
+    @readonly
+    entity BrandContractTypeModelCategories as projection on db.BrandContractTypeModelCategories {
+        brandContractType @cds.api.ignore,
+        modelCategory     @cds.api.ignore,
+        modelCategory.code as modelCategoryCode,
+        modelCategory.name as modelCategoryName
     }
 }

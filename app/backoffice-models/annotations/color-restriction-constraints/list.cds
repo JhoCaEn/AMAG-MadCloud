@@ -10,11 +10,16 @@ annotate service.ModelColorRestrictionConstraints with @UI: {
         RequestAtLeast: [equipment_id]
     },
 
-    LineItem           : [
-        {
-            $Type            : 'UI.DataField',
-            Value            : equipment_id,
-            ![@UI.Importance]: #High
-        }
-    ]
+    LineItem           : [{
+        $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+        Value         : equipment_id,
+        Label         : '{i18n>Equipment}',
+        SemanticObject: 'DWBBOEquipment',
+        Action        : 'manage',
+        Mapping       : [{
+            $Type                 : 'Common.SemanticObjectMappingType',
+            LocalProperty         : equipment_id,
+            SemanticObjectProperty: 'id',
+        }, ]
+    }, ]
 };

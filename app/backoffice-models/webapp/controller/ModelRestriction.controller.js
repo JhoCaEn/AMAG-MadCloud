@@ -13,6 +13,13 @@ sap.ui.define([
 
                         aKeys.filter(key => !aEquipmentKeys.includes(key)).map(key => oSelectionVariant.removeSelectOption(key))
                     }
+
+                    if (oTargetInfo?.action === "manage" && oTargetInfo?.semanticObject === "DWBBOColor") {
+                        let aKeys = oSelectionVariant.getSelectOptionsPropertyNames()
+                        const aEquipmentKeys = ['color_id']
+
+                        aKeys.filter(key => !aEquipmentKeys.includes(key)).map(key => oSelectionVariant.removeSelectOption(key))
+                    }
                 }
             }
         }

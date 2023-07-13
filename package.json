@@ -173,8 +173,11 @@
     },
     "sapux": [
         "app/offers",
-        "app/carconfigurator",
         "app/orders",
+        "app/order-releases",
+        "app/sales-messages",
+        "app/sales-message-releases",
+        "app/fleet-applications",
         "app/vehicles",
         "app/backoffice-engines",
         "app/backoffice-models",
@@ -183,10 +186,27 @@
         "app/backoffice-transmissions",
         "app/backoffice-equipments",
         "app/backoffice-colors",
+        "app/carconfigurator",
         "app/sessions",
-        "app/order-releases",
-        "app/sales-messages",
-        "app/sales-message-releases",
-        "app/fleet-applications"
-    ]
+        "app/callbacks"
+    ],
+    "launchpad": {
+        "version": "1.115.1",
+        "groups": {
+            "backoffice": [
+                "app/backoffice-engines",
+                "app/backoffice-models",
+                "app/backoffice-partners",
+                "app/backoffice-brands",
+                "app/backoffice-transmissions",
+                "app/backoffice-equipments",
+                "app/backoffice-colors"
+            ],
+            "technical": [
+                "app/carconfigurator",
+                "app/sessions",
+                "app/callbacks"
+            ]
+        }
+    }
 }

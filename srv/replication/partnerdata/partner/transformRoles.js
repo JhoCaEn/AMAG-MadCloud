@@ -1,22 +1,17 @@
-module.exports = (raw = []) => {
-    const transformed = {}
+module.exports = (roles = [], brandValidFrom, brandValidTo) => {
+    const transformed = []
 
-    raw.forEach(entry => {
-        const brand = transformed[entry.Brand] ?? (transformed[entry.Brand] = {})
+    roles.forEach(({ id, validFrom = brandValidFrom, validTo = brandValidTo, isDefault }) => {
 
-        if (!entry._RolePartner.Partner) return
+        if (validFrom > brandValidTo || validTo < brandValidFrom)
+            return
 
-        const partner = {
-            partner_id: entry._RolePartner.Partner,
-            validFrom: entry?.ValidFrom,
-            validTo: entry?.ValidTo,
-            isDefault: entry?.IsDefault
-        }
-
-        if (brand[entry.Role])
-            brand[entry.Role].push(partner)
-        else
-            brand[entry.Role] = [partner]
+        transformed.push({
+            partner_id: id,
+            validFrom,
+            validTo,
+            isDefault
+        })
     })
 
     return transformed

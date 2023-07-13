@@ -11,16 +11,16 @@
     sap-cf-destconn "^0"
 
 "@amag-ch/sap_cap_common_launchpad@^1.1.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@amag-ch/sap_cap_common_launchpad/-/sap_cap_common_launchpad-1.2.0.tgz#031b7d7bb44385fa60b6c959786b7797da8bc555"
-  integrity sha512-RJZZ3NcvNEDxfq005gRDUQfFTDF+BcUkHeUxzhTwAAugxAMrcIFa4y+x9u46QgeoNSwciwTB4Vy42tzu6soERw==
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@amag-ch/sap_cap_common_launchpad/-/sap_cap_common_launchpad-1.3.1.tgz#3e97f42efc2e7e3db812bcf941d2b18c12f010d7"
+  integrity sha512-auxK9pzEPfWshr3AK3qqpwr1FwCYd41onxJn6x9Ldr//ErTQzjA6Q4tt/0RA4xCQd/IIrVodXhobBWOashvd5Q==
   dependencies:
     dot-properties "^1"
 
 "@amag-ch/sap_cap_common_messaging@^3":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@amag-ch/sap_cap_common_messaging/-/sap_cap_common_messaging-3.2.2.tgz#fd190837f5f5eebc06d520e5035c28d5bc3eb207"
-  integrity sha512-rwIKgN33Lt5oqf5FtG8kyaepPfze+jBQQR4OouQSQy9ks7pZsQI2VhqTLFlLnlTq8x+C/GLxGQUqLMilkvcHXQ==
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@amag-ch/sap_cap_common_messaging/-/sap_cap_common_messaging-3.2.3.tgz#c250963db5cc31a3de0933aeb530f2e037909682"
+  integrity sha512-PdPXAiedOz564qXWvSXCthfISJn9pbBn2yysrj0smTyzv9uJRHKOiKLOCk4m6WfwRcwFukF8QrJnAD+IcSeFXA==
 
 "@gar/promisify@^1.0.1":
   version "1.1.3"

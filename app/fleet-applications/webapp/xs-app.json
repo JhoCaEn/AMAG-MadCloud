@@ -3,7 +3,7 @@
     "authenticationMethod": "route",
     "routes": [
       {
-        "source": "^/app/backend/orders/(.*)$",
+        "source": "^/app/backend/fleet-applications/(.*)$",
         "destination": "Retail-dwb-sso",
         "authenticationType": "xsuaa",
         "csrfProtection": false

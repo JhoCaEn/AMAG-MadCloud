@@ -12,35 +12,48 @@ annotate service.ModelEquipmentRestrictionOptionRules with @UI: {
         }]
     },
 
-    LineItem           : [{
-        $Type                : 'UI.DataField',
-        Value                : id,
-        ![@UI.Importance]    : #High,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    },{
-        $Type                : 'UI.DataField',
-        Value                : categoryId,
-        ![@UI.Importance]    : #High,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    },{
-        $Type                : 'UI.DataField',
-        Value                : color_id,
-        ![@UI.Importance]    : #High,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    },{
-        $Type                : 'UI.DataField',
-        Value                : equipment_id,
-        ![@UI.Importance]    : #Low,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    },{
-        $Type                : 'UI.DataField',
-        Value                : isRequired,
-        ![@UI.Importance]    : #High,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    },{
-        $Type                : 'UI.DataField',
-        Value                : isForbidden,
-        ![@UI.Importance]    : #High,
-        ![@HTML5.CssDefaults]: {width: 'auto'}
-    }]
+    LineItem           : [
+        {
+            $Type                : 'UI.DataField',
+            Value                : id,
+            ![@UI.Importance]    : #High,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : categoryId,
+            ![@UI.Importance]    : #High,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        },
+        {
+            $Type         : 'UI.DataFieldWithIntentBasedNavigation',
+            Value         : color_id,
+            Label         : '{i18n>Color}',
+            SemanticObject: 'DWBBOColor',
+            Action        : 'manage',
+            Mapping       : [{
+                $Type                 : 'Common.SemanticObjectMappingType',
+                LocalProperty         : color_id,
+                SemanticObjectProperty: 'id',
+            }, ]
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : equipment_id,
+            ![@UI.Importance]    : #Low,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : isRequired,
+            ![@UI.Importance]    : #High,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        },
+        {
+            $Type                : 'UI.DataField',
+            Value                : isForbidden,
+            ![@UI.Importance]    : #High,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
+        }
+    ]
 };

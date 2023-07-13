@@ -1,8 +1,9 @@
 using from './common-annotations';
 
 using from './carconfigurator/annotations';
-
 using from './sessions/annotations';
+using from './callbacks/annotations';
+
 using from './offers/annotations';
 using from './orders/annotations';
 using from './order-releases/annotations';

@@ -17,7 +17,7 @@ annotate service.ModelColors with @UI: {
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: color_id,
+                Value: id,
             },
             {
                 $Type: 'UI.DataField',
