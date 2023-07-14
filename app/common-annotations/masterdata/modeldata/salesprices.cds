@@ -13,7 +13,7 @@ annotate db.ModelSalesPrices with {
 
 annotate db.ModelSalesPrices with @Common.SemanticKey: [
     model_id,
-    validTo
+    validFrom
 ];
 
 

@@ -16,7 +16,7 @@ annotate service.PartnerBrandShipToPartners with @(UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : brand_brand_code,
+            Value            : code,
             ![@UI.Importance]: #High
         },
         {

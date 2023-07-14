@@ -36,12 +36,23 @@ service AppBackofficePartnersService {
     @readonly
     entity PartnerBrandSoldToPartners as projection on db.PartnerBrandSoldToPartners {
         brand,
+        brand.brand.code,
         partner,
         validFrom,
         validTo,
         isDefault
     };
 
+    @readonly
+    entity PartnerBrandShipToPartners as projection on db.PartnerBrandShipToPartners {
+        brand,
+        brand.brand.code,
+        partner,
+        validFrom,
+        validTo,
+        isDefault
+    };
+    
     @readonly
     entity PartnerBrandContracts as projection on db.PartnerBrandContracts {
         brand,

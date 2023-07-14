@@ -24,13 +24,13 @@ annotate service.ModelColors with @UI: {
         },
         {
             $Type            : 'UI.DataField',
-            Value            : color.type_code,
+            Value            : type_code,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: '8rem'}
         },
         {
             $Type            : 'UI.DataField',
-            Value            : color.displayName,
+            Value            : displayName,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: 'auto'}
         }

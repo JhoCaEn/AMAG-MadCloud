@@ -63,6 +63,30 @@ annotate service.ModelEquipments with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: equipmentTechnicalKey,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: isStandard,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: isPackage,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validFrom,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validTo,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableFrom,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableTo,
             }
         ]
     }

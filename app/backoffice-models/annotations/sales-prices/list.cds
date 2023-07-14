@@ -5,10 +5,10 @@ annotate service.ModelSalesPrices with @UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [validTo],
+        RequestAtLeast: [validFrom],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : validTo,
+            Property  : validFrom,
             Descending: false,
         }, ]
     },

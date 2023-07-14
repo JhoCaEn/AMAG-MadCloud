@@ -6,3 +6,4 @@ using from './colors';
 using from './colorCombinations';
 using from './equipments';
 using from './restrictions';
+using from './colorRestrictions';

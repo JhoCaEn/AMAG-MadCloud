@@ -92,6 +92,7 @@ service AppBackofficeModelsService {
         color,
         color.id,
         color.type,
+        color.displayName,
         createdAt,
         modifiedAt,
         validFrom,
@@ -101,7 +102,7 @@ service AppBackofficeModelsService {
     };
 
     @readonly
-    entity Colors                               as projection on db.Colors;
+    entity Colors                           as projection on db.Colors;
 
     @readonly
     entity ColorTypes                           as projection on db.ColorTypes;
@@ -175,6 +176,10 @@ service AppBackofficeModelsService {
         equipment.technicalKey as equipmentTechnicalKey,
         isStandard,
         isPackage,
+        validFrom,
+        validTo,
+        orderableFrom,
+        orderableTo,
         packageContent,
         restrictions
     };
