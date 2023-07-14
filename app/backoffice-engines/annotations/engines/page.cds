@@ -101,7 +101,7 @@ annotate service.Engines with @UI: {
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: createdA,
+                Value: createdAt,
                 Label: '{i18n>General.FieldGroup.Synchronised.createdAt}'
             },
             {

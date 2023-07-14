@@ -60,6 +60,20 @@ annotate service.PartnerBrands with @UI: {
                 }]
             }, ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandBillToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandBillToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandBillToPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandBillToPartnersFacet',
+                    Target: 'billToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General: {

@@ -5,8 +5,10 @@ service AppBackofficePartnersService {
 
     @readonly
     entity Partners                         as projection on db.Partners {
-        id,
-        CAST(id AS Integer) as partnerId,
+        id @cds.api.ignore,
+        cast(
+            id as Integer
+        ) as partnerId,
         name,
         hasBrands,
         hasContracts,
@@ -30,11 +32,12 @@ service AppBackofficePartnersService {
         hasContracts,
         contracts,
         soldToPartners,
-        shipToPartners
+        shipToPartners,
+        billToPartners
     };
 
     @readonly
-    entity PartnerBrandSoldToPartners as projection on db.PartnerBrandSoldToPartners {
+    entity PartnerBrandSoldToPartners       as projection on db.PartnerBrandSoldToPartners {
         brand,
         brand.brand.code,
         partner,
@@ -44,7 +47,16 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrandShipToPartners as projection on db.PartnerBrandShipToPartners {
+    entity PartnerBrandShipToPartners       as projection on db.PartnerBrandShipToPartners {
+        brand,
+        brand.brand.code,
+        partner,
+        validFrom,
+        validTo,
+        isDefault
+    };
+    @readonly
+    entity PartnerBrandBillToPartners as projection on db.PartnerBrandBillToPartners {
         brand,
         brand.brand.code,
         partner,
@@ -54,7 +66,7 @@ service AppBackofficePartnersService {
     };
     
     @readonly
-    entity PartnerBrandContracts as projection on db.PartnerBrandContracts {
+    entity PartnerBrandContracts            as projection on db.PartnerBrandContracts {
         brand,
         type,
         type.code,

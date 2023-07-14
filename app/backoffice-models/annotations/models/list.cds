@@ -54,18 +54,6 @@ annotate service.Models with @UI: {
             ![@UI.Importance]: #Low,
         },
         {
-            $Type         : 'UI.DataFieldWithIntentBasedNavigation',
-            Value         : engine_id,
-            Label         : '{i18n>Engine}',
-            SemanticObject: 'DWBBOEngine',
-            Action        : 'manage',
-            Mapping       : [{
-                $Type                 : 'Common.SemanticObjectMappingType',
-                LocalProperty         : engine_id,
-                SemanticObjectProperty: 'id',
-            }]
-        },
-        {
             $Type : 'UI.DataFieldForAction',
             Label : '{i18n>General.Actions.synchronise}',
             Action: 'AppBackofficeModelsService.synchroniseModels'

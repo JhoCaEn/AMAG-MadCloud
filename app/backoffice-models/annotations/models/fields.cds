@@ -116,6 +116,14 @@ annotate service.Models with {
         ]
     };
 
+    engine @Common: {
+        SemanticObject       : 'DWBBOEngine',
+        SemanticObjectMapping: [{
+            LocalProperty         : engine_id,
+            SemanticObjectProperty: 'id'
+        }]
+    };
+
     transmission @Common: {
         Text           : transmission.name,
         TextArrangement: #TextOnly
@@ -134,6 +142,14 @@ annotate service.Models with {
                 ValueListProperty: 'name'
             }
         ]
+    };
+
+    transmission @Common: {
+        SemanticObject       : 'DWBBOTransmission',
+        SemanticObjectMapping: [{
+            LocalProperty         : transmission_id,
+            SemanticObjectProperty: 'id'
+        }]
     };
 };
 
