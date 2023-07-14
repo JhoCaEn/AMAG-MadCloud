@@ -36,8 +36,28 @@ annotate service.ModelColors with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: color.name
+                Value: color.displayName
             },
+            {
+                $Type: 'UI.DataField',
+                Value: color.type_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validFrom
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validTo
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableFrom
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableTo
+            }
         ]
     }
 };

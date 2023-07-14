@@ -1,20 +1,20 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
-annotate service.Partners with @Common.SemanticKey: [id];
+annotate service.Partners with @Common.SemanticKey: [partnerId];
 
 annotate service.Partners with @UI: {
     SelectionFields    : [
-        id,
+        partnerId,
         isSalesPartner
     ],
 
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [id],
+        RequestAtLeast: [partnerId],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : id,
+            Property  : partnerId,
             Descending: false,
         }, ]
     },
@@ -22,7 +22,7 @@ annotate service.Partners with @UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : id,
+            Value            : partnerId,
             ![@UI.Importance]: #High
         },
         {

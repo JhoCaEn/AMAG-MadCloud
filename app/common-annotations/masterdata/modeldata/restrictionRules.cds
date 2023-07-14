@@ -7,9 +7,9 @@ annotate db.ModelRestrictionRules with {
     equipment   @title: '{i18n>ModelRestrictionRules.equipment}';
     isRequired  @title: '{i18n>ModelRestrictionRules.isRequired}';
     isForbidden @title: '{i18n>ModelRestrictionRules.isForbidden}';
-    modifiedAt  @title: '{i18n>General.FieldGroup.Synchronised.modifiedAt}';
-    createdAt      @title: '{i18n>replicated.createdAt}';
-    restriction  @title: '{i18n>Restriction}';
+    modifiedAt  @title: '{i18n>replicated.modifiedAt}';
+    createdAt   @title: '{i18n>replicated.createdAt}';
+    restriction @title: '{i18n>Restriction}';
 };
 
 annotate db.ModelRestrictionRules with @Common.SemanticKey: [

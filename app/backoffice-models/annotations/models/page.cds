@@ -3,7 +3,7 @@ using AppBackofficeModelsService as service from '../../../../srv';
 annotate service.Models with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
     Label : '{i18n>General.Actions.synchronise}',
-    Action: 'AppBackofficeModelsService.synchronise'
+    Action: 'AppBackofficeModelsService.synchroniseModels'
 }];
 
 annotate service.Models with @UI: {
@@ -134,6 +134,62 @@ annotate service.Models with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: name,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: year,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: technicalKey,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForPartner,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForImporteur,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validFrom,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: validTo,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableFrom,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderableTo,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: isNetSalesPrices,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: isOEMBuildableCheckActive,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: category_code,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: bodyTypeId,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: salesTypeId,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: modelSeriesId,
             },
             {
                 $Type         : 'UI.DataFieldWithIntentBasedNavigation',

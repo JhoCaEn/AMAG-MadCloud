@@ -32,10 +32,10 @@ annotate service.ModelSalesPrices with @UI: {
             ![@UI.Importance]: #High
         },
         {
-            $Type                : 'UI.DataField',
-            Value                : modifiedAt,
-            ![@UI.Importance]    : #High,
-            ![@HTML5.CssDefaults]: {width: 'auto'}
-        },
+            $Type            : 'UI.DataField',
+            Value            : currency,
+            ![@UI.Importance]: #High,
+            ![@HTML5.CssDefaults]: {width: '8rem'}
+        }
     ]
 };

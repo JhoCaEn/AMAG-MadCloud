@@ -21,12 +21,6 @@ annotate service.ModelRestrictions with @UI: {
             Value            : id,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: '10rem'}
-        },
-        {
-            $Type            : 'UI.DataField',
-            Value            : modifiedAt,
-            ![@UI.Importance]: #High,
-            ![@HTML5.CssDefaults]: {width: 'auto'}
         }
     ]
 };

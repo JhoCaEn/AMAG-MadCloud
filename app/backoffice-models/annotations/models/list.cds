@@ -68,7 +68,7 @@ annotate service.Models with @UI: {
         {
             $Type : 'UI.DataFieldForAction',
             Label : '{i18n>General.Actions.synchronise}',
-            Action: 'AppBackofficeModelsService.synchronise'
+            Action: 'AppBackofficeModelsService.synchroniseModels'
         }
     ]
 };

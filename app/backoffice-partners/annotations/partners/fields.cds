@@ -1,5 +1,9 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
+annotate service.Partners with {
+    partnerId @title: '{i18n>General.ID}';
+};
+
 annotate service.Partners with @Capabilities: {FilterRestrictions: {
     $Type                       : 'Capabilities.FilterRestrictionsType',
     FilterExpressionRestrictions: [

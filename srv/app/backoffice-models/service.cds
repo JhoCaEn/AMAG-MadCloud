@@ -11,8 +11,16 @@ service AppBackofficeModelsService {
         code,
         brand,
         name,
-        engine,
-        transmission,
+        technicalKey,
+        releasedForPartner,
+        releasedForImporteur,
+        validFrom,
+        validTo,
+        orderableFrom,
+        orderableTo,
+        isNetSalesPrices,
+        isOEMBuildableCheckActive,
+        category,
         salesPrices,
         colors,
         colorCombinations,
@@ -20,9 +28,17 @@ service AppBackofficeModelsService {
         restrictions,
         createdAt,
         modifiedAt,
-        texts
+        texts,
+        engine,
+        transmission,
+        bodyType @cds.api.ignore,
+        bodyType.id as bodyTypeId,
+        salesType @cds.api.ignore,
+        salesType.id as salesTypeId,
+        modelSeries @cds.api.ignore,
+        modelSeries.id as modelSeriesId
     } actions {
-        action synchronise(in : $self);
+        action synchroniseModels(in : $self);
     }
 
     @readonly
@@ -37,6 +53,7 @@ service AppBackofficeModelsService {
         id,
         isForbidden,
         isRequired,
+        createdAt,
         modifiedAt,
         category,
         color,
@@ -65,7 +82,8 @@ service AppBackofficeModelsService {
         validTo,
         value,
         modifiedAt,
-        currency
+        currency,
+        createdAt
     };
 
     @readonly
@@ -190,4 +208,21 @@ service AppBackofficeModelsService {
         isRequired,
         isForbidden
     };
+
+    @readonly
+    @cds.redirection.target
+    entity BodyTypes as projection on db.BodyTypes;
+
+    @readonly
+    entity SalesTypes as projection on db.SalesTypes;
+
+    @readonly
+    entity ModelSeries as projection on db.ModelSeries;
+
+    @readonly
+    entity Engines as projection on db.Engines;
+
+    @readonly
+    entity Transmissions as projection on db.Transmissions;
+
 }

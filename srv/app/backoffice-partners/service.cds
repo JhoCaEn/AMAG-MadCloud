@@ -6,6 +6,7 @@ service AppBackofficePartnersService {
     @readonly
     entity Partners                         as projection on db.Partners {
         id,
+        CAST(id AS Integer) as partnerId,
         name,
         hasBrands,
         hasContracts,

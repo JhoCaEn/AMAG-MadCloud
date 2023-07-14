@@ -51,14 +51,6 @@ annotate service.ModelColorCombinations with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: orderableTo,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: createdAt,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: modifiedAt,
             }
         ]
     },

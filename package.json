@@ -191,7 +191,7 @@
         "app/callbacks"
     ],
     "launchpad": {
-        "version": "1.115.1",
+        "version": "1.114.0",
         "groups": {
             "backoffice": [
                 "app/backoffice-engines",
