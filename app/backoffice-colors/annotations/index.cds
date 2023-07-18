@@ -1,4 +1,4 @@
 using from './colors';
-using from './color-types';
+using from './types';
 using from './brands';
-using from './model-colors';
+using from './models';

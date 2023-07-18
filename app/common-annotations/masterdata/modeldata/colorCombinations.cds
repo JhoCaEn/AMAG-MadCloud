@@ -1,16 +1,16 @@
 using {retail.dwb as db} from '../../../../db';
 
 annotate db.ModelColorCombinations with {
-    exterior      @title: '{i18n>ModelColorCombinations.exterior}';
-    interior      @title: '{i18n>ModelColorCombinations.interior}';
-    roof          @title: '{i18n>ModelColorCombinations.roof}';
     model         @title: '{i18n>Model}';
+    exterior      @title: '{i18n>ExteriorColor}';
+    interior      @title: '{i18n>InteriorColor}';
+    roof          @title: '{i18n>RoofColor}';
     validFrom     @title: '{i18n>General.validFrom}';
     validTo       @title: '{i18n>General.validTo}';
-    orderableFrom @title: '{i18n>orderableFrom}';
-    orderableTo   @title: '{i18n>orderableTo}';
+    orderableFrom @title: '{i18n>General.orderableFrom}';
+    orderableTo   @title: '{i18n>General.orderableTo}';
     createdAt     @title: '{i18n>replicated.createdAt}';
-    modifiedAt    @title: '{i18n>General.FieldGroup.Synchronised.modifiedAt}';
+    modifiedAt    @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelColorCombinations with @Common.SemanticKey: [
@@ -22,33 +22,33 @@ annotate db.ModelColorCombinations with @Common.SemanticKey: [
 
 
 annotate db.ModelColorCombinations with @UI: {
-    HeaderInfo             : {
+    HeaderInfo                  : {
         $Type         : 'UI.HeaderInfoType',
         TypeName      : '{i18n>ModelColorCombination}',
         TypeNamePlural: '{i18n>ModelColorCombinations}',
         Title         : {
             $Type : 'UI.DataFieldForAnnotation',
-            Target: '@UI.ConnectedFields#Header',
+            Target: '@UI.ConnectedFields#HeaderTitle',
         }
     },
 
-    ConnectedFields #Header: {
+    ConnectedFields #HeaderTitle: {
         $Type   : 'UI.ConnectedFieldsType',
-        Template: '{interior} / {exterior} / {roof}',
+        Template: '{exterior_id} / {interior_id} / {roof_id}',
         Data    : {
-            $Type        : 'Core.Dictionary',
-            interior           : {
-                $Type: 'UI.DataField',
-                Value: interior_id,
-            },
-            exterior: {
+            $Type      : 'Core.Dictionary',
+            exterior_id: {
                 $Type: 'UI.DataField',
                 Value: exterior_id,
             },
-            roof       : {
+            interior_id: {
+                $Type: 'UI.DataField',
+                Value: interior_id,
+            },
+            roof_id    : {
                 $Type: 'UI.DataField',
                 Value: roof_id,
             },
         },
-    },
+    }
 };

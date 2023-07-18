@@ -10,6 +10,7 @@ using from './transmission-shifts';
 using from './equipment-chapters';
 using from './equipment-categories';
 using from './transmissions';
+using from './brand-characteristics';
 using from './characteristics';
 using from './engines';
 using from './models';

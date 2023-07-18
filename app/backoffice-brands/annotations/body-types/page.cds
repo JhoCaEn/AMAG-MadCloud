@@ -1,4 +1,6 @@
 using AppBackofficeBrandsService as service from '../../../../srv';
+using from './text-list';
+using from '../models/list';
 
 annotate service.BodyTypes with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',

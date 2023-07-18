@@ -40,6 +40,24 @@
                     "subTitle": "{{AppSubtitle}}",
                     "icon": ""
                 }
+            },
+            "outbounds": {
+                "Model": {
+                    "semanticObject": "DWBBOModel",
+                    "action": "manage"
+                },
+                "Engine": {
+                    "semanticObject": "DWBBOEngine",
+                    "action": "manage"
+                },
+                "Transmission": {
+                    "semanticObject": "DWBBOTransmission",
+                    "action": "manage"
+                },
+                "Equipment": {
+                   "semanticObject" : "DWBBOEquipment",
+                   "action": "manage"
+                }
             }
         }
     },
@@ -104,6 +122,11 @@
                     "target": "ModelSerie"
                 },
                 {
+                    "pattern": "Brands({key})/modelSeries({key2})/salesTypes({key3}):?query:",
+                    "name": "ModelSerie_SalesType",
+                    "target": "SalesType"
+                },
+                {
                     "pattern": "Brands({key})/salesTypes({key2}):?query:",
                     "name": "SalesType",
                     "target": "SalesType"
@@ -137,11 +160,6 @@
                     "pattern": "Brands({key})/equipmentCategories({key2}):?query:",
                     "name": "EquipmentCategory",
                     "target": "EquipmentCategory"
-                },
-                {
-                    "pattern": "Brands({key})/characteristics({key2}):?query:",
-                    "name": "Characteristic",
-                    "target": "Characteristic"
                 }
             ],
             "targets": {
@@ -173,11 +191,6 @@
                             "entitySet": "Brands",
                             "sectionLayout": "Tabs",
                             "navigation": {
-                                "characteristics": {
-                                    "detail": {
-                                        "route": "Characteristic"
-                                    }
-                                },
                                 "modelSeries": {
                                     "detail": {
                                         "route": "ModelSerie"
@@ -222,16 +235,6 @@
                         }
                     }
                 },
-                "Characteristic": {
-                    "type": "Component",
-                    "id": "Characteristic",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "entitySet": "BrandCharacteristics"
-                        }
-                    }
-                },
                 "ModelSerie": {
                     "type": "Component",
                     "id": "ModelSerie",
@@ -239,7 +242,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "ModelSeries"
+                            "entitySet": "ModelSeries",
+                            "navigation": {
+                                "salesTypes": {
+                                    "detail": {
+                                        "route": "SalesType"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -260,7 +270,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "BodyTypes"
+                            "entitySet": "BodyTypes",
+                            "navigation": {
+                                "models": {
+                                    "detail": {
+                                        "outbound": "Model"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -271,7 +288,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "FuelTypes"
+                            "entitySet": "FuelTypes",
+                            "navigation": {
+                                "engines": {
+                                    "detail": {
+                                        "outbound": "Engine"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -282,7 +306,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "DriveTypes"
+                            "entitySet": "DriveTypes",
+                            "navigation": {
+                                "transmissions": {
+                                    "detail": {
+                                        "outbound": "Transmission"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -293,7 +324,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "TransmissionTypes"
+                            "entitySet": "TransmissionTypes",
+                            "navigation": {
+                                "transmissions": {
+                                    "detail": {
+                                        "outbound": "Transmission"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -304,7 +342,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "EquipmentChapters"
+                            "entitySet": "EquipmentChapters",
+                            "navigation": {
+                                "equipments": {
+                                    "detail": {
+                                        "outbound": "Equipment"
+                                    }
+                                }
+                            }
                         }
                     }
                 },
@@ -315,7 +360,14 @@
                     "options": {
                         "settings": {
                             "sectionLayout": "Tabs",
-                            "entitySet": "EquipmentCategories"
+                            "entitySet": "EquipmentCategories",
+                            "navigation": {
+                                "equipments": {
+                                    "detail": {
+                                        "outbound": "Equipment"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -324,6 +376,30 @@
         "contentDensities": {
             "compact": true,
             "cozy": true
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::BodyType": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.BodyType"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::FuelType": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.FuelType"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::DriveType": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.DriveType"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::TransmissionType": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.TransmissionType"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::EquipmentChapter": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.EquipmentChapter"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::EquipmentCategory": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.EquipmentCategory"
+                    }
+                }
+            }
         }
     },
     "sap.cloud": {

@@ -1,26 +1,19 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 
-annotate service.Brands with {
-    code @UI.Hidden;
-    code @Common: {
-        Text           : name,
-        TextArrangement: #TextOnly
-    };
-}
-
 annotate service.Models with {
-    brand @Common: {
+    brand              @Common          : {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
-    bodyType @UI.Hidden;
-    bodyTypeId @title: '{i18n>BodyType}';
-    bodyTypeId @Common: {
+
+    bodyType           @UI.Hidden;
+    bodyTypeId         @title           : '{i18n>BodyType}';
+    bodyTypeId         @Common          : {
         Text           : bodyType.name,
-        TextArrangement: #TextOnly
+        TextArrangement: #TextFirst
     };
-    bodyTypeId @Common.ValueList: {
+    bodyTypeId         @Common.ValueList: {
         CollectionPath: 'BodyTypes',
         Parameters    : [
             {
@@ -30,24 +23,23 @@ annotate service.Models with {
             },
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: bodyType_name,
-                ValueListProperty: 'name'
-            },
-            {
-                $Type            : 'Common.ValueListParameterInOut',
                 LocalDataProperty: brand_code,
                 ValueListProperty: 'brand_code'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'name'
             }
         ]
     };
 
-    salesType @UI.Hidden;
-    salesTypeId @title: '{i18n>SalesType}';
-    salesTypeId @Common: {
+    salesType          @UI.Hidden;
+    salesTypeId        @title           : '{i18n>SalesType}';
+    salesTypeId        @Common          : {
         Text           : salesType.name,
-        TextArrangement: #TextOnly
+        TextArrangement: #TextFirst
     };
-    salesTypeId @Common.ValueList: {
+    salesTypeId        @Common.ValueList: {
         CollectionPath: 'SalesTypes',
         Parameters    : [
             {
@@ -57,50 +49,29 @@ annotate service.Models with {
             },
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: salesType_name,
-                ValueListProperty: 'name'
-            },
-            {
-                $Type            : 'Common.ValueListParameterInOut',
                 LocalDataProperty: brand_code,
                 ValueListProperty: 'brand_code'
-            }
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'material'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'salesOrganisation'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'name'
+            },
         ]
     };
 
-    modelSeries @UI.Hidden;
-    modelSeriesId @title: '{i18n>ModelSerie}';
-    modelSeriesId @Common: {
-        Text           : modelSeries.name,
-        TextArrangement: #TextOnly
-    };
-    modelSeriesId @Common.ValueList: {
-        CollectionPath: 'ModelSeries',
-        Parameters    : [
-            {
-                $Type            : 'Common.ValueListParameterOut',
-                LocalDataProperty: modelSeriesId,
-                ValueListProperty: 'id'
-            },
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: modelSeries_name,
-                ValueListProperty: 'name'
-            },
-            {
-                $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: brand_code,
-                ValueListProperty: 'brand_code'
-            }
-        ]
-    };
-
-
-    engine @Common: {
+    engine             @Common          : {
         Text           : engine.name,
-        TextArrangement: #TextOnly
+        TextArrangement: #TextFirst
     };
-    engine @Common.ValueList: {
+    engine             @Common.ValueList: {
         CollectionPath: 'Engines',
         Parameters    : [
             {
@@ -110,13 +81,21 @@ annotate service.Models with {
             },
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: engine_name,
+                LocalDataProperty: brand_code,
+                ValueListProperty: 'brand_code'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: unit,
+                ValueListProperty: 'unit'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'name'
             }
         ]
     };
-
-    engine @Common: {
+    engine             @Common          : {
         SemanticObject       : 'DWBBOEngine',
         SemanticObjectMapping: [{
             LocalProperty         : engine_id,
@@ -124,11 +103,11 @@ annotate service.Models with {
         }]
     };
 
-    transmission @Common: {
+    transmission       @Common          : {
         Text           : transmission.name,
-        TextArrangement: #TextOnly
+        TextArrangement: #TextFirst
     };
-    transmission @Common.ValueList: {
+    transmission       @Common.ValueList: {
         CollectionPath: 'Transmissions',
         Parameters    : [
             {
@@ -138,19 +117,101 @@ annotate service.Models with {
             },
             {
                 $Type            : 'Common.ValueListParameterInOut',
-                LocalDataProperty: transmission_name,
+                LocalDataProperty: brand_code,
+                ValueListProperty: 'brand_code'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'name'
             }
         ]
     };
 
-    transmission @Common: {
+    transmission       @Common          : {
         SemanticObject       : 'DWBBOTransmission',
         SemanticObjectMapping: [{
             LocalProperty         : transmission_id,
             SemanticObjectProperty: 'id'
         }]
     };
+
+    category           @Common          : {
+        Text           : category.name,
+        TextArrangement: #TextFirst,
+        ValueListWithFixedValues
+    };
+
+    driveTypeId        @title           : '{i18n>DriveType}';
+    driveTypeId        @Common          : {
+        Text           : driveType.name,
+        TextArrangement: #TextOnly
+    };
+    driveTypeId        @Common.ValueList: {
+        CollectionPath: 'DriveTypes',
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterOut',
+                LocalDataProperty: driveTypeId,
+                ValueListProperty: 'id'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: brand_code,
+                ValueListProperty: 'brand_code'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: train_code,
+                ValueListProperty: 'train_code'
+            }
+        ]
+    };
+
+    driveTypeTrain     @Common          : {
+        Text           : driveTypeTrain.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
+    transmissionTypeId @title           : '{i18n>TransmissionType}';
+    transmissionTypeId @Common          : {
+        Text           : transmissionType.name,
+        TextArrangement: #TextOnly
+    };
+    transmissionTypeId @Common.ValueList: {
+        CollectionPath: 'TransmissionTypes',
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterOut',
+                LocalDataProperty: transmissionTypeId,
+                ValueListProperty: 'id'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: brand_code,
+                ValueListProperty: 'brand_code'
+            },
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: shift_code,
+                ValueListProperty: 'shift_code'
+            }
+        ]
+    };
+
+    transmissionShift  @Common          : {
+        Text           : transmissionShift.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
+    fuelTypeId         @title           : '{i18n>FuelType}';
+    fuelTypeId         @Common          : {
+        Text           : fuelType.name,
+        TextArrangement: #TextOnly
+    };
+
+    engineCapacity     @Measures.Unit   : 'cm³';
 };
 
 annotate service.Models with @Capabilities: {FilterRestrictions: {

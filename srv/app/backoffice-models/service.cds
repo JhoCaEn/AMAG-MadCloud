@@ -7,10 +7,9 @@ service AppBackofficeModelsService {
     @readonly
     entity Models                               as projection on db.Models {
         id,
+        name,
         year,
         code,
-        brand,
-        name,
         technicalKey,
         releasedForPartner,
         releasedForImporteur,
@@ -20,25 +19,46 @@ service AppBackofficeModelsService {
         orderableTo,
         isNetSalesPrices,
         isOEMBuildableCheckActive,
+        brand,
         category,
-        salesPrices,
+        salesType                                        @cds.api.ignore,
+        salesType.id                 as salesTypeId,
+        salesType.material,
+        salesType.salesOrganisation,
+        engine,
+        engine.capacity              as engineCapacity,
+        engine.powerHP               as enginePowerHP,
+        engine.powerKW               as enginePowerKW,
+        engine.cylinders             as engineCylinders,
+        engine.fuelType                                  @cds.api.ignore,
+        engine.fuelType.id           as fuelTypeId,
+        engine.fuelType.unit         as fuelTypeUnit,
+        transmission,
+        transmission.gears           as transmissionGears,
+        transmission.type            as transmissionType @cds.api.ignore,
+        transmission.type.id         as transmissionTypeId,
+        transmission.type.shift      as transmissionShift,
+        transmission.driveType                           @cds.api.ignore,
+        transmission.driveType.id    as driveTypeId,
+        transmission.driveType.train as driveTypeTrain,
+        bodyType                                         @cds.api.ignore,
+        bodyType.id                  as bodyTypeId,
         colors,
         colorCombinations,
         equipments,
+        salesPrices,
         restrictions,
         createdAt,
         modifiedAt,
-        texts,
-        engine,
-        transmission,
-        bodyType @cds.api.ignore,
-        bodyType.id as bodyTypeId,
-        salesType @cds.api.ignore,
-        salesType.id as salesTypeId,
-        modelSeries @cds.api.ignore,
-        modelSeries.id as modelSeriesId
+        texts
     } actions {
-        action synchroniseModels(in : $self);
+        action synchronise(in : $self);
+    }
+
+    extend projection Models with {
+        exteriorColors : Association to many ModelExteriorColors on exteriorColors.model = $self,
+        interiorColors : Association to many ModelInteriorColors on interiorColors.model = $self,
+        roofColors     : Association to many ModelRoofColors on roofColors.model = $self
     }
 
     @readonly
@@ -48,41 +68,32 @@ service AppBackofficeModelsService {
         language : Association to one Languages on language.code = locale
     }
 
-    @readonly
-    entity ModelRestrictionRules                as projection on db.ModelRestrictionRules {
-        id,
-        isForbidden,
-        isRequired,
-        createdAt,
-        modifiedAt,
-        category,
-        color,
-        equipment,
-        restriction
-    };
-
-    @readonly
-    @cds.redirection.target
-    entity EquipmentCategories                  as projection on db.EquipmentCategories {
-        id,
-        brand,
-        name
-    };
-
-    @readonly
-    entity Equipments                           as projection on db.Equipments {
-        id,
-        brand,
-        name
-    }
-
     entity ModelSalesPrices                     as projection on db.ModelSalesPrices {
         model,
         validFrom,
         validTo,
         value,
-        modifiedAt,
         currency,
+        createdAt
+    };
+
+    entity ModelRestrictions                    as projection on db.ModelRestrictions {
+        model,
+        id,
+        rules,
+        createdAt
+    };
+
+    @readonly
+    entity ModelRestrictionRules                as projection on db.ModelRestrictionRules {
+        restriction,
+        id,
+        category @cds.api.ignore,
+        category.id as categoryId,
+        color,
+        equipment,
+        isRequired,
+        isForbidden,
         createdAt
     };
 
@@ -93,27 +104,27 @@ service AppBackofficeModelsService {
         color.id,
         color.type,
         color.displayName,
-        createdAt,
-        modifiedAt,
         validFrom,
         validTo,
         orderableFrom,
-        orderableTo
+        orderableTo,
+        createdAt
     };
 
     @readonly
-    entity Colors                           as projection on db.Colors;
+    entity ModelExteriorColors                  as projection on ModelColors excluding {
+        type
+    } where type.code = 'E';
 
     @readonly
-    entity ColorTypes                           as projection on db.ColorTypes;
+    entity ModelInteriorColors                  as projection on ModelColors excluding {
+        type
+    } where type.code = 'I';
 
-    entity ModelRestrictions                    as projection on db.ModelRestrictions {
-        model,
-        id,
-        modifiedAt,
-        createdAt,
-        rules
-    };
+    @readonly
+    entity ModelRoofColors                      as projection on ModelColors excluding {
+        type
+    } where type.code = 'R';
 
     @readonly
     entity ModelColorCombinations               as projection on db.ModelColorCombinations {
@@ -121,13 +132,45 @@ service AppBackofficeModelsService {
         exterior,
         interior,
         roof,
-        restrictions,
+        case
+            when
+                length(
+                    exterior.id
+                ) > 0
+            then
+                exterior.id
+            else
+                ' '
+        end                  as exteriorId : String,
+        case
+            when
+                length(
+                    interior.id
+                ) > 0
+            then
+                interior.id
+            else
+                ' '
+        end                  as interiorId : String,
+        case
+            when
+                length(
+                    roof.id
+                ) > 0
+            then
+                roof.id
+            else
+                ' '
+        end                  as roofId     : String,
+        exterior.displayName as exteriorDisplayName,
+        interior.displayName as interiorDisplayName,
+        roof.displayName     as roofDisplayName,
         validFrom,
         validTo,
         orderableFrom,
         orderableTo,
         createdAt,
-        modifiedAt
+        restrictions
     };
 
     @readonly
@@ -135,18 +178,57 @@ service AppBackofficeModelsService {
         colorCombination,
         type,
         constraint,
+        createdAt,
         constraints,
-        options,
-        createdAt, 
-        modifiedAt
-    };
+        options
+    }; 
 
     @readonly
     entity ModelColorRestrictionConstraints     as projection on db.ModelColorRestrictionConstraints {
         restriction,
-        equipment
+        equipment,
+        equipment.id,
+        equipment.displayName
+    };       
+
+    @readonly
+    entity Colors                               as projection on db.Colors {
+        id,
+        brand,
+        type,
+        displayName
     };
 
+    @readonly
+    entity ColorTypes                           as projection on db.ColorTypes {
+        code,
+        name
+    };
+
+    @readonly
+    entity Equipments                           as projection on db.Equipments {
+        id,
+        brand,
+        chapter  @cds.api.ignore,
+        chapter.id  as chapterId,
+        category @cds.api.ignore,
+        category.id as categoryId,
+        displayName
+    }
+
+    @readonly
+    entity EquipmentCategories                  as projection on db.EquipmentCategories {
+        brand,
+        id,
+        name
+    };
+
+    @readonly
+    entity EquipmentChapters                    as projection on db.EquipmentChapters {
+        brand,
+        id,
+        name
+    }
 
     @readonly
     entity ModelColorRestrictionOptions         as projection on db.ModelColorRestrictionOptions {
@@ -215,19 +297,94 @@ service AppBackofficeModelsService {
     };
 
     @readonly
-    @cds.redirection.target
-    entity BodyTypes as projection on db.BodyTypes;
+    entity BodyTypes                            as projection on db.BodyTypes {
+        brand,
+        id,
+        name
+    };
 
     @readonly
-    entity SalesTypes as projection on db.SalesTypes;
+    entity SalesTypes                           as projection on db.SalesTypes {
+        brand,
+        id,
+        material,
+        salesOrganisation,
+        name
+    };
 
     @readonly
-    entity ModelSeries as projection on db.ModelSeries;
+    entity Engines                              as projection on db.Engines {
+        id,
+        brand,
+        capacity,
+        powerHP,
+        powerKW,
+        cylinders,
+        fuelType.id as fuelTypeId,
+        fuelType.unit,
+        fuelType @cds.api.ignore,
+        name
+    };
 
     @readonly
-    entity Engines as projection on db.Engines;
+    entity Transmissions                        as projection on db.Transmissions {
+        id,
+        brand,
+        gears,
+        type.id      as typeId,
+        type.shift,
+        type      @cds.api.ignore,
+        driveType.id as driveTypeId,
+        driveType.train,
+        driveType @cds.api.ignore,
+        name
+    };
 
     @readonly
-    entity Transmissions as projection on db.Transmissions;
+    entity Brands                               as projection on db.Brands {
+        code,
+        name
+    }
 
+    @readonly
+    entity ModelCategories                      as projection on db.ModelCategories {
+        code,
+        name
+    }
+
+    @readonly
+    entity DriveTypes                           as projection on db.DriveTypes {
+        brand,
+        id,
+        train,
+        name
+    }
+
+    @readonly
+    entity TransmissionTypes                    as projection on db.TransmissionTypes {
+        brand,
+        id,
+        shift,
+        name
+    }
+
+    @readonly
+    entity TransmissionShifts                   as projection on db.TransmissionShifts {
+        code,
+        name
+    }
+
+    @readonly
+    entity DriveTrains                          as projection on db.DriveTrains {
+        code,
+        name
+    }
+
+    @readonly
+    entity FuelTypes                            as projection on db.FuelTypes {
+        brand,
+        id,
+        unit,
+        name
+    }
 }

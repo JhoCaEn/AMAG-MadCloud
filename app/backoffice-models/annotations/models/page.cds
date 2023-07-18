@@ -1,9 +1,15 @@
 using AppBackofficeModelsService as service from '../../../../srv';
+using from './text-list';
+using from '../model-sales-prices/list';
+using from '../model-restrictions/list';
+using from '../model-colors/list';
+using from '../model-color-combinations/list';
+using from '../model-equipments/list';
 
 annotate service.Models with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
     Label : '{i18n>General.Actions.synchronise}',
-    Action: 'AppBackofficeModelsService.synchroniseModels'
+    Action: 'AppBackofficeModelsService.synchronise'
 }];
 
 annotate service.Models with @UI: {
@@ -44,63 +50,107 @@ annotate service.Models with @UI: {
         },
         {
             $Type : 'UI.CollectionFacet',
-            ID    : 'SalesPricesSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.SalesPrices}',
+            ID    : 'EngineSection',
+            Label : '{i18n>Engine}',
             Facets: [{
                 $Type : 'UI.CollectionFacet',
-                ID    : 'SalesPricesSubSection',
-                Label : '{i18n>BackofficeModels.FieldGroup.SalesPrices}',
+                ID    : 'EngineSubSection',
+                Label : '{i18n>Engine}',
                 Facets: [{
                     $Type : 'UI.ReferenceFacet',
-                    ID    : 'SalesPricesFacet',
-                    Target: 'salesPrices/@UI.PresentationVariant'
+                    ID    : 'EngineFacet',
+                    Target: '@UI.FieldGroup#Engine'
                 }]
             }],
         },
         {
             $Type : 'UI.CollectionFacet',
-            ID    : 'ModelRestrictionsSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.Restrictions}',
+            ID    : 'TransmissionSection',
+            Label : '{i18n>Transmission}',
             Facets: [{
                 $Type : 'UI.CollectionFacet',
-                ID    : 'ModelRestrictionsSubSection',
-                Label : '{i18n>BackofficeModels.FieldGroup.Restrictions}',
+                ID    : 'TransmissionSubSection',
+                Label : '{i18n>Transmission}',
                 Facets: [{
                     $Type : 'UI.ReferenceFacet',
-                    ID    : 'ModelRestrictionsFacet',
-                    Target: 'restrictions/@UI.PresentationVariant'
+                    ID    : 'TransmissionFacet',
+                    Target: '@UI.FieldGroup#Transmission'
                 }]
             }],
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'SalesSection',
+            Label : '{i18n>General.FieldGroup.Sales}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'SalesSubSection',
+                    Label : '{i18n>General.FieldGroup.General}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'SalesFacet',
+                        Target: '@UI.FieldGroup#Sales'
+                    }, ],
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'PricesSubSection',
+                    Label : '{i18n>Prices}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'SalesPricesFacet',
+                        Target: 'salesPrices/@UI.PresentationVariant'
+                    }]
+                },
+            ],
         },
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'ColorsSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.Colors}',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'ColorsSubSection',
-                Label : '{i18n>BackofficeModels.FieldGroup.Colors}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'ColorsFacet',
-                    Target: 'colors/@UI.PresentationVariant'
-                }]
-            }],
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'ColorCombinationSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.ColorCombinations}',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'ColorCombinationSubSection',
-                Label : '{i18n>BackofficeModels.FieldGroup.ColorCombinations}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'ColorCombinationFacet',
-                    Target: 'colorCombinations/@UI.PresentationVariant'
-                }]
-            }],
+            Label : '{i18n>Colors}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'ExteriorColorsSubSection',
+                    Label : '{i18n>ExteriorColors}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'ExteriorColorsFacet',
+                        Target: 'exteriorColors/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'InteriorColorsSubSection',
+                    Label : '{i18n>InteriorColors}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'InteriorColorsFacet',
+                        Target: 'interiorColors/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'RoofColorsSubSection',
+                    Label : '{i18n>RoofColors}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'RoofColorsFacet',
+                        Target: 'roofColors/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'ColorCombinationSubSection',
+                    Label : '{i18n>ColorCombinations}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'ColorCombinationFacet',
+                        Target: 'colorCombinations/@UI.PresentationVariant'
+                    }]
+                }
+            ],
         },
         {
             $Type : 'UI.CollectionFacet',
@@ -116,6 +166,36 @@ annotate service.Models with @UI: {
                     Target: 'equipments/@UI.PresentationVariant'
                 }]
             }],
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'ModelRestrictionsSection',
+            Label : '{i18n>Restrictions}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'ModelRestrictionsSubSection',
+                Label : '{i18n>Restrictions}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'ModelRestrictionsFacet',
+                    Target: 'restrictions/@UI.PresentationVariant'
+                }]
+            }],
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'ControlSection',
+            Label : '{i18n>General.FieldGroup.Control}',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'ControlSubSection',
+                Label : '{i18n>General.FieldGroup.Control}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'ControlFacet',
+                    Target: '@UI.FieldGroup#Control'
+                }]
+            }],
         }
     ],
 
@@ -129,27 +209,15 @@ annotate service.Models with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: code
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: name,
-            },
-            {
-                $Type: 'UI.DataField',
                 Value: year,
             },
             {
                 $Type: 'UI.DataField',
+                Value: code
+            },
+            {
+                $Type: 'UI.DataField',
                 Value: technicalKey,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: releasedForPartner,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: releasedForImporteur,
             },
             {
                 $Type: 'UI.DataField',
@@ -158,6 +226,33 @@ annotate service.Models with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: validTo,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForImporteur,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForPartner,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: category_code,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: bodyTypeId,
+            },
+        ]
+    },
+
+    FieldGroup #Sales       : {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>General.FieldGroup.Sales}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: salesTypeId,
             },
             {
                 $Type: 'UI.DataField',
@@ -173,49 +268,88 @@ annotate service.Models with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: isOEMBuildableCheckActive,
+                Value: material,
             },
             {
                 $Type: 'UI.DataField',
-                Value: category_code,
+                Value: salesOrganisation,
             },
-            {
-                $Type: 'UI.DataField',
-                Value: bodyTypeId,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: salesTypeId,
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: modelSeriesId,
-            },
-            {
-                $Type         : 'UI.DataFieldWithIntentBasedNavigation',
-                Value         : transmission_id,
-                Label         : '{i18n>Transmission}',
-                SemanticObject: 'DWBBOTransmission',
-                Action        : 'manage',
-                Mapping       : [{
-                    $Type                 : 'Common.SemanticObjectMappingType',
-                    LocalProperty         : transmission_id,
-                    SemanticObjectProperty: 'id',
-                }, ]
-            },
-            {
-                $Type         : 'UI.DataFieldWithIntentBasedNavigation',
-                Value         : engine_id,
-                Label         : '{i18n>Engine}',
-                SemanticObject: 'DWBBOEngine',
-                Action        : 'manage',
-                Mapping       : [{
-                    $Type                 : 'Common.SemanticObjectMappingType',
-                    LocalProperty         : engine_id,
-                    SemanticObjectProperty: 'id',
-                }]
-            }
         ]
+    },
+
+    FieldGroup #Transmission: {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>Transmission}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: transmission_id,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: transmissionGears,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: transmissionTypeId,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: transmissionShift_code,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: driveTypeId,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: driveTypeTrain_code,
+            },
+        ]
+    },
+
+    FieldGroup #Engine      : {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>Engine}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: engine_id,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: engineCapacity,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: enginePowerHP,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: enginePowerKW,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: engineCylinders,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: fuelTypeId,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: fuelTypeUnit,
+            },
+        ]
+    },
+
+    FieldGroup #Control     : {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>General.FieldGroup.Control}',
+        Data : [{
+            $Type: 'UI.DataField',
+            Value: isOEMBuildableCheckActive,
+        }, ]
     },
 
     FieldGroup #Synchronised: {

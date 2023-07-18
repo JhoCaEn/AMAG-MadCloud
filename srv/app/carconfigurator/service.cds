@@ -30,7 +30,7 @@ service AppCarConfiguratorService {
     @readonly
     entity PreselectedEquipments         as projection on db.CarConfigurationPreselectedEquipments {
         key configuration,
-        key equipment.id,
+        key equipment,
             equipment.displayName
     };
 

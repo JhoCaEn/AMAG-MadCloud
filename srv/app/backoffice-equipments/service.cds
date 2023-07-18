@@ -52,12 +52,12 @@ service AppBackofficeEquipmentsService {
     };
 
     @readonly
-    entity ModelEquipments as projection on db.ModelEquipments {
+    entity Models as projection on db.ModelEquipments {
         model.id,
         model.code,
         model.year,
         model.name,
-        model @cds.api.ignore,
+        model,
         equipment
     }
 }

@@ -7,3 +7,4 @@ using from './sold-to-partners';
 using from './partner-contracts-model-categories';
 using from './ship-to-partners';
 using from './bill-to-partners';
+using from './paid-by-partners';

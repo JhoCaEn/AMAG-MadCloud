@@ -1,6 +1,7 @@
 using AppBackofficeTransmissionsService as service from '../../../../srv';
 
 annotate service.Models with @UI: {
+
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
@@ -17,15 +18,15 @@ annotate service.Models with @UI: {
             $Type            : 'UI.DataField',
             Value            : id,
             ![@UI.Importance]: #High,
-        },        
-        {
-            $Type            : 'UI.DataField',
-            Value            : code,
-            ![@UI.Importance]: #High,
         },
         {
             $Type            : 'UI.DataField',
             Value            : year,
+            ![@UI.Importance]: #High,
+        },
+        {
+            $Type            : 'UI.DataField',
+            Value            : code,
             ![@UI.Importance]: #High,
         },
         {

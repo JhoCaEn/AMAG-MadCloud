@@ -5,9 +5,9 @@ annotate service.Models with @Common.SemanticKey: [id];
 annotate service.Models with @UI: {
     SelectionFields    : [
         id,
+        brand_code,
         year,
-        code,
-        brand_code
+        code
     ],
 
     PresentationVariant: {
@@ -29,17 +29,17 @@ annotate service.Models with @UI: {
         },
         {
             $Type            : 'UI.DataField',
+            Value            : brand_code,
+            ![@UI.Importance]: #High,
+        },
+        {
+            $Type            : 'UI.DataField',
             Value            : year,
             ![@UI.Importance]: #Medium,
         },
         {
             $Type            : 'UI.DataField',
             Value            : code,
-            ![@UI.Importance]: #High,
-        },
-        {
-            $Type            : 'UI.DataField',
-            Value            : brand_code,
             ![@UI.Importance]: #High,
         },
         {
@@ -56,7 +56,7 @@ annotate service.Models with @UI: {
         {
             $Type : 'UI.DataFieldForAction',
             Label : '{i18n>General.Actions.synchronise}',
-            Action: 'AppBackofficeModelsService.synchroniseModels'
+            Action: 'AppBackofficeModelsService.synchronise'
         }
     ]
 };

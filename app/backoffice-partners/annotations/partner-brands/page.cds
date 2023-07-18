@@ -74,6 +74,20 @@ annotate service.PartnerBrands with @UI: {
                 }]
             }, ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandPaidByPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandPaidByPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandPaidByPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandPaidByPartnersFacet',
+                    Target: 'paidByPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General: {

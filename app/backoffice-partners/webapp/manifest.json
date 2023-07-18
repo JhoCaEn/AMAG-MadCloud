@@ -40,6 +40,12 @@
                     "subTitle": "{{AppSubtitle}}",
                     "icon": ""
                 }
+            },
+            "outbounds": {
+                "Partner": {
+                    "semanticObject": "DWBBOPartner",
+                    "action": "manage"
+                }
             }
         }
     },
@@ -162,6 +168,26 @@
                                     "detail": {
                                         "route": "PartnerBrandContract"
                                     }
+                                },
+                                "soldToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "shipToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "billToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "paidByPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
                                 }
                             }
                         }
@@ -181,7 +207,11 @@
         },
         "extends": {
             "extensions": {
-                "sap.ui.controllerExtensions": {}
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-partners::PartnerBrand": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-partners.controller.PartnerBrand"
+                    }
+                }
             }
         }
     },

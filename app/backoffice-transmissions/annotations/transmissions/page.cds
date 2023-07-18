@@ -1,4 +1,6 @@
 using AppBackofficeTransmissionsService as service from '../../../../srv';
+using from './text-list';
+using from '../models/list';
 
 annotate service.Transmissions with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',

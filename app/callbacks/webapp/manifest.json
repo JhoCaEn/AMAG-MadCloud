@@ -1,102 +1,140 @@
 {
-	"_version": "1.29.0",
-	"sap.app": {
-		"id": "ch.amag.retail.dwb.callbacks",
-		"type": "application",
-		"i18n": {
-			"bundleUrl": "i18n/i18n.properties",
-			"supportedLocales": [
-				"de",
-				"it",
-				"fr",
-				"en"
-			],
-			"fallbackLocale": "de"
-		},
-		"applicationVersion": {
-			"version": "1.0.0"
-		},
-		"title": "{{AppTitle}}",
-		"description": "{{AppSubtitle}}",
-		"dataSources": {
-			"mainService": {
-				"uri": "app/backend/callbacks/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "4.0"
-				}
-			}
-		},
-		"crossNavigation": {
-			"inbounds": {
-				"DWBCallback-execute": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "DWBCallback",
-					"action": "execute",
-					"title": "{{AppTitle}}",
-					"subTitle": "{{AppSubtitle}}",
-					"icon": ""
-				}
-			}
-		}
-	},
-	"sap.ui": {
-		"technology": "UI5",
-		"deviceTypes": {
-			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
-	},
-	"sap.ui5": {
-		"dependencies": {
-			"minUI5Version": "1.102.1",
-			"libs": {
-				"sap.m": {},
-				"sap.ui.core": {},
-				"sap.fe.templates": {},
-				"sap.ui.integration": {}
-			}
-		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleUrl": "i18n/i18n.properties",
-					"supportedLocales": [
-						"de",
-						"it",
-						"fr",
-						"en"
-					],
-					"fallbackLocale": "de"
-				}
-			},
-			"": {
-				"dataSource": "mainService",
-				"preload": true,
-				"settings": {
-					"synchronizationMode": "None",
-					"operationMode": "Server",
-					"autoExpandSelect": true,
-					"earlyRequests": true
-				}
-			}
-		},
-		"routing": {
-			"routes": [],
-			"targets": {}
-		},
-		"contentDensities": {
-			"compact": true,
-			"cozy": true
-		}
-	},
-	"sap.cloud": {
-		"public": true,
-		"service": "ch.amag.retail.dwb"
-	}
+  "_version": "1.29.0",
+  "sap.app": {
+    "id": "ch.amag.retail.dwb.callbacks",
+    "type": "application",
+    "i18n": {
+      "bundleUrl": "i18n/i18n.properties",
+      "supportedLocales": ["de", "it", "fr", "en"],
+      "fallbackLocale": "de"
+    },
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{AppTitle}}",
+    "description": "{{AppSubtitle}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "app/backend/callbacks/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "DWBCallback-execute": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "DWBCallback",
+          "action": "execute",
+          "title": "{{AppTitle}}",
+          "subTitle": "{{AppSubtitle}}",
+          "icon": ""
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.102.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {},
+        "sap.ui.integration": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleUrl": "i18n/i18n.properties",
+          "supportedLocales": ["de", "it", "fr", "en"],
+          "fallbackLocale": "de"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "Callbacks",
+          "target": "Callbacks"
+        },
+        {
+          "pattern": "Callbacks({key}):?query:",
+          "name": "Callback",
+          "target": "Callback"
+        }
+      ],
+      "targets": {
+        "Callbacks": {
+          "type": "Component",
+          "id": "Callbacks",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Callbacks",
+              "variantManagement": "Page",
+              "initialLoad": true,
+              "navigation": {
+                "Callbacks": {
+                  "detail": {
+                    "route": "Callback"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                  "showClearButton": true
+                }
+              }
+            }
+          },
+          "contextPattern": ""
+        },
+        "Callback": {
+          "type": "Component",
+          "id": "Callback",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "entitySet": "Callbacks"
+            }
+          },
+          "contextPattern": "/Callbacks({key})"
+        }
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "ch.amag.retail.dwb"
+  }
 }

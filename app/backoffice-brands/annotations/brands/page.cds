@@ -1,4 +1,14 @@
 using AppBackofficeBrandsService as service from '../../../../srv';
+using from './text-list';
+using from '../model-series/list';
+using from '../sales-types/list';
+using from '../body-types/list';
+using from '../fuel-types/list';
+using from '../drive-types/list';
+using from '../transmission-types/list';
+using from '../equipment-chapters/list';
+using from '../equipment-categories/list';
+using from '../brand-characteristics/list';
 
 annotate service.Brands with @UI: {
 

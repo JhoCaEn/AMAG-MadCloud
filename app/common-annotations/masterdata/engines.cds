@@ -8,6 +8,7 @@ annotate db.Engines with {
     powerKW    @title: '{i18n>Engines.powerKW}';
     cylinders  @title: '{i18n>Engines.cylinders}';
     fuelType   @title: '{i18n>FuelType}';
+    brand      @title: '{i18n>Brand}';
     createdAt  @title: '{i18n>replicated.createdAt}';
     modifiedAt @title: '{i18n>replicated.modifiedAt}';
 };

@@ -2,8 +2,8 @@ using {retail.dwb as db} from '../../../../db';
 
 annotate db.BrandCharacteristics with {
     brand          @title: '{i18n>Brand}';
-    characteristic @title: '{i18n>BrandCharacteristic}';
-    value          @title: '{i18n>BrandCharacteristics.value}';
+    characteristic @title: '{i18n>Characteristic}';
+    value          @title: '{i18n>General.value}';
     createdAt      @title: '{i18n>replicated.createdAt}';
     modifiedAt     @title: '{i18n>replicated.modifiedAt}';
 };
@@ -20,5 +20,9 @@ annotate db.BrandCharacteristics with @UI: {HeaderInfo: {
     Title         : {
         $Type: 'UI.DataField',
         Value: characteristic_code
+    },
+    Description   : {
+        $Type: 'UI.DataField',
+        Value: characteristic.name
     }
 }};

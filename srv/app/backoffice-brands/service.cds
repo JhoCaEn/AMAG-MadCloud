@@ -32,9 +32,11 @@ service AppBackofficeBrandsService {
     entity BrandCharacteristics      as projection on db.BrandCharacteristics {
         brand,
         characteristic,
+        characteristic.code,
+        characteristic.name,
         value,
-        modifiedAt,
-        createdAt
+        createdAt,
+        modifiedAt
     } actions {
         action synchroniseCharacteristic(in : $self);
     }
@@ -230,8 +232,9 @@ service AppBackofficeBrandsService {
 
     @readonly
     entity Models                    as projection on db.Models {
-        code,
+        id,
         year,
+        code,
         name,
         bodyType
     }
@@ -249,5 +252,11 @@ service AppBackofficeBrandsService {
         name,
         chapter,
         category
+    }
+
+    @readonly
+    entity Characteristics           as projection on db.Characteristics {
+        code,
+        name
     }
 }

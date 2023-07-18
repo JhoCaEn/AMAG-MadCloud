@@ -151,7 +151,6 @@
 							"navigation": {
 								"models": {
 									"detail": {
-										"path": "sap.apps.crossNavigation.outbounds",
 										"outbound": "Model"
 									}
 								}

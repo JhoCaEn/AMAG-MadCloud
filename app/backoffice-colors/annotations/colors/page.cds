@@ -1,4 +1,6 @@
 using AppBackofficeColorsService as service from '../../../../srv';
+using from './text-list';
+using from '../models/list';
 
 annotate service.Colors with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',

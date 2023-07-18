@@ -1,7 +1,14 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 
-annotate service.ModelColors with {
-    color @UI.Hidden;
-    modifiedAt @title: '{i18n>replicated.modifiedAt}';
-    model      @UI.Hidden;
-};
+annotate service.Colors with {
+    brand @UI.Hidden;
+    id    @title : '{i18n>Color}';
+    id    @Common: {
+        Text           : displayName,
+        TextArrangement: #TextFirst
+    };
+    type  @Common: {
+        Text           : type.name,
+        TextArrangement: #TextOnly
+    };
+}

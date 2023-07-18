@@ -5,10 +5,10 @@ annotate service.PartnerBrandBillToPartners with @(UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [brand_brand_code],
+        RequestAtLeast: [id],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : code,
+            Property  : id,
             Descending: false,
         }, ]
     },
@@ -16,7 +16,7 @@ annotate service.PartnerBrandBillToPartners with @(UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : brand_brand_code,
+            Value            : id,
             ![@UI.Importance]: #High
         },
         {

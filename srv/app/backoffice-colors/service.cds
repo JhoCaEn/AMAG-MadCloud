@@ -9,9 +9,10 @@ service AppBackofficeColorsService {
         code,
         type,
         technicalKey,
+        name,
         displayName,
-        modifiedAt,
         createdAt,
+        modifiedAt,
         brand,
         models,
         texts
@@ -27,7 +28,7 @@ service AppBackofficeColorsService {
     }
 
     @readonly
-    entity ColorTypes   as projection on db.ColorTypes {
+    entity Types        as projection on db.ColorTypes {
         code,
         name
     }
@@ -39,12 +40,12 @@ service AppBackofficeColorsService {
     };
 
     @readonly
-    entity ModelColors  as projection on db.ModelColors {
+    entity Models       as projection on db.ModelColors {
         model.id,
-        model.code,
         model.year,
+        model.code,
         model.name,
-        model @cds.api.ignore,
+        model,
         color
     }
 }

@@ -1,12 +1,22 @@
 using {retail.dwb as db} from '../../../db';
 
-annotate db.BrandContractTypes with @Common.SemanticKey: [code];
-
 annotate db.ModelCategories with {
-    code @Common: {
-        Text           : name,
-        TextArrangement: #TextOnly
-    };
-    code @UI.Hidden;
-    name @title : '{i18n>General.name}';
+    code @title: '{i18n>General.code}';
+    name @title: '{i18n>name}';
 };
+
+annotate db.ModelCategories with @Common.SemanticKey: [code];
+
+annotate db.ModelCategories with @UI: {HeaderInfo: {
+    $Type         : 'UI.HeaderInfoType',
+    TypeName      : '{i18n>ModelCategory}',
+    TypeNamePlural: '{i18n>ModelCategories}',
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: code
+    },
+    Description   : {
+        $Type: 'UI.DataField',
+        Value: name
+    }
+}};

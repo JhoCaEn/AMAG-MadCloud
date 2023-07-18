@@ -2,12 +2,21 @@ using AppCarConfiguratorService as service from '.';
 
 annotate service.Configurations actions {
     prepare           @Common.SideEffects: {
-        TargetProperties: ['in/isPrepared'],
+        TargetProperties: [
+            'in/isPrepared',
+            'in/model_id',
+            'in/exteriorColor_id',
+            'in/interiorColor_id',
+            'in/roofColor_id'
+        ],
         TargetEntities  : [
             'in/selectableModelCategories',
             'in/selectableSalesTypes',
             'in/selectableModels',
-            'in/selectableModelsSalesPrices'
+            'in/selectableModelsSalesPrices',
+            'in/equipments',
+            'in/selectableEquipments',
+            'in/selectableEquipmentCategories'
         ]
     };
 

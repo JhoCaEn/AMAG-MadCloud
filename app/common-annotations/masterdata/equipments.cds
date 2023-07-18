@@ -8,6 +8,7 @@ annotate db.Equipments with {
     displayName  @title: '{i18n>General.displayName}';
     chapter      @title: '{i18n>EquipmentChapter}';
     category     @title: '{i18n>EquipmentCategory}';
+    brand        @title: '{i18n>Brand}';
     createdAt    @title: '{i18n>replicated.createdAt}';
     modifiedAt   @title: '{i18n>replicated.modifiedAt}';
 };

@@ -4,11 +4,10 @@ annotate db.ModelSalesPrices with {
     model      @title               : '{i18n>Model}';
     validFrom  @title               : '{i18n>General.validFrom}';
     validTo    @title               : '{i18n>General.validTo}';
-    value      @title               : '{i18n>ModelSalesPrices.value}';
-    currency   @title               : '{i18n>ModelSalesPrices.currency}';
-    // value      @Measures.ISOCurrency: currency;
-    modifiedAt @title               : '{i18n>replicated.modifiedAt}';
+    value      @title               : '{i18n>General.priceValue}';
+    currency   @title               : '{i18n>General.currency}';
     createdAt  @title               : '{i18n>replicated.createdAt}';
+    modifiedAt @title               : '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelSalesPrices with @Common.SemanticKey: [
@@ -16,17 +15,8 @@ annotate db.ModelSalesPrices with @Common.SemanticKey: [
     validFrom
 ];
 
-
 annotate db.ModelSalesPrices with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
-    TypeName      : '{i18n>SalesPrice}',
-    TypeNamePlural: '{i18n>SalesPrices}',
-    Title         : {
-        $Type: 'UI.DataField',
-        Value: validTo
-    },
-    Description   : {
-        $Type: 'UI.DataField',
-        Value: validTo
-    }
+    TypeName      : '{i18n>ModelSalesPrice}',
+    TypeNamePlural: '{i18n>ModelSalesPrices}'
 }};

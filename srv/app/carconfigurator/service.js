@@ -1,3 +1,5 @@
+const { config } = require('@sap/xssec/lib')
+
 module.exports = class AppCarConfiguratorService extends cds.ApplicationService {
     async init() {
 
@@ -7,6 +9,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
         const {
             Configurations,
             ConfigurationEquipments,
+            PreselectedEquipments
         } = this.entities
 
         const {
@@ -31,7 +34,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             CarConfigurationModelColorsPrepared: ModelColors,
             ModelColorCombinations,
             CarConfigurationModelEquipmentsPrepared: ModelEquipments,
-            CarConfigurationSelectableEquipmentsPrepared: SelectableEquipmentsPrepared
+            CarConfigurationSelectableEquipmentsPrepared: SelectableEquipmentsPrepared,
         } = db.entities('retail.dwb')
 
 
@@ -102,15 +105,18 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const model_id = id
-
+            
             const configurationExists = await db.exists(Configurations.drafts, ID)
+    
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
+        
+
 
             const modelExists = await db.exists(SelectableModels, { configuration_ID, model_id })
             if (!modelExists)
                 throw new ValidationError('CARCONFIGURATION_MODEL_ID_NOT_VALID')
-
+            
 
             await db.update(Configurations.drafts, ID).set({ model_id })
             await db.update(SelectableModels, { configuration_ID }).set({ selected: false })
@@ -129,6 +135,9 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             ])
 
             await prepareSelectableModelRestrictions({ID})
+
+            await db.update(Configurations.drafts, ID).set({preselectedModel_id: null})
+            await applyPreselected(ID)
         }
 
         const selectColor = async ({ ID, id }) => {
@@ -144,6 +153,18 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
+
+            const configuration = await db.read(Configurations.drafts, ID, ['preselectedExteriorColor_id', 'preselectedInteriorColor_id', 'preselectedRoofColor_id'])
+            const { preselectedExteriorColor_id, preselectedInteriorColor_id, preselectedRoofColor_id } = configuration
+
+            if (preselectedExteriorColor_id)
+                await db.update(Configurations.drafts, ID).set({preselectedExteriorColor_id: null})
+            else if (preselectedInteriorColor_id)
+                await db.update(Configurations.drafts, ID).set({preselectedInteriorColor_id: null})
+            else if (preselectedRoofColor_id)
+                await db.update(Configurations.drafts, ID).set({preselectedRoofColor_id: null})
+
+            await applyPreselected(ID)
 
 
             const color = await db.read(SelectableColors, { configuration_ID, color_id }, ['selectable', 'type_code'])
@@ -208,6 +229,10 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 configuration_ID: ID,
                 equipment_id: equipment_id
             }])
+
+
+            await db.delete(PreselectedEquipments.drafts, { configuration_ID: ID, equipment_id })
+            await applyPreselected(ID, id)
 
         }
 
@@ -311,6 +336,43 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             await Promise.all([
                 prepareSelectableSalesPrices({ ID })
             ])
+
+            await applyPreselected(ID)
+
+        }
+
+
+        const applyPreselected = async (ID) => {
+
+            const configuration = await db.read(Configurations.drafts, ID, ['preselectedModel_id', 'preselectedExteriorColor_id', 'preselectedInteriorColor_id', 'preselectedRoofColor_id'])
+
+            const  { 
+                preselectedModel_id,
+                preselectedExteriorColor_id,
+                preselectedInteriorColor_id,
+                preselectedRoofColor_id,
+                
+            } = configuration
+
+            if(preselectedModel_id)
+                return await selectModel({ID, id : preselectedModel_id})
+
+            if(preselectedExteriorColor_id)
+                return await selectColor({ID, id : preselectedExteriorColor_id})
+            
+            if(preselectedInteriorColor_id) 
+                return await selectColor({ID, id : preselectedInteriorColor_id})
+
+            if(preselectedRoofColor_id)
+                return await selectColor({ID, id : preselectedRoofColor_id})
+
+            const preselectedEquipment = await db.read(PreselectedEquipments.drafts, {configuration_ID: ID})
+
+            if(preselectedEquipment) {
+                const id = preselectedEquipment.equipment_id
+                return await selectEquipment({ID, id})
+            }
+     
         }
 
         const prepareSelectableModelRestrictions = async ({ ID }) => {
@@ -484,11 +546,11 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             await db.create(SelectableModelSalesPrices).columns(
                 'configuration_ID',
                 'salesPrice_model_id',
-                'salesPrice_validTo'
+                'salesPrice_validFrom'
             ).as(source.columns(
                 `'${ID}' as configuration_ID`,
                 'model_id as salesPrice_model_id',
-                'validTo as salesPrice_validTo'
+                'validFrom as salesPrice_validFrom'
             ))
         }
 

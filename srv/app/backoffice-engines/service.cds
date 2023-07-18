@@ -48,8 +48,8 @@ service AppBackofficeEnginesService {
     @readonly
     entity Models        as projection on db.Models {
         id,
-        code,
         year,
+        code,
         name,
         engine
     };

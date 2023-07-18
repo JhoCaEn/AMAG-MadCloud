@@ -40,6 +40,12 @@
 					"subTitle": "{{AppSubtitle}}",
 					"icon": ""
 				}
+			},
+			"outbounds": {
+				"Model": {
+					"semanticObject": "DWBBOModel",
+					"action": "manage"
+				}
 			}
 		}
 	},
@@ -59,6 +65,15 @@
 				"sap.ui.core": {},
 				"sap.fe.templates": {},
 				"sap.ui.integration": {}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-transmissions::Transmission": {
+						"controllerName": "ch.amag.retail.dwb.backoffice-transmissions.controller.Transmission"
+					}
+				}
 			}
 		},
 		"models": {
@@ -127,7 +142,14 @@
 					"options": {
 						"settings": {
 							"sectionLayout": "Tabs",
-							"entitySet": "Transmissions"
+							"entitySet": "Transmissions",
+							"navigation": {
+								"models": {
+									"detail": {
+										"outbound": "Model"
+									}
+								}
+							}
 						}
 					},
 					"contextPattern": "/Transmissions({key})"

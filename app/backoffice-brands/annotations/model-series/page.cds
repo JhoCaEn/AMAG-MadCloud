@@ -1,4 +1,6 @@
 using AppBackofficeBrandsService as service from '../../../../srv';
+using from './text-list';
+using from '../sales-types/list';
 
 annotate service.ModelSeries with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
@@ -42,7 +44,7 @@ annotate service.ModelSeries with @UI: {
                 Facets: [{
                     $Type : 'UI.ReferenceFacet',
                     ID    : 'SalesTypesFacet',
-                    Target: 'salesTypes/@UI.PresentationVariant'
+                    Target: 'salesTypes/@UI.PresentationVariant#ModelSeries'
                 }]
             }]
         }

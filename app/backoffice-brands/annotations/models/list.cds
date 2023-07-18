@@ -5,10 +5,10 @@ annotate service.Models with @UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
-        RequestAtLeast: [code],
+        RequestAtLeast: [id],
         SortOrder     : [{
             $Type     : 'Common.SortOrderType',
-            Property  : code,
+            Property  : id,
             Descending: false
         }]
     },
@@ -16,13 +16,18 @@ annotate service.Models with @UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : code,
+            Value            : id,
             ![@UI.Importance]: #High,
         },
         {
             $Type            : 'UI.DataField',
             Value            : year,
             ![@UI.Importance]: #Low,
+        },        
+        {
+            $Type            : 'UI.DataField',
+            Value            : code,
+            ![@UI.Importance]: #High,
         },
         {
             $Type                : 'UI.DataField',

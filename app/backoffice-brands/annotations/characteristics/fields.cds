@@ -1,11 +1,9 @@
 using AppBackofficeBrandsService as service from '../../../../srv';
 
-annotate service.BrandCharacteristics with {
-    brand          @UI.Hidden;
-    characteristic @title : '{i18n>BrandCharacteristic}';
-    characteristic @Common: {
-        Text           : characteristic.name,
-        TextArrangement: #TextOnly,
-        ValueListWithFixedValues
-    };
-}
+annotate service.Characteristics with {
+    code @UI.Hidden;
+    code @Common: {
+        Text           : name,
+        TextArrangement: #TextOnly
+    }
+};

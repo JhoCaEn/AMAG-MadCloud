@@ -6,3 +6,4 @@ using from './offers';
 using from './orders';
 using from './vehicles';
 using from './sessions';
+using from './callbacks';

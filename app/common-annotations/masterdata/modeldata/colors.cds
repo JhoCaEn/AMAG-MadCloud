@@ -1,14 +1,14 @@
 using {retail.dwb as db} from '../../../../db';
 
 annotate db.ModelColors with {
+    model         @title: '{i18n>Model}';
     color         @title: '{i18n>General.ID}';
-    modifiedAt    @title: '{i18n>replicated.modifiedAt}';
-    createdAt     @title: '{i18n>replicated.createdAt}';
-    model         @title: '{i18n>model}';
     validFrom     @title: '{i18n>General.validFrom}';
     validTo       @title: '{i18n>General.validTo}';
-    orderableFrom @title: '{i18n>orderableFrom}';
-    orderableTo   @title: '{i18n>orderableTo}';
+    orderableFrom @title: '{i18n>General.orderableFrom}';
+    orderableTo   @title: '{i18n>General.orderableTo}';
+    createdAt     @title: '{i18n>replicated.createdAt}';
+    modifiedAt    @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelColors with @Common.SemanticKey: [
@@ -23,5 +23,9 @@ annotate db.ModelColors with @UI: {HeaderInfo: {
     Title         : {
         $Type: 'UI.DataField',
         Value: color_id
+    },
+    Description         : {
+        $Type: 'UI.DataField',
+        Value: color.displayName
     }
 }};

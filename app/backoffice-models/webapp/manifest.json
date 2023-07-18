@@ -1,346 +1,418 @@
 {
-  "_version": "1.29.0",
-  "sap.app": {
-    "id": "ch.amag.retail.dwb.backoffice-models",
-    "type": "application",
-    "i18n": {
-      "bundleUrl": "i18n/i18n.properties",
-      "supportedLocales": ["de", "it", "fr", "en"],
-      "fallbackLocale": "de"
-    },
-    "applicationVersion": {
-      "version": "1.0.0"
-    },
-    "title": "{{AppTitle}}",
-    "description": "{{AppSubtitle}}",
-    "dataSources": {
-      "mainService": {
-        "uri": "app/backend/backoffice/models/",
-        "type": "OData",
-        "settings": {
-          "odataVersion": "4.0"
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.backoffice-models",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "de"
+        },
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/backoffice/models/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBBOModel-manage": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBBOModel",
+                    "action": "manage",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
-      }
     },
-    "crossNavigation": {
-      "inbounds": {
-        "DWBBOModel-manage": {
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          },
-          "semanticObject": "DWBBOModel",
-          "action": "manage",
-          "title": "{{AppTitle}}",
-          "subTitle": "{{AppSubtitle}}",
-          "icon": ""
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
         }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "dependencies": {
-      "minUI5Version": "1.102.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.ui.integration": {}
-      }
     },
-    "extends": {
-      "extensions": {
-        "sap.ui.controllerExtensions": {
-          "sap.fe.templates.ListReport.ListReportController#ch.amag.retail.dwb.backoffice-models::Models": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Models"
-          },
-          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::Model": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Model"
-          },
-          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelRestriction": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelRestriction"
-          },
-          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestrictionOptions": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestrictionOptions"
-          },
-          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestriction": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestriction"
-          },
-          "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColor": {
-            "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColor"
-          }
-        }
-      }
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleUrl": "i18n/i18n.properties",
-          "supportedLocales": ["de", "it", "fr", "en"],
-          "fallbackLocale": "de"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "synchronizationMode": "None",
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      }
-    },
-    "routing": {
-      "routes": [
-        {
-          "pattern": ":?query:",
-          "name": "Models",
-          "target": "Models"
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {},
+                "sap.ui.integration": {}
+            }
         },
-        {
-          "pattern": "Models({key}):?query:",
-          "name": "Model",
-          "target": "Model"
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ListReport.ListReportController#ch.amag.retail.dwb.backoffice-models::Models": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Models"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::Model": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.Model"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelRestriction": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelRestriction"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestrictionOptions": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestrictionOptions"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestriction": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestriction"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColor": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColor"
+                    }
+                }
+            }
         },
-        {
-          "pattern": "Models({key})/colors({key2}):?query:",
-          "name": "ModelColor",
-          "target": "ModelColor"
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
+                    "fallbackLocale": "de"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
         },
-        {
-          "pattern": "Models({key})/restrictions({key2}):?query:",
-          "name": "ModelRestriction",
-          "target": "ModelRestriction"
-        },
-        {
-          "pattern": "Models({key})/colorCombinations({key2}):?query:",
-          "name": "ModelColorCombination",
-          "target": "ModelColorCombination"
-        },
-        {
-          "pattern": "Models({key})/equipments({key2}):?query:",
-          "name": "ModelEquipment",
-          "target": "ModelEquipment"
-        },
-        {
-          "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3}):?query:",
-          "name": "ModelColorRestriction",
-          "target": "ModelColorRestriction"
-        },
-        {
-          "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4}):?query:",
-          "name": "ModelColorRestrictionOptions",
-          "target": "ModelColorRestrictionOptions"
-        },
-        {
-          "pattern": "Models({key})/equipments({key2})/restrictions({key3}):?query:",
-          "name": "EquipmentRestriction",
-          "target": "EquipmentRestriction"
-        },
-        {
-          "pattern": "Models({key})/equipments({key2})/restrictions({key3})/options({key4}):?query:",
-          "name": "EquipmentRestrictionOption",
-          "target": "EquipmentRestrictionOption"
-        }
-      ],
-      "targets": {
-        "Models": {
-          "type": "Component",
-          "id": "Models",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "entitySet": "Models",
-              "variantManagement": "Page",
-              "initialLoad": true,
-              "navigation": {
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Models",
+                    "target": "Models"
+                },
+                {
+                    "pattern": "Models({key}):?query:",
+                    "name": "Model",
+                    "target": "Model"
+                },
+                {
+                    "pattern": "Models({key})/colors({key2}):?query:",
+                    "name": "ModelColor",
+                    "target": "ModelColor"
+                },
+                {
+                    "pattern": "Models({key})/exteriorColors({key2}):?query:",
+                    "name": "ModelExteriorColor",
+                    "target": "ModelExteriorColor"
+                },
+                {
+                    "pattern": "Models({key})/interiorColors({key2}):?query:",
+                    "name": "ModelInteriorColor",
+                    "target": "ModelInteriorColor"
+                },
+                {
+                    "pattern": "Models({key})/roofColors({key2}):?query:",
+                    "name": "ModelRoofColor",
+                    "target": "ModelRoofColor"
+                },
+                {
+                    "pattern": "Models({key})/restrictions({key2}):?query:",
+                    "name": "ModelRestriction",
+                    "target": "ModelRestriction"
+                },
+                {
+                    "pattern": "Models({key})/colorCombinations({key2}):?query:",
+                    "name": "ModelColorCombination",
+                    "target": "ModelColorCombination"
+                },
+                {
+                    "pattern": "Models({key})/equipments({key2}):?query:",
+                    "name": "ModelEquipment",
+                    "target": "ModelEquipment"
+                },
+                {
+                    "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3}):?query:",
+                    "name": "ModelColorRestriction",
+                    "target": "ModelColorRestriction"
+                },
+                {
+                    "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4}):?query:",
+                    "name": "ModelColorRestrictionOptions",
+                    "target": "ModelColorRestrictionOptions"
+                },
+                {
+                    "pattern": "Models({key})/equipments({key2})/restrictions({key3}):?query:",
+                    "name": "EquipmentRestriction",
+                    "target": "EquipmentRestriction"
+                },
+                {
+                    "pattern": "Models({key})/equipments({key2})/restrictions({key3})/options({key4}):?query:",
+                    "name": "EquipmentRestrictionOption",
+                    "target": "EquipmentRestrictionOption"
+                }
+            ],
+            "targets": {
                 "Models": {
-                  "detail": {
-                    "route": "Model"
-                  }
-                }
-              },
-              "controlConfiguration": {
-                "@com.sap.vocabularies.UI.v1.SelectionFields": {
-                  "showClearButton": true
-                }
-              }
-            }
-          },
-          "contextPattern": ""
-        },
-        "Model": {
-          "type": "Component",
-          "id": "Model",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "Models",
-              "sectionLayout": "Tabs",
-              "navigation": {
-                "restrictions": {
-                  "detail": {
-                    "route": "ModelRestriction"
-                  }
+                    "type": "Component",
+                    "id": "Models",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Models",
+                            "variantManagement": "Page",
+                            "initialLoad": true,
+                            "navigation": {
+                                "Models": {
+                                    "detail": {
+                                        "route": "Model"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                                    "showClearButton": true
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": ""
                 },
-                "colorCombinations": {
-                  "detail": {
-                    "route": "ModelColorCombination"
-                  }
+                "Model": {
+                    "type": "Component",
+                    "id": "Model",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Models",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "restrictions": {
+                                    "detail": {
+                                        "route": "ModelRestriction"
+                                    }
+                                },
+                                "colorCombinations": {
+                                    "detail": {
+                                        "route": "ModelColorCombination"
+                                    }
+                                },
+                                "colors": {
+                                    "detail": {
+                                        "route": "ModelColor"
+                                    }
+                                },
+                                "exteriorColors": {
+                                    "detail": {
+                                        "route": "ModelExteriorColor"
+                                    }
+                                },
+                                "interiorColors": {
+                                    "detail": {
+                                        "route": "ModelInteriorColor"
+                                    }
+                                },
+                                "roofColors": {
+                                    "detail": {
+                                        "route": "ModelRoofColor"
+                                    }
+                                },
+                                "equipments": {
+                                    "detail": {
+                                        "route": "ModelEquipment"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})"
                 },
-                "colors": {
-                  "detail": {
-                    "route": "ModelColor"
-                  }
+                "ModelRestriction": {
+                    "type": "Component",
+                    "id": "ModelRestriction",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelRestrictions"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/restrictions({key2})"
                 },
-                "equipments": {
-                  "detail": {
-                    "route": "ModelEquipment"
-                  }
+                "ModelColorCombination": {
+                    "type": "Component",
+                    "id": "ModelColorCombination",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelColorCombinations",
+                            "navigation": {
+                                "restrictions": {
+                                    "detail": {
+                                        "route": "ModelColorRestriction"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})/colorCombinations({key2})"
+                },
+                "ModelEquipment": {
+                    "type": "Component",
+                    "id": "ModelEquipment",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelEquipments",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "restrictions": {
+                                    "detail": {
+                                        "route": "EquipmentRestriction"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})/equipments({key2})"
+                },
+                "ModelColor": {
+                    "type": "Component",
+                    "id": "ModelColor",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelColors"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/colors({key2})"
+                },
+                "ModelExteriorColor": {
+                    "type": "Component",
+                    "id": "ModelExteriorColor",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelExteriorColors"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/exteriorColors({key2})"
+                },
+                "ModelInteriorColor": {
+                    "type": "Component",
+                    "id": "ModelInteriorColor",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelInteriorColors"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/interiorColors({key2})"
+                },
+                "ModelRoofColor": {
+                    "type": "Component",
+                    "id": "ModelRoofColor",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelRoofColors"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/roofColors({key2})"
+                },
+                "ModelColorRestriction": {
+                    "type": "Component",
+                    "id": "ModelColorRestriction",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelColorRestrictions",
+                            "navigation": {
+                                "options": {
+                                    "detail": {
+                                        "route": "ModelColorRestrictionOptions"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})"
+                },
+                "ModelColorRestrictionOptions": {
+                    "type": "Component",
+                    "id": "ModelColorRestrictionOptions",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelColorRestrictionOptions"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4})"
+                },
+                "EquipmentRestriction": {
+                    "type": "Component",
+                    "id": "EquipmentRestriction",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "sectionLayout": "Tabs",
+                            "entitySet": "ModelEquipmentRestrictions",
+                            "navigation": {
+                                "options": {
+                                    "detail": {
+                                        "route": "EquipmentRestrictionOption"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})"
+                },
+                "EquipmentRestrictionOption": {
+                    "type": "Component",
+                    "id": "EquipmentRestrictionOption",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelEquipmentRestrictionOptions"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})/options({key4})"
                 }
-              }
             }
-          },
-          "contextPattern": "/Models({key})"
         },
-        "ModelRestriction": {
-          "type": "Component",
-          "id": "ModelRestriction",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelRestrictions",
-              "sectionLayout": "Tabs"
-            }
-          },
-          "contextPattern": "/Models({key})/restrictions({key2})"
-        },
-        "ModelColorCombination": {
-          "type": "Component",
-          "id": "ModelColorCombination",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelColorCombinations",
-              "navigation": {
-                "restrictions": {
-                  "detail": {
-                    "route": "ModelColorRestriction"
-                  }
-                }
-              }
-            }
-          },
-          "contextPattern": "/Models({key})/colorCombinations({key2})"
-        },
-        "ModelEquipment": {
-          "type": "Component",
-          "id": "ModelEquipment",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelEquipments",
-              "sectionLayout": "Tabs",
-              "navigation": {
-                "restrictions": {
-                  "detail": {
-                    "route": "EquipmentRestriction"
-                  }
-                }
-              }
-            }
-          },
-          "contextPattern": "/Models({key})/equipments({key2})"
-        },
-        "ModelColor": {
-          "type": "Component",
-          "id": "ModelColor",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelColors"
-            }
-          },
-          "contextPattern": "/Models({key})/colors({key2})"
-        },
-        "ModelColorRestriction": {
-          "type": "Component",
-          "id": "ModelColorRestriction",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelColorRestrictions",
-              "navigation": {
-                "options": {
-                  "detail": {
-                    "route": "ModelColorRestrictionOptions"
-                  }
-                }
-              }
-            }
-          },
-          "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})"
-        },
-        "ModelColorRestrictionOptions": {
-          "type": "Component",
-          "id": "ModelColorRestrictionOptions",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelColorRestrictionOptions"
-            }
-          },
-          "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4})"
-        },
-        "EquipmentRestriction": {
-          "type": "Component",
-          "id": "EquipmentRestriction",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "sectionLayout": "Tabs",
-              "entitySet": "ModelEquipmentRestrictions",
-              "navigation": {
-                "options": {
-                  "detail": {
-                    "route": "EquipmentRestrictionOption"
-                  }
-                }
-              }
-            }
-          },
-          "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})"
-        },
-        "EquipmentRestrictionOption": {
-          "type": "Component",
-          "id": "EquipmentRestrictionOption",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "ModelEquipmentRestrictionOptions"
-            }
-          },
-          "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})/options({key4})"
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         }
-      }
     },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
     }
-  },
-  "sap.cloud": {
-    "public": true,
-    "service": "ch.amag.retail.dwb"
-  }
 }

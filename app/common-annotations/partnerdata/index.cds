@@ -5,3 +5,4 @@ using from './partnerbrandcontracts';
 using from './soldtopartners';
 using from './shiptopartners';
 using from './billtopartners';
+using from './paidbypartners';

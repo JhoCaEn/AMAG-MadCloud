@@ -20,12 +20,12 @@ annotate service.Models with @UI: {
         },
         {
             $Type            : 'UI.DataField',
-            Value            : code,
+            Value            : year,
             ![@UI.Importance]: #High,
-        },
+        },        
         {
             $Type            : 'UI.DataField',
-            Value            : year,
+            Value            : code,
             ![@UI.Importance]: #High,
         },
         {
