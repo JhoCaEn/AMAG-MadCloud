@@ -1,10 +1,10 @@
 using from './partners';
 using from './partner-brands';
+using from './partner-brand-contracts';
+using from './partner-brand-sold-to-partners';
+using from './partner-brand-ship-to-partners';
+using from './partner-brand-bill-to-partners';
+using from './partner-brand-paid-by-partners';
 using from './brands';
-using from './partner-contracts';
 using from './brand-contract-types';
-using from './sold-to-partners';
-using from './partner-contracts-model-categories';
-using from './ship-to-partners';
-using from './bill-to-partners';
-using from './paid-by-partners';
+using from './brand-contract-type-model-categories';

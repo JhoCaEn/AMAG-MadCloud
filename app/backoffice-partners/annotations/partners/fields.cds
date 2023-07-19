@@ -1,7 +1,7 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
 annotate service.Partners with {
-    id        @UI.hidden;
+    id        @UI.Hidden;
     partnerId @title : '{i18n>General.ID}';
 };
 

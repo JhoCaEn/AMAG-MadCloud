@@ -1,12 +1,22 @@
 using {retail.dwb as db} from '../../../db';
 
 annotate db.PartnerBrandBillToPartners with {
-    brand            @title: '{i18n>Brand}';
-    validFrom        @title: '{i18n>General.validFrom}';
-    validTo          @title: '{i18n>General.validTo}';
-    isDefault @title: '{i18n>PartnerBrandBillToPartners.isDefault}';
+    brand      @title: '{i18n>PartnerBrand}';
+    partner    @title: '{i18n>Partner}';
+    validFrom  @title: '{i18n>General.validFrom}';
+    validTo    @title: '{i18n>General.validTo}';
+    isDefault  @title: '{i18n>PartnerRoles.isDefault}';
+    createdAt  @title: '{i18n>replicated.createdAt}';
+    modifiedAt @title: '{i18n>replicated.modifiedAt}';
 };
 
+annotate db.PartnerBrandBillToPartners with @Common.SemanticKey: [
+    brand_partner_id,
+    brand_brand_code,
+    brand_validFrom,
+    partner_id,
+    validFrom
+];
 
 annotate db.PartnerBrandBillToPartners with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
@@ -14,6 +24,10 @@ annotate db.PartnerBrandBillToPartners with @UI: {HeaderInfo: {
     TypeNamePlural: '{i18n>PartnerBrandBillToPartners}',
     Title         : {
         $Type: 'UI.DataField',
-        Value: brand_brand_code
+        Value: partner_id
+    },
+    Description   : {
+        $Type: 'UI.DataField',
+        Value: partner.name
     }
 }};

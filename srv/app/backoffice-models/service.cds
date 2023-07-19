@@ -56,9 +56,11 @@ service AppBackofficeModelsService {
     }
 
     extend projection Models with {
-        exteriorColors : Association to many ModelExteriorColors on exteriorColors.model = $self,
-        interiorColors : Association to many ModelInteriorColors on interiorColors.model = $self,
-        roofColors     : Association to many ModelRoofColors on roofColors.model = $self
+        exteriorColors     : Association to many ModelExteriorColors on exteriorColors.model = $self,
+        interiorColors     : Association to many ModelInteriorColors on interiorColors.model = $self,
+        roofColors         : Association to many ModelRoofColors on roofColors.model = $self,
+        standardEquipments : Association to many ModelStandardEquipments on standardEquipments.model = $self,
+        extraEquipments    : Association to many ModelExtraEquipments on extraEquipments.model = $self,
     }
 
     @readonly
@@ -181,7 +183,7 @@ service AppBackofficeModelsService {
         createdAt,
         constraints,
         options
-    }; 
+    };
 
     @readonly
     entity ModelColorRestrictionConstraints     as projection on db.ModelColorRestrictionConstraints {
@@ -189,7 +191,122 @@ service AppBackofficeModelsService {
         equipment,
         equipment.id,
         equipment.displayName
-    };       
+    };
+
+    @readonly
+    entity ModelColorRestrictionOptions         as projection on db.ModelColorRestrictionOptions {
+        restriction,
+        id,
+        createdAt,
+        rules
+    };
+
+    @readonly
+    entity ModelColorRestrictionOptionRules     as projection on db.ModelColorRestrictionOptionRules {
+        option,
+        id,
+        category @cds.api.ignore,
+        category.id as categoryId,
+        color,
+        equipment,
+        isRequired,
+        isForbidden,
+        createdAt
+    }
+
+    @readonly
+    entity ModelEquipments                      as projection on db.ModelEquipments {
+        model,
+        equipment,
+        equipment.id,
+        equipment.displayName,
+        equipment.category @cds.api.ignore,
+        equipment.category.id as categoryId,
+        equipment.chapter  @cds.api.ignore,
+        equipment.chapter.id  as chapterId,
+        isStandard,
+        isPackage,
+        validFrom,
+        validTo,
+        orderableFrom,
+        orderableTo,
+        createdAt,
+        equipment.chapter.isVisible,
+        equipment.chapter.isVisibleInConfigurator,
+        equipment.chapter.isVisibleInSellingSystem,
+        packageContent,
+        restrictions
+    } where(
+           equipment.chapter.isVisible                = true
+        or equipment.chapter.isVisibleInConfigurator  = true
+        or equipment.chapter.isVisibleInSellingSystem = true
+    );
+
+    @readonly
+    entity ModelStandardEquipments              as projection on ModelEquipments excluding {
+        isStandard
+    } where isStandard = true;
+
+    @readonly
+    entity ModelExtraEquipments                 as projection on ModelEquipments excluding {
+        isStandard
+    } where isStandard = false;
+
+    @readonly
+    entity ModelEquipmentPackageContents        as projection on db.ModelEquipmentPackageContents {
+        package,
+        equipment,
+        equipment.id,
+        equipment.displayName,
+        place,
+        createdAt
+    };
+
+    @readonly
+    entity ModelEquipmentRestrictions           as projection on db.ModelEquipmentRestrictions {
+        equipment,
+        constraint,
+        case
+            when
+                length(constraint) > 0
+            then
+                constraint
+            else
+                ' '
+        end as constraintDisplay : String,
+        createdAt,
+        constraints,
+        options
+    };
+
+    @readonly
+    entity ModelEquipmentRestrictionConstraints as projection on db.ModelEquipmentRestrictionConstraints {
+        restriction,
+        equipment,
+        equipment.id,
+        equipment.displayName
+    };
+
+    @readonly
+    entity ModelEquipmentRestrictionOptions     as projection on db.ModelEquipmentRestrictionOptions {
+        restriction,
+        id,
+        createdAt,
+        rules
+    };
+
+    @readonly
+    entity ModelEquipmentRestrictionOptionRules as projection on db.ModelEquipmentRestrictionOptionRules {
+        option,
+        id,
+        category @cds.api.ignore,
+        category.id as categoryId,
+        color,
+        equipment,
+        isRequired,
+        isForbidden,
+        createdAt
+    };
 
     @readonly
     entity Colors                               as projection on db.Colors {
@@ -228,73 +345,11 @@ service AppBackofficeModelsService {
         brand,
         id,
         name
-    }
-
-    @readonly
-    entity ModelColorRestrictionOptions         as projection on db.ModelColorRestrictionOptions {
-        restriction,
-        rules,
-        id,
-        createdAt,
-        modifiedAt
-    };
-
-    @readonly
-    entity ModelColorRestrictionOptionRules     as projection on db.ModelColorRestrictionOptionRules {
-        option,
-        id,
-        category,
-        color,
-        equipment,
-        isForbidden,
-        isRequired
-    }
-
-    @readonly
-    entity ModelEquipments                      as projection on db.ModelEquipments {
-        model,
-        equipment,
-        equipment.code         as equipmentCode,
-        equipment.technicalKey as equipmentTechnicalKey,
-        isStandard,
-        isPackage,
-        validFrom,
-        validTo,
-        orderableFrom,
-        orderableTo,
-        packageContent,
-        restrictions
-    };
-
-    @readonly
-    entity ModelEquipmentPackageContents        as projection on db.ModelEquipmentPackageContents;
-
-    @readonly
-    entity ModelEquipmentRestrictions           as projection on db.ModelEquipmentRestrictions {
-        equipment,
-        equipment.equipment.id as equipment_id,
-        constraint,
-        constraints,
-        options
-    };
-
-    @readonly
-    entity ModelEquipmentRestrictionConstraints as projection on db.ModelEquipmentRestrictionConstraints;
-
-    @readonly
-    entity ModelEquipmentRestrictionOptions     as projection on db.ModelEquipmentRestrictionOptions;
-
-    @readonly
-    entity ModelEquipmentRestrictionOptionRules as projection on db.ModelEquipmentRestrictionOptionRules {
-        option,
-        id,
-        category @cds.api.ignore,
-        category.id as categoryId,
-        color,
-        equipment,
-        isRequired,
-        isForbidden
-    };
+    } where(
+           isVisible                = true
+        or isVisibleInConfigurator  = true
+        or isVisibleInSellingSystem = true
+    );
 
     @readonly
     entity BodyTypes                            as projection on db.BodyTypes {

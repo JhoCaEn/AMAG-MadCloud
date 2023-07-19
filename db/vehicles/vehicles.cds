@@ -2,8 +2,9 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
 using {cuid} from '@sap/cds/common';
+using {replicated} from '../../db';
 
-entity Vehicles : cuid {
+entity Vehicles : cuid, replicated {
     erpID                : UUID;
     salesOrganisation    : String(4);
     distributionChannel  : String(2);

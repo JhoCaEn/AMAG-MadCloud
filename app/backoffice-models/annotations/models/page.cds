@@ -155,17 +155,29 @@ annotate service.Models with @UI: {
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'EquipmentsSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.Equipments}',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'EquipmentsSubSection',
-                Label : '{i18n>BackofficeModels.FieldGroup.Equipments}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'EquipmentsFacet',
-                    Target: 'equipments/@UI.PresentationVariant'
-                }]
-            }],
+            Label : '{i18n>Equipments}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'StandardEquipmentsSubSection',
+                    Label : '{i18n>StandardEquipments}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'StandardEquipmentsFacet',
+                        Target: 'standardEquipments/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'ExtraEquipmentsSubSection',
+                    Label : '{i18n>ExtraEquipments}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'ExtraEquipmentsFacet',
+                        Target: 'extraEquipments/@UI.PresentationVariant'
+                    }]
+                }
+            ],
         },
         {
             $Type : 'UI.CollectionFacet',

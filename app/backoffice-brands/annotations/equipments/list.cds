@@ -22,7 +22,7 @@ annotate service.Equipments with @UI: {
 
         {
             $Type                : 'UI.DataField',
-            Value                : name,
+            Value                : displayName,
             ![@UI.Importance]    : #Low,
             ![@HTML5.CssDefaults]: {width: 'auto'},
         },

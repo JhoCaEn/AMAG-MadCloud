@@ -1,0 +1,15 @@
+code,name
+DWBBOBrand,BO Brand
+DWBBOColor,BO Color
+DWBBOEngine,BO Engine
+DWBBOEquipment,BO Equipment
+DWBBOModel,BO Model
+DWBBOPartner,BO Partner
+DWBBOTransmission,BO Transmission
+DWBCarConfigurator,Car Configurator
+DWBFleetApplication,Fleet Application
+DWBOffer,Offer
+DWBOrder,Order
+DWBSalesMessage,SalesMessage
+DWBSession,Session
+DWBVehicle,Vehicle

@@ -3,7 +3,7 @@ using {retail.dwb as db} from '../../../db';
 @path: '/app/backend/carconfigurator'
 service AppCarConfiguratorService {
 
-    action createConfiguration(configuredAt : db.CarConfiguration:configuredAt, partner_id : db.CarConfiguration:partner.id, brand_code : db.CarConfiguration:brand.code, salesOrganisation : db.CarConfiguration:salesOrganisation, isNewConfiguration : Boolean, model_id : db.Models:id, exteriorColor_id : db.Colors:id, interiorColor_id : db.Colors:id, roofColor_id : db.Colors:id, equipments : many db.Equipments:id) returns db.CarConfiguration:ID;
+    action createConfiguration(configuredAt : db.CarConfiguration:configuredAt, partner_id : db.CarConfiguration:partner.id, brand_code : db.CarConfiguration:brand.code, salesOrganisation : db.CarConfiguration:salesOrganisation, isNewConfiguration : Boolean, model_id : db.Models:id, exteriorColor_id : db.Colors:id, interiorColor_id : db.Colors:id, roofColor_id : db.Colors:id, equipments : many db.Equipments:id, callback_ID : db.Callbacks : ID) returns db.CarConfiguration:ID;
 
     action readConfiguration(ID : UUID)                                                                                                                                                                                                                                                                                                                                                                                        returns {
         configuredAt : Date;

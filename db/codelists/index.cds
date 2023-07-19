@@ -6,3 +6,5 @@ using from './transmissionshifts';
 using from './brandcontracttypemodelcategories';
 using from './brandcontracttypes';
 using from './characteristics';
+using from './projectTypes';
+using from './semanticobjects';

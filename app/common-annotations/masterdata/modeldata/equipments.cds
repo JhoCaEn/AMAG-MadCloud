@@ -7,10 +7,11 @@ annotate db.ModelEquipments with {
     isPackage     @title: '{i18n>ModelEquipments.isPackage}';
     validFrom     @title: '{i18n>General.validFrom}';
     validTo       @title: '{i18n>General.validTo}';
-    orderableFrom @title: '{i18n>orderableFrom}';
-    orderableTo   @title: '{i18n>orderableTo}';
+    orderableFrom @title: '{i18n>General.orderableFrom}';
+    orderableTo   @title: '{i18n>General.orderableTo}';
+    createdAt     @title: '{i18n>replicated.createdAt}';
+    modifiedAt    @title: '{i18n>replicated.modifiedAt}';
 };
-
 
 annotate db.ModelEquipments with @Common.SemanticKey: [
     model_id,

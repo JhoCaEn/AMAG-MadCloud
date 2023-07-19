@@ -1,5 +1,6 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 using from '../model-color-restriction-constraints/list';
+using from '../model-color-restriction-options/list';
 
 annotate service.ModelColorRestrictions with @UI: {
 
@@ -17,7 +18,7 @@ annotate service.ModelColorRestrictions with @UI: {
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'OptionsSubSection',
-            Label : '{i18n>BackofficeModels.FieldGroup.Options}',
+            Label : '{i18n>RestrictionOptions}',
             Facets: [{
                 $Type : 'UI.ReferenceFacet',
                 ID    : 'OptionsFacet',
@@ -25,27 +26,4 @@ annotate service.ModelColorRestrictions with @UI: {
             }]
         }
     ],
-    
-    FieldGroup #General     : {
-        $Type: 'UI.FieldGroupType',
-        Label: '{i18n>General.FieldGroup.General}',
-        Data : [
-            {
-                $Type: 'UI.DataField',
-                Value: type_code
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: constraint
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: createdAt
-            },            
-            {
-                $Type: 'UI.DataField',
-                Value: modifiedAt
-            }
-        ]
-    }
 };

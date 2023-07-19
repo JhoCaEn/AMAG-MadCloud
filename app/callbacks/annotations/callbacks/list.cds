@@ -3,8 +3,7 @@ using AppCallbacksService as service from '../../../../srv';
 annotate service.Callbacks with @UI: {
     SelectionFields: [
         ID,
-        semantic,
-        createdAt
+        semantic_code,
     ],
 
     PresentationVariant  : {
@@ -31,7 +30,7 @@ annotate service.Callbacks with @UI: {
         },  
         {
             $Type            : 'UI.DataField',
-            Value            : semantic,
+            Value            : semantic_code,
             ![@UI.Importance]: #High,
             ![@HTML5.CssDefaults]: {width: 'auto'}
         },            

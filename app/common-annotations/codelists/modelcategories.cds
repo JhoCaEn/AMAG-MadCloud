@@ -2,7 +2,7 @@ using {retail.dwb as db} from '../../../db';
 
 annotate db.ModelCategories with {
     code @title: '{i18n>General.code}';
-    name @title: '{i18n>name}';
+    name @title: '{i18n>General.name}';
 };
 
 annotate db.ModelCategories with @Common.SemanticKey: [code];

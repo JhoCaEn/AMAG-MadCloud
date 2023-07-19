@@ -5,7 +5,7 @@ using {cuid} from '@sap/cds/common';
 using {replicated} from '../../db';
 
 entity Callbacks : cuid, replicated {
-    semantic   : String;
+    semantic   : db.SemanticObject @assert.integrity: false;
     parameters : String;
 }
 

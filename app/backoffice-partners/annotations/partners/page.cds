@@ -1,4 +1,5 @@
 using AppBackofficePartnersService as service from '../../../../srv';
+using from '../partner-brands/list';
 
 annotate service.Partners with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
@@ -43,7 +44,21 @@ annotate service.Partners with @UI: {
                     Target: 'brands/@UI.PresentationVariant'
                 }]
             }, ]
-        }
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandSoldToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandSoldToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandSoldToPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandSoldToPartnersFacet',
+                    Target: 'usedInSoldToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General     : {

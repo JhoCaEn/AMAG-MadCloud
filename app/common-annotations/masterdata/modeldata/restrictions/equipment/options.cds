@@ -1,15 +1,23 @@
 using {retail.dwb as db} from '../../../../../../db';
 
 annotate db.ModelEquipmentRestrictionOptions with {
-    id    @title: '{i18n>Option}';
+    restriction @title: '{i18n>ModelEquipmentRestriction}';
+    id          @title: '{i18n>General.ID}';
+    createdAt   @title: '{i18n>replicated.createdAt}';
+    modifiedAt  @title: '{i18n>replicated.modifiedAt}';
 };
 
-annotate db.ModelEquipmentRestrictionOptions with @Common.SemanticKey: [id];
+annotate db.ModelEquipmentRestrictionOptions with @Common.SemanticKey: [
+    restriction_equipment_model_id,
+    restriction_equipment_equipment_id,
+    restriction_constraint,
+    id
+];
 
 annotate db.ModelEquipmentRestrictionOptions with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
-    TypeName      : '{i18n>Option}',
-    TypeNamePlural: '{i18n>Options}',
+    TypeName      : '{i18n>ModelEquipmentRestrictionOption}',
+    TypeNamePlural: '{i18n>ModelEquipmentRestrictionOptions}',
     Title         : {
         $Type: 'UI.DataField',
         Value: id

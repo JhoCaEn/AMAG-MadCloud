@@ -20,6 +20,7 @@ entity CarConfigurations : cuid {
     preselectedExteriorColor      : db.Color   @assert.integrity: false;
     preselectedInteriorColor      : db.Color   @assert.integrity: false;
     preselectedRoofColor          : db.Color   @assert.integrity: false;
+    callback                      : db.Callback;
     preselectedEquipments         : Composition of many db.CarConfigurationPreselectedEquipments
                                         on preselectedEquipments.configuration = $self;
 

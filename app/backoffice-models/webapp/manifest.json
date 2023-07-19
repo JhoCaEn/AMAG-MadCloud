@@ -73,14 +73,29 @@
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelRestriction": {
                         "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelRestriction"
                     },
-                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestrictionOptions": {
-                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestrictionOptions"
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestrictionOption": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestrictionOption"
                     },
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColorRestriction": {
                         "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColorRestriction"
                     },
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelColor": {
                         "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelColor"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelEquipment": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelEquipment"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelStandardEquipment": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelStandardEquipment"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelExtraEquipment": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelExtraEquipment"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelEquipmentRestriction": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelEquipmentRestriction"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-models::ModelEquipmentRestrictionOption": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-models.controller.ModelEquipmentRestrictionOption"
                     }
                 }
             }
@@ -153,29 +168,39 @@
                     "target": "ModelColorCombination"
                 },
                 {
-                    "pattern": "Models({key})/equipments({key2}):?query:",
-                    "name": "ModelEquipment",
-                    "target": "ModelEquipment"
-                },
-                {
                     "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3}):?query:",
                     "name": "ModelColorRestriction",
                     "target": "ModelColorRestriction"
                 },
                 {
                     "pattern": "Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4}):?query:",
-                    "name": "ModelColorRestrictionOptions",
-                    "target": "ModelColorRestrictionOptions"
+                    "name": "ModelColorRestrictionOption",
+                    "target": "ModelColorRestrictionOption"
                 },
                 {
-                    "pattern": "Models({key})/equipments({key2})/restrictions({key3}):?query:",
-                    "name": "EquipmentRestriction",
-                    "target": "EquipmentRestriction"
+                    "pattern": "Models({key})/equipments({key2}):?query:",
+                    "name": "ModelEquipment",
+                    "target": "ModelEquipment"
                 },
                 {
-                    "pattern": "Models({key})/equipments({key2})/restrictions({key3})/options({key4}):?query:",
-                    "name": "EquipmentRestrictionOption",
-                    "target": "EquipmentRestrictionOption"
+                    "pattern": "Models({key})/standardEquipments({key2}):?query:",
+                    "name": "ModelStandardEquipment",
+                    "target": "ModelStandardEquipment"
+                },
+                {
+                    "pattern": "Models({key})/extraEquipments({key2}):?query:",
+                    "name": "ModelExtraEquipment",
+                    "target": "ModelExtraEquipment"
+                },
+                {
+                    "pattern": "Models({key})/extraEquipments({key2})/restrictions({key3}):?query:",
+                    "name": "ModelEquipmentRestriction",
+                    "target": "ModelEquipmentRestriction"
+                },
+                {
+                    "pattern": "Models({key})/extraEquipments({key2})/restrictions({key3})/options({key4}):?query:",
+                    "name": "ModelEquipmentRestrictionOption",
+                    "target": "ModelEquipmentRestrictionOption"
                 }
             ],
             "targets": {
@@ -247,6 +272,16 @@
                                     "detail": {
                                         "route": "ModelEquipment"
                                     }
+                                },
+                                "standardEquipments": {
+                                    "detail": {
+                                        "route": "ModelStandardEquipment"
+                                    }
+                                },
+                                "extraEquipments": {
+                                    "detail": {
+                                        "route": "ModelExtraEquipment"
+                                    }
                                 }
                             }
                         }
@@ -300,6 +335,36 @@
                         }
                     },
                     "contextPattern": "/Models({key})/equipments({key2})"
+                },
+                "ModelStandardEquipment": {
+                    "type": "Component",
+                    "id": "ModelStandardEquipment",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelStandardEquipment"
+                        }
+                    },
+                    "contextPattern": "/Models({key})/standardEquipments({key2})"
+                },
+                "ModelExtraEquipment": {
+                    "type": "Component",
+                    "id": "ModelExtraEquipment",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "ModelExtraEquipment",
+                            "sectionLayout": "Tabs",
+                            "navigation": {
+                                "restrictions": {
+                                    "detail": {
+                                        "route": "ModelEquipmentRestriction"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": "/Models({key})/extraEquipments({key2})"
                 },
                 "ModelColor": {
                     "type": "Component",
@@ -355,7 +420,7 @@
                             "navigation": {
                                 "options": {
                                     "detail": {
-                                        "route": "ModelColorRestrictionOptions"
+                                        "route": "ModelColorRestrictionOption"
                                     }
                                 }
                             }
@@ -363,9 +428,9 @@
                     },
                     "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})"
                 },
-                "ModelColorRestrictionOptions": {
+                "ModelColorRestrictionOption": {
                     "type": "Component",
-                    "id": "ModelColorRestrictionOptions",
+                    "id": "ModelColorRestrictionOption",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
@@ -374,35 +439,34 @@
                     },
                     "contextPattern": "/Models({key})/colorCombinations({key2})/restrictions({key3})/options({key4})"
                 },
-                "EquipmentRestriction": {
+                "ModelEquipmentRestriction": {
                     "type": "Component",
-                    "id": "EquipmentRestriction",
+                    "id": "ModelEquipmentRestriction",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "sectionLayout": "Tabs",
                             "entitySet": "ModelEquipmentRestrictions",
                             "navigation": {
                                 "options": {
                                     "detail": {
-                                        "route": "EquipmentRestrictionOption"
+                                        "route": "ModelEquipmentRestrictionOption"
                                     }
                                 }
                             }
                         }
                     },
-                    "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})"
+                    "contextPattern": "/Models({key})/extraEquipments({key2})/restrictions({key3})"
                 },
-                "EquipmentRestrictionOption": {
+                "ModelEquipmentRestrictionOption": {
                     "type": "Component",
-                    "id": "EquipmentRestrictionOption",
+                    "id": "ModelEquipmentRestrictionOption",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
                             "entitySet": "ModelEquipmentRestrictionOptions"
                         }
                     },
-                    "contextPattern": "/Models({key})/equipments({key2})/restrictions({key3})/options({key4})"
+                    "contextPattern": "/Models({key})/extraEquipments({key2})/restrictions({key3})/options({key4})"
                 }
             }
         },

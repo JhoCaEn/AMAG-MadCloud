@@ -4,8 +4,7 @@ annotate service.Callbacks with @UI: {
     HeaderFacets            : [{
         $Type : 'UI.ReferenceFacet',
         ID    : 'SynchronisedFacet',
-        Label : '{i18n>General.FieldGroup.Synchronised}',
-        Target: '@UI.FieldGroup#Synchronised'
+        Target: '@UI.FieldGroup#History'
     }, ],
 
     Facets                  : [
@@ -34,7 +33,7 @@ annotate service.Callbacks with @UI: {
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: semantic,
+                Value: semantic_code,
             },
             {
                 $Type: 'UI.DataField',
@@ -43,19 +42,17 @@ annotate service.Callbacks with @UI: {
         ]
     },
 
-    FieldGroup #Synchronised: {
+    FieldGroup #History: {
         $Type: 'UI.FieldGroupType',
-        Label: '{i18n>General.FieldGroup.Synchronised}',
+        Label: '{i18n>Callbacks.FieldGroup.History}',
         Data : [
             {
                 $Type: 'UI.DataField',
-                Value: createdAt,
-                Label: '{i18n>General.FieldGroup.Synchronised.createdAt}'
+                Value: createdAt
             },
             {
                 $Type: 'UI.DataField',
-                Value: modifiedAt,
-                Label: '{i18n>General.FieldGroup.Synchronised.modifiedAt}'
+                Value: modifiedAt
             },
         ]
     }

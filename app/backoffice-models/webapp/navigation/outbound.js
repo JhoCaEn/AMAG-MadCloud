@@ -15,13 +15,20 @@ sap.ui.define([],
             },
             DWBBOEquipment: {
                 id: [
+                    'Models.equipments.id',
+                    'Models.standardEquipments.id',
+                    'Models.extraEquipments.id',
                     'Models.restrictions.rules.equipment.id',
+                    'Models.colorCombinations.restrictions.options.rules.equipment.id',
+                    'Models.extraEquipments.restrictions.options.rules.equipment.id',
                     'equipment_id'
                 ]
             },
             DWBBOColor: {
                 id: [
                     'Models.restrictions.rules.color.id',
+                    'Models.colorCombinations.restrictions.options.rules.color.id',
+                    'Models.extraEquipments.restrictions.options.rules.color.id',
                     'Models.exteriorColors.id',
                     'Models.interiorColors.id',
                     'Models.roofColors.id'

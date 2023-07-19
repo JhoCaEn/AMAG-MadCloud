@@ -249,7 +249,7 @@ service AppBackofficeBrandsService {
     @readonly
     entity Equipments                as projection on db.Equipments {
         id,
-        name,
+        displayName,
         chapter,
         category
     }

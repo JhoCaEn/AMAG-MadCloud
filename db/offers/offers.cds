@@ -23,6 +23,7 @@ entity Offers : cuid, managed {
     carConfigurationExteriorColor : db.Color;
     carConfigurationInteriorColor : db.Color;
     carConfigurationRoofColor     : db.Color;
+    callback                      : db.Callback;
 
 
     selectableBrands              : Association to many db.OfferSelectableBrands

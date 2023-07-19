@@ -38,7 +38,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
         } = db.entities('retail.dwb')
 
 
-        this.on('createConfiguration', async ({ data: { configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration = true, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments } = {} } = {}) => createConfiguration(configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments))
+        this.on('createConfiguration', async ({ data: { configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration = true, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID } = {} } = {}) => createConfiguration(configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID))
         this.on('readConfiguration', async ({ data: { ID } = {} } = {}) => readConfiguration({ ID }))
         this.on('prepare', async ({ params: [{ ID } = {}] = [] } = {}) => prepare({ ID }))
         this.on('selectModel', async ({ params: [{ ID } = {}] = [], data: { id } = {} } = {}) => selectModel({ ID, id }))
@@ -53,7 +53,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 req.data.configuredAt = req.timestamp.toISOString().substring(0, 10)
         })
 
-        const createConfiguration = async (configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments) => {
+        const createConfiguration = async (configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID) => {
             if (!partner_id)
                 throw new ValidationError('CARCONFIGURATION_PARTNER_NOT_GIVEN')
 
@@ -89,7 +89,8 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                     IsActiveEntity: false,
                     HasActiveEntity: false,
                     HasDraftEntity: false                    
-                })) || []
+                })) || [],
+                callback_ID: callback_ID
             })
 
             return ID

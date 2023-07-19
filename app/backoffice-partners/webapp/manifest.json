@@ -114,6 +114,11 @@
                     "target": "PartnerBrand"
                 },
                 {
+                    "pattern": "Partners({key})/usedInSoldToPartners({key2}):?query:",
+                    "name": "UsedInSoldToPartners",
+                    "target": "UsedInSoldToPartners"
+                },
+                {
                     "pattern": "Partners({key})/brands({key2})/contracts({key3}):?query:",
                     "name": "PartnerBrandContract",
                     "target": "PartnerBrandContract"
@@ -151,6 +156,11 @@
                                     "detail": {
                                         "route": "PartnerBrand"
                                     }
+                                },
+                                "usedInSoldToPartners": {
+                                    "detail": {
+                                        "route": "UsedInSoldToPartners"
+                                    }
                                 }
                             }
                         }
@@ -163,6 +173,7 @@
                     "options": {
                         "settings": {
                             "entitySet": "PartnerBrands",
+                            "sectionLayout": "Tabs",
                             "navigation": {
                                 "contracts": {
                                     "detail": {
@@ -190,6 +201,16 @@
                                     }
                                 }
                             }
+                        }
+                    }
+                },
+                "UsedInSoldToPartners": {
+                    "type": "Component",
+                    "id": "UsedInSoldToPartners",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrandSoldToPartners"
                         }
                     }
                 },

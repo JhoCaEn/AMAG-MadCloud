@@ -29,6 +29,7 @@ annotate service.ModelRestrictionRules with @UI: {
             $Type            : 'UI.DataField',
             Value            : equipment_id,
             ![@UI.Importance]: #Medium,
+            ![@HTML5.CssDefaults]: {width: 'auto'}
         },
         {
             $Type            : 'UI.DataField',
