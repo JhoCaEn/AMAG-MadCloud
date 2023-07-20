@@ -44,6 +44,10 @@
 				"CarConfigurator": {
 					"semanticObject": "DWBCarConfigurator",
 					"action": "edit"
+				},
+				"Callback": {
+					"semanticObject": "DWBCallback",
+					"action": "execute"					
 				}
 			}
 		}
@@ -150,6 +154,17 @@
 							"entitySet": "Offers",
 							"editableHeaderContent": false,
 							"sectionLayout": "Tabs",
+							"content" : {
+								"header": {
+									"actions": {
+										"navigateToCallback": {
+											"text": "{i18n>actions.navigateToCallback}",
+											"press": "ch.amag.retail.dwb.offers.actions.callback.invoke",
+											"visible": "{= ${IsActiveEntity} === false }"
+										}
+									}
+								}
+							},
 							"controlConfiguration": {
 								"@com.sap.vocabularies.UI.v1.FieldGroup#General_Vehicle": {
 									"actions": {

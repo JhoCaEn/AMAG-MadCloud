@@ -3,7 +3,9 @@ using {retail.dwb as db} from '../../../db';
 @path: '/app/backend/sessions'
 service AppSessionsService {
     @odata.draft.enabled
-    entity Sessions      as projection on db.Sessions;
+    entity Sessions      as projection on db.Sessions actions {
+        action prepare(in : $self);
+    };
 
     @readonly
     entity Brands        as projection on db.Brands;

@@ -1,15 +1,17 @@
 code,name
-DWBBOBrand,BO Brand
-DWBBOColor,BO Color
-DWBBOEngine,BO Engine
-DWBBOEquipment,BO Equipment
-DWBBOModel,BO Model
-DWBBOPartner,BO Partner
-DWBBOTransmission,BO Transmission
-DWBCarConfigurator,Car Configurator
-DWBFleetApplication,Fleet Application
-DWBOffer,Offer
-DWBOrder,Order
-DWBSalesMessage,SalesMessage
-DWBSession,Session
-DWBVehicle,Vehicle
+DWBBOBrand-manage,BO Brand
+DWBBOColor-manage,BO Color
+DWBBOEngine-manage,BO Engine
+DWBBOEquipment-manage,BO Equipment
+DWBBOModel-manage,BO Model
+DWBBOPartner-manage,BO Partner
+DWBBOTransmission-manage,BO Transmission
+DWBCarConfigurator-edit,Car Configurator
+DWBFleetApplication-manage,Fleet Application
+DWBOffer-manage,Offer
+DWBOrder-release,Order Release
+DWBOrder-manage,Order Manage
+DWBSalesMessage-release,Sales Message Release
+DWBSalesMessage-manage, Sales Message Manage
+DWBSession-display,Session
+DWBVehicle-display,Vehicle

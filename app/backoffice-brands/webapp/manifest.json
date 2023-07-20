@@ -55,8 +55,8 @@
                     "action": "manage"
                 },
                 "Equipment": {
-                   "semanticObject" : "DWBBOEquipment",
-                   "action": "manage"
+                    "semanticObject": "DWBBOEquipment",
+                    "action": "manage"
                 }
             }
         }
@@ -190,6 +190,7 @@
                         "settings": {
                             "entitySet": "Brands",
                             "sectionLayout": "Tabs",
+                            "allowDeepLinking ": true,
                             "navigation": {
                                 "modelSeries": {
                                     "detail": {
@@ -259,6 +260,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
+                            "allowDeepLinking ": true,
                             "entitySet": "SalesTypes"
                         }
                     }
@@ -380,6 +382,9 @@
         "extends": {
             "extensions": {
                 "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::Brand": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.Brand"
+                    },
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-brands::BodyType": {
                         "controllerName": "ch.amag.retail.dwb.backoffice-brands.controller.BodyType"
                     },

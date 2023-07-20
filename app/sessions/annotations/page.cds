@@ -95,3 +95,23 @@ annotate service.Sessions with @UI: {
     },
 
 };
+
+annotate service.Sessions with @UI.Identification: [{
+    $Type        : 'UI.DataFieldForAction',
+    Action       : 'AppSessionsService.prepare',
+    Label        : 'WiP: prepare',
+    ![@UI.Hidden]: {$edmJson: {$If: [
+        {$Or: [
+            {$Eq: [
+                {$Path: 'isPrepared'},
+                true
+            ]},
+            {$Eq: [
+                {$Path: 'IsActiveEntity'},
+                false
+            ]}
+        ]},
+        true,
+        false
+    ]}}
+}];

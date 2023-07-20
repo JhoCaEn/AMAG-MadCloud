@@ -9,13 +9,17 @@ annotate service.Offers with {
     fleetProjectCompanyNumber     @Core.Computed;
     createdBySalesSystem          @Core.Computed;
     salesPartner                  @Core.Computed;
-    salesPartner                  @Common: {
-        Text           : salesPartner.name,
-        TextArrangement: #TextFirst,
-        ValueListWithFixedValues
+    salesPartner                  @Common.ValueListWithFixedValues: true;
+    salesPartner                  @Common.ValueList               : {
+        CollectionPath: 'SalesPartners',
+        Parameters    : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: salesPartner_id,
+            ValueListProperty: 'id'
+        }]
     };
     brand                         @Core.Computed;
-    brand                         @Common: {
+    brand                         @Common                         : {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
@@ -24,30 +28,30 @@ annotate service.Offers with {
     carConfigurationIsValid       @Core.Computed;
     carConfigurationConfiguredAt  @Core.Computed;
     carConfigurationModel         @Core.Computed;
-    carConfigurationModel         @Common: {
+    carConfigurationModel         @Common                         : {
         Text           : carConfigurationModel.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
     carConfigurationExteriorColor @Core.Computed;
-    carConfigurationExteriorColor @Common: {
+    carConfigurationExteriorColor @Common                         : {
         Text           : carConfigurationExteriorColor.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
     carConfigurationInteriorColor @Core.Computed;
-    carConfigurationInteriorColor @Common: {
+    carConfigurationInteriorColor @Common                         : {
         Text           : carConfigurationInteriorColor.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
     carConfigurationRoofColor     @Core.Computed;
-    carConfigurationRoofColor     @Common: {
+    carConfigurationRoofColor     @Common                         : {
         Text           : carConfigurationRoofColor.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
-    hasSalesPartner             @Core.Computed;
+    hasSalesPartner               @Core.Computed;
 };
 
 annotate service.SalesPartners with {

@@ -33,6 +33,11 @@ sap.ui.define([],
                     'Models.interiorColors.id',
                     'Models.roofColors.id'
                 ]
+            },
+            DWBBOBrand: {
+                code: ['Models.brand.code'],
+                'salesType_id': ['Models.salesType.id'],
+                'salesType_brand_code': ['Models.salesType.brand_code']
             }
         }
 

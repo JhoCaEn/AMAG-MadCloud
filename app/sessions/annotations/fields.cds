@@ -2,19 +2,23 @@ using AppSessionsService as service from '../../../srv';
 
 annotate service.Sessions with {
     projectType  @Core.Immutable;
-    projectType  @Common: {
+    projectType  @Common                         : {
         Text           : projectType.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
-    
-    salesPartner @Common: {
-        Text           : salesPartner.name,
-        TextArrangement: #TextOnly,
-        ValueListWithFixedValues
+
+    salesPartner @Common.ValueListWithFixedValues: true;
+    salesPartner @Common.ValueList               : {
+        CollectionPath: 'SalesPartners',
+        Parameters    : [{
+            $Type            : 'Common.ValueListParameterInOut',
+            LocalDataProperty: salesPartner_id,
+            ValueListProperty: 'id'
+        }]
     };
 
-    brand @Common: {
+    brand        @Common                         : {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
@@ -38,9 +42,9 @@ annotate service.ProjectTypes with {
 }
 
 annotate service.SalesPartners with {
-    id @UI.Hidden;
     id @Common: {
         Text           : name,
-        TextArrangement: #TextOnly
+        TextArrangement: #TextFirst,
+        ValueListWithFixedValues
     };
-}
+};

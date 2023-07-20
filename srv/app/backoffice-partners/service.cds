@@ -18,7 +18,10 @@ service AppBackofficePartnersService {
         createdAt,
         modifiedAt,
         brands,
-        usedInSoldToPartners
+        usedInSoldToPartners,
+        usedInShipToPartners,
+        usedInBillToPartners,
+        usedInPaidByPartners
     } actions {
         action synchronise(in : $self);
     };

@@ -66,6 +66,14 @@ annotate service.Models with {
             },
         ]
     };
+    
+    salesTypeId             @Common          : {
+        SemanticObject       : 'DWBBOBrand',
+        SemanticObjectMapping: [{
+            LocalProperty         : salesTypeId,
+            SemanticObjectProperty: 'id'
+        }]
+    };
 
     engine             @Common          : {
         Text           : engine.name,

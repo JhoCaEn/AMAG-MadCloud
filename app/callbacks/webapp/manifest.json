@@ -121,7 +121,23 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
-              "entitySet": "Callbacks"
+              "entitySet": "Callbacks",
+              "content": {
+                "header": {
+                  "actions": {
+                    "navigateToSessionDisplay": {
+                      "press": ".extension.ch.amag.retail.dwb.callbacks.controller.Callback.navigate",
+                      "text": "{{navigateToSessionDisplay}}",
+                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'DWBSession-display'}"
+                    },
+                    "navigateToOfferManage": {
+                      "press": ".extension.ch.amag.retail.dwb.callbacks.controller.Callback.navigate",
+                      "text": "{{navigateToOfferManage}}",
+                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'DWBOffer-manage'}"
+                    }
+                  }
+                }
+              }
             }
           },
           "contextPattern": "/Callbacks({key})"
@@ -131,6 +147,15 @@
     "contentDensities": {
       "compact": true,
       "cozy": true
+    },
+    "extends": {
+        "extensions": {
+            "sap.ui.controllerExtensions": {
+                "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.callbacks::Callback": {
+                    "controllerName": "ch.amag.retail.dwb.callbacks.controller.Callback"
+                }
+            }
+        }
     }
   },
   "sap.cloud": {

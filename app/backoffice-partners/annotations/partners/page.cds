@@ -59,6 +59,48 @@ annotate service.Partners with @UI: {
                 }]
             }, ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandShipToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandShipToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandShipToPartners}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandShipToPartnersFacet',
+                    Target: 'usedInShipToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandBillToPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandBillToPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandBillToPartners}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandBillToPartnersFacet',
+                    Target: 'usedInBillToPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'PartnerBrandPaidByPartnersSection',
+            Facets: [{
+                $Type : 'UI.CollectionFacet',
+                ID    : 'PartnerBrandPaidByPartnersSubSection',
+                Label : '{i18n>BackofficePartners.PartnerBrandPaidByPartners}',                
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'PartnerBrandPaidByPartnersFacet',
+                    Target: 'usedInPaidByPartners/@UI.PresentationVariant'
+                }]
+            }, ]
+        },
     ],
 
     FieldGroup #General     : {
