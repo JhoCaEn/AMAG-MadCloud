@@ -45,7 +45,11 @@
                 "Offers": {
                     "semanticObject": "DWBOffer",
                     "action": "manage"
-                }
+                },
+				"Callback": {
+					"semanticObject": "DWBCallback",
+					"action": "execute"					
+				}
             }
         }
     },

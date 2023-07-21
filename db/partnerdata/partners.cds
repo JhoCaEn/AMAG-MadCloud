@@ -14,14 +14,14 @@ entity Partners : replicated {
 
         brands               : Composition of many db.PartnerBrands
                                    on brands.partner = $self;
-        usedInSoldToPartners : Composition of many db.PartnerBrandSoldToPartners
-                                   on usedInSoldToPartners.partner = $self;
-        usedInShipToPartners : Composition of many db.PartnerBrandShipToPartners
-                                   on usedInShipToPartners.partner = $self;
-        usedInBillToPartners : Composition of many db.PartnerBrandBillToPartners
-                                   on usedInBillToPartners.partner = $self;
-        usedInPaidByPartners : Composition of many db.PartnerBrandPaidByPartners
-                                   on usedInPaidByPartners.partner = $self;
+        usedInSoldToPartners : Composition of many db.PartnerUsedInSoldToPartners
+                                   on usedInSoldToPartners.soldToPartner = $self;
+        usedInShipToPartners : Composition of many db.PartnerUsedInShipToPartners
+                                   on usedInShipToPartners.shipToPartner = $self;
+        usedInBillToPartners : Composition of many db.PartnerUsedInBillToPartners
+                                   on usedInBillToPartners.billToPartner = $self;
+        usedInPaidByPartners : Composition of many db.PartnerUsedInPaidByPartners
+                                   on usedInPaidByPartners.paidByPartner = $self;
 }
 
 type Partner : Association to Partners;

@@ -14,28 +14,29 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             Sessions
         } = this.entities
 
-        this.on('createSession', async ({ data: { salesPartner_id, brand_code, projectType, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } } = {}) => createSession({ salesPartner_id, brand_code, projectType, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd }))
+        this.on('createSession', async ({ data } = {}) => createSession(data))
 
         this.on('prepare', async ({ params: [{ ID } = {}] = [] } = {}) => prepare({ ID }))
 
         const createSession = async ({ salesPartner_id, brand_code, projectType, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } = {}) => {
-            const sessionId = cds.utils.uuid()
 
             const entry = {
-                ID: sessionId,
-                salesPartner_id: salesPartner_id || null,
-                brand_code: brand_code || null,
-                projectType_code: projectType || null,
-                customerProjectName: customerProjectName || null,
-                customerProjectNumber: customerProjectNumber || null,
-                fleetProjectNumber: fleetProjectNumber || null,
-                fleetProjectCompanyNumber: fleetProjectCompanyNumber || null,
-                ocd: ocd || null
+                salesPartner_id: salesPartner_id,
+                brand_code: brand_code,
+                projectType_code: projectType,
+                customerProjectName: customerProjectName,
+                customerProjectNumber: customerProjectNumber,
+                fleetProjectNumber: fleetProjectNumber,
+                fleetProjectCompanyNumber: fleetProjectCompanyNumber,
+                ocd: ocd
             }
 
-            await db.create(Sessions, entry)
+            const session = await this.send({
+                event: 'CREATE',
+                query: db.create(Sessions, entry)
+            })
 
-            return sessionId
+            return session.ID
         }
 
         const prepare = async ({ ID }) => {
@@ -46,38 +47,34 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             if (!session)
                 throw new ValidationError('SESSION_ID_NOT_VALID')
 
-            const { isPrepared, ocd, salesPartner_id, brand_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber } = session
+            const { isPrepared, ocd, salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber } = session
 
             if (isPrepared)
                 throw new ValidationError('SESSION_ALREADY_PREPARED')
 
             await db.update(Sessions, ID).set({ isPrepared: true })
 
-            const callbackSemantic = 'session-display'
-            const callbackParameters = {
-                "ID": ID,
-                "done": true
-            }
-
             const callback_ID = await callbackService.send('createCallback', {
-                callbackSemantic,
-                callbackParameters
-            })
+                semantic: 'session-display',
+                parameters: JSON.stringify({
+                  ID,
+                  done: true
+                })
+              })
 
-            if (ocd) {
+            if (!ocd) {
                 const offer_ID = await offerService.send('createOffer', {
                     salesPartner_id,
                     brand_code,
                     customerProjectName,
+                    projectType_code,
                     customerProjectNumber,
                     fleetProjectNumber,
                     fleetProjectCompanyNumber,
                     callback_ID
                 })
 
-                const forwardToOffer = true
-
-                await db.update(Sessions, ID).set({ offer_ID , forwardToOffer})
+                await db.update(Sessions, ID).set({ offer_ID , forwardToOffer: true})
             }
 
         }

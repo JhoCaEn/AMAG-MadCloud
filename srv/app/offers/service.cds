@@ -21,11 +21,17 @@ service AppOffersService {
         salesPartner_id : db.Partners:id, 
         brand_code : db.Brands:code, 
         customerProjectName : String,
+        projectType_code: db.ProjectTypes: code,
         customerProjectNumber : String,
         fleetProjectNumber: String,
         fleetProjectCompanyNumber: String,
         callback_ID : db.Callbacks:ID
     ) returns db.Offers: ID;
+
+    action checkStartupParams(ID : Offers:ID)                                                                                                                                                                                                       returns {
+        ocd : Offers:ocd;
+        IsActiveEntity : Boolean;
+    };
 
     @readonly
 

@@ -1,0 +1,27 @@
+﻿code,name
+1,Kundenfahrzeug
+2,Lagerfahrzeug
+3,Wettbewerb
+5,Konsignation
+6,Dienstwagen
+7,Einsatzwagen
+8,Vorführwagen
+9,Sponsorfahrzeug
+10,Pressefahrzeug
+11,Funktionsfahrzeug
+12,Totalmobil-Servicemobil
+13,Mietwagen  RAC-Firma
+14,Mietwagen Partner
+15,Mitarb. AMAG Group AG
+17,Behördenfahrzeug
+18,Instruktorfahrzeug
+19,Totalschaden
+20,Ausstellungsfahrzeug
+21,Schulungsfahrzeug
+22,Markteinführungsfahrzeug
+23,Ersatzwagen
+24,Showroom Fahrzeug
+25,Diebstahl
+26,Minderwert
+27,Importeurs Kunden Fahrzeug
+33,Eigenzulassungen

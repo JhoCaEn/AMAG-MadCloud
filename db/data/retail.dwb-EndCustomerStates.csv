@@ -1,0 +1,41 @@
+﻿code,name
+1,Händler
+2,Mitvertreter
+3,Privatkunde
+4,Importeur
+5,Ständiger Vermittler
+6,Servicepartner
+7,Firmenkunde (Wagenpark < 4)
+10,AMAG Leasing
+11,AMAG Services
+14,Fremdgarage
+20,Journalisten
+21,Diplomaten
+22,Taxihalter
+23,Fahrschule
+24,Mietwagen
+25,Wohltätigkeit Institute
+26,KMU Privatkunde
+27,KMU Firma
+28,Kleingewerbe
+29,Stadt / Kanton
+30,Gemeinde
+31,Polizei
+32,Invaliden
+33,Ambulanz / Feuerwehr
+40,Europcar
+41,Hertz
+42,Avis
+43,Budget
+44,Sixt
+45,Enterprise
+50,Kleinflottenfirma
+51,Grossflottenfirma
+52,Privat Kleinflottenfirma
+53,Privat Grossflottenfirma
+55,Wagenpark in Arbeit
+60,Mitarbeiterfahrzeug
+70,Behörden Eidg. Betrieb
+75,Direktlieferungen
+80,Markteinführung
+98,Versicherung

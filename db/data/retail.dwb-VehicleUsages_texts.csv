@@ -1,0 +1,80 @@
+﻿code,locale,name
+1,de,Kundenfahrzeug
+1,en,Customer vehicle
+1,fr,Véhicule de client
+1,it,Veicolo cliente
+2,de,Lagerfahrzeug
+2,fr,Véhicule en stock
+2,it,Veicolo in stock
+3,de,Wettbewerb
+3,fr,Compétition
+3,it,Concorso
+5,de,Konsignation
+5,fr,Consignation
+5,it,Consegna
+6,de,Dienstwagen
+6,fr,Véhicule de service
+6,it,Veicolo di servizio
+7,de,Einsatzwagen
+7,fr,Véhicule d'intervention
+7,it,Veicolo d'intervento
+8,de,Vorführwagen
+8,fr,Véhicule démonstration
+8,it,Veicolo di dimostrazione
+9,de,Sponsorfahrzeug
+9,fr,Véhicule sponsorisation
+9,it,Veicolo sponsor
+10,de,Pressefahrzeug
+10,fr,Véhicule de presse
+10,it,Veicolo stampa
+11,de,Funktionsfahrzeug
+11,fr,Véhicule de fonction
+11,it,Veicolo funzionale
+12,de,Totalmobil-Servicemobil
+12,fr,Servicemobile Totalmobil
+12,it,Totalmobil-Servicemobil
+13,de,Mietwagen  RAC-Firma
+13,fr,Véhicule location / RAC-Firma
+13,it,Veic.a noleggio / ditta RAC
+14,de,Mietwagen Partner
+14,fr,Véhicule location partenaire
+14,it,Veicolo noleggio partner
+15,de,Mitarb. AMAG Group AG
+15,fr,Collab. AMAG Group SA
+15,it,Collab. AMAG Group SA
+17,de,Behördenfahrzeug
+17,fr,Véhicule administration
+17,it,Veicolo per autorità
+18,de,Instruktorfahrzeug
+18,fr,Véhicule d'instructeur
+18,it,Veicolo per istruttori
+19,de,Totalschaden
+19,fr,Sinistre total
+19,it,Danno totale
+20,de,Ausstellungsfahrzeug
+20,fr,Véhicule d'exposition
+20,it,Veicolo d' esposizione
+21,de,Schulungsfahrzeug
+21,fr,Véhicule de formation
+21,it,Veicolo di formazione
+22,de,Markteinführungsfahrzeug
+22,fr,Véhicules lancem. comm.
+22,it,Veicoli introduz.sul mercato
+23,de,Ersatzwagen
+23,fr,Véhicule de remplacement
+23,it,Veicolo di cortesia
+24,de,Showroom Fahrzeug
+24,fr,Véhicule d'exposition
+24,it,Showroom veicolo
+25,de,Diebstahl
+25,fr,Vol
+25,it,Furto
+26,de,Minderwert
+26,fr,Déclassement
+26,it,Valore minore
+27,de,Importeurs Kunden Fahrzeug
+27,fr,Véhicule client importateur
+27,it,Veicolo cliente importatore
+33,de,Eigenzulassungen
+33,fr,Immatriculations propres
+33,it,Immatricolazioni proprie

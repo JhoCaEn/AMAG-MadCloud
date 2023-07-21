@@ -1,5 +1,9 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 using from '../partner-brands/list';
+using from '../partner-used-in-sold-to-partners/list';
+using from '../partner-used-in-ship-to-partners/list';
+using from '../partner-used-in-bill-to-partners/list';
+using from '../partner-used-in-paid-by-partners/list';
 
 annotate service.Partners with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
@@ -29,77 +33,63 @@ annotate service.Partners with @UI: {
                     ID    : 'GeneralFacet',
                     Target: '@UI.FieldGroup#General'
                 }]
-            }, ],
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'PartnerBrandsSection',
-            Facets: [{
+            },{
                 $Type : 'UI.CollectionFacet',
                 ID    : 'PartnerBrandsSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrands}',                
+                Label : '{i18n>BackofficePartners.PartnerBrands}',
                 Facets: [{
                     $Type : 'UI.ReferenceFacet',
                     ID    : 'PartnerBrandsFacet',
                     Target: 'brands/@UI.PresentationVariant'
                 }]
-            }, ]
+            }, ],
         },
         {
             $Type : 'UI.CollectionFacet',
-            ID    : 'PartnerBrandSoldToPartnersSection',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'PartnerBrandSoldToPartnersSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrandSoldToPartners}',                
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'PartnerBrandSoldToPartnersFacet',
-                    Target: 'usedInSoldToPartners/@UI.PresentationVariant'
-                }]
-            }, ]
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'PartnerBrandShipToPartnersSection',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'PartnerBrandShipToPartnersSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrandShipToPartners}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'PartnerBrandShipToPartnersFacet',
-                    Target: 'usedInShipToPartners/@UI.PresentationVariant'
-                }]
-            }, ]
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'PartnerBrandBillToPartnersSection',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'PartnerBrandBillToPartnersSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrandBillToPartners}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'PartnerBrandBillToPartnersFacet',
-                    Target: 'usedInBillToPartners/@UI.PresentationVariant'
-                }]
-            }, ]
-        },
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'PartnerBrandPaidByPartnersSection',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'PartnerBrandPaidByPartnersSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrandPaidByPartners}',                
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'PartnerBrandPaidByPartnersFacet',
-                    Target: 'usedInPaidByPartners/@UI.PresentationVariant'
-                }]
-            }, ]
+            ID    : 'UsedInPartnerRolesSection',
+            Label : '{i18n>BackofficePartners.UsedInPartnerRoles}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInSoldToPartnersSubSection',
+                    Label : '{i18n>PartnerUsedInSoldToPartners}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInSoldToPartnersFacet',
+                        Target: 'usedInSoldToPartners/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInShipToPartnersSubSection',
+                    Label : '{i18n>PartnerUsedInShipToPartners}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInShipToPartnersFacet',
+                        Target: 'usedInShipToPartners/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInBillToPartnersSubSection',
+                    Label : '{i18n>PartnerUsedInBillToPartners}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInBillToPartnersFacet',
+                        Target: 'usedInBillToPartners/@UI.PresentationVariant'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInPaidByPartnersSubSection',
+                    Label : '{i18n>PartnerUsedInPaidByPartners}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInPaidByPartnersFacet',
+                        Target: 'usedInPaidByPartners/@UI.PresentationVariant'
+                    }]
+                }
+            ]
         },
     ],
 
@@ -110,7 +100,7 @@ annotate service.Partners with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: isSalesPartner
-            },            
+            },
             {
                 $Type: 'UI.DataField',
                 Value: hasBrands

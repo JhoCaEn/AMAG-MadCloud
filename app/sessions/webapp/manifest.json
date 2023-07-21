@@ -56,6 +56,15 @@
         "sap.ui.integration": {}
       }
     },
+    "extends": {
+      "extensions": {
+          "sap.ui.controllerExtensions": {
+              "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.sessions::Session": {
+                  "controllerName": "ch.amag.retail.dwb.sessions.controller.Session"
+              }
+          }
+      }
+    },
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",

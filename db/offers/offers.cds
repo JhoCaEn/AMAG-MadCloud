@@ -24,6 +24,7 @@ entity Offers : cuid, managed {
     carConfigurationInteriorColor : db.Color;
     carConfigurationRoofColor     : db.Color;
     callback                      : db.Callback;
+    projectType                   : db.ProjectType;
 
 
     selectableBrands              : Association to many db.OfferSelectableBrands

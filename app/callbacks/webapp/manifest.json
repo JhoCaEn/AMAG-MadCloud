@@ -35,6 +35,16 @@
           "subTitle": "{{AppSubtitle}}",
           "icon": ""
         }
+      },
+      "outbounds": {
+        "offer-manage": {
+          "semanticObject": "DWBOffer",
+          "action": "manage"
+        },
+        "session-display": {
+          "semanticObject": "DWBSession",
+          "action": "display"
+        }
       }
     }
   },
@@ -122,18 +132,19 @@
           "options": {
             "settings": {
               "entitySet": "Callbacks",
+							"editableHeaderContent": false,
               "content": {
                 "header": {
                   "actions": {
                     "navigateToSessionDisplay": {
                       "press": ".extension.ch.amag.retail.dwb.callbacks.controller.Callback.navigate",
                       "text": "{{navigateToSessionDisplay}}",
-                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'DWBSession-display'}"
+                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'session-display'}"
                     },
                     "navigateToOfferManage": {
                       "press": ".extension.ch.amag.retail.dwb.callbacks.controller.Callback.navigate",
                       "text": "{{navigateToOfferManage}}",
-                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'DWBOffer-manage'}"
+                      "visible": "{= !${ui>/isEditable} && %{semantic_code} === 'offer-manage'}"
                     }
                   }
                 }

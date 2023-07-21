@@ -114,11 +114,6 @@
                     "target": "PartnerBrand"
                 },
                 {
-                    "pattern": "Partners({key})/usedInSoldToPartners({key2}):?query:",
-                    "name": "UsedInSoldToPartners",
-                    "target": "UsedInSoldToPartners"
-                },
-                {
                     "pattern": "Partners({key})/brands({key2})/contracts({key3}):?query:",
                     "name": "PartnerBrandContract",
                     "target": "PartnerBrandContract"
@@ -151,6 +146,7 @@
                     "options": {
                         "settings": {
                             "entitySet": "Partners",
+                            "sectionLayout": "Tabs",
                             "navigation": {
                                 "brands": {
                                     "detail": {
@@ -159,7 +155,22 @@
                                 },
                                 "usedInSoldToPartners": {
                                     "detail": {
-                                        "route": "UsedInSoldToPartners"
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInShipToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInBillToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInPaidByPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
                                     }
                                 }
                             }
@@ -214,6 +225,26 @@
                         }
                     }
                 },
+                "UsedInPaidByPartners": {
+                    "type": "Component",
+                    "id": "UsedInPaidByPartners",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrandPaidByPartners"
+                        }
+                    }
+                },
+                "UsedInBillToPartners": {
+                    "type": "Component",
+                    "id": "UsedInBillToPartners",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PartnerBrandBillToPartners"
+                        }
+                    }
+                },
                 "PartnerBrandContract": {
                     "type": "Component",
                     "id": "PartnerBrandContract",
@@ -231,6 +262,9 @@
                 "sap.ui.controllerExtensions": {
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-partners::PartnerBrand": {
                         "controllerName": "ch.amag.retail.dwb.backoffice-partners.controller.PartnerBrand"
+                    },
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.backoffice-partners::Partner": {
+                        "controllerName": "ch.amag.retail.dwb.backoffice-partners.controller.Partner"
                     }
                 }
             }

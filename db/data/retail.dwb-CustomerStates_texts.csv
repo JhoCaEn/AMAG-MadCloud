@@ -1,0 +1,26 @@
+﻿code,locale,name
+1,de,Händler
+1,en,Dealer
+1,fr,Concessionnaire
+1,it,Concessionario
+5,de,Importeur
+5,fr,Importateur
+5,it,Importatore
+10,de,AMAG Leasing
+10,fr,AMAG Leasing
+10,it,AMAG Leasing
+15,de,Mitarbeiter
+15,fr,Collaborateur
+15,it,Collaboratori
+20,de,Behörde
+20,fr,Fonctionnaire
+20,it,Autorità
+25,de,Versicherung
+25,fr,Assurance
+25,it,Assicurazione
+30,de,Europcar
+30,fr,Europcar
+30,it,Europcar
+35,de,CRH / AZV
+35,fr,CRH
+35,it,CRH

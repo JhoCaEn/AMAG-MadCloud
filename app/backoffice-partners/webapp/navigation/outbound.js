@@ -8,7 +8,8 @@ sap.ui.define([],
                     'Partners.brands.soldToPartners.partner_id',
                     'Partners.brands.shipToPartners.partner_id',
                     'Partners.brands.billToPartners.partner_id',
-                    'Partners.brands.paidByPartners.partner_id'
+                    'Partners.brands.paidByPartners.partner_id',
+                    'partner_id'
                 ]
             }
         }

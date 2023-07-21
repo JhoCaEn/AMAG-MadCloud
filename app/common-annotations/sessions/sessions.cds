@@ -2,11 +2,9 @@ using {retail.dwb as db} from '../../../db';
 
 annotate db.Sessions with {
     ID                        @title: '{i18n>General.ID}';
-    createdAt                 @title: '{i18n>replicated.createdAt}';
-    modifiedAt                @title: '{i18n>replicated.modifiedAt}';
     salesPartner              @title: '{i18n>SalesPartner}';
     brand                     @title: '{i18n>Brand}';
-    projectType               @title: '{i18n>Sessions.projectType}';
+    projectType               @title: '{i18n>ProjectType}';
     customerProjectName       @title: '{i18n>Sessions.customerProjectName}';
     customerProjectNumber     @title: '{i18n>Sessions.customerProjectNumber}';
     fleetProjectNumber        @title: '{i18n>Sessions.fleetProjectNumber}';

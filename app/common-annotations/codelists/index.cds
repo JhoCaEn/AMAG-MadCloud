@@ -5,4 +5,4 @@ using from './modelcategories';
 using from './characteristics';
 using from './brandcontracttypes';
 using from './brandcontracttypemodelcategories';
-using from './semanticobjects';
+using from './callbacksemantics';

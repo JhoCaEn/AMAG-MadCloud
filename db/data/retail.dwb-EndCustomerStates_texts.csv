@@ -1,0 +1,120 @@
+﻿code,locale,name
+1,de,Händler
+1,fr,Concessionnaire
+1,it,Concessionario
+2,de,Mitvertreter
+2,fr,Coagent
+2,it,Coagente
+3,de,Privatkunde
+3,en,private customer
+3,fr,Client privé
+3,it,Cliente privato
+4,de,Importeur
+4,fr,Importateur
+4,it,Importatore
+5,de,Ständiger Vermittler
+5,fr,Intermédiaire permanent
+5,it,Intermediario permanente
+6,de,Servicepartner
+6,fr,prestataire de service
+6,it,partner di servizio
+7,de,Firmenkunde (Wagenpark < 4)
+7,fr,Client d'entreprise
+7,it,Cliente aziendale
+10,de,AMAG Leasing
+10,fr,AMAG Leasing
+10,it,AMAG Leasing
+11,de,AMAG Services
+11,fr,AMAG Services
+11,it,AMAG Services
+14,de,Fremdgarage
+14,fr,Garage hors du groupe AMAG
+14,it,Garage stranieri
+20,de,Journalisten
+20,fr,Journalistes
+20,it,Giornalisti
+21,de,Diplomaten
+21,fr,Diplomates
+21,it,Diplomatici
+22,de,Taxihalter
+22,fr,Propriétaire de taxi
+22,it,Tassista
+23,de,Fahrschule
+23,fr,Auto-école
+23,it,Scuola guida
+24,de,Mietwagen
+24,fr,Véhicule de location
+24,it,Véhicule de location
+25,de,Wohltätigkeit Institute
+25,fr,Oeuvre de bienfaisance
+25,it,Istituti di beneficienza
+26,de,KMU Privatkunde
+26,fr,PME client privé
+26,it,PMI cliente privato
+27,de,KMU Firma
+27,fr,PME entreprise
+27,it,PMI ditta
+28,de,Kleingewerbe
+28,fr,Artisans
+28,it,Artigiani
+29,de,Stadt / Kanton
+29,fr,Canton / Ville
+29,it,Cantone / città
+30,de,Gemeinde
+30,fr,Commune
+30,it,Comune
+31,de,Polizei
+31,fr,Police
+31,it,Polizia
+32,de,Invaliden
+32,fr,Handicapés
+32,it,handicappato
+33,de,Ambulanz / Feuerwehr
+33,fr,Ambulance / Pompiers
+33,it,Ambulanza / Pompieri
+40,de,Europcar
+40,fr,Europcar
+40,it,Europcar
+41,de,Hertz
+41,fr,Hertz
+41,it,Hertz
+42,de,Avis
+42,fr,Avis
+42,it,Avis
+43,de,Budget
+43,fr,Budget
+43,it,Budget
+44,de,Sixt
+44,fr,Sixt
+44,it,Sixt
+45,de,Enterprise
+45,fr,Enterprise
+45,it,Enterprise
+50,de,Kleinflottenfirma
+50,fr,Petite flotte (entreprise)
+50,it,Ditta piccola flotta
+51,de,Grossflottenfirma
+51,fr,Grande flotte (entreprise)
+51,it,Ditta grande flotta
+52,de,Privat Kleinflottenfirma
+52,fr,Petite flotte (privé)
+52,it,Privato ditta piccola flotta
+53,de,Privat Grossflottenfirma
+53,fr,Grande flotte (privé)
+53,it,Privato ditta grande flotta
+55,de,Wagenpark in Arbeit
+55,fr,parc véhicules en préparation
+55,it,parco veicoli in preparazione
+60,de,Mitarbeiterfahrzeug
+70,de,Behörden Eidg. Betrieb
+70,fr,fonctionnaires fédéraux
+70,it,Autorità azienda federale
+75,de,Direktlieferungen
+75,fr,Livraison directe
+75,it,Consegna diretta
+80,de,Markteinführung
+80,fr,lancement comm.
+80,it,introduz. sul mercato
+98,de,Versicherung
+98,fr,Assurance
+98,it,Assicurazione

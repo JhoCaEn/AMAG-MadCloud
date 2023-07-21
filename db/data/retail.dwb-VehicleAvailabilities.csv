@@ -1,0 +1,8 @@
+code,name
+01,Fahrzeug gesperrt
+02,Fahrzeug disponibel auf Anfrage
+03,Fahrzeug reserviert
+04,Showroom Fahrzeug
+05,Eigenes Fahrzeug
+06,Kundenfahrzeug
+07,Fahrzeug disponibel frei

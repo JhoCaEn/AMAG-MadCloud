@@ -119,7 +119,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 throw new ValidationError('CARCONFIGURATION_MODEL_ID_NOT_VALID')
             
 
-            await db.update(Configurations.drafts, ID).set({ model_id })
+            await db.update(Configurations.drafts, ID).set({ model_id, preselectedModel_id: null })
             await db.update(SelectableModels, { configuration_ID }).set({ selected: false })
             await db.update(SelectableModels, { configuration_ID, model_id }).set({ selected: true })
 
@@ -137,8 +137,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             await prepareSelectableModelRestrictions({ID})
 
-            await db.update(Configurations.drafts, ID).set({preselectedModel_id: null})
-            await applyPreselected(ID)
+            await applyPreselected({ ID })
         }
 
         const selectColor = async ({ ID, id }) => {
@@ -154,18 +153,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-
-            const configuration = await db.read(Configurations.drafts, ID, ['preselectedExteriorColor_id', 'preselectedInteriorColor_id', 'preselectedRoofColor_id'])
-            const { preselectedExteriorColor_id, preselectedInteriorColor_id, preselectedRoofColor_id } = configuration
-
-            if (preselectedExteriorColor_id)
-                await db.update(Configurations.drafts, ID).set({preselectedExteriorColor_id: null})
-            else if (preselectedInteriorColor_id)
-                await db.update(Configurations.drafts, ID).set({preselectedInteriorColor_id: null})
-            else if (preselectedRoofColor_id)
-                await db.update(Configurations.drafts, ID).set({preselectedRoofColor_id: null})
-
-            await applyPreselected(ID)
 
 
             const color = await db.read(SelectableColors, { configuration_ID, color_id }, ['selectable', 'type_code'])
@@ -184,14 +171,23 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const colorFields = {
                 'E': 'exteriorColor_id',
                 'I': 'interiorColor_id',
+                'R': 'preselectedRoofColor_id'
+            }
+
+            const preselectedColorFields = {
+                'E': 'preselectedExteriorColor_id',
+                'I': 'preselectedInteriorColor_id',
                 'R': 'roofColor_id'
             }
 
             await db.update(Configurations.drafts, ID).set({
-                [colorFields[type_code]]: id
+                [colorFields[type_code]]: id,
+                [preselectedColorFields[type_code]]: null
             })
 
             await checkColorCombinations({ ID })
+
+            await applyPreselected({ ID })
         }
 
         const selectEquipment = async ({ ID, id }) => {
@@ -233,7 +229,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
 
             await db.delete(PreselectedEquipments.drafts, { configuration_ID: ID, equipment_id })
-            await applyPreselected(ID, id)
+            await applyPreselected({ ID })
 
         }
 
@@ -338,15 +334,20 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 prepareSelectableSalesPrices({ ID })
             ])
 
-            await applyPreselected(ID)
+            await applyPreselected({ ID })
 
         }
 
 
-        const applyPreselected = async (ID) => {
+        const applyPreselected = async ({ ID }) => {
+            if (!ID)
+                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_GIVEN')
 
             const configuration = await db.read(Configurations.drafts, ID, ['preselectedModel_id', 'preselectedExteriorColor_id', 'preselectedInteriorColor_id', 'preselectedRoofColor_id'])
 
+            if (!configuration)
+                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
+                
             const  { 
                 preselectedModel_id,
                 preselectedExteriorColor_id,
@@ -356,22 +357,22 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             } = configuration
 
             if(preselectedModel_id)
-                return await selectModel({ID, id : preselectedModel_id})
+                return selectModel({ID, id : preselectedModel_id})
 
             if(preselectedExteriorColor_id)
-                return await selectColor({ID, id : preselectedExteriorColor_id})
+                return selectColor({ID, id : preselectedExteriorColor_id})
             
             if(preselectedInteriorColor_id) 
-                return await selectColor({ID, id : preselectedInteriorColor_id})
+                return selectColor({ID, id : preselectedInteriorColor_id})
 
             if(preselectedRoofColor_id)
-                return await selectColor({ID, id : preselectedRoofColor_id})
+                return selectColor({ID, id : preselectedRoofColor_id})
 
             const preselectedEquipment = await db.read(PreselectedEquipments.drafts, {configuration_ID: ID})
 
-            if(preselectedEquipment) {
+            if (preselectedEquipment) {
                 const id = preselectedEquipment.equipment_id
-                return await selectEquipment({ID, id})
+                return selectEquipment({ID, id})
             }
      
         }

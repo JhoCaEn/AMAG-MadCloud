@@ -23,32 +23,38 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         this.on('selectBrand', async ({ params: [{ ID } = {}] = [], data: { code } = {} } = {}) => selectBrand({ ID, code }))
         this.on('createCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => createCarConfiguration({ ID }))
         this.on('finishCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => finishCarConfiguration({ ID }))
-        this.on('createOffer', async ({ data: { salesPartner_id, brand_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID }))
+        this.on('createOffer', async ({ data: { salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID }))
 
         this.before('CREATE', Offers, async ({ data: { ID } = {} } = {}) => checkOfferSaveable(ID))
         this.on('CREATE', Offers, async (req, next) => save(req, next))
+
+        this.on('checkStartupParams', async ({ data: { ID } = {} }) => checkStartupParams({ ID }))
 
         this.before('NEW', CarConfigurationEquipments, async (req) => {
             req.data.equipment_id = 'PR001852'
         })
 
-        const createOffer = async ({ salesPartner_id, brand_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } = {}) => {
-            const offerId = cds.utils.uuid()
+        const createOffer = async ({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } = {}) => {
 
-            const entry = {
-                ID: offerId,
-                salesPartner_id: salesPartner_id || null,
-                brand_code: brand_code || null,
-                customerProjectName: customerProjectName || null,
-                customerProjectNumber: customerProjectNumber || null,
-                fleetProjectNumber: fleetProjectNumber || null,
-                fleetProjectCompanyNumber: fleetProjectCompanyNumber || null,
-                callback_ID: callback_ID || null
-            }
+            const offer = await this.send({
+                event: 'NEW',
+                query: db.create(Offers, {})
+            })
 
-            await db.create(Offers, entry)
+            const { ID } = offer
 
-            return offerId
+            await db.update(Offers.drafts, ID).set({
+                salesPartner_id,
+                brand_code,
+                customerProjectName,
+                projectType_code,
+                customerProjectNumber,
+                fleetProjectNumber,
+                fleetProjectCompanyNumber,
+                callback_ID,
+            })
+
+            return ID
         }
 
         const copy = async ({ ID: sourceID } = {}) => {
@@ -93,18 +99,15 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             if (!brand_code)
                 throw new ValidationError('OFFERS_NO_BRAND')
 
-            const callbackParamsPayload = {
-                "ID": ID,
-                "carConfigurationDone": true
-            }
-    
             const callback_ID = await callbackService.send('createCallback', {
                 semantic : 'offer-manage',
-                parameters: JSON.stringify(callbackParamsPayload)
+                parameters: JSON.stringify({
+                    ID,
+                    carConfigurationDone: true
+                })
             })
-    
 
-            const carConfigurationID= await carConfiguratorService.send('createConfiguration', {
+            const carConfigurationID = await carConfiguratorService.send('createConfiguration', {
                 partner_id,
                 brand_code,
                 salesOrganisation: '1000',
@@ -118,9 +121,9 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             })
 
 
-            await db.update(Offers.drafts, ID).set({ carConfigurationID, callback_ID })
+            await db.update(Offers.drafts, ID).set({ carConfigurationID })
 
-            return callback_ID
+            return carConfigurationID
         }
 
         const save = async (req, next) => {
@@ -249,6 +252,16 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             })
         }
 
+        const checkStartupParams = async ({ ID } = {}) => {
+            let offer = await db.read(Offers, ID)
+
+            if (!offer) offer = await db.read(Offers.drafts, ID)
+            
+            return {
+                ocd: offer?.ocd,
+                IsActiveEntity: offer?.IsActiveEntity
+            }
+        }
         return super.init()
     }
 }

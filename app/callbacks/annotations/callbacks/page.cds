@@ -1,11 +1,7 @@
 using AppCallbacksService as service from '../../../../srv';
 
 annotate service.Callbacks with @UI: {
-    HeaderFacets            : [{
-        $Type : 'UI.ReferenceFacet',
-        ID    : 'SynchronisedFacet',
-        Target: '@UI.FieldGroup#History'
-    }, ],
+    HeaderFacets            : [],
 
     Facets                  : [
         {
@@ -39,21 +35,6 @@ annotate service.Callbacks with @UI: {
                 $Type: 'UI.DataField',
                 Value: parameters
             }
-        ]
-    },
-
-    FieldGroup #History: {
-        $Type: 'UI.FieldGroupType',
-        Label: '{i18n>Callbacks.FieldGroup.History}',
-        Data : [
-            {
-                $Type: 'UI.DataField',
-                Value: createdAt
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: modifiedAt
-            },
         ]
     }
 };

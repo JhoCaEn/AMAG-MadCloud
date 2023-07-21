@@ -1,2 +1,2 @@
 using from './vehicles';
-using from './vehicleequipments';
+using from './equipments';

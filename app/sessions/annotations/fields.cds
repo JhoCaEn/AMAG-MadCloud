@@ -2,26 +2,43 @@ using AppSessionsService as service from '../../../srv';
 
 annotate service.Sessions with {
     projectType  @Core.Immutable;
-    projectType  @Common                         : {
+    projectType  @Common          : {
         Text           : projectType.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    salesPartner @Common.ValueListWithFixedValues: true;
-    salesPartner @Common.ValueList               : {
+    salesPartner @Common          : {
+        Text           : salesPartner.name,
+        TextArrangement: #TextFirst
+    };
+    salesPartner @Common.ValueList: {
         CollectionPath: 'SalesPartners',
-        Parameters    : [{
-            $Type            : 'Common.ValueListParameterInOut',
-            LocalDataProperty: salesPartner_id,
-            ValueListProperty: 'id'
-        }]
+        Parameters    : [
+            {
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: salesPartner_id,
+                ValueListProperty: 'id'
+            },
+            {
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'name'
+            }
+        ]
     };
 
-    brand        @Common                         : {
+    brand        @Common          : {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
+    };
+
+    offer        @Common          : {
+        SemanticObject       : 'DWBOffer',
+        SemanticObjectMapping: [{
+            LocalProperty         : offer_ID,
+            SemanticObjectProperty: 'ID'
+        }]
     };
 }
 
@@ -42,6 +59,7 @@ annotate service.ProjectTypes with {
 }
 
 annotate service.SalesPartners with {
+    id @UI.Hidden;
     id @Common: {
         Text           : name,
         TextArrangement: #TextFirst,

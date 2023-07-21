@@ -7,9 +7,15 @@ sap.ui.define([
     return ControllerExtension.extend("ch.amag.retail.dwb.carconfigurator.controller.ext.CarConfiguration", {
         override: {
             routing: {
-                onAfterBinding: async function (oContext) {
-                    const router = this.base.routing
-                    // internalNavigation.navTo(oContext, router)
+                onAfterBinding: async function (configuration) {
+                    if(!configuration) return
+
+                    const intentBasedNavigation = this.base.intentBasedNavigation
+                    const ID = await configuration.requestProperty('callback_ID')
+                    const isActiveEntity = await configuration.requestProperty('IsActiveEntity')
+
+                    if (isActiveEntity && ID) 
+                        intentBasedNavigation.navigateOutbound('Callback', { ID })
                 }
             },
 

@@ -1,11 +1,13 @@
 namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
-using {cuid} from '@sap/cds/common';
-using {replicated} from '../../db';
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
 
-entity Callbacks : cuid, replicated {
-    semantic   : db.SemanticObject @assert.integrity: false;
+entity Callbacks : cuid, managed {
+    semantic   : db.CallbackSemantic @assert.integrity: false;
     parameters : String;
 }
 

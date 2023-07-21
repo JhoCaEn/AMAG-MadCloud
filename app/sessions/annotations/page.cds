@@ -2,13 +2,6 @@ using AppSessionsService as service from '../../../srv';
 
 annotate service.Sessions with @UI: {
 
-    HeaderFacets            : [{
-        $Type : 'UI.ReferenceFacet',
-        ID    : 'SynchronisedFacet',
-        Label : '{i18n>General.FieldGroup.Synchronised}',
-        Target: '@UI.FieldGroup#Synchronised'
-    }, ],
-
     Facets                  : [{
         $Type : 'UI.CollectionFacet',
         ID    : 'GeneralSection',
@@ -24,23 +17,6 @@ annotate service.Sessions with @UI: {
             }]
         }]
     }],
-
-    FieldGroup #Synchronised: {
-        $Type: 'UI.FieldGroupType',
-        Label: '{i18n>General.FieldGroup.Synchronised}',
-        Data : [
-            {
-                $Type: 'UI.DataField',
-                Value: createdAt,
-                Label: '{i18n>General.FieldGroup.Synchronised.createdAt}'
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: modifiedAt,
-                Label: '{i18n>General.FieldGroup.Synchronised.modifiedAt}'
-            },
-        ]
-    },
 
 
     FieldGroup #General     : {

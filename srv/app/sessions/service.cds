@@ -8,14 +8,29 @@ service AppSessionsService {
     };
 
     @readonly
-    entity Brands        as projection on db.Brands;
+    entity Brands        as projection on db.Brands {
+        code, 
+        name
+    };
 
     @readonly
-    entity ProjectTypes  as projection on db.ProjectTypes;
+    entity ProjectTypes  as projection on db.ProjectTypes {
+        code,
+        name
+    };
 
     @readonly
-    entity SalesPartners as projection on db.SalesPartners;
+    entity SalesPartners as projection on db.SalesPartners {
+        id, 
+        name
+    };
 
 
-    action createSession(salesPartner_id : SalesPartners:id, brand_code : Brands:code, projectType : ProjectTypes:code, customerProjectName : String(160), customerProjectNumber : String(50), fleetProjectNumber : String(50), fleetProjectCompanyNumber : String(50), ocd : Integer) returns db.Sessions:ID;
+    @readonly
+    entity Offers as projection on db.Offers {
+        ID
+    };
+
+
+    action createSession(salesPartner_id : SalesPartners:id, brand_code : Brands:code, projectType : ProjectTypes:code, customerProjectName : String, customerProjectNumber : String, fleetProjectNumber : String, fleetProjectCompanyNumber : String, ocd : Integer) returns db.Sessions:ID;
 }

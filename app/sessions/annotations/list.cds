@@ -12,7 +12,8 @@ annotate service.Sessions with @UI: {
         $Type : 'UI.PresentationVariantType',
         Visualizations : ['@UI.LineItem'],
         RequestAtLeast : [
-            ID,
+            ID, 
+            createdAt
         ],
         SortOrder : [
             {

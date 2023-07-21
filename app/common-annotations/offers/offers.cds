@@ -21,7 +21,10 @@ annotate db.Offers with {
 
 };
 
-annotate db.Offers with @Common.SemanticKey: [ocd];
+annotate db.Offers with @Common.SemanticKey: [
+    ocd,
+    ID
+];
 
 annotate db.Offers with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',

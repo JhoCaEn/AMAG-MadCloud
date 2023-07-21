@@ -73,6 +73,9 @@
 		"extends": {
 			"extensions": {
 				"sap.ui.controllerExtensions": {
+					"sap.fe.templates.ListReport.ListReportController#ch.amag.retail.dwb.offers::Offers": {
+						"controllerName": "ch.amag.retail.dwb.offers.controller.Offers"
+					},
 					"sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.offers::Offer": {
 						"controllerName": "ch.amag.retail.dwb.offers.controller.Offer"
 					}
@@ -154,17 +157,6 @@
 							"entitySet": "Offers",
 							"editableHeaderContent": false,
 							"sectionLayout": "Tabs",
-							"content" : {
-								"header": {
-									"actions": {
-										"navigateToCallback": {
-											"text": "{i18n>actions.navigateToCallback}",
-											"press": "ch.amag.retail.dwb.offers.actions.callback.invoke",
-											"visible": "{= ${IsActiveEntity} === false }"
-										}
-									}
-								}
-							},
 							"controlConfiguration": {
 								"@com.sap.vocabularies.UI.v1.FieldGroup#General_Vehicle": {
 									"actions": {

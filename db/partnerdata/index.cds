@@ -6,3 +6,7 @@ using from './shiptopartners';
 using from './billtopartners';
 using from './paidbypartners';
 using from './salespartners';
+using from './usedinsoldtopartners';
+using from './usedinshiptopartners';
+using from './usedinbilltopartners';
+using from './usedinpaidbypartners';
