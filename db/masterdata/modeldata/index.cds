@@ -5,3 +5,5 @@ using from './models';
 using from './salesprices';
 using from './colorcombinations';
 using from './restrictions';
+using from './colorcombinationsalesprices';
+using from './modelequipmentsalesprices';

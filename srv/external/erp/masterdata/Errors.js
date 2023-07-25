@@ -14,6 +14,7 @@ class EquipmentCategoryNotFound extends NotFoundError { }
 class DriveTypeNotFound extends NotFoundError { }
 class TransmissionTypeNotFound extends NotFoundError { }
 class FuelTypeNotFound extends NotFoundError { }
+class OrderControlNotFound extends NotFoundError { }
 
 module.exports = {
     Error: MasterError,
@@ -31,5 +32,6 @@ module.exports = {
     EquipmentCategoryNotFound,
     DriveTypeNotFound,
     TransmissionTypeNotFound,
-    FuelTypeNotFound
+    FuelTypeNotFound,
+    OrderControlNotFound
 }

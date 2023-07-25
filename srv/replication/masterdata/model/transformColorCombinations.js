@@ -15,7 +15,7 @@ module.exports = (raw = [], brand_code) => {
         if (uniques[uniqueKey(entry._Exterior?.Color, entry._Interior?.Color, entry._Roof?.Color)])
             return
 
-        uniques[uniqueKey(entry._Exterior?.Color, entry._Interior?.Color, entry._Roof?.Color)] = true 
+        uniques[uniqueKey(entry._Exterior?.Color, entry._Interior?.Color, entry._Roof?.Color)] = true
 
         const combination = {
             exterior_id: entry._Exterior?.Color ?? '',
@@ -25,11 +25,15 @@ module.exports = (raw = [], brand_code) => {
             validTo: entry.ValidTo || '9999-12-31',
             orderableFrom: entry.OrderableFrom || entry.ValidFrom || '1970-01-01',
             orderableTo: entry.OrderableTo || entry.ValidTo || '9999-12-31',
-            restrictions: []
+            restrictions: [],
+            salesPrices: []
         }
-      
+
         combination.restrictions.push(...transformColorCombinationsRestrictions(entry._Restrictions, brand_code))
         combination.restrictions.push(...transformColorCombinationsConstraints(entry._ConstraintRestrictions, brand_code))
+
+        Object.entries(salesPriceMapping).forEach(([colorCode, property]) => combination.salesPrices.push(...transformColorCombinationsSalesPrices(entry[property], colorCode)))
+        Object.entries(salesPriceConstraintMapping).forEach(([colorCode, property]) => combination.salesPrices.push(...transformColorCombinationsSalesPricesConstraints(entry[property], colorCode)))
 
         transformed.push(combination)
     })
@@ -39,3 +43,17 @@ module.exports = (raw = [], brand_code) => {
 
 const transformColorCombinationsRestrictions = require('./transformColorCombinationsRestrictions')
 const transformColorCombinationsConstraints = require('./transformColorCombinationsConstraints')
+const transformColorCombinationsSalesPrices = require('./transformColorCombinationsSalesPrices')
+const transformColorCombinationsSalesPricesConstraints = require('./transformColorCombinationsSalesPricesConstraints')
+
+const salesPriceMapping = {
+    'E': '_ExteriorSalesPrices',
+    'I': '_InteriorSalesPrices',
+    'R': '_RoofSalesPrices'
+}
+
+const salesPriceConstraintMapping = {
+    'E': '_ExteriorConstraintSalesPrices',
+    'I': '_InteriorConstraintSalesPrices',
+    'R': '_RoofConstraintSalesPrices'
+}

@@ -3,7 +3,6 @@
 @cds.autoexpose
 @cds.persistence.skip : 'if-unused'
 @cds.odata.valuelist
-@UI.Identification : [{Value : name}]
 aspect CodeList {}
 
 

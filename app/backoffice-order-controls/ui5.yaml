@@ -1,0 +1,10 @@
+specVersion: "3.0"
+type: application
+metadata:
+  name: backoffice-order-controls
+
+builder:
+  resources:
+    excludes:
+      - "/test/**"
+      - "/localService/**"

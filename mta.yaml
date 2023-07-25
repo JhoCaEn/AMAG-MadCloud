@@ -170,6 +170,12 @@ modules:
         - name: dwb-app-callbacks
           target-path: resources
           artifacts: ['callbacks.zip']
+        - name: dwb-app-backoffice-order-controls
+          target-path: resources
+          artifacts: ['backoffice-order-controls.zip']
+        - name: dwb-app-marketplace
+          target-path: resources
+          artifacts: ['marketplace.zip']
 
   - name: dwb-app-offers
     type: html5
@@ -311,6 +317,16 @@ modules:
         - yarn build
       supported-platforms: []
 
+  - name: dwb-app-marketplace
+    type: html5
+    path: app/marketplace
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
+      supported-platforms: []
+
   - name: dwb-app-fleet-applications
     type: html5
     path: app/fleet-applications
@@ -334,6 +350,16 @@ modules:
   - name: dwb-app-callbacks
     type: html5
     path: app/callbacks
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
+      supported-platforms: []
+  
+  - name: dwb-app-backoffice-order-controls
+    type: html5
+    path: app/backoffice-order-controls
     build-parameters:
       build-result: dist
       builder: custom

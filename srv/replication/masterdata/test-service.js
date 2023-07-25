@@ -15,6 +15,7 @@ module.exports = class ReplicationMasterdataTestService extends cds.ApplicationS
         const driveType = await cds.connect.to('ReplicationMasterdataDriveTypeService')
         const transmissionType = await cds.connect.to('ReplicationMasterdataTransmissionTypeService')
         const fuelType = await cds.connect.to('ReplicationMasterdataFuelTypeService')
+        const orderControl = await cds.connect.to('ReplicationMasterdataOrderControlsService')
 
         const replicate = async (service, data) => service.send('replicate', data).then(() => 'done')
 
@@ -59,6 +60,9 @@ module.exports = class ReplicationMasterdataTestService extends cds.ApplicationS
 
         this.on('testFuelType', async ({ data }) => replicate(fuelType, data))
         this.on('testStaticFuelType', async () => replicate(fuelType, { brand: 'SEAT', id: 'GAS' }))
+
+        this.on('testOrderControl', async ({ data }) => replicate(orderControl, data))
+        this.on('testStaticOrderControl', async () => replicate(orderControl, { vehicleUsage: '01', customerState: '01', endCustomerState: '03' }))
 
         return super.init()
     }

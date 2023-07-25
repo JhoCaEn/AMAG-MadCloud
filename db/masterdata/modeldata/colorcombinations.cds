@@ -14,6 +14,8 @@ entity ModelColorCombinations : replicated {
         orderableTo   : Date default '9999-12-31';
         restrictions  : Composition of many db.ModelColorRestrictions
                             on restrictions.colorCombination = $self;
+        salesPrices   : Composition of many db.ModelColorCombinationSalesPrices
+                            on salesPrices.colorCombination = $self;
 };
 
 type ModelColorCombination : Association to ModelColorCombinations;

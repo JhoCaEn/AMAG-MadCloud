@@ -1,0 +1,10 @@
+{
+    "name": "marketplace",
+    "version": "1.0.0",
+    "description": "Marketplace",
+    "license": "UNLICENSED",   
+    "scripts": {
+        "build": "ui5 build --clean-dest",
+        "postbuild": "cd dist && bestzip $npm_package_name.zip *"
+    }
+}

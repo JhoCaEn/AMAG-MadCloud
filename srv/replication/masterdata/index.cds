@@ -12,5 +12,6 @@ using from './equipmentcategory/service';
 using from './drivetype/service';
 using from './transmissiontype/service';
 using from './fueltype/service';
+using from './ordercontrols/service';
 
 using from './test-service';

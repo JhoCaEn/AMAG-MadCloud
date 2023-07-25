@@ -72,7 +72,7 @@
             }
         },
         "extends": {
-            "--extensions": {
+            "extensions": {
                 "sap.ui.controllerExtensions": {
                     "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.carconfigurator::Configuration": {
                         "controllerName": "ch.amag.retail.dwb.carconfigurator.ext.controllers.ConfigurationOP"

@@ -24,13 +24,16 @@ module.exports = (raw = [], brand_code) => {
             orderableFrom: entry.OrderableFrom || entry.ValidFrom || '1970-01-01',
             orderableTo: entry.OrderableTo || entry.ValidTo || '9999-12-31',
             packageContent: transformPackageContent(entry._PackageContent),
-            restrictions: []
+            restrictions: [],
+            salesPrices: []
         }
 
         equipment.isPackage = equipment.packageContent.length > 0
         equipment.restrictions.push(...transformEquipmentRestrictions(entry._Restrictions, brand_code))
         equipment.restrictions.push(...transformEquipmentConstraints(entry._ConstraintRestrictions, brand_code))
-
+        equipment.salesPrices.push(...transformEquipmentsSalesPrices(entry._SalesPrices))
+        equipment.salesPrices.push(...transformEquipmentsSalesPricesConstraints(entry._ConstraintSalesPrices))
+        
         transformed.push(equipment)
     })
 
@@ -61,3 +64,5 @@ const transformPackageContent = (raw = []) => {
 
 const transformEquipmentRestrictions = require('./transformEquipmentRestrictions')
 const transformEquipmentConstraints = require('./transformEquipmentConstraints')
+const transformEquipmentsSalesPrices = require('./transformEquipmentsSalesPrices')
+const transformEquipmentsSalesPricesConstraints = require('./transformEquipmentsSalesPricesConstraints')

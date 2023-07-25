@@ -28,8 +28,6 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         this.before('CREATE', Offers, async ({ data: { ID } = {} } = {}) => checkOfferSaveable(ID))
         this.on('CREATE', Offers, async (req, next) => save(req, next))
 
-        this.on('checkStartupParams', async ({ data: { ID } = {} }) => checkStartupParams({ ID }))
-
         this.before('NEW', CarConfigurationEquipments, async (req) => {
             req.data.equipment_id = 'PR001852'
         })
@@ -43,9 +41,9 @@ module.exports = class AppOffersService extends cds.ApplicationService {
 
             const { ID } = offer
 
+
+
             await db.update(Offers.drafts, ID).set({
-                salesPartner_id,
-                brand_code,
                 customerProjectName,
                 projectType_code,
                 customerProjectNumber,
@@ -53,6 +51,9 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 fleetProjectCompanyNumber,
                 callback_ID,
             })
+
+            await selectSalesPartner({ ID, id: salesPartner_id })
+            await selectBrand({ ID, code: brand_code })
 
             return ID
         }
@@ -72,10 +73,10 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             const { ID, salesPartner_id, brand_code } = offer
 
             if (salesPartner_id)
-                await selectSalesPartner({ ID, salesPartner_id }, true)
+                await selectSalesPartner({ ID, id : salesPartner_id }, true)
 
             if (brand_code)
-                await selectBrand({ ID, brand_code })
+                await selectBrand({ ID, code : brand_code })
 
             return offer
         }
@@ -252,16 +253,6 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             })
         }
 
-        const checkStartupParams = async ({ ID } = {}) => {
-            let offer = await db.read(Offers, ID)
-
-            if (!offer) offer = await db.read(Offers.drafts, ID)
-            
-            return {
-                ocd: offer?.ocd,
-                IsActiveEntity: offer?.IsActiveEntity
-            }
-        }
         return super.init()
     }
 }

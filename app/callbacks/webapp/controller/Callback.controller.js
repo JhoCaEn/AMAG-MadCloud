@@ -6,21 +6,26 @@ sap.ui.define([
 
     return ControllerExtension.extend('ch.amag.retail.dwb.callbacks.controller.Callback', {
 
-        navigate: async function () {
-            const oContext = this.base.getView().getBindingContext()
-            const callback = await oContext.requestObject()
-            const sSemantic = callback.semantic_code
-            const parameters = callback.parameters
-            const intentBasedNavigation = this.intentBasedNavigation || this.base.getExtensionAPI().intentBasedNavigation
+        override: {
+            routing: {
+                onAfterBinding: async function (callback) {
 
-            if (!parameters) {
-                const i18n = this.base.getAppComponent().getModel('i18n')
-                MessageBox.error(i18n.getProperty('Callbacks.Action.noParameters'))
-                return
+                    const isActiveEntity = await callback.requestObject('IsActiveEntity')
+                    if (!isActiveEntity) return
+
+                    const semantic = await callback.requestObject('semantic_code')
+
+                    if (semantic) {
+                        const parameters = await callback.requestObject('parameters')
+
+                        this.base.getExtensionAPI().intentBasedNavigation.navigateOutbound(
+                            semantic,
+                            parameters ? JSON.parse(parameters) : undefined
+                        )
+                    }
+                }
             }
-
-            intentBasedNavigation.navigateOutbound(sSemantic, JSON.parse(parameters))
-        },
+        }
     })
 
     

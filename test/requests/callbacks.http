@@ -1,0 +1,13 @@
+@authentication = Basic alice:
+@basePath = http://localhost:4004
+@servicePath = {{basePath}}/app/backend/callbacks
+
+
+POST {{servicePath}}/createCallback
+Authorization: {{authentication}}
+Content-Type: application/json
+
+{
+    "semantic": "offer-manage",
+    "parameters": "{\"ID\": \"a2775538-fb63-43f5-816e-e18de509d49f\"}"
+}

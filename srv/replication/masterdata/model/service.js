@@ -60,6 +60,21 @@ module.exports = class ReplicationMasterdataModelService extends cds.Application
                         '_Exterior($select=Color)',
                         '_Interior($select=Color)',
                         '_Roof($select=Color)',
+                        `_ExteriorSalesPrices`,
+                        `_InteriorSalesPrices`,
+                        `_RoofSalesPrices`,
+                        `_ExteriorConstraintSalesPrices($expand=${[
+                            '_Equipment($select=Equipment)',
+                            '_Color($select=Color)'
+                        ].join(',')})`,
+                        `_InteriorConstraintSalesPrices($expand=${[
+                            '_Equipment($select=Equipment)',
+                            '_Color($select=Color)'
+                        ].join(',')})`,
+                        `_RoofConstraintSalesPrices($expand=${[
+                            '_Equipment($select=Equipment)',
+                            '_Color($select=Color)'
+                        ].join(',')})`,
                         `_Restrictions($expand=${[
                             '_Color($select=Color)',
                             '_Equipment($select=Equipment)'
@@ -79,6 +94,11 @@ module.exports = class ReplicationMasterdataModelService extends cds.Application
                             '_Equipment($select=Equipment)'
                         ].join(',')})`,
                         `_ConstraintRestrictions($expand=${[
+                            '_Color($select=Color)',
+                            '_Equipment($select=Equipment)'
+                        ].join(',')})`,
+                        `_SalesPrices`,
+                        `_ConstraintSalesPrices($expand=${[
                             '_Color($select=Color)',
                             '_Equipment($select=Equipment)'
                         ].join(',')})`

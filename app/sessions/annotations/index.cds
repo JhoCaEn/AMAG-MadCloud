@@ -1,5 +1,3 @@
-using AppSessionsService as service from '../../../srv';
-
-using from './list';
-using from './fields';
-using from './page';
+using from './sessions';
+using from './brands';
+using from './project-types';

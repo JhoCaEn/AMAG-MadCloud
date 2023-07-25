@@ -12,3 +12,4 @@ using from './vehicleusages';
 using from './customerstates';
 using from './endcustomerstates';
 using from './vehicleavailabilities';
+using from './partnerrolesources';

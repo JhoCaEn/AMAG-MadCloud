@@ -28,11 +28,6 @@ service AppOffersService {
         callback_ID : db.Callbacks:ID
     ) returns db.Offers: ID;
 
-    action checkStartupParams(ID : Offers:ID)                                                                                                                                                                                                       returns {
-        ocd : Offers:ocd;
-        IsActiveEntity : Boolean;
-    };
-
     @readonly
 
     entity CarConfigurationEquipments as projection on db.OfferCarConfigurationEquipments;

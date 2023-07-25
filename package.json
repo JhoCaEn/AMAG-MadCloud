@@ -188,7 +188,9 @@
         "app/backoffice-colors",
         "app/carconfigurator",
         "app/sessions",
-        "app/callbacks"
+        "app/callbacks",
+        "app/backoffice-order-controls",
+        "app/marketplace"
     ],
     "launchpad": {
         "version": "1.114.0",
@@ -200,7 +202,9 @@
                 "app/backoffice-brands",
                 "app/backoffice-transmissions",
                 "app/backoffice-equipments",
-                "app/backoffice-colors"
+                "app/backoffice-colors",
+                "app/backoffice-order-controls",
+                "app/marketplace"
             ],
             "technical": [
                 "app/carconfigurator",

@@ -1,7 +1,6 @@
 module.exports = class AppSessionsService extends cds.ApplicationService {
     async init() {
 
-        const LOG = cds.log('sessions')
         const db = await cds.connect.to('db')
 
         const { ValidationError } = require('../../lib/errors')
@@ -9,31 +8,24 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
         const callbackService = await cds.connect.to('AppCallbacksService')
         const offerService = await cds.connect.to('AppOffersService')
 
-
         const {
             Sessions
         } = this.entities
 
         this.on('createSession', async ({ data } = {}) => createSession(data))
-
         this.on('prepare', async ({ params: [{ ID } = {}] = [] } = {}) => prepare({ ID }))
 
-        const createSession = async ({ salesPartner_id, brand_code, projectType, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } = {}) => {
+        const createSession = async ({ salesPartner_id, brand_code, projectType_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } = {}) => {
 
-            const entry = {
-                salesPartner_id: salesPartner_id,
-                brand_code: brand_code,
-                projectType_code: projectType,
-                customerProjectName: customerProjectName,
-                customerProjectNumber: customerProjectNumber,
-                fleetProjectNumber: fleetProjectNumber,
-                fleetProjectCompanyNumber: fleetProjectCompanyNumber,
-                ocd: ocd
-            }
-
-            const session = await this.send({
-                event: 'CREATE',
-                query: db.create(Sessions, entry)
+            const session = await this.create(Sessions, {
+                salesPartner_id,
+                brand_code,
+                projectType_code,
+                customerProjectName,
+                customerProjectNumber,
+                fleetProjectNumber,
+                fleetProjectCompanyNumber,
+                ocd
             })
 
             return session.ID
@@ -45,7 +37,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
 
             const session = await db.read(Sessions, ID)
             if (!session)
-                throw new ValidationError('SESSION_ID_NOT_VALID')
+                throw new ValidationError('SESSION_ID_NOT_VALID', [ID])
 
             const { isPrepared, ocd, salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber } = session
 
@@ -57,10 +49,10 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             const callback_ID = await callbackService.send('createCallback', {
                 semantic: 'session-display',
                 parameters: JSON.stringify({
-                  ID,
-                  done: true
+                    ID,
+                    done: true
                 })
-              })
+            })
 
             if (!ocd) {
                 const offer_ID = await offerService.send('createOffer', {
@@ -74,7 +66,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
                     callback_ID
                 })
 
-                await db.update(Sessions, ID).set({ offer_ID , forwardToOffer: true})
+                await db.update(Sessions, ID).set({ offer_ID, forwardToOffer: true })
             }
 
         }

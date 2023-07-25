@@ -5,13 +5,15 @@ sap.ui.define([
 
     return ControllerExtension.extend('ch.amag.retail.dwb.backoffice-brands.controller.Brand', {
         override: {
-            onInit: function () {
-                const oRouter = this.base.getAppComponent().getRouter()
-                oRouter.getRoute('Brand').attachPatternMatched(this.onBrandsMatched, this)
+            routing: {
+                onAfterBinding: function (offer) {
+                    if (offer)
+                        this.checkStartupParams()
+                }
             }
         },
 
-        onBrandsMatched: function (oEvent) {
+        checkStartupParams: function (oEvent) {
             const oStartupParams = this.base.getAppComponent().getComponentData().startupParameters
 
             if (!Object.keys(oStartupParams).length) return

@@ -1,0 +1,22 @@
+@authentication = Basic alice:
+@basePath = http://localhost:4004
+@servicePath = {{basePath}}/app/backend/sessions
+
+### Create session
+# @name createSession
+POST {{servicePath}}/createSession
+Authorization: {{authentication}}
+Content-Type: application/json
+
+{
+    "projectType_code": "1"
+}
+
+
+### Save ID
+@ID = {{createSession.response.body.value}}
+
+
+### Link to Launchpad
+
+GET http://localhost:4004/$launchpad#DWBSession-display?ID={{ID}}

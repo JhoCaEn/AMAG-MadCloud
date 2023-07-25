@@ -19,3 +19,4 @@ using from './backoffice-transmissions/annotations';
 using from './backoffice-equipments/annotations';
 using from './backoffice-models/annotations';
 using from './backoffice-colors/annotations';
+using from './marketplace/annotations';

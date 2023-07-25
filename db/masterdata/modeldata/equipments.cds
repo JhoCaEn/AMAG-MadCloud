@@ -18,6 +18,9 @@ entity ModelEquipments : replicated {
 
         restrictions   : Composition of many db.ModelEquipmentRestrictions
                              on restrictions.equipment = $self;
+
+        salesPrices    : Composition of many db.ModelEquipmentSalesPrices
+                             on salesPrices.equipment = $self;
 };
 
 type ModelEquipment : Association to ModelEquipments;

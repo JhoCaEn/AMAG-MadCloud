@@ -14,7 +14,8 @@ const {
     EquipmentCategoryNotFound,
     DriveTypeNotFound,
     TransmissionTypeNotFound,
-    FuelTypeNotFound
+    FuelTypeNotFound,
+    OrderControlNotFound
 } = require('./Errors')
 
 module.exports = class Client {
@@ -443,6 +444,37 @@ module.exports = class Client {
 
         if (!response?.length)
             throw new FuelTypeNotFound(`Fuel type ${brand}/${id} not found`)
+
+        return response[0]
+    }
+
+    /**
+     * Get Order Controls data
+     * 
+     * @param {{vehicleUsage: String, customerState: String, endCustomerState: String, $select?: String, $expand?: String}}
+     * @returns {Promise<Object>}
+     * @throws {Error|OrderControlNotFound}
+     */
+    getOrderControl = async ({ vehicleUsage, customerState, endCustomerState, $select, $expand }) => {
+        if (!vehicleUsage) throw new Error('No vehicle usage provided')
+        if (!customerState) throw new Error('No customer state provided')
+        if (!endCustomerState) throw new Error('No end customer state provided')
+
+        LOG._debug && LOG.debug('Get order dontrol data for', vehicleUsage, customerState, endCustomerState)
+
+        const response = await this.#get(`/OrderControls`, {
+            params: {
+                $filter: `VehicleUsage eq '${vehicleUsage}' and CustomerStatus eq '${customerState}' and EndCustomerStatus eq '${endCustomerState}'`,
+                $top: 1,
+                $select,
+                $expand
+            }
+        })
+
+        LOG._debug && LOG.debug('Order control data for', vehicleUsage, customerState, endCustomerState, response)
+
+        if (!response?.length)
+            throw new OrderControlNotFound(`Order Control ${vehicleUsage}/${customerState}/${endCustomerState} not found`)
 
         return response[0]
     }

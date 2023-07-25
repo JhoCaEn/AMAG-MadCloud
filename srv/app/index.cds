@@ -5,6 +5,7 @@ using from './backoffice-partners';
 using from './backoffice-brands';
 using from './backoffice-models';
 using from './backoffice-colors';
+using from './backoffice-order-controls';
 
 using from './carconfigurator';
 
@@ -17,3 +18,4 @@ using from './sales-message-releases';
 using from './fleet-applications';
 using from './vehicles';
 using from './callbacks';
+using from './marketplace';

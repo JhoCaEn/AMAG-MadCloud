@@ -1,0 +1,10 @@
+{
+    "name": "backoffice-order-controls",
+    "version": "1.0.0",
+    "description": "Backoffice - Order Controls",
+    "license": "UNLICENSED",   
+    "scripts": {
+        "build": "ui5 build --clean-dest",
+        "postbuild": "cd dist && bestzip $npm_package_name.zip *"
+    }
+}

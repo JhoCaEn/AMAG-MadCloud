@@ -1,149 +1,166 @@
 {
-  "_version": "1.29.0",
-  "sap.app": {
-    "id": "ch.amag.retail.dwb.sessions",
-    "type": "application",
-    "i18n": {
-      "bundleUrl": "i18n/i18n.properties",
-      "supportedLocales": ["de", "it", "fr", "en"],
-      "fallbackLocale": "de"
-    },
-    "applicationVersion": {
-      "version": "1.0.0"
-    },
-    "title": "{{AppTitle}}",
-    "description": "{{AppSubtitle}}",
-    "dataSources": {
-      "mainService": {
-        "uri": "app/backend/sessions/",
-        "type": "OData",
-        "settings": {
-          "odataVersion": "4.0"
-        }
-      }
-    },
-    "crossNavigation": {
-      "inbounds": {
-        "DWBSession-display": {
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          },
-          "semanticObject": "DWBSession",
-          "action": "display",
-          "title": "{{AppTitle}}",
-          "subTitle": "{{AppSubtitle}}",
-          "icon": ""
-        }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "dependencies": {
-      "minUI5Version": "1.102.1",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.ui.integration": {}
-      }
-    },
-    "extends": {
-      "extensions": {
-          "sap.ui.controllerExtensions": {
-              "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.sessions::Session": {
-                  "controllerName": "ch.amag.retail.dwb.sessions.controller.Session"
-              }
-          }
-      }
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleUrl": "i18n/i18n.properties",
-          "supportedLocales": ["de", "it", "fr", "en"],
-          "fallbackLocale": "de"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "synchronizationMode": "None",
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      }
-    },
-    "routing": {
-      "routes": [
-        {
-          "pattern": ":?query:",
-          "name": "Sessions",
-          "target": "Sessions"
+    "_version": "1.29.0",
+    "sap.app": {
+        "id": "ch.amag.retail.dwb.sessions",
+        "type": "application",
+        "i18n": {
+            "bundleUrl": "i18n/i18n.properties",
+            "supportedLocales": [
+                "de",
+                "it",
+                "fr",
+                "en"
+            ],
+            "fallbackLocale": "de"
         },
-        {
-          "pattern": "Sessions({key}):?query:",
-          "name": "Session",
-          "target": "Session"
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{AppTitle}}",
+        "description": "{{AppSubtitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "app/backend/sessions/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "DWBSession-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "DWBSession",
+                    "action": "display",
+                    "title": "{{AppTitle}}",
+                    "subTitle": "{{AppSubtitle}}",
+                    "icon": ""
+                }
+            },
+            "outbounds": {
+                "offer-manage": {
+                    "semanticObject": "DWBOffer",
+                    "action": "manage"
+                }
+            }
         }
-      ],
-      "targets": {
-        "Sessions": {
-          "type": "Component",
-          "id": "Sessions",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "entitySet": "Sessions",
-              "variantManagement": "Page",
-              "initialLoad": true,
-              "navigation": {
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.fe.templates": {},
+                "sap.ui.integration": {}
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.sessions::Session": {
+                        "controllerName": "ch.amag.retail.dwb.sessions.controller.Session"
+                    }
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleUrl": "i18n/i18n.properties",
+                    "supportedLocales": [
+                        "de",
+                        "it",
+                        "fr",
+                        "en"
+                    ],
+                    "fallbackLocale": "de"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Sessions",
+                    "target": "Sessions"
+                },
+                {
+                    "pattern": "Sessions({key}):?query:",
+                    "name": "Session",
+                    "target": "Session"
+                }
+            ],
+            "targets": {
                 "Sessions": {
-                  "detail": {
-                    "route": "Session"
-                  }
+                    "type": "Component",
+                    "id": "Sessions",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Sessions",
+                            "variantManagement": "Page",
+                            "initialLoad": true,
+                            "navigation": {
+                                "Sessions": {
+                                    "detail": {
+                                        "route": "Session"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                                    "showClearButton": true
+                                }
+                            }
+                        }
+                    },
+                    "contextPattern": ""
+                },
+                "Session": {
+                    "type": "Component",
+                    "id": "Session",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Sessions",
+                            "editableHeaderContent": false
+                        }
+                    },
+                    "contextPattern": "/Sessions({key})"
                 }
-              },
-              "controlConfiguration": {
-                "@com.sap.vocabularies.UI.v1.SelectionFields": {
-                  "showClearButton": true
-                }
-              }
             }
-          },
-          "contextPattern": ""
         },
-        "Session": {
-          "type": "Component",
-          "id": "Session",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "entitySet": "Sessions"
-            }
-          },
-          "contextPattern": "/Sessions({key})"
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         }
-      }
     },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
+    "sap.cloud": {
+        "public": true,
+        "service": "ch.amag.retail.dwb"
     }
-  },
-  "sap.cloud": {
-    "public": true,
-    "service": "ch.amag.retail.dwb"
-  }
 }
