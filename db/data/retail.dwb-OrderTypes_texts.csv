@@ -1,0 +1,17 @@
+code,locale,name
+00,de,Kundenfahrzeuge
+00,en,Customer vehicles
+00,fr,Voitures de clients
+00,it,Veicoli dei clienti
+01,de,Showroomfahrzeuge
+01,en,Showroom vehicles
+01,fr,Véhicules de salon
+01,it,Veicoli di showroom
+02,de,Lagerfahrzeuge Händler
+02,en,Dealer stock vehicles
+02,fr,Véhicules en stock chez le concessionnaire
+02,it,Veicoli in stock presso il concessionario
+03,de,Lagerfahrzeuge Importeur
+03,en,Importer stock vehicles
+03,fr,Véhicules en stock chez l'importateur
+03,it,Veicoli in stock presso l'importatore
