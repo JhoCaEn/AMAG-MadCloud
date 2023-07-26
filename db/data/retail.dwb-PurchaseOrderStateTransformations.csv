@@ -1,0 +1,16 @@
+code,name,state_code
+M005,Fahrzeug kopiert,M005
+M006,Fahrzeug angelegt,M006
+M010,Fahrzeug beim Importeur bestellt,M010
+M015,Fahrzeug im Werk angelegt,M010
+M030,Fahrzeug vom Werk bestätigt,M030
+M040,Fahrzeug vom Herstellwerk bestätigt,M040
+M050,Werksproduktion bestätigt,M050
+M060,Fahrzeug an Vertrieb übergeben,M060
+M062,Erste Werksrechnung - Rechnungsdaten,M060
+M070,Werksrechnung eingegangen,M060
+M080,Werksrechnung verbucht,M080
+A040,Fahrzeug verzollt,A040
+A080,Zoll verbucht,A040
+A520,Fahrzeug abgerufen,A520
+A999,B-Meldung durchgeführt,A999
