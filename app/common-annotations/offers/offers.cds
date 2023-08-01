@@ -3,6 +3,7 @@ using {retail.dwb as db} from '../../../db';
 annotate db.Offers with {
     ID                            @title: '{i18n>General.ID}';
     ocd                           @title: '{i18n>Offers.ocd}';
+    projectType                   @title: '{i18n>ProjectType}';
     customerProjectName           @title: '{i18n>Offers.customerProjectName}';
     customerProjectNumber         @title: '{i18n>Offers.customerProjectNumber}';
     fleetProjectNumber            @title: '{i18n>Offers.fleetProjectNumber}';
@@ -18,13 +19,10 @@ annotate db.Offers with {
     carConfigurationExteriorColor @title: '{i18n>Offers.carConfigurationExteriorColor}';
     carConfigurationInteriorColor @title: '{i18n>Offers.carConfigurationInteriorColor}';
     carConfigurationRoofColor     @title: '{i18n>Offers.carConfigurationRoofColor}';
-
+    callback                      @title: '{i18n>Callback}';
 };
 
-annotate db.Offers with @Common.SemanticKey: [
-    ocd,
-    ID
-];
+annotate db.Offers with @Common.SemanticKey: [ocd];
 
 annotate db.Offers with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',

@@ -1,15 +1,15 @@
 ﻿brand_code,code,name
-AUDI,G,Allgemein
+AUDI,G,Allgemein (Ohne Modellkategorie)
 AUDI,A8,A8/S8 Vertrieb
 AUDI,Y1,RS/R8 Vertrieb & R8 Service
 AUDI,Y2,RS Vertrieb & R8 Service
 AUDI,Y3,Audi Sport Vertrieb RS/R8
 AUDI,Y4,RS Vertrieb
-SEAT,G,Allgemein
+SEAT,G,Allgemein (Ohne Modellkategorie)
 SEAT,U,CUPRA Vertrieb
-SKOD,G,Allgemein
-VW,G,Allgemein
-VWNF,G,Allgemein
+SKOD,G,Allgemein (Ohne Modellkategorie)
+VW,G,Allgemein (Ohne Modellkategorie)
+VWNF,G,Allgemein (Ohne Modellkategorie)
 VWNF,T,Camper
 VWNF,Z,ID. Buzz
 VWNF,C,Commerce

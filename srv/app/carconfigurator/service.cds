@@ -11,7 +11,17 @@ service AppCarConfiguratorService {
         exteriorColor_id : db.Colors:id;
         interiorColor_id : db.Colors:id;
         roofColor_id : db.Colors:id;
-        equipments : many db.Equipments:id;
+        exteriorColorSalesPriceConstraintEquipment_id: db.Equipments:id;
+        exteriorColorSalesPriceConstraintColor_id: db.Colors:id;
+        interiorColorSalesPriceConstraintEquipment_id: db.Equipments:id;
+        interiorColorSalesPriceConstraintColor_id: db.Colors:id;
+        roofColorSalesPriceConstraintEquipment_id: db.Equipments:id;
+        roofColorSalesPriceConstraintColo_id: db.Colors:id;
+        equipments : many {
+            id: db.Equipments:id;
+            salesPriceConstraintEquipment_id: db.Equipments:id;
+            salesPriceConstraintColor_id: db.Colors:id;
+        };
     };
 
     @odata.draft.enabled
@@ -23,6 +33,7 @@ service AppCarConfiguratorService {
         action unselectColor(in : $self, id : db.Color:id);
         action unselectEquipment(in : $self, id : db.Equipments:id);
     };
+    
 
     @readonly
     entity ConfigurationEquipments       as projection on db.CarConfigurationEquipments;
@@ -125,16 +136,6 @@ service AppCarConfiguratorService {
             category.name,
             selected,
             equipment
-    };
-
-    @readonly
-    entity SelectableModelSalesPrices    as projection on db.CarConfigurationSelectableModelSalesPrices {
-        key configuration,
-        key salesPrice.model,
-            salesPrice.validFrom,
-            salesPrice.validTo,
-            salesPrice.value,
-            salesPrice.currency
     };
 
     @readonly

@@ -15,6 +15,7 @@ entity Sessions : cuid, managed {
     fleetProjectNumber        : String(50);
     fleetProjectCompanyNumber : String(50);
     ocd                       : Integer;
+    callbackURL               : String;
     isPrepared                : Boolean;
     forwardToOffer            : Boolean;
     offer                     : db.Offer;

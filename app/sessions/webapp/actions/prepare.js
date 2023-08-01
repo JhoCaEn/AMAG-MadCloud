@@ -12,6 +12,7 @@ sap.ui.define([],
                 }).then(async () => {
 
                     const forwardToOffer = await session.requestProperty('forwardToOffer')
+                    const callbackURL = await session.requestProperty('callbackURL')
 
                     if (forwardToOffer) {
                         const offer_ID = await session.requestProperty('offer_ID')
@@ -20,7 +21,9 @@ sap.ui.define([],
                             'offer-manage',
                             offer_ID ? { ID: offer_ID } : undefined
                         )                
-                    }                         
+                    } else if ( callbackURL ) {
+                        sap.m.URLHelper.redirect("https://www.google.com/");
+                    }                       
                 })
 
                 return editFlow.securedExecution(async function () {

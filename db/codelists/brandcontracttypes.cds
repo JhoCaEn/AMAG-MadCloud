@@ -6,7 +6,7 @@ using {CodeList} from '../../db';
 entity BrandContractTypes : CodeList {
     key brand           : db.Brand;
     key code            : String(7);
-        name            : localized String(30);
+        name            : localized String(50);
         modelCategories : Composition of many db.BrandContractTypeModelCategories
                               on modelCategories.brandContractType = $self;
 }

@@ -13,7 +13,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
         } = this.entities
 
         this.on('createSession', async ({ data } = {}) => createSession(data))
-        this.on('prepare', async ({ params: [{ ID } = {}] = [] } = {}) => prepare({ ID }))
+        this.on('prepare', async ({ params: [{ ID } = {}] = [], data: { callbackURL } = {} } = {}) => prepare({ ID , callbackURL }))
 
         const createSession = async ({ salesPartner_id, brand_code, projectType_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } = {}) => {
 
@@ -31,7 +31,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             return session.ID
         }
 
-        const prepare = async ({ ID }) => {
+        const prepare = async ({ ID , callbackURL }) => {
             if (!ID)
                 throw new ValidationError('SESSION_ID_NOT_GIVEN')
 

@@ -24,6 +24,7 @@ module.exports = (raw = {}, brandRoles = []) => {
 
         if (raw.H_EINTRITT) {
             const dealer = transform(raw.H_EINTRITT, raw.H_AUSTRITT)
+            dealer.isRepresentative = false
             transformed.push(dealer)
         }
 

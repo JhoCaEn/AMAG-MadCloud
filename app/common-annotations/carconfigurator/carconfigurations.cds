@@ -20,6 +20,7 @@ annotate db.CarConfigurations with {
     preselectedExteriorColor    @title: '{i18n>CarConfigurations.preselectedExteriorColor}';
     preselectedInteriorColor    @title: '{i18n>CarConfigurations.preselectedInteriorColor}';
     preselectedRoofColor        @title: '{i18n>CarConfigurations.preselectedRoofColor}';
+    callback                    @title: '{i18n>Callback}';
 }
 
 /*

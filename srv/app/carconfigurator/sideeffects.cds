@@ -7,16 +7,29 @@ annotate service.Configurations actions {
             'in/model_id',
             'in/exteriorColor_id',
             'in/interiorColor_id',
-            'in/roofColor_id'
+            'in/roofColor_id',
+            'in/preselectedModel_id',
+            'in/preselectedExteriorColor_id',
+            'in/preselectedInteriorColor_id',
+            'in/preselectedRoofColor_id',
+            'in/hasSelectableExteriorColors',
+            'in/hasSelectableInteriorColors',
+            'in/hasSelectableRoofColors',
+            'in/hasValidColorCombination'
         ],
         TargetEntities  : [
             'in/selectableModelCategories',
             'in/selectableSalesTypes',
             'in/selectableModels',
-            'in/selectableModelsSalesPrices',
+            'in/preselectedEquipments',
             'in/equipments',
             'in/selectableEquipments',
-            'in/selectableEquipmentCategories'
+            'in/selectableEquipmentCategories',
+            'in/selectableColors',
+            'in/selectableColorTypes',
+            'in/selectableColorCombinations',
+            'in/selectableEquipmentChapters',
+            'in/selectableModelRestrictions'
         ]
     };
 

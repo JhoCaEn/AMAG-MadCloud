@@ -6,3 +6,8 @@ using from './characteristics';
 using from './brandcontracttypes';
 using from './brandcontracttypemodelcategories';
 using from './callbacksemantics';
+using from './customerstates';
+using from './endcustomerstates';
+using from './vehicleusages';
+using from './vehicleavailabilities';
+using from './partnerrolesources';

@@ -11,37 +11,24 @@ sap.ui.define([
                 onAfterBinding: async function (offer) {
                     if (!offer) return
 
-                    const intentBasedNavigation = this.base.intentBasedNavigation
-                    
-                    const hasSalesPartner = await offer.requestProperty('hasSalesPartner')
-                    const ID = await offer.requestProperty('callback_ID')
-                    const isActiveEntity = await offer.requestProperty('IsActiveEntity')
+                    const extensionAPI = this.base.getExtensionAPI()
+                    const startupParameters = this.base.getAppComponent()?.getComponentData()?.startupParameters || {}
 
-                    const carConfigurationDone = this.base?.getAppComponent()?.getComponentData()?.startupParameters?.carConfigurationDone
-                     
-                    
+                    const [hasSalesPartner, isActiveEntity, callback_ID] = await offer.requestProperty(['hasSalesPartner', 'IsActiveEntity', 'callback_ID'])
+
                     if (!hasSalesPartner) {
-                        return selectSalesPartner.invoke(offer, this.base.getExtensionAPI())
+                        return selectSalesPartner.invoke(offer, extensionAPI)
                     }
 
-                    if (isActiveEntity && ID) 
-                        intentBasedNavigation.navigateOutbound('Callback', { ID })
-
-                    if (!isActiveEntity && carConfigurationDone) {
-                        delete this.base?.getAppComponent()?.getComponentData()?.startupParameters?.carConfigurationDone
-                        return finishCarConfiguration.invoke(offer, this.base.getExtensionAPI())
+                    if (isActiveEntity && callback_ID) {
+                        extensionAPI.intentBasedNavigation.navigateOutbound('Callback', { ID: callback_ID })
                     }
-                        
 
-                }
-            },
+                    if (!isActiveEntity && startupParameters.carConfigurationDone?.[0] === 'true') {
+                        await finishCarConfiguration.invoke(offer, extensionAPI)
 
-            editFlow: {
-                onBeforeSave: async function(mParameters) {
-                    // normal controller way : this.getOwnerComponent().oAppComponent.getComponentData().startupParameters
-                    
-                    if(this.base?.getAppComponent()?.getComponentData()?.startupParameters?.callBackConfiguration)
-                        mParameters.context.setProperty('carConfigurationIsValid', true)
+                        window.location = window.location.href.replace('carConfigurationDone=true', '')
+                    }
                 }
             }
         }

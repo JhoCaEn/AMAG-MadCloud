@@ -7,7 +7,7 @@ service AppSessionsService {
 
     @odata.draft.enabled
     entity Sessions      as projection on db.Sessions actions {
-        action prepare(in : $self);
+        action prepare(in : $self, callbackURL : Sessions: callbackURL);
     };
 
     @readonly

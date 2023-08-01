@@ -33,15 +33,13 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         })
 
         const createOffer = async ({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } = {}) => {
-
+            
             const offer = await this.send({
                 event: 'NEW',
                 query: db.create(Offers, {})
             })
 
             const { ID } = offer
-
-
 
             await db.update(Offers.drafts, ID).set({
                 customerProjectName,
@@ -52,8 +50,15 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 callback_ID,
             })
 
-            await selectSalesPartner({ ID, id: salesPartner_id })
-            await selectBrand({ ID, code: brand_code })
+            if (salesPartner_id) {
+               await selectSalesPartner({ ID, id: salesPartner_id })
+
+               if(brand_code)
+                    await selectBrand({ ID, code: brand_code })
+            }
+            
+            
+            
 
             return ID
         }
@@ -241,9 +246,9 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 carConfigurationExteriorColor_id: carConfiguration.exteriorColor_id,
                 carConfigurationInteriorColor_id: carConfiguration.interiorColor_id,
                 carConfigurationRoofColor_id: carConfiguration.roofColor_id,
-                carConfigurationEquipments: carConfiguration.equipments?.map(id => ({
+                carConfigurationEquipments: carConfiguration.equipments?.map(equipment => ({
                     offer_ID: ID,
-                    equipment_id: id,
+                    equipment_id: equipment.equipment_id,
                     DraftAdministrativeData_DraftUUID,
                     IsActiveEntity: false,
                     HasActiveEntity: false,

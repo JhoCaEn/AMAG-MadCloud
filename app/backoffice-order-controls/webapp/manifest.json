@@ -30,12 +30,12 @@
 		"crossNavigation": {
 			"inbounds": {
 				"DWBBOOrderControl-manage": {
-                    "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
-                    },
-                    "semanticObject": "DWBBOOrderControl",
-                    "action": "manage",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBBOOrderControl",
+					"action": "manage",
 					"title": "{{AppTitle}}",
 					"subTitle": "{{AppSubtitle}}",
 					"icon": ""
@@ -64,17 +64,17 @@
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleUrl": "i18n/i18n.properties",
-                    "supportedLocales": [
-                        "de",
-                        "it",
-                        "fr",
-                        "en"
-                    ],
-                    "fallbackLocale": "de"
-                }
-			},			
+				"settings": {
+					"bundleUrl": "i18n/i18n.properties",
+					"supportedLocales": [
+						"de",
+						"it",
+						"fr",
+						"en"
+					],
+					"fallbackLocale": "de"
+				}
+			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
@@ -88,22 +88,56 @@
 		},
 		"routing": {
 			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "OrderControls",
+					"target": "OrderControls"
+				},
+				{
+					"pattern": "OrderControls({key}):?query:",
+					"name": "OrderControl",
+					"target": "OrderControl"
+				}
 			],
 			"targets": {
-			},
-			"config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+				"OrderControls": {
+					"type": "Component",
+					"id": "OrderControls",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "OrderControls",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"OrderControls": {
+									"detail": {
+										"route": "OrderControl"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
+						}
+					},
+					"contextPattern": ""
 				},
-				"routerClass": "sap.f.routing.Router"
+				"OrderControl": {
+					"type": "Component",
+					"id": "OrderControl",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"sectionLayout": "Tabs",
+							"entitySet": "OrderControls"
+						}
+					},
+					"contextPattern": "/OrderControls({key})"
+				}
 			}
-		},
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
 		},
 		"contentDensities": {
 			"compact": true,

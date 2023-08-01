@@ -1,0 +1,12 @@
+code,name,orderCreated,orderReleased
+M005,Fahrzeug kopiert,true,false
+M006,Fahrzeug angelegt,true,false
+M010,Fahrzeug beim Importeur bestellt,true,true
+M030,Fahrzeug vom Werk bestätigt,true,true
+M040,Fahrzeug vom Herstellwerk bestätigt,true,true
+M050,Werksproduktion bestätigt,true,true
+M060,Fahrzeug an Vertrieb übergeben,true,true
+M080,Werksrechnung verbucht,true,true
+A040,Fahrzeug verzollt,true,true
+A520,Fahrzeug abgerufen,true,true
+A999,B-Meldung durchgeführt,true,true

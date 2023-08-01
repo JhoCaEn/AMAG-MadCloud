@@ -1,78 +1,62 @@
 sap.ui.define([
     'sap/ui/core/mvc/ControllerExtension',
-    'sap/ui/model/Filter'
-], function (ControllerExtension, Filter) {
+    'sap/ui/model/Filter',
+    'ch/amag/retail/dwb/offers/actions/finishCarConfiguration'
+], function (ControllerExtension, Filter, finishCarConfiguration) {
     'use strict';
 
     return ControllerExtension.extend('ch.amag.retail.dwb.offers.controller.Offers', {
         override: {
             routing: {
                 onAfterBinding: async function () {
-                    const oStartupParams = this.base.getAppComponent().getComponentData().startupParameters
+                    const startupParameters = this.base.getAppComponent()?.getComponentData()?.startupParameters || {}
 
-                    if (!Object.keys(oStartupParams).length) return
+                    const ID = startupParameters.ID?.[0]
+                    const carConfigurationDone = startupParameters.carConfigurationDone?.[0] === 'true'
 
-                    const sOfferId = oStartupParams?.ID?.[0]
+                    delete startupParameters.ID
+                    delete startupParameters.carConfigurationDone
 
-                    if (sOfferId)
-                        await this.navigateToDetail(sOfferId)
+                    if (!ID) return
 
-                    this.base.getAppComponent().getComponentData().startupParameters = {}
+                    const offer = await this._getOffer(ID, 'IsActiveEntity')
+                    if (offer) {
+                        const { IsActiveEntity: isActiveEntity } = offer.getObject()
+
+                        let location = window.location.href
+
+                        if (!isActiveEntity && carConfigurationDone) {
+                            await finishCarConfiguration.invoke(offer, this.base.getExtensionAPI())
+
+                            location = location.replace('carConfigurationDone=true', '')
+                        }
+
+                        location = location.replace(`ID=${ID}`, '')
+                        location = location.replace(/\?[&]*/, '?')
+                        location = location.replace('/?', `${offer.getCanonicalPath()}?`)
+
+                        window.location = location
+                    }
                 }
             }
         },
 
-        navigateToDetail: async function (sID) {
-            const oObject = await this.getOfferInfo(sID)
-            const iOcd = oObject.ocd
-            const bIsActiveEntity = oObject.IsActiveEntity
-
-            let key = `ocd=${iOcd},ID=${sID}`
-
-            if (!bIsActiveEntity)
-                if (!iOcd) key = `ID=${sID},IsActiveEntity=${bIsActiveEntity}`
-                else key = `ocd=${iOcd},ID=${sID},IsActiveEntity=${bIsActiveEntity}`
-
-
-            this.base.routing.navigateToRoute('Offer', {
-                key: key
-            })
-        },
-
-        getOfferInfo: async function (sID) {
-            const oModel = this.base.getView().getModel()
-
-            const oNotDraftFilter = this.buildFilter(sID, true)
-
-            let oOffersList = oModel.bindList('/Offers', undefined, undefined, oNotDraftFilter, {
-                $select: 'ocd,IsActiveEntity'
-            })
-
-            let aContexts = await oOffersList.requestContexts()
-
-            if (!aContexts.length) {
-                const oDraftFilter = this.buildFilter(sID, false)
-
-                oOffersList = oModel.bindList('/Offers', undefined, undefined, oDraftFilter, {
-                    $select: 'ocd,IsActiveEntity'
-                })
-
-                aContexts = await oOffersList.requestContexts()
-            }
-
-            if (!aContexts.length) return null
-
-            return aContexts[0].getObject()
-        },
-
-        buildFilter: function (sId, bActive) {
-            return new Filter({
+        _getOffer: async function (ID, $select = 'ocd,IsActiveEntity') {
+            const model = this.base.getView().getModel() 
+            const offers = await model.bindList('/Offers', undefined, undefined, new Filter({
                 filters: [
-                    new Filter('ID', 'EQ', sId),
-                    new Filter('IsActiveEntity', 'EQ', bActive)
+                    new Filter('ID', 'EQ', ID),
+                    new Filter({
+                        filters: [
+                            new Filter('IsActiveEntity', 'EQ', false),
+                            new Filter('SiblingEntity/IsActiveEntity', 'EQ', null),
+                        ]
+                    })
                 ],
                 and: true
-            })
+            }), { $select }).requestContexts()
+
+            return offers[0]
         }
     });
 });

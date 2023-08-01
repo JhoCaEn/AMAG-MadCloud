@@ -3,7 +3,7 @@
     "authenticationMethod": "route",
     "routes": [
       {
-        "source": "^/app/backend/order/releases/(.*)$",
+        "source": "^/app/backend/backoffice/order-controls/(.*)$",
         "destination": "Retail-dwb-sso",
         "authenticationType": "xsuaa",
         "csrfProtection": false

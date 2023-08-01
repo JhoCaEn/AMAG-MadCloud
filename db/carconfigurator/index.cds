@@ -10,6 +10,5 @@ using from './selectableEquipments';
 using from './prepared';
 using from './selectableEquipmentChapters';
 using from './selectableEquipmentCategories';
-using from './selectableModelSalesPrices';
 using from './preselectedEquipments';
 using from './selectableModelRestrictions';

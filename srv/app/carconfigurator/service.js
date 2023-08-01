@@ -1,5 +1,3 @@
-const { config } = require('@sap/xssec/lib')
-
 module.exports = class AppCarConfiguratorService extends cds.ApplicationService {
     async init() {
 
@@ -16,7 +14,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             CarConfigurationSelectableSalesTypes: SelectableSalesTypes,
             CarConfigurationSelectableModelCategories: SelectableModelCategories,
             CarConfigurationSelectableModels: SelectableModels,
-            CarConfigurationSelectableModelSalesPrices: SelectableModelSalesPrices,
             CarConfigurationSelectableModelRestrictions: SelectableModelRestrictions,
             CarConfigurationSelectableColors: SelectableColors,
             CarConfigurationSelectableColorTypes: SelectableColorTypes,
@@ -38,7 +35,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
         } = db.entities('retail.dwb')
 
 
-        this.on('createConfiguration', async ({ data: { configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration = true, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID } = {} } = {}) => createConfiguration(configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID))
+        this.on('createConfiguration', async ({ data } = {}) => createConfiguration(data))
         this.on('readConfiguration', async ({ data: { ID } = {} } = {}) => readConfiguration({ ID }))
         this.on('prepare', async ({ params: [{ ID } = {}] = [] } = {}) => prepare({ ID }))
         this.on('selectModel', async ({ params: [{ ID } = {}] = [], data: { id } = {} } = {}) => selectModel({ ID, id }))
@@ -53,7 +50,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 req.data.configuredAt = req.timestamp.toISOString().substring(0, 10)
         })
 
-        const createConfiguration = async (configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID) => {
+        const createConfiguration = async ({ configuredAt, partner_id, brand_code, salesOrganisation, isNewConfiguration = true, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments, callback_ID }) => {
             if (!partner_id)
                 throw new ValidationError('CARCONFIGURATION_PARTNER_NOT_GIVEN')
 
@@ -78,6 +75,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const { ID, DraftAdministrativeData_DraftUUID } = configuration
 
             await db.update(Configurations.drafts, ID).set({
+                callback_ID: callback_ID,
                 preselectedModel_id: model_id,
                 preselectedExteriorColor_id: exteriorColor_id,
                 preselectedInteriorColor_id: interiorColor_id,
@@ -89,8 +87,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                     IsActiveEntity: false,
                     HasActiveEntity: false,
                     HasDraftEntity: false                    
-                })) || [],
-                callback_ID: callback_ID
+                })) || []
             })
 
             return ID
@@ -330,10 +327,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 prepareSelectableModels({ ID })
             ])
 
-            await Promise.all([
-                prepareSelectableSalesPrices({ ID })
-            ])
-
             await applyPreselected({ ID })
 
         }
@@ -352,8 +345,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 preselectedModel_id,
                 preselectedExteriorColor_id,
                 preselectedInteriorColor_id,
-                preselectedRoofColor_id,
-                
+                preselectedRoofColor_id
             } = configuration
 
             if(preselectedModel_id)
@@ -520,39 +512,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             ).as(source.columns(
                 `'${ID}' as configuration_ID`,
                 'id as model_id'
-            ))
-        }
-
-        const prepareSelectableSalesPrices = async ({ ID }) => {
-            if (!ID)
-                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_GIVEN')
-
-            const configuration = await db.read(Configurations.drafts, ID, ['1'])
-
-            if (!configuration)
-                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-
-            const configuration_ID = ID
-
-            await db.delete(SelectableModelSalesPrices, { configuration_ID })
-
-            const models = await db.read(SelectableModels, ['model_id'])
-                .where({ configuration_ID })
-                .then(result => result?.map(({ model_id }) => model_id))
-
-            if (!models?.length)
-                return
-
-            const source = db.read(ModelSalesPrices).where({ salesPrice_model_id: models })
-
-            await db.create(SelectableModelSalesPrices).columns(
-                'configuration_ID',
-                'salesPrice_model_id',
-                'salesPrice_validFrom'
-            ).as(source.columns(
-                `'${ID}' as configuration_ID`,
-                'model_id as salesPrice_model_id',
-                'validFrom as salesPrice_validFrom'
             ))
         }
 
@@ -843,14 +802,29 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration = await db.read(Configurations, ID, config => {
                 config.configuredAt, config.model_id, config.exteriorColor_id, config.interiorColor_id, config.roofColor_id, config.equipments(equipment => {
-                    equipment.equipment_id
+                    equipment.equipment_id,
+                    equipment.salesPriceConstraintEquipment_id,
+                    equipment.salesPriceConstraintColor_id
                 })
             })
 
             if (!configuration)
                 throw new ValidationError('CARCONFIGURATION_CONFGURATION_NOT_EXISTS')
 
-            const { configuredAt, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments } = configuration
+            const {
+              configuredAt,
+              model_id,
+              exteriorColor_id,
+              interiorColor_id,
+              roofColor_id,
+              exteriorColorSalesPriceConstraintEquipment_id,
+              exteriorColorSalesPriceConstraintColor_id,
+              interiorColorSalesPriceConstraintEquipment_id,
+              interiorColorSalesPriceConstraintColor_id,
+              roofColorSalesPriceConstraintEquipment_id,
+              roofColorSalesPriceConstraintColo_id,
+              equipments,
+            } = configuration;
 
             return {
                 configuredAt,
@@ -858,7 +832,13 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 exteriorColor_id,
                 interiorColor_id,
                 roofColor_id,
-                equipments: equipments?.map(({ equipment_id: id }) => id) || []
+                exteriorColorSalesPriceConstraintEquipment_id,
+                exteriorColorSalesPriceConstraintColor_id,
+                interiorColorSalesPriceConstraintEquipment_id,
+                interiorColorSalesPriceConstraintColor_id,
+                roofColorSalesPriceConstraintEquipment_id,
+                roofColorSalesPriceConstraintColo_id,
+                equipments: equipments
             }
         }
 

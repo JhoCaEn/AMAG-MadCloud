@@ -42,10 +42,6 @@
                 }
             },
             "outbounds": {
-                "Offers": {
-                    "semanticObject": "DWBOffer",
-                    "action": "manage"
-                },
 				"Callback": {
 					"semanticObject": "DWBCallback",
 					"action": "execute"					
@@ -69,15 +65,6 @@
                 "sap.ui.core": {},
                 "sap.fe.templates": {},
                 "sap.ui.integration": {}
-            }
-        },
-        "extends": {
-            "extensions": {
-                "sap.ui.controllerExtensions": {
-                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.carconfigurator::Configuration": {
-                        "controllerName": "ch.amag.retail.dwb.carconfigurator.ext.controllers.ConfigurationOP"
-                    }
-                }
             }
         },
         "models": {
@@ -180,7 +167,16 @@
         "contentDensities": {
             "compact": true,
             "cozy": true
-        }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#ch.amag.retail.dwb.carconfigurator::Configuration": {
+                        "controllerName": "ch.amag.retail.dwb.carconfigurator.controller.Configuration"
+                    }
+                }
+            }
+        }        
     },
     "sap.fe": {
         "app": {

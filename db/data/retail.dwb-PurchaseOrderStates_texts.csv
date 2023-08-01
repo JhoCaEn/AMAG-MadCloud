@@ -1,0 +1,12 @@
+code,locale,name
+M005,de,Fahrzeug kopiert
+M006,de,Fahrzeug angelegt
+M010,de,Fahrzeug beim Importeur bestellt
+M030,de,Fahrzeug vom Werk bestätigt
+M040,de,Fahrzeug vom Herstellwerk bestätigt
+M050,de,Werksproduktion bestätigt
+M060,de,Fahrzeug an Vertrieb übergeben
+M080,de,Werksrechnung verbucht
+A040,de,Fahrzeug verzollt
+A520,de,Fahrzeug abgerufen
+A999,de,B-Meldung durchgeführt

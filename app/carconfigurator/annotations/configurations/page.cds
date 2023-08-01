@@ -52,12 +52,6 @@ annotate service.Configurations with @UI: {
         },
         {
             $Type : 'UI.ReferenceFacet',
-            ID    : 'WiP_SelectableSalesPrices',
-            Label : 'WiP: Selectable Sales Prices',
-            Target: 'selectableModelSalesPrices/@UI.LineItem'
-        },
-        {
-            $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_SelectableModelRestrictions',
             Label : 'WiP: Selectable Model Restrictions',
             Target: 'selectableModelRestrictions/@UI.LineItem'
@@ -181,7 +175,8 @@ annotate service.Configurations with @UI: {
         {Value: exteriorColor_id},
         {Value: interiorColor_id},
         {Value: roofColor_id},
-        {Value: hasValidColorCombination}
+        {Value: hasValidColorCombination},
+        {Value: callback_ID}
     ]},
 
     FieldGroup #WiPPreselected: {Data: [

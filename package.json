@@ -179,18 +179,18 @@
         "app/sales-message-releases",
         "app/fleet-applications",
         "app/vehicles",
-        "app/backoffice-engines",
-        "app/backoffice-models",
+        "app/marketplace",
         "app/backoffice-partners",
         "app/backoffice-brands",
+        "app/backoffice-engines",
         "app/backoffice-transmissions",
         "app/backoffice-equipments",
         "app/backoffice-colors",
+        "app/backoffice-models",
         "app/carconfigurator",
         "app/sessions",
         "app/callbacks",
-        "app/backoffice-order-controls",
-        "app/marketplace"
+        "app/backoffice-order-controls"
     ],
     "launchpad": {
         "version": "1.114.0",
@@ -203,8 +203,7 @@
                 "app/backoffice-transmissions",
                 "app/backoffice-equipments",
                 "app/backoffice-colors",
-                "app/backoffice-order-controls",
-                "app/marketplace"
+                "app/backoffice-order-controls"
             ],
             "technical": [
                 "app/carconfigurator",

@@ -1,5 +1,5 @@
 vehicleUsage_code,customerState_code,endCustomerState_code,soldToSource_code,soldToPartner_id,shipToSource_code,shipToPartner_id,billToSource_code,billToPartner_id,paidBySource_code,paidByPartner_id,releasedForPartner,forEmployee,availability_code
-01,01,01,partner,,partner,,partner,,partner,,true,false,06
-03,05,04,ordercontrol,2114878,partner,,ordercontrol,2114878,ordercontrol,2114878,true,false,06
-05,05,04,partner,,partner,,partner,,partner,,false,false,01
-15,01,60,partner,,partner,,partner,,partner,,true,true,06
+1,1,1,ordercontrol,,ordercontrol,,ordercontrol,,ordercontrol,,true,false,06
+3,5,4,partner,954,partner,954,partner,954,partner,954,true,false,06
+5,5,4,ordercontrol,,ordercontrol,,ordercontrol,,ordercontrol,,false,false,01
+15,1,60,ordercontrol,,ordercontrol,,ordercontrol,,ordercontrol,,true,true,06

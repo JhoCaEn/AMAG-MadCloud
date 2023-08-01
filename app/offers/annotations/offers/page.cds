@@ -1,4 +1,6 @@
 using AppOffersService as service from '../../../../srv';
+using from '../selectable-brands/list';
+using from '../car-configuration-equipments/list';
 
 annotate service.Offers with @UI: {
 
@@ -94,6 +96,7 @@ annotate service.Offers with @UI: {
         {Value: brand_code},
         {Value: salesPartner_id},
         {Value: hasSalesPartner},
+        {Value: callback_ID},
     ]},
 
     FieldGroup #WiP_CarConfiguration: {Data: [
