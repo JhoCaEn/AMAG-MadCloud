@@ -2,6 +2,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
     async init() {
 
         const db = await cds.connect.to('db')
+        const salesPriceService = await cds.connect.to('PricingSalesPriceService')
         const { ValidationError } = require('../../lib/errors')
 
         const {
@@ -101,6 +102,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             if (!id)
                 throw new ValidationError('CARCONFIGURATION_MODEL_ID_NOT_GIVEN')
 
+            const table = "AppCarConfiguratorService.Configurations_drafts"
             const configuration_ID = ID
             const model_id = id
             
@@ -119,6 +121,9 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             await db.update(Configurations.drafts, ID).set({ model_id, preselectedModel_id: null })
             await db.update(SelectableModels, { configuration_ID }).set({ selected: false })
             await db.update(SelectableModels, { configuration_ID, model_id }).set({ selected: true })
+
+             
+            await salesPriceService.send('calculate', {table,ID})
 
             await Promise.all([
                 prepareSelectableColors({ ID }),
@@ -146,6 +151,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const color_id = id
+            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
@@ -181,6 +187,8 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 [colorFields[type_code]]: id,
                 [preselectedColorFields[type_code]]: null
             })
+
+            await salesPriceService.send('calculate', { table, ID })
 
             await checkColorCombinations({ ID })
 

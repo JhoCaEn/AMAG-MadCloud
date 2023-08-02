@@ -1,0 +1,13 @@
+@authentication = Basic alice:
+@basePath = http://localhost:4004
+@servicePath = {{basePath}}/pricing-sales-price
+
+
+POST {{servicePath}}/calculate
+Authorization: {{authentication}}
+Content-Type: application/json
+
+{
+    "table": "AppCarConfiguratorService.Configurations_drafts",
+    "ID": "17cfb34a-cc1f-4761-a412-25892409e554"
+}

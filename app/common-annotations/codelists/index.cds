@@ -11,3 +11,4 @@ using from './endcustomerstates';
 using from './vehicleusages';
 using from './vehicleavailabilities';
 using from './partnerrolesources';
+using from './purchaseorderstates';
