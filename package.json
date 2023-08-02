@@ -203,7 +203,8 @@
                 "app/backoffice-transmissions",
                 "app/backoffice-equipments",
                 "app/backoffice-colors",
-                "app/backoffice-order-controls"
+                "app/backoffice-order-controls",
+                "app/backoffice-purchase-order-states"
             ],
             "technical": [
                 "app/carconfigurator",

@@ -176,6 +176,9 @@ modules:
         - name: dwb-app-marketplace
           target-path: resources
           artifacts: ['marketplace.zip']
+        - name: dwb-app-backoffice-purchase-order-states
+          target-path: resources
+          artifacts: ['backoffice-purchase-order-states.zip']
 
   - name: dwb-app-offers
     type: html5
@@ -360,6 +363,16 @@ modules:
   - name: dwb-app-backoffice-order-controls
     type: html5
     path: app/backoffice-order-controls
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
+      supported-platforms: []
+
+  - name: dwb-app-backoffice-purchase-order-states
+    type: html5
+    path: app/backoffice-purchase-order-states
     build-parameters:
       build-result: dist
       builder: custom
