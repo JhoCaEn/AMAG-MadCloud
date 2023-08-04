@@ -1,4 +1,4 @@
-using AppBackofficePurchaseOrderStatesService as service from '../../../srv';
+using AppBackofficePurchaseOrderStatesService as service from '../../../../srv';
 
 annotate service.PurchaseOrderStates with @UI: {
     SelectionFields: [

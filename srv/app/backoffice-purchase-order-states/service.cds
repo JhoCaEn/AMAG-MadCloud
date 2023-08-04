@@ -7,6 +7,14 @@ service AppBackofficePurchaseOrderStatesService {
         code,
         name,
         orderCreated,
-        orderReleased
+        orderReleased,
+        transformations : redirected to PurchaseOrderStateTransformations,
+        texts
+    }
+    @readonly
+    entity PurchaseOrderStateTransformations as projection on db.PurchaseOrderStateTransformations {
+        code,
+        name,
+        state
     }
 }
