@@ -25,12 +25,34 @@ annotate db.OrderControls with @Common.SemanticKey: [
     endCustomerState_code
 ];
 
-annotate db.OrderControls with @UI: {HeaderInfo: {
-    $Type         : 'UI.HeaderInfoType',
-    TypeName      : '{i18n>OrderControl}',
-    TypeNamePlural: '{i18n>OrderControls}',
-    Title         : {
-        $Type: 'UI.DataField',
-        Value: headerTitle
+annotate db.OrderControls with @UI: {
+    HeaderInfo                  : {
+        $Type         : 'UI.HeaderInfoType',
+        TypeName      : '{i18n>OrderControl}',
+        TypeNamePlural: '{i18n>OrderControls}',
+        Title         : {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target: '@UI.ConnectedFields#HeaderTitle',
+        }
+    },
+
+    ConnectedFields #HeaderTitle: {
+        $Type   : 'UI.ConnectedFieldsType',
+        Template: '{vehicleUsage_code} / {customerState_code} / {endCustomerState_code}',
+        Data    : {
+            $Type            : 'Core.Dictionary',
+            vehicleUsage_code: {
+                $Type: 'UI.DataField',
+                Value: vehicleUsage_code,
+            },
+            customerState_code: {
+                $Type: 'UI.DataField',
+                Value: customerState_code,
+            },
+            endCustomerState_code: {
+                $Type: 'UI.DataField',
+                Value: endCustomerState_code,
+            }
+        }
     }
-}};
+};

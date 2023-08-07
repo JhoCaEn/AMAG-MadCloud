@@ -1,1 +1,2 @@
-using {retail.dwb as db} from '../../../db';
+using from './vehicles';
+using from './equipments';

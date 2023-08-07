@@ -179,6 +179,12 @@ modules:
         - name: dwb-app-backoffice-purchase-order-states
           target-path: resources
           artifacts: ['backoffice-purchase-order-states.zip']
+        - name: dwb-app-backoffice-vehicles
+          target-path: resources
+          artifacts: ['backoffice-vehicles.zip']
+        - name: dwb-app-backoffice-sales-order-states
+          target-path: resources
+          artifacts: ['backoffice-sales-order-states.zip']
           
   - name: dwb-app-offers
     type: html5
@@ -373,6 +379,26 @@ modules:
   - name: dwb-app-backoffice-purchase-order-states
     type: html5
     path: app/backoffice-purchase-order-states
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
+      supported-platforms: []
+
+  - name: dwb-app-backoffice-vehicles
+    type: html5
+    path: app/backoffice-vehicles
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - yarn build
+      supported-platforms: []
+
+  - name: dwb-app-backoffice-sales-order-states
+    type: html5
+    path: app/backoffice-sales-order-states
     build-parameters:
       build-result: dist
       builder: custom

@@ -7,6 +7,8 @@ using from './backoffice-models';
 using from './backoffice-colors';
 using from './backoffice-order-controls';
 using from './backoffice-purchase-order-states';
+using from './backoffice-vehicles';
+using from './backoffice-sales-order-states';
 
 using from './carconfigurator';
 

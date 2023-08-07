@@ -92,6 +92,11 @@
                     "pattern": ":?query:",
                     "name": "PurchaseOrderStates",
                     "target": "PurchaseOrderStates"
+                },
+				{
+                    "pattern": "PurchaseOrderStates({key}):?query:",
+                    "name": "PurchaseOrderState",
+                    "target": "PurchaseOrderState"
                 }
 			],
 			"targets": {
@@ -105,10 +110,27 @@
                             "variantManagement": "Page",
                             "initialLoad": true,
                             "navigation": {
+								"PurchaseOrderStates": {
+                                    "detail": {
+                                        "route": "PurchaseOrderState"
+                                    }
+                                }
                             }
                         }
                     },
                     "contextPattern": ""
+                },
+				"PurchaseOrderState": {
+                    "type": "Component",
+                    "id": "PurchaseOrderState",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "PurchaseOrderStates",
+                            "editableHeaderContent": false
+                        }
+                    },
+                    "contextPattern": "/PurchaseOrderStates({key})"
                 }
 			},
 			"config": {

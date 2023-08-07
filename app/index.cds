@@ -22,3 +22,5 @@ using from './backoffice-colors/annotations';
 using from './marketplace/annotations';
 using from './backoffice-order-controls/annotations';
 using from './backoffice-purchase-order-states/annotations';
+using from './backoffice-vehicles/annotations';
+using from './backoffice-sales-order-states/annotations';

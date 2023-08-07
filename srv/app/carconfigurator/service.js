@@ -209,6 +209,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const { DraftAdministrativeData_DraftUUID } = configuration
             const configuration_ID = ID
             const equipment_id = id
+            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const equipment = await db.read(SelectableEquipments, { configuration_ID, equipment_id }, ['selectable', 'category_id'])
             if (!equipment)
@@ -234,6 +235,9 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
 
             await db.delete(PreselectedEquipments.drafts, { configuration_ID: ID, equipment_id })
+
+            await salesPriceService.send('calculate', { table, ID })
+
             await applyPreselected({ ID })
 
         }
@@ -247,6 +251,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const color_id = id
+            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
@@ -275,6 +280,8 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 [colorFields[type_code]]: null
             })
 
+            await salesPriceService.send('calculate', { table, ID })
+
             await checkColorCombinations({ ID })
         }
 
@@ -287,6 +294,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const equipment_id = id
+            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
@@ -308,7 +316,11 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             await db.update(SelectableEquipments, { configuration_ID, equipment_id }).set({ selected: false })
 
+            await salesPriceService.send('calculate', { table, ID })
+            
             await db.delete(ConfigurationEquipmentsEntity.drafts, { configuration_ID, equipment_id })
+
+            
         }
 
         const prepare = async ({ ID }) => {

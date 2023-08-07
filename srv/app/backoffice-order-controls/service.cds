@@ -3,10 +3,7 @@ using {retail.dwb as db} from '../../../db';
 @path: '/app/backend/backoffice/order-controls'
 service AppBackofficeOrderControlsService {
     @readonly
-    entity OrderControls         as projection on db.OrderControls {
-        *,
-        vehicleUsage.name || ' / ' || customerState.name || ' / ' || endCustomerState.name as headerTitle: String
-    } actions {
+    entity OrderControls         as projection on db.OrderControls actions {
         action synchronise(in : $self);
     };
 

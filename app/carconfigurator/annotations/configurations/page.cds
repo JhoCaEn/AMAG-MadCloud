@@ -16,6 +16,12 @@ annotate service.Configurations with @UI: {
         },
         {
             $Type : 'UI.ReferenceFacet',
+            ID    : 'WiP_SalesPriceConstraints',
+            Label : 'WiP: Sales Price Constraints',
+            Target: '@UI.FieldGroup#SalesPriceConstraints'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_Equipments',
             Label : 'WiP: Equipments',
             Target: 'equipments/@UI.LineItem'
@@ -91,7 +97,7 @@ annotate service.Configurations with @UI: {
             ID    : 'WiP_SelectableEquipments',
             Label : 'WiP: Selectable Equipments',
             Target: 'selectableEquipments/@UI.LineItem'
-        },        
+        } 
 
     /*{
         $Type : 'UI.CollectionFacet',
@@ -184,6 +190,15 @@ annotate service.Configurations with @UI: {
         {Value: preselectedExteriorColor_id},
         {Value: preselectedInteriorColor_id},
         {Value: preselectedRoofColor_id}
+    ]},
+
+    FieldGroup #SalesPriceConstraints: {Data: [
+        {Value: exteriorColorSalesPriceConstraintColor_id},
+        {Value: interiorColorSalesPriceConstraintColor_id},
+        {Value: roofColorSalesPriceConstraintColor_id},
+        {Value: exteriorColorSalesPriceConstraintEquipment_id},
+        {Value: interiorColorSalesPriceConstraintEquipment_id},
+        {Value: roofColorSalesPriceConstraintEquipment_id},
     ]}
 };
 

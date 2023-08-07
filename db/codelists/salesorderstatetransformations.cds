@@ -5,7 +5,7 @@ using {CodeList} from '../../db';
 
 entity SalesOrderStateTransformations : CodeList {
     key code : String(4);
-        name : String(40);
+        name : String(45);
         state: db.SalesOrderState;
 }
 

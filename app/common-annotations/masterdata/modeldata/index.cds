@@ -6,3 +6,4 @@ using from './colorcombinations';
 using from './equipments';
 using from './equipmentpackagecontents';
 using from './restrictions';
+using from './colorcombinationsalesprices';

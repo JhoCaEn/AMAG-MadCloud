@@ -1,26 +1,31 @@
 using {retail.dwb as db} from '../../../db';
 
 annotate db.CarConfigurations with {
-    ID                          @title: '{i18n>CarConfigurations.ID}';
-    configuredAt                @title: '{i18n>CarConfigurations.configuredAt}';
-    partner                     @title: '{i18n>Partner}';
-    brand                       @title: '{i18n>Brand}';
-    salesOrganisation           @title: '{i18n>CarConfigurations.salesOrganisation}';
-    isNewConfiguration          @title: '{i18n>CarConfigurations.isNewConfiguration}';
-    isPrepared                  @title: '{i18n>CarConfigurations.isPrepared}';
-    model                       @title: '{i18n>Model}';
-    hasSelectableExteriorColors @title: '{i18n>CarConfigurations.hasSelectableExteriorColors}';
-    hasSelectableInteriorColors @title: '{i18n>CarConfigurations.hasSelectableInteriorColors}';
-    hasSelectableRoofColors     @title: '{i18n>CarConfigurations.hasSelectableRoofColors}';
-    exteriorColor               @title: '{i18n>ExteriorColor}';
-    interiorColor               @title: '{i18n>InteriorColor}';
-    roofColor                   @title: '{i18n>RoofColor}';
-    hasValidColorCombination    @title: '{i18n>CarConfigurations.hasValidColorCombination}';
-    preselectedModel            @title: '{i18n>CarConfigurations.preselectedModel}';
-    preselectedExteriorColor    @title: '{i18n>CarConfigurations.preselectedExteriorColor}';
-    preselectedInteriorColor    @title: '{i18n>CarConfigurations.preselectedInteriorColor}';
-    preselectedRoofColor        @title: '{i18n>CarConfigurations.preselectedRoofColor}';
-    callback                    @title: '{i18n>Callback}';
+    ID                                         @title: '{i18n>CarConfigurations.ID}';
+    configuredAt                               @title: '{i18n>CarConfigurations.configuredAt}';
+    partner                                    @title: '{i18n>Partner}';
+    brand                                      @title: '{i18n>Brand}';
+    salesOrganisation                          @title: '{i18n>CarConfigurations.salesOrganisation}';
+    isNewConfiguration                         @title: '{i18n>CarConfigurations.isNewConfiguration}';
+    isPrepared                                 @title: '{i18n>CarConfigurations.isPrepared}';
+    model                                      @title: '{i18n>Model}';
+    hasSelectableExteriorColors                @title: '{i18n>CarConfigurations.hasSelectableExteriorColors}';
+    hasSelectableInteriorColors                @title: '{i18n>CarConfigurations.hasSelectableInteriorColors}';
+    hasSelectableRoofColors                    @title: '{i18n>CarConfigurations.hasSelectableRoofColors}';
+    exteriorColor                              @title: '{i18n>ExteriorColor}';
+    interiorColor                              @title: '{i18n>InteriorColor}';
+    roofColor                                  @title: '{i18n>RoofColor}';
+    hasValidColorCombination                   @title: '{i18n>CarConfigurations.hasValidColorCombination}';
+    preselectedModel                           @title: '{i18n>CarConfigurations.preselectedModel}';
+    preselectedExteriorColor                   @title: '{i18n>CarConfigurations.preselectedExteriorColor}';
+    preselectedInteriorColor                   @title: '{i18n>CarConfigurations.preselectedInteriorColor}';
+    preselectedRoofColor                       @title: '{i18n>CarConfigurations.preselectedRoofColor}';
+    exteriorColorSalesPriceConstraintEquipment @title: '{i18n>exteriorColorSalesPriceConstraintEquipment}';
+    exteriorColorSalesPriceConstraintColor     @title: '{i18n>exteriorColorSalesPriceConstraintColor}';
+    interiorColorSalesPriceConstraintEquipment @title: '{i18n>interiorColorSalesPriceConstraintEquipment}';
+    interiorColorSalesPriceConstraintColor     @title: '{i18n>interiorColorSalesPriceConstraintColor}';
+    roofColorSalesPriceConstraintEquipment     @title: '{i18n>roofColorSalesPriceConstraintEquipment}';
+    roofColorSalesPriceConstraintColor         @title: '{i18n>roofColorSalesPriceConstraintColor}';
 }
 
 /*
