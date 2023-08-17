@@ -172,7 +172,8 @@ service AppBackofficeModelsService {
         orderableFrom,
         orderableTo,
         createdAt,
-        restrictions
+        restrictions,
+        salesPrices
     };
 
     @readonly
@@ -235,7 +236,8 @@ service AppBackofficeModelsService {
         equipment.chapter.isVisibleInConfigurator,
         equipment.chapter.isVisibleInSellingSystem,
         packageContent,
-        restrictions
+        restrictions,
+        salesPrices
     } where(
            equipment.chapter.isVisible                = true
         or equipment.chapter.isVisibleInConfigurator  = true
@@ -442,4 +444,69 @@ service AppBackofficeModelsService {
         unit,
         name
     }
+
+    @readonly
+    entity ModelColorCombinationSalesPrices     as projection on db.ModelColorCombinationSalesPrices {
+        colorCombination,
+        type,
+        constraintEquipment,
+        constraintColor,
+        validFrom,
+        validTo,
+        value,
+        currency,
+        weighting,
+        case
+            when
+                length(
+                    constraintEquipment.id
+                ) > 0
+            then
+                constraintEquipment.id
+            else
+                ' '
+        end as constraintEquipmentId : String,
+        case
+            when
+                length(
+                    constraintColor.id
+                ) > 0
+            then
+                constraintColor.id
+            else
+                ' '
+        end as constraintColorId     : String
+    };
+
+    @readonly
+    entity ModelEquipmentSalesPrices            as projection on db.ModelEquipmentSalesPrices {
+        equipment,
+        constraintEquipment,
+        constraintColor,
+        validFrom,
+        validTo,
+        value,
+        currency,
+        weighting,
+        case
+            when
+                length(
+                    constraintEquipment.id
+                ) > 0
+            then
+                constraintEquipment.id
+            else
+                ' '
+        end as constraintEquipmentId : String,
+        case
+            when
+                length(
+                    constraintColor.id
+                ) > 0
+            then
+                constraintColor.id
+            else
+                ' '
+        end as constraintColorId     : String
+    };
 }

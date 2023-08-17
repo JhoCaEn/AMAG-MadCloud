@@ -1,16 +1,8 @@
 code,name
-S000,Fahrzeug ohne Kundenauftrag
-S041,Fahrzeug mit Kundenauftrag
-S042,Fahrzeug wartet auf Fakturierung
-S044,Lieferung angelegt
-S045,Warenausgang gebucht
+S000,Fahrzeug bestellt
 S046,Fahrzeug fakturiert
-S055,Verkaufsmeldung an Händler übergeben
-S059,Verkaufsmeldung an Importeur übergeben
+S059,Verkaufsmeldung übergeben
 S060,Verkaufsmeldung verarbeitet
-S04F,Fahrzeug Umdispo angefragt nach Faktura
-S04G,Fahrzeug Umdispo freigegeben nach Faktura
-S04H,Fahrzeug Umdispo übernommen nach Faktura
-S04A,Fahrzeug Umdispo angefragt vor Faktura
-S04B,Fahrzeug Umdispo freigegeben vor Faktura
-S04C,Fahrzeug Umdispo übernommen vor Faktura
+S04A,Umdispo angefragt
+S04B,Umdispo freigegeben
+S04C,Umdispo übernommen

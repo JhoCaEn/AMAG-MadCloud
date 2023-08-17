@@ -16,3 +16,52 @@ entity ModelColorCombinationSalesPrices : replicated {
 };
 
 type ModelColorCombinationSalesPrice : Association to ModelColorCombinationSalesPrices;
+
+entity CurrentModelColorCombinationSalesPrices as projection on ModelColorCombinationSalesPrices {
+    key colorCombination.model,
+    key colorCombination.exterior,
+    key colorCombination.interior,
+    key colorCombination.roof,
+    key type,
+    key constraintEquipment,
+    key constraintColor,
+        value,
+        currency,
+        weighting
+} where $now between validFrom and validTo;
+
+entity CurrentModelColorCombinationExteriorSalesPrices as projection on CurrentModelColorCombinationSalesPrices {
+    key model,
+    key exterior,
+    key interior,
+    key roof,
+    key constraintEquipment,
+    key constraintColor,
+        value,
+        currency,
+        weighting
+} where type.code = 'E';
+
+entity CurrentModelColorCombinationInteriorSalesPrices as projection on CurrentModelColorCombinationSalesPrices {
+    key model,
+    key exterior,
+    key interior,
+    key roof,
+    key constraintEquipment,
+    key constraintColor,
+        value,
+        currency,
+        weighting
+} where type.code = 'I';
+
+entity CurrentModelColorCombinationRoofSalesPrices as projection on CurrentModelColorCombinationSalesPrices {
+    key model,
+    key exterior,
+    key interior,
+    key roof,
+    key constraintEquipment,
+    key constraintColor,
+        value,
+        currency,
+        weighting
+} where type.code = 'R';

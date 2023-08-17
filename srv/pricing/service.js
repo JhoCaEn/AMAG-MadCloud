@@ -1,12 +1,12 @@
 module.exports = class PricingSalesPriceService extends cds.ApplicationService {
     async init() {
 
-        const LOG = cds.log('salesprice')
+        const LOG = cds.log('salespricing')
         const db = await cds.connect.to('db')
 
         const {
-            ModelEquipmentSalesPrices,
-            ModelColorCombinationSalesPrices
+            CurrentModelEquipmentSalesPrices,
+            CurrentModelColorCombinationSalesPrices
         } = db.entities('retail.dwb')
 
         this.on('calculate', async ({ data } = {}) => calculate(data))
@@ -18,95 +18,105 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
             if (!table) return
             if (!ID) return
 
+            const exists = await db.exists(table, { ID }).forUpdate()
+            if (!exists) return
+
             const data = await db.read(table, { ID }, x => { x.model_id, x.exteriorColor_id, x.interiorColor_id, x.roofColor_id, x.equipments(e => { e.equipment_id }) })
 
-            if (!data) return
-
-            const colors = {
-                exterior: data.exteriorColor_id,
-                interior: data.interiorColor_id,
-                roof: data.roofColor_id
-            }
+            const { model_id, exteriorColor_id, interiorColor_id, roofColor_id } = data
             const equipments = data.equipments.map(item => item.equipment_id)
 
-            const equipmentPrices = await calculateEquipmentsPrices(data.model_id, Object.values(colors), equipments)
-            const exteriorColorPrices = await calculateColorPrice(data.model_id, colors, equipments, 'E')
-            const interiorColorPrices = await calculateColorPrice(data.model_id, colors, equipments, 'I')
-            const roofColorPrices = await calculateColorPrice(data.model_id, colors, equipments, 'R')
+            const colorPrices = await readColorPrices({ model_id, exteriorColor_id, interiorColor_id, roofColor_id })
+            const equipmentPrices = await readEquipmentPrices({ model_id, equipments })
 
-            await db.update(table, { ID }).set({
-                ID: ID,
-                equipments: equipmentPrices,
-                ...exteriorColorPrices,
-                ...interiorColorPrices,
-                ...roofColorPrices
+            const calculations = prepareCalculations({ equipments, colorPrices, equipmentPrices })
+            calculatePrices({ calculations, colors: [exteriorColor_id, interiorColor_id, roofColor_id], equipments })
+
+            return updateConstraints({ table, ID, equipments, calculations })
+        }
+
+        const readColorPrices = async ({ model_id, exteriorColor_id: exterior_id, interiorColor_id: interior_id, roofColor_id: roof_id }) => {
+            return db.read(CurrentModelColorCombinationSalesPrices, ['type_code as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
+                .where({ model_id, exterior_id, interior_id, roof_id })
+                .orderBy( 'weighting desc' )
+        }
+
+        const readEquipmentPrices = async ({ model_id, equipments }) => {
+            if (!equipments?.length) return []
+
+            return db.read(CurrentModelEquipmentSalesPrices, ['equipment_id as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
+                .where({ model_id, equipment_id: equipments })
+                .orderBy( 'weighting desc' )
+        }
+
+        const prepareCalculations = ({ equipments, colorPrices, equipmentPrices }) => {
+            const calculations = {
+                E: {
+                    constraintEquipment_id: '',
+                    constraintColor_id: '',
+                    prices: []
+                },
+                I: {
+                    constraintEquipment_id: '',
+                    constraintColor_id: '',
+                    prices: []
+                },
+                R: {
+                    constraintEquipment_id: '',
+                    constraintColor_id: '',
+                    prices: []
+                },
+                ...equipments.reduce((current, id) => ({ 
+                    ...current,
+                    [id]: {
+                        constraintEquipment_id: '',
+                        constraintColor_id: '',
+                        prices: []
+                    }
+                }), {})
+            }
+
+            colorPrices.forEach(price => calculations[price.id].prices.push(price))
+            equipmentPrices.forEach(price => calculations[price.id].prices.push(price))
+
+            return calculations
+        }
+
+        const calculatePrices = ({ calculations, colors, equipments }) => {
+            Object.keys(calculations).forEach(id => {
+                const calculation = calculations[id]
+
+                for ( const {constraintEquipment_id, constraintColor_id } of calculation.prices ) {
+
+                    if (constraintEquipment_id && !equipments?.includes(constraintEquipment_id))
+                        continue
+
+                    if (constraintColor_id && !colors?.includes(constraintColor_id))
+                        continue
+
+                    calculation.constraintEquipment_id = constraintEquipment_id
+                    calculation.constraintColor_id = constraintColor_id
+
+                    break
+                }
             })
         }
 
-        const calculateEquipmentsPrices = async (equipment_model_id, colors, equipments) => {
-            const salesPrices = await db.read(ModelEquipmentSalesPrices, ['equipment_equipment_id', 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
-                .where({
-                    equipment_model_id,
-                    equipment_equipment_id: equipments
-                })
-                .where('current_date between validFrom and validTo')
-
-            if (!salesPrices.length) return []
-
-            const sellingPriceEquipments = determineSellingPrice(salesPrices, equipments, colors, sellingPriceResponseKeys.equipments)
-
-            return sellingPriceEquipments.map(({ equipment_equipment_id, constraintEquipment_id, constraintColor_id }) => ({ equipment_id: equipment_equipment_id, salesPriceConstraintEquipment_id: constraintEquipment_id, salesPriceConstraintColor_id: constraintColor_id }))
-        }
-
-        const calculateColorPrice = async (colorCombination_model_id, colors, equipments, type_code) => {
-            const salesPrices = await db.read(ModelColorCombinationSalesPrices, [sellingPriceResponseKeys[type_code], 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
-                .where({
-                    colorCombination_model_id,
-                    colorCombination_exterior_id: colors.exterior || '',
-                    colorCombination_interior_id: colors.interior || '',
-                    colorCombination_roof_id: colors.roof || '',
-                    type_code
-                })
-                .where('current_date between validFrom and validTo')
-
-            if (!salesPrices.length) return {}
-
-            const sellingPriceColor = determineSellingPrice(salesPrices, equipments, Object.values(colors), sellingPriceResponseKeys[type_code])
-
-            if (!sellingPriceColor.length) return {}
-
-            return {
-                [colorPriceResponseFields[type_code].color]: sellingPriceColor[0][sellingPriceResponseKeys[type_code]],
-                [colorPriceResponseFields[type_code].constraintEquipment]: sellingPriceColor[0].constraintEquipment_id,
-                [colorPriceResponseFields[type_code].constraintColor]: sellingPriceColor[0].constraintColor_id
-            }
-        }
-
-        const determineSellingPrice = require('./determineSellingPrice')
-
-        const sellingPriceResponseKeys = {
-            equipments: 'equipment_equipment_id',
-            E: 'colorCombination_exterior_id',
-            I: 'colorCombination_interior_id',
-            R: 'colorCombination_roof_id'
-        }
-
-        const colorPriceResponseFields = {
-            E: {
-                color: 'exteriorColor_id',
-                constraintEquipment: 'exteriorColorSalesPriceConstraintEquipment_id',
-                constraintColor: 'exteriorColorSalesPriceConstraintColor_id'
-            },
-            I: {
-                color: 'interiorColor_id',
-                constraintEquipment: 'interiorColorSalesPriceConstraintEquipment_id',
-                constraintColor: 'interiorColorSalesPriceConstraintColor_id'
-            },
-            R: {
-                color: 'roofColor_id',
-                constraintEquipment: 'roofColorSalesPriceConstraintEquipment_id',
-                constraintColor: 'roofColorSalesPriceConstraintColor_id'
-            }
+        const updateConstraints = async ({ table, ID, equipments, calculations }) => {
+            return db.update(table, { ID }).set({
+                ID: ID,
+                exteriorColorSalesPriceConstraintEquipment_id: calculations.E.constraintEquipment_id,
+                exteriorColorSalesPriceConstraintColor_id: calculations.E.constraintColor_id,
+                interiorColorSalesPriceConstraintEquipment_id: calculations.I.constraintEquipment_id,
+                interiorColorSalesPriceConstraintColor_id: calculations.I.constraintColor_id,                
+                roofColorSalesPriceConstraintEquipment_id: calculations.R.constraintEquipment_id,
+                roofColorSalesPriceConstraintColor_id: calculations.R.constraintColor_id,
+                equipments: equipments.map(id => ({
+                    equipment_id: id,
+                    salesPriceConstraintEquipment_id: calculations[id].constraintEquipment_id,
+                    salesPriceConstraintColor_id: calculations[id].constraintColor_id
+                })),                
+            })
         }
 
         return super.init()

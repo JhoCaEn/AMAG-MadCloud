@@ -5,7 +5,8 @@ annotate db.ModelSalesPrices with {
     validFrom  @title               : '{i18n>General.validFrom}';
     validTo    @title               : '{i18n>General.validTo}';
     value      @title               : '{i18n>General.priceValue}';
-    currency   @title               : '{i18n>General.currency}';
+    value      @Measures.ISOCurrency: currency;
+    currency   @UI.Hidden;
     createdAt  @title               : '{i18n>replicated.createdAt}';
     modifiedAt @title               : '{i18n>replicated.modifiedAt}';
 };

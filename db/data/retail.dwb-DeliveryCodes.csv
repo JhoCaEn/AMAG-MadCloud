@@ -1,7 +1,7 @@
 code,name,displayOnly
 0,Selbstabholer,false
 1,Fahrzeug liefern,false
-2,Nicht liefern – Blockiert,true
+2,Nicht liefern - Blockiert,true
 9,Gemäss separater Info,false
 A,Aufbauer,false
 N,Nicht liefern,false

@@ -17,7 +17,9 @@ entity OrderControls : replicated {
         paidByPartner      : db.Partner             @assert.integrity: false;
         releasedForPartner : Boolean default false;
         forEmployee        : Boolean default false;
-        availability       : db.VehicleAvailability @assert.integrity: false
+        availability       : db.VehicleAvailability @assert.integrity: false;
+        orderType          : db.OrderType           @assert.integrity: false;
+        deliveryCode       : db.DeliveryCode        @assert.integrity: false;
 };
 
 type OrderControl : Association to OrderControls;

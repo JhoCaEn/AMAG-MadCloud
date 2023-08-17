@@ -8,19 +8,19 @@ annotate db.Vehicles with {
     organizationDivision                       @title: '{i18n>Vehicles.organizationDivision}';
     material                                   @title: '{i18n>Vehicles.material}';
     plant                                      @title: '{i18n>Vehicles.plant}';
-    salesPartner                               @title: '{i18n>Vehicles.salesPartner}';
+    salesPartner                               @title: '{i18n>SalesPartner}';
     dealerPartner                              @title: '{i18n>Vehicles.dealerPartner}';
-    soldToPartner                              @title: '{i18n>Vehicles.soldToPartner}';
-    shipToPartner                              @title: '{i18n>Vehicles.shipToPartner}';
-    billToPartner                              @title: '{i18n>Vehicles.billToPartner}';
-    paidByPartner                              @title: '{i18n>Vehicles.paidByPartner}';
+    soldToPartner                              @title: '{i18n>SoldToPartner}';
+    shipToPartner                              @title: '{i18n>ShipToPartner}';
+    billToPartner                              @title: '{i18n>BillToPartner}';
+    paidByPartner                              @title: '{i18n>PaidByPartner}';
     brand                                      @title: '{i18n>Brand}';
     salesType                                  @title: '{i18n>SalesType}';
     model                                      @title: '{i18n>Model}';
-    usage                                      @title: '{i18n>Vehicles.usage}';
+    usage                                      @title: '{i18n>VehicleUsage}';
     customerState                              @title: '{i18n>CustomerState}';
     endCustomerState                           @title: '{i18n>EndCustomerState}';
-    availability                               @title: '{i18n>Vehicles.availability}';
+    availability                               @title: '{i18n>VehicleAvailability}';
     exteriorColor                              @title: '{i18n>ExteriorColor}';
     exteriorColorSalesPriceConstraintEquipment @title: '{i18n>Vehicles.exteriorColorSalesPriceConstraintEquipment}';
     exteriorColorSalesPriceConstraintColor     @title: '{i18n>Vehicles.exteriorColorSalesPriceConstraintColor}';
@@ -34,8 +34,6 @@ annotate db.Vehicles with {
     interiorColorSalesPrice                    @title: '{i18n>Vehicles.interiorColorSalesPrice}';
     roofColorSalesPrice                        @title: '{i18n>Vehicles.roofColorSalesPrice}';
     equipments                                 @title: '{i18n>Equipments}';
-    createdAt                                  @title: '{i18n>replicated.createdAt}';
-    modifiedAt                                 @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.Vehicles with @Common.SemanticKey: [ID];
@@ -47,31 +45,7 @@ annotate db.Vehicles with @UI: {
         TypeNamePlural: '{i18n>Vehicles}',
         Title         : {
             $Type: 'UI.DataField',
-            Value: erpID
-        },
-        // Description   : {
-        //     $Type : 'UI.DataFieldForAnnotation',
-        //     Target: '@UI.ConnectedFields#HeaderDescription'
-        // }
-    },
-    
-    ConnectedFields #HeaderDescription: {
-        $Type   : 'UI.ConnectedFieldsType',
-        Template: '{salesOrganisation} / {distributionChannel} / {organizationDivision}',
-        Data    : {
-            $Type           : 'Core.Dictionary',
-            salesOrganisation    : {
-                $Type: 'UI.DataField',
-                Value: salesOrganisation
-            },
-            distributionChannel   : {
-                $Type: 'UI.DataField',
-                Value: distributionChannel
-            },
-            organizationDivision: {
-                $Type: 'UI.DataField',
-                Value: organizationDivision
-            }
+            Value: ID
         }
     }
 };

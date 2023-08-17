@@ -23,10 +23,18 @@ annotate service.Configurations with {
     preselectedInteriorColor                   @Core.Computed;
     preselectedRoofColor                       @Core.Computed;
     callback                                   @readonly;
-    exteriorColorSalesPriceConstraintEquipment @readonly;
-    exteriorColorSalesPriceConstraintColor     @readonly;
-    interiorColorSalesPriceConstraintEquipment @readonly;
-    interiorColorSalesPriceConstraintColor     @readonly;
-    roofColorSalesPriceConstraintEquipment     @readonly;
-    roofColorSalesPriceConstraintColor         @readonly;
+    exteriorColorSalesPriceConstraintEquipment @Core.Computed;
+    exteriorColorSalesPriceConstraintColor     @Core.Computed;
+    interiorColorSalesPriceConstraintEquipment @Core.Computed;
+    interiorColorSalesPriceConstraintColor     @Core.Computed;
+    roofColorSalesPriceConstraintEquipment     @Core.Computed;
+    roofColorSalesPriceConstraintColor         @Core.Computed;
+    exteriorColorSalesPrice                    @Core.Computed;
+    interiorColorSalesPrice                    @Core.Computed;
+    roofColorSalesPrice                        @Core.Computed;
 };
+
+annotate service.ConfigurationEquipments with {
+    salesPriceConstraintEquipment @Core.Computed;
+    salesPriceConstraintColor     @Core.Computed;
+}

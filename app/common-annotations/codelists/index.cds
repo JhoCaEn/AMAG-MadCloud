@@ -12,5 +12,8 @@ using from './vehicleusages';
 using from './vehicleavailabilities';
 using from './partnerrolesources';
 using from './purchaseorderstates';
+using from './purchaseorderstatetransformations';
 using from './salesorderstates';
 using from './salesorderstatetransformations';
+using from './ordertypes';
+using from './deliverycodes';

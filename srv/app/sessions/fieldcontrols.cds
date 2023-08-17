@@ -11,5 +11,6 @@ annotate service.Sessions with {
     ocd                       @Core.Immutable;
     isPrepared                @Core.Computed;
     forwardToOffer            @Core.Computed;
+    callbackURL               @Core.Computed;
     offer                     @Core.Computed;
 }

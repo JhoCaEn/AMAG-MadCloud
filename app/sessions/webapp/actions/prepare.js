@@ -3,27 +3,25 @@ sap.ui.define([],
         'use strict';
 
         return {
-            invoke: async function (session, extensionAPI) {
+            invoke: async function (session, callbackURL, extensionAPI) {
                 const editFlow = this.editFlow || extensionAPI.editFlow
                 const intentBasedNavigation = this.intentBasedNavigation || extensionAPI.intentBasedNavigation
 
                 const promise = editFlow.invokeAction('AppSessionsService.prepare', {
-                    contexts: session
+                    contexts: session,
+                    parameterValues: [{
+                        name: 'callbackURL',
+                        value: callbackURL
+                    }],
+                    skipParameterDialog: true
                 }).then(async () => {
+                    const [forwardToOffer, offer_ID] = await session.requestProperty(['forwardToOffer', 'offer_ID'])
 
-                    const forwardToOffer = await session.requestProperty('forwardToOffer')
-                    const callbackURL = await session.requestProperty('callbackURL')
-
-                    if (forwardToOffer) {
-                        const offer_ID = await session.requestProperty('offer_ID')
-
+                    if (forwardToOffer)
                         return intentBasedNavigation.navigateOutbound(
                             'offer-manage',
                             offer_ID ? { ID: offer_ID } : undefined
-                        )                
-                    } else if ( callbackURL ) {
-                        sap.m.URLHelper.redirect("https://www.google.com/");
-                    }                       
+                        )
                 })
 
                 return editFlow.securedExecution(async function () {

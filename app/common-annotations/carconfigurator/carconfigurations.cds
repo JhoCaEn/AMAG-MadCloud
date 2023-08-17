@@ -20,12 +20,13 @@ annotate db.CarConfigurations with {
     preselectedExteriorColor                   @title: '{i18n>CarConfigurations.preselectedExteriorColor}';
     preselectedInteriorColor                   @title: '{i18n>CarConfigurations.preselectedInteriorColor}';
     preselectedRoofColor                       @title: '{i18n>CarConfigurations.preselectedRoofColor}';
-    exteriorColorSalesPriceConstraintEquipment @title: '{i18n>exteriorColorSalesPriceConstraintEquipment}';
-    exteriorColorSalesPriceConstraintColor     @title: '{i18n>exteriorColorSalesPriceConstraintColor}';
-    interiorColorSalesPriceConstraintEquipment @title: '{i18n>interiorColorSalesPriceConstraintEquipment}';
-    interiorColorSalesPriceConstraintColor     @title: '{i18n>interiorColorSalesPriceConstraintColor}';
-    roofColorSalesPriceConstraintEquipment     @title: '{i18n>roofColorSalesPriceConstraintEquipment}';
-    roofColorSalesPriceConstraintColor         @title: '{i18n>roofColorSalesPriceConstraintColor}';
+    exteriorColorSalesPriceConstraintEquipment @title: '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintEquipment}';
+    exteriorColorSalesPriceConstraintColor     @title: '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintColor}';
+    interiorColorSalesPriceConstraintEquipment @title: '{i18n>CarConfigurations.interiorColorSalesPriceConstraintEquipment}';
+    interiorColorSalesPriceConstraintColor     @title: '{i18n>CarConfigurations.interiorColorSalesPriceConstraintColor}';
+    roofColorSalesPriceConstraintEquipment     @title: '{i18n>CarConfigurations.roofColorSalesPriceConstraintEquipment}';
+    roofColorSalesPriceConstraintColor         @title: '{i18n>CarConfigurations.roofColorSalesPriceConstraintColor}';
+    callback                                   @title: '{i18n>Callback}';
 }
 
 /*

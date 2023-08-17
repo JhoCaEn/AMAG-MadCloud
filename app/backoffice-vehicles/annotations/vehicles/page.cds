@@ -87,6 +87,10 @@ annotate service.Vehicles with @UI: {
         Data : [
             {
                 $Type: 'UI.DataField',
+                Value: erpID,
+            },
+            {
+                $Type: 'UI.DataField',
                 Value: salesOrganisation,
             },
             {

@@ -7,7 +7,7 @@ annotate service.Configurations with @UI: {
         Target: '@UI.FieldGroup#General'
     }],
     */
-    Facets         : [
+    Facets                                       : [
         {
             $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_Properties',
@@ -16,16 +16,41 @@ annotate service.Configurations with @UI: {
         },
         {
             $Type : 'UI.ReferenceFacet',
+            ID    : 'WiP_SalesPrices',
+            Label : 'WiP: SalesPrices',
+            Target: '@UI.FieldGroup#WiPSalesPrices'
+        },        
+        {
+            $Type : 'UI.CollectionFacet',
             ID    : 'WiP_SalesPriceConstraints',
             Label : 'WiP: Sales Price Constraints',
-            Target: '@UI.FieldGroup#SalesPriceConstraints'
+            Facets: [
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'WiP_ExteriorColorSalesPriceConstraints',
+                    Label : 'WiP: Exterior Color Sales Price Constraints',
+                    Target: '@UI.FieldGroup#salesPriceExteriorColorConstrains'
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'WiP_InteriorColorSalesPriceConstraints',
+                    Label : 'WiP: Interior Color Sales Price Constraints',
+                    Target: '@UI.FieldGroup#salesPriceInteriorColorConstrains'
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'WiP_RoofColorSalesPriceConstraints',
+                    Label : 'WiP: Roof Color Sales Price Constraints',
+                    Target: '@UI.FieldGroup#salesPriceRoofColorConstrains'
+                }
+            ]
         },
         {
             $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_Equipments',
             Label : 'WiP: Equipments',
             Target: 'equipments/@UI.LineItem'
-        },        
+        },
         {
             $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_PreselectedProperties',
@@ -37,7 +62,7 @@ annotate service.Configurations with @UI: {
             ID    : 'WiP_PreselectedEquipments',
             Label : 'WiP: Preselected Equipments',
             Target: 'preselectedEquipments/@UI.LineItem'
-        },        
+        },
         {
             $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_SelectableModelCategories',
@@ -73,7 +98,7 @@ annotate service.Configurations with @UI: {
             ID    : 'WiP_SelectableColorCombinations',
             Label : 'WiP: Selectable ColorCombinations',
             Target: 'selectableColorCombinations/@UI.LineItem'
-        },                        
+        },
         {
             $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_SelectableColors',
@@ -97,7 +122,7 @@ annotate service.Configurations with @UI: {
             ID    : 'WiP_SelectableEquipments',
             Label : 'WiP: Selectable Equipments',
             Target: 'selectableEquipments/@UI.LineItem'
-        } 
+        }
 
     /*{
         $Type : 'UI.CollectionFacet',
@@ -167,7 +192,7 @@ annotate service.Configurations with @UI: {
         FieldGroup #Interior    : {Data: [{Value: interiorColor_id}]},
         FieldGroup #Roof        : {Data: [{Value: roofColor_id}]},
     */
-    FieldGroup #WiP: {Data: [
+    FieldGroup #WiP                              : {Data: [
         {Value: configuredAt},
         {Value: partner_id},
         {Value: brand_code},
@@ -185,21 +210,37 @@ annotate service.Configurations with @UI: {
         {Value: callback_ID}
     ]},
 
-    FieldGroup #WiPPreselected: {Data: [
+    FieldGroup #WiPPreselected                   : {Data: [
         {Value: preselectedModel_id},
         {Value: preselectedExteriorColor_id},
         {Value: preselectedInteriorColor_id},
         {Value: preselectedRoofColor_id}
     ]},
 
-    FieldGroup #SalesPriceConstraints: {Data: [
+    FieldGroup #salesPriceExteriorColorConstrains: {Data: [
         {Value: exteriorColorSalesPriceConstraintColor_id},
+        {Value: exteriorColorSalesPriceConstraintEquipment_id}
+        
+    ]},
+
+    FieldGroup #salesPriceInteriorColorConstrains: {Data: [
         {Value: interiorColorSalesPriceConstraintColor_id},
+        {Value: interiorColorSalesPriceConstraintEquipment_id}
+    ]},
+
+    FieldGroup #salesPriceRoofColorConstrains    : {Data: [
         {Value: roofColorSalesPriceConstraintColor_id},
-        {Value: exteriorColorSalesPriceConstraintEquipment_id},
-        {Value: interiorColorSalesPriceConstraintEquipment_id},
-        {Value: roofColorSalesPriceConstraintEquipment_id},
-    ]}
+        {Value: roofColorSalesPriceConstraintEquipment_id}
+    ]},
+
+    FieldGroup#WiPSalesPrices : {
+        Data: [
+            {Value: modelSalesPrice.value, Label: '{i18n>Model}'},
+            {Value: exteriorColorSalesPrice.value, Label: '{i18n>ExteriorColor}'},
+            {Value: interiorColorSalesPrice.value, Label: '{i18n>InteriorColor}'},
+            {Value: roofColorSalesPrice.value, Label: '{i18n>RoofColor}'}
+        ]
+    }
 };
 
 annotate service.Configurations with @UI.Identification: [

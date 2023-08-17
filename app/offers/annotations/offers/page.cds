@@ -4,7 +4,7 @@ using from '../car-configuration-equipments/list';
 
 annotate service.Offers with @UI: {
 
-    Facets                          : [
+    Facets                                       : [
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'WiP_Section',
@@ -39,6 +39,37 @@ annotate service.Offers with @UI: {
                         ID    : 'WiP_CarConfigurationProperties',
                         Target: '@UI.FieldGroup#WiP_CarConfiguration'
                     }]
+                },
+                {
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'WiP_CarConfigurationSalesPrices',
+                    Label : 'WiP: CarConfiguration Sales Prices',
+                    Target: '@UI.FieldGroup#WiPSalesPrices'
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'WiP_CarConfigurationSalesPriceConstraints',
+                    Label : 'WiP: Car Configuration Sales Price Constraints',
+                    Facets: [
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            ID    : 'WiP_ExteriorColorSalesPriceConstraints',
+                            Label : 'WiP: Exterior Color Sales Price Constraints',
+                            Target: '@UI.FieldGroup#salesPriceExteriorColorConstrains'
+                        },
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            ID    : 'WiP_InteriorColorSalesPriceConstraints',
+                            Label : 'WiP: Interior Color Sales Price Constraints',
+                            Target: '@UI.FieldGroup#salesPriceInteriorColorConstrains'
+                        },
+                        {
+                            $Type : 'UI.ReferenceFacet',
+                            ID    : 'WiP_RoofColorSalesPriceConstraints',
+                            Label : 'WiP: Roof Color Sales Price Constraints',
+                            Target: '@UI.FieldGroup#salesPriceRoofColorConstrains'
+                        }
+                    ]
                 },
                 {
                     $Type : 'UI.CollectionFacet',
@@ -86,7 +117,7 @@ annotate service.Offers with @UI: {
         },
     ],
 
-    FieldGroup #WiP                 : {Data: [
+    FieldGroup #WiP                              : {Data: [
         {Value: ocd},
         {Value: customerProjectName},
         {Value: customerProjectNumber},
@@ -99,17 +130,52 @@ annotate service.Offers with @UI: {
         {Value: callback_ID},
     ]},
 
-    FieldGroup #WiP_CarConfiguration: {Data: [
+    FieldGroup #WiP_CarConfiguration             : {Data: [
         {Value: carConfigurationID},
         {Value: carConfigurationIsValid},
         {Value: carConfigurationConfiguredAt},
         {Value: carConfigurationModel_id},
         {Value: carConfigurationExteriorColor_id},
         {Value: carConfigurationInteriorColor_id},
-        {Value: carConfigurationRoofColor_id},
+        {Value: carConfigurationRoofColor_id}
     ]},
 
-    FieldGroup #General_General     : {
+    FieldGroup #salesPriceExteriorColorConstrains: {Data: [
+        {Value: carConfigurationExteriorColorSalesPriceConstraintEquipment_id},
+        {Value: carConfigurationExteriorColorSalesPriceConstraintColor_id},
+
+    ]},
+
+    FieldGroup #salesPriceInteriorColorConstrains: {Data: [
+        {Value: carConfigurationInteriorColorSalesPriceConstraintEquipment_id},
+        {Value: carConfigurationInteriorColorSalesPriceConstraintColor_id},
+    ]},
+
+    FieldGroup #salesPriceRoofColorConstrains    : {Data: [
+        {Value: carConfigurationRoofColorSalesPriceConstraintEquipment_id},
+        {Value: carConfigurationRoofColorSalesPriceConstraintColor_id},
+    ]},
+
+    FieldGroup #WiPSalesPrices                   : {Data: [
+        {
+            Value: carConfigurationModel.salesPrice.value,
+            Label: '{i18n>Model}'
+        },
+        {
+            Value: carConfigurationExteriorColorSalesPrice.value,
+            Label: '{i18n>ExteriorColor}'
+        },
+        {
+            Value: carConfigurationInteriorColorSalesPrice.value,
+            Label: '{i18n>InteriorColor}'
+        },
+        {
+            Value: carConfigurationRoofColorSalesPrice.value,
+            Label: '{i18n>RoofColor}'
+        }
+    ]},
+
+    FieldGroup #General_General                  : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>Offers.FieldGroup.General_General}',
         Data : [
@@ -135,7 +201,7 @@ annotate service.Offers with @UI: {
             },
         ]
     },
-    FieldGroup #General_Vehicle     : {
+    FieldGroup #General_Vehicle                  : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>Offers.FieldGroup.General_Vehicle}',
         Data : [

@@ -1,8 +1,10 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
 annotate service.Partners with {
-    id        @UI.Hidden;
-    partnerId @title: '{i18n>General.ID}';
+    id           @UI.Hidden;
+    partnerId    @title: '{i18n>General.ID}';
+    phoneNumber  @Communication.IsPhoneNumber;
+    emailAddress @Communication.IsEmailAddress;
 };
 
 annotate service.Partners with @UI: {HeaderInfo: {

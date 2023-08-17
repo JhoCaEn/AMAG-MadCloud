@@ -1,38 +1,33 @@
 using AppBackofficeVehiclesService as service from '../../../../srv';
 
 annotate service.Vehicles with {
-    brand                                      @title           : '{i18n>Brand}';
     brand                                      @Common          : {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    usage                                      @title           : '{i18n>Vehicles.usage}';
     usage                                      @Common          : {
         Text           : usage.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    customerState                              @title           : '{i18n>CustomerState}';
     customerState                              @Common          : {
         Text           : customerState.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    endCustomerState                           @title           : '{i18n>EndCustomerState}';
     endCustomerState                           @Common          : {
         Text           : endCustomerState.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    availability                               @title           : '{i18n>Vehicles.availability}';
     availability                               @Common          : {
         Text           : availability.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
@@ -113,7 +108,7 @@ annotate service.Vehicles with {
     };
 
     billToPartner                              @Common          : {
-        Text           : soldToPartner.name,
+        Text           : billToPartner.name,
         TextArrangement: #TextFirst
     };
     billToPartner                              @Common.ValueList: {
@@ -154,7 +149,7 @@ annotate service.Vehicles with {
     salesTypeId                                @title           : '{i18n>SalesType}';
     salesTypeId                                @Common          : {
         Text           : salesType.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     salesTypeId                                @Common.ValueList: {
         CollectionPath: 'SalesTypes',
@@ -171,14 +166,6 @@ annotate service.Vehicles with {
             },
             {
                 $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'material'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty: 'salesOrganisation'
-            },
-            {
-                $Type            : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty: 'name'
             }
         ]
@@ -186,7 +173,7 @@ annotate service.Vehicles with {
 
     exteriorColor                              @Common          : {
         Text           : exteriorColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     exteriorColor                              @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -205,7 +192,7 @@ annotate service.Vehicles with {
 
     interiorColor                              @Common          : {
         Text           : interiorColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     interiorColor                              @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -224,7 +211,7 @@ annotate service.Vehicles with {
 
     roofColor                                  @Common          : {
         Text           : roofColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     roofColor                                  @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -243,7 +230,7 @@ annotate service.Vehicles with {
 
     exteriorColorSalesPriceConstraintColor     @Common          : {
         Text           : exteriorColorSalesPriceConstraintColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     exteriorColorSalesPriceConstraintColor     @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -262,7 +249,7 @@ annotate service.Vehicles with {
 
     exteriorColorSalesPriceConstraintEquipment @Common          : {
         Text           : exteriorColorSalesPriceConstraintEquipment.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     exteriorColorSalesPriceConstraintEquipment @Common.ValueList: {
         CollectionPath: 'Equipments',
@@ -281,7 +268,7 @@ annotate service.Vehicles with {
 
     interiorColorSalesPriceConstraintColor     @Common          : {
         Text           : interiorColorSalesPriceConstraintColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     interiorColorSalesPriceConstraintColor     @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -300,7 +287,7 @@ annotate service.Vehicles with {
 
     interiorColorSalesPriceConstraintEquipment @Common          : {
         Text           : interiorColorSalesPriceConstraintEquipment.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     interiorColorSalesPriceConstraintEquipment @Common.ValueList: {
         CollectionPath: 'Equipments',
@@ -319,7 +306,7 @@ annotate service.Vehicles with {
 
     roofColorSalesPriceConstraintColor         @Common          : {
         Text           : roofColorSalesPriceConstraintColor.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     roofColorSalesPriceConstraintColor         @Common.ValueList: {
         CollectionPath: 'Colors',
@@ -338,7 +325,7 @@ annotate service.Vehicles with {
 
     roofColorSalesPriceConstraintEquipment     @Common          : {
         Text           : roofColorSalesPriceConstraintEquipment.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     roofColorSalesPriceConstraintEquipment     @Common.ValueList: {
         CollectionPath: 'Equipments',
@@ -357,7 +344,7 @@ annotate service.Vehicles with {
 
     model                                      @Common          : {
         Text           : model.name,
-        TextArrangement: #TextFirst
+        TextArrangement: #TextOnly
     };
     model                                      @Common.ValueList: {
         CollectionPath: 'Models',

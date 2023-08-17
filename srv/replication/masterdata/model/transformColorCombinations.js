@@ -32,8 +32,16 @@ module.exports = (raw = [], brand_code) => {
         combination.restrictions.push(...transformColorCombinationsRestrictions(entry._Restrictions, brand_code))
         combination.restrictions.push(...transformColorCombinationsConstraints(entry._ConstraintRestrictions, brand_code))
 
-        Object.entries(salesPriceMapping).forEach(([colorCode, property]) => combination.salesPrices.push(...transformColorCombinationsSalesPrices(entry[property], colorCode)))
-        Object.entries(salesPriceConstraintMapping).forEach(([colorCode, property]) => combination.salesPrices.push(...transformColorCombinationsSalesPricesConstraints(entry[property], colorCode)))
+        Object.entries(salesPriceMapping).forEach(([type_code, expands]) => {
+            const salesPrices = []
+
+            salesPrices.push(...transformColorCombinationsSalesPrices(entry[expands.normal], type_code))
+            salesPrices.push(...transformColorCombinationsSalesPrices(entry[expands.contraint], type_code))
+
+            salesPrices.sort((a, b) => a.weighting < b.weighting ? -1 : 1).forEach((price, index) => price.weighting = index)
+
+            combination.salesPrices.push(...salesPrices)
+        })
 
         transformed.push(combination)
     })
@@ -44,16 +52,18 @@ module.exports = (raw = [], brand_code) => {
 const transformColorCombinationsRestrictions = require('./transformColorCombinationsRestrictions')
 const transformColorCombinationsConstraints = require('./transformColorCombinationsConstraints')
 const transformColorCombinationsSalesPrices = require('./transformColorCombinationsSalesPrices')
-const transformColorCombinationsSalesPricesConstraints = require('./transformColorCombinationsSalesPricesConstraints')
 
 const salesPriceMapping = {
-    'E': '_ExteriorSalesPrices',
-    'I': '_InteriorSalesPrices',
-    'R': '_RoofSalesPrices'
-}
-
-const salesPriceConstraintMapping = {
-    'E': '_ExteriorConstraintSalesPrices',
-    'I': '_InteriorConstraintSalesPrices',
-    'R': '_RoofConstraintSalesPrices'
+    E: {
+        normal: '_ExteriorSalesPrices',
+        contraint: '_ExteriorConstraintSalesPrices'
+    },
+    I: {
+        normal: '_InteriorSalesPrices',
+        contraint: '_InteriorConstraintSalesPrices'
+    },
+    R: {
+        normal: '_RoofSalesPrices',
+        constraint: '_RoofConstraintSalesPrices'
+    }
 }

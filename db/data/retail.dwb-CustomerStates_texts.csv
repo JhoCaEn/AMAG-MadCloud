@@ -1,11 +1,11 @@
 ﻿code,locale,name
-1,de,Händler
-1,en,Dealer
-1,fr,Concessionnaire
-1,it,Concessionario
-5,de,Importeur
-5,fr,Importateur
-5,it,Importatore
+01,de,Händler
+01,en,Dealer
+01,fr,Concessionnaire
+01,it,Concessionario
+05,de,Importeur
+05,fr,Importateur
+05,it,Importatore
 10,de,AMAG Leasing
 10,fr,AMAG Leasing
 10,it,AMAG Leasing

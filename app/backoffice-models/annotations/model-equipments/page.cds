@@ -1,6 +1,7 @@
 using AppBackofficeModelsService as service from '../../../../srv';
 using from '../model-equipment-package-content/list';
 using from '../model-equipment-restrictions/list';
+using from '../model-equipment-sales-prices/list';
 
 annotate service.ModelStandardEquipments with @UI: {
 
@@ -26,7 +27,7 @@ annotate service.ModelStandardEquipments with @UI: {
                 {$Path: 'isPackage'},
                 false
             ]}},
-        }
+        },
     ],
 
     FieldGroup #General   : {
@@ -80,62 +81,39 @@ annotate service.ModelExtraEquipments with @UI: {
 
     Facets                : [
         {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'GeneralSection',
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'GeneralFacet',
             Label : '{i18n>General.FieldGroup.General}',
-            Facets: [
-                {
-                    $Type : 'UI.CollectionFacet',
-                    ID    : 'GeneralSubSection',
-                    Label : '{i18n>General.FieldGroup.General}',
-                    Facets: [{
-                        $Type : 'UI.ReferenceFacet',
-                        ID    : 'GeneralFacet',
-                        Target: '@UI.FieldGroup#General'
-                    }]
-                },
-                {
-                    $Type : 'UI.CollectionFacet',
-                    ID    : 'VisibilitySubSection',
-                    Label : '{i18n>BackofficeModels.FieldGroup.Visibility}',
-                    Facets: [{
-                        $Type : 'UI.ReferenceFacet',
-                        ID    : 'VisibilityFacet',
-                        Target: '@UI.FieldGroup#Visibility'
-                    }]
-                },
-
-                {
-                    $Type        : 'UI.CollectionFacet',
-                    ID           : 'PackageContentSubSection',
-                    Label        : '{i18n>EquipmentPackageContent}',
-                    ![@UI.Hidden]: {$edmJson: {$Eq: [
-                        {$Path: 'isPackage'},
-                        false
-                    ]}},
-                    Facets       : [{
-                        $Type : 'UI.ReferenceFacet',
-                        ID    : 'PackageContentFacet',
-                        Target: 'packageContent/@UI.PresentationVariant'
-                    }]
-                }
-            ]
+            Target: '@UI.FieldGroup#General'
         },
         {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'RestrictionsSection',
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'VisibilityFacet',
+            Label : '{i18n>BackofficeModels.FieldGroup.Visibility}',
+            Target: '@UI.FieldGroup#Visibility'
+        },
+        {
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'PackageContentFacet',
+            Label        : '{i18n>EquipmentPackageContent}',
+            Target       : 'packageContent/@UI.PresentationVariant',
+            ![@UI.Hidden]: {$edmJson: {$Eq: [
+                {$Path: 'isPackage'},
+                false
+            ]}},
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'SalesPricesFacet',
+            Label : '{i18n>Prices}',
+            Target: 'salesPrices/@UI.PresentationVariant'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID    : 'RestrictionsFacet',
             Label : '{i18n>Restrictions}',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'RestrictionsSection',
-                Label : '{i18n>Restrictions}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'RestrictionsFacet',
-                    Target: 'restrictions/@UI.PresentationVariant'
-                }]
-            }]
-        }
+            Target: 'restrictions/@UI.PresentationVariant'
+        },
     ],
 
     FieldGroup #General   : {

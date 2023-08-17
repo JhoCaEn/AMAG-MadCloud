@@ -1,6 +1,6 @@
 using AppBackofficeVehiclesService as service from '../../../../srv';
 
-annotate service.VehicleEchipments with @UI: {
+annotate service.VehicleEquipments with @UI: {
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],

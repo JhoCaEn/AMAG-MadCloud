@@ -5,3 +5,5 @@ using from './partner-role-source';
 using from './vehicle-availability';
 using from './vehicle-usages';
 using from './partners';
+using from './order-types';
+using from './delivery-codes';

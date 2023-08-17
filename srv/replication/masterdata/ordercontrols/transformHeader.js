@@ -1,25 +1,26 @@
-module.exports = (raw) => ({
-    vehicleUsage_code: raw.VehicleUsage,
-    customerState_code: raw.CustomerStatus,
-    endCustomerState_code: raw.EndCustomerStatus,
-    soldToSource_code: transformSource(raw.SoldToParty),
-    soldToPartner_id: transformPartner(raw.SoldToParty),
-    shipToSource_code: transformSource(raw.ShipToParty),
-    shipToPartner_id: transformPartner(raw.ShipToParty),
-    billToSource_code: transformSource(raw.BillToParty),
-    billToPartner_id: transformPartner(raw.BillToParty),
-    paidBySource_code: transformSource(raw.PaidByParty),
-    paidByPartner_id: transformPartner(raw.PaidByParty),
-    releasedForPartner: !raw.OnlyForImporter,
-    forEmployee: raw.ForEmployee,
-    availability_code: raw.VehicleAvailability
-})
+module.exports = (raw) => {
+    const transform = {
+        vehicleUsage_code: raw.VehicleUsage,
+        customerState_code: raw.CustomerStatus,
+        endCustomerState_code: raw.EndCustomerStatus,
+        soldToPartner_id: transformPartnerId(raw.SoldToParty),
+        shipToPartner_id: transformPartnerId(raw.ShipToParty),
+        billToPartner_id: transformPartnerId(raw.BillToParty),
+        paidByPartner_id: transformPartnerId(raw.PaidByParty),
+        releasedForPartner: !raw.OnlyForImporter,
+        forEmployee: raw.ForEmployee,
+        availability_code: raw.VehicleAvailability,
+        deliveryCode_code: raw.DeliveryCode,
+        orderType_code: raw.OrderType
+    }
 
-const transformSource = (value) => { 
-    const isNumber = parseInt(value)
-    return isNaN(isNumber) ? 'ordercontrol' : 'partner' 
+    transform.soldToSource_code = transformPartnerSource(transform.soldToPartner_id)
+    transform.shipToSource_code = transformPartnerSource(transform.shipToPartner_id)
+    transform.billToSource_code = transformPartnerSource(transform.billToPartner_id)
+    transform.paidBySource_code = transformPartnerSource(transform.paidByPartner_id)
+
+    return transform
 }
-const transformPartner = (value) => { 
-    const isNumber = parseInt(value)
-    return isNaN(isNumber) ? null : isNumber  
-}
+
+const transformPartnerId = value => value && value?.match(/^\d*$/)?.length ? value : null
+const transformPartnerSource = value => value ? 'ordercontrol' : 'partner'

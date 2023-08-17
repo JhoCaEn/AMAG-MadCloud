@@ -36,36 +36,34 @@ entity CarConfigurations : cuid {
     hasSelectableRoofColors                    : Boolean default false;
     hasValidColorCombination                   : Boolean default false;
 
-    exteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
-                                                     on  exteriorColorSalesPrice.colorCombination.model    =       model
-                                                     and exteriorColorSalesPrice.colorCombination.exterior =       exteriorColor
-                                                     and exteriorColorSalesPrice.colorCombination.interior =       interiorColor
-                                                     and exteriorColorSalesPrice.colorCombination.roof     =       roofColor
-                                                     and exteriorColorSalesPrice.type.code                 =       'E'
-                                                     and exteriorColorSalesPrice.constraintColor           =       exteriorColorSalesPriceConstraintColor
-                                                     and exteriorColorSalesPrice.constraintEquipment       =       exteriorColorSalesPriceConstraintEquipment
-                                                     and current_date                                      between exteriorColorSalesPrice.validFrom and exteriorColorSalesPrice.validTo;
-
-    interiorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
-                                                     on  interiorColorSalesPrice.colorCombination.model    =       model
-                                                     and interiorColorSalesPrice.colorCombination.exterior =       exteriorColor
-                                                     and interiorColorSalesPrice.colorCombination.interior =       interiorColor
-                                                     and interiorColorSalesPrice.colorCombination.roof     =       roofColor
-                                                     and interiorColorSalesPrice.type.code                 =       'I'
-                                                     and interiorColorSalesPrice.constraintColor           =       interiorColorSalesPriceConstraintColor
-                                                     and interiorColorSalesPrice.constraintEquipment       =       interiorColorSalesPriceConstraintEquipment
-                                                     and current_date                                      between interiorColorSalesPrice.validFrom and interiorColorSalesPrice.validTo;
+    modelSalesPrice                            : Association to one db.CurrentModelSalesPrices
+                                                     on modelSalesPrice.model = model;
 
 
-    roofColorSalesPrice                        : Association to one db.ModelColorCombinationSalesPrices
-                                                     on  roofColorSalesPrice.colorCombination.model    =       model
-                                                     and roofColorSalesPrice.colorCombination.exterior =       exteriorColor
-                                                     and roofColorSalesPrice.colorCombination.interior =       interiorColor
-                                                     and roofColorSalesPrice.colorCombination.roof     =       roofColor
-                                                     and roofColorSalesPrice.type.code                 =       'R'
-                                                     and roofColorSalesPrice.constraintColor           =       roofColorSalesPriceConstraintColor
-                                                     and roofColorSalesPrice.constraintEquipment       =       roofColorSalesPriceConstraintEquipment
-                                                     and current_date                                  between roofColorSalesPrice.validFrom and roofColorSalesPrice.validTo;
+    exteriorColorSalesPrice                    : Association to one db.CurrentModelColorCombinationExteriorSalesPrices
+                                                     on  exteriorColorSalesPrice.model               = model
+                                                     and exteriorColorSalesPrice.exterior            = exteriorColor
+                                                     and exteriorColorSalesPrice.interior            = interiorColor
+                                                     and exteriorColorSalesPrice.roof                = roofColor
+                                                     and exteriorColorSalesPrice.constraintColor     = exteriorColorSalesPriceConstraintColor
+                                                     and exteriorColorSalesPrice.constraintEquipment = exteriorColorSalesPriceConstraintEquipment;
+
+    interiorColorSalesPrice                    : Association to one db.CurrentModelColorCombinationInteriorSalesPrices
+                                                     on  interiorColorSalesPrice.model               = model
+                                                     and interiorColorSalesPrice.exterior            = exteriorColor
+                                                     and interiorColorSalesPrice.interior            = interiorColor
+                                                     and interiorColorSalesPrice.roof                = roofColor
+                                                     and interiorColorSalesPrice.constraintColor     = interiorColorSalesPriceConstraintColor
+                                                     and interiorColorSalesPrice.constraintEquipment = interiorColorSalesPriceConstraintEquipment;
+
+
+    roofColorSalesPrice                        : Association to one db.CurrentModelColorCombinationRoofSalesPrices
+                                                     on  roofColorSalesPrice.model               = model
+                                                     and roofColorSalesPrice.exterior            = exteriorColor
+                                                     and roofColorSalesPrice.interior            = interiorColor
+                                                     and roofColorSalesPrice.roof                = roofColor
+                                                     and roofColorSalesPrice.constraintColor     = roofColorSalesPriceConstraintColor
+                                                     and roofColorSalesPrice.constraintEquipment = roofColorSalesPriceConstraintEquipment;
 
     selectableModelCategories                  : Association to many db.CarConfigurationSelectableModelCategories
                                                      on selectableModelCategories.configuration = $self;

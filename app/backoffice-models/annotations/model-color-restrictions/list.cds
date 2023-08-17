@@ -29,7 +29,8 @@ annotate service.ModelColorRestrictions with @UI: {
         {
             $Type            : 'UI.DataField',
             Value            : type_code,
-            ![@UI.Importance]: #High
+            ![@UI.Importance]: #High,
+            ![@HTML5.CssDefaults]: {width: '7rem'}
         },
         {
             $Type            : 'UI.DataField',

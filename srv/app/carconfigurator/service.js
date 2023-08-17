@@ -2,7 +2,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
     async init() {
 
         const db = await cds.connect.to('db')
-        const salesPriceService = await cds.connect.to('PricingSalesPriceService')
         const { ValidationError } = require('../../lib/errors')
 
         const {
@@ -27,7 +26,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             BrandContractTypeModelCategories,
             SalesTypes,
             Models,
-            ModelSalesPrices,
             ModelRestrictions,
             CarConfigurationModelColorsPrepared: ModelColors,
             ModelColorCombinations,
@@ -81,13 +79,13 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 preselectedExteriorColor_id: exteriorColor_id,
                 preselectedInteriorColor_id: interiorColor_id,
                 preselectedRoofColor_id: roofColor_id,
-                preselectedEquipments: equipments?.map(id => ({ 
+                preselectedEquipments: equipments?.map(id => ({
                     configuration_ID: ID,
                     equipment_id: id,
                     DraftAdministrativeData_DraftUUID,
                     IsActiveEntity: false,
                     HasActiveEntity: false,
-                    HasDraftEntity: false                    
+                    HasDraftEntity: false
                 })) || []
             })
 
@@ -102,30 +100,25 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             if (!id)
                 throw new ValidationError('CARCONFIGURATION_MODEL_ID_NOT_GIVEN')
 
-            const table = "AppCarConfiguratorService.Configurations_drafts"
             const configuration_ID = ID
             const model_id = id
-            
+
             const configurationExists = await db.exists(Configurations.drafts, ID)
-    
+
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-        
-
 
             const modelExists = await db.exists(SelectableModels, { configuration_ID, model_id })
             if (!modelExists)
                 throw new ValidationError('CARCONFIGURATION_MODEL_ID_NOT_VALID')
-            
+
 
             await db.update(Configurations.drafts, ID).set({ model_id, preselectedModel_id: null })
             await db.update(SelectableModels, { configuration_ID }).set({ selected: false })
             await db.update(SelectableModels, { configuration_ID, model_id }).set({ selected: true })
 
-             
-            await salesPriceService.send('calculate', {table,ID})
-
             await Promise.all([
+                calculateSalesPrices({ ID }),
                 prepareSelectableColors({ ID }),
                 prepareSelectableColorCombinations({ ID }),
                 prepareSelectableEquipments({ ID })
@@ -137,7 +130,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 prepareSelectableEquipmentCategories({ ID })
             ])
 
-            await prepareSelectableModelRestrictions({ID})
+            await prepareSelectableModelRestrictions({ ID })
 
             await applyPreselected({ ID })
         }
@@ -151,12 +144,10 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const color_id = id
-            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-
 
             const color = await db.read(SelectableColors, { configuration_ID, color_id }, ['selectable', 'type_code'])
             if (!color)
@@ -174,13 +165,13 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const colorFields = {
                 'E': 'exteriorColor_id',
                 'I': 'interiorColor_id',
-                'R': 'preselectedRoofColor_id'
+                'R': 'roofColor_id'
             }
 
             const preselectedColorFields = {
                 'E': 'preselectedExteriorColor_id',
                 'I': 'preselectedInteriorColor_id',
-                'R': 'roofColor_id'
+                'R': 'preselectedRoofColor_id'
             }
 
             await db.update(Configurations.drafts, ID).set({
@@ -188,10 +179,8 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 [preselectedColorFields[type_code]]: null
             })
 
-            await salesPriceService.send('calculate', { table, ID })
-
             await checkColorCombinations({ ID })
-
+            await calculateSalesPrices({ ID })
             await applyPreselected({ ID })
         }
 
@@ -209,7 +198,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             const { DraftAdministrativeData_DraftUUID } = configuration
             const configuration_ID = ID
             const equipment_id = id
-            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const equipment = await db.read(SelectableEquipments, { configuration_ID, equipment_id }, ['selectable', 'category_id'])
             if (!equipment)
@@ -236,7 +224,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             await db.delete(PreselectedEquipments.drafts, { configuration_ID: ID, equipment_id })
 
-            await salesPriceService.send('calculate', { table, ID })
+            await calculateSalesPrices({ ID })
 
             await applyPreselected({ ID })
 
@@ -251,12 +239,10 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const color_id = id
-            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-
 
             const color = await db.read(SelectableColors, { configuration_ID, color_id }, ['selected', 'type_code'])
             if (!color)
@@ -280,7 +266,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 [colorFields[type_code]]: null
             })
 
-            await salesPriceService.send('calculate', { table, ID })
+            await calculateSalesPrices({ ID })
 
             await checkColorCombinations({ ID })
         }
@@ -294,7 +280,6 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration_ID = ID
             const equipment_id = id
-            const table = "AppCarConfiguratorService.Configurations_drafts"
 
             const configurationExists = await db.exists(Configurations.drafts, ID)
             if (!configurationExists)
@@ -316,11 +301,9 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             await db.update(SelectableEquipments, { configuration_ID, equipment_id }).set({ selected: false })
 
-            await salesPriceService.send('calculate', { table, ID })
-            
-            await db.delete(ConfigurationEquipmentsEntity.drafts, { configuration_ID, equipment_id })
+            await db.delete(ConfigurationEquipments.drafts, { configuration_ID, equipment_id })
 
-            
+            await calculateSalesPrices({ ID })
         }
 
         const prepare = async ({ ID }) => {
@@ -360,33 +343,32 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             if (!configuration)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
-                
-            const  { 
+
+            const {
                 preselectedModel_id,
                 preselectedExteriorColor_id,
                 preselectedInteriorColor_id,
                 preselectedRoofColor_id
             } = configuration
 
-            if(preselectedModel_id)
-                return selectModel({ID, id : preselectedModel_id})
+            if (preselectedModel_id)
+                return selectModel({ ID, id: preselectedModel_id })
 
-            if(preselectedExteriorColor_id)
-                return selectColor({ID, id : preselectedExteriorColor_id})
-            
-            if(preselectedInteriorColor_id) 
-                return selectColor({ID, id : preselectedInteriorColor_id})
+            if (preselectedExteriorColor_id)
+                return selectColor({ ID, id: preselectedExteriorColor_id })
 
-            if(preselectedRoofColor_id)
-                return selectColor({ID, id : preselectedRoofColor_id})
+            if (preselectedInteriorColor_id)
+                return selectColor({ ID, id: preselectedInteriorColor_id })
 
-            const preselectedEquipment = await db.read(PreselectedEquipments.drafts, {configuration_ID: ID})
+            if (preselectedRoofColor_id)
+                return selectColor({ ID, id: preselectedRoofColor_id })
+
+            const preselectedEquipment = await db.read(PreselectedEquipments.drafts, { configuration_ID: ID })
 
             if (preselectedEquipment) {
                 const id = preselectedEquipment.equipment_id
-                return selectEquipment({ID, id})
+                return selectEquipment({ ID, id })
             }
-     
         }
 
         const prepareSelectableModelRestrictions = async ({ ID }) => {
@@ -395,7 +377,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             const configuration = await db.read(Configurations.drafts, ID, ['model_id'])
             if (!configuration)
-                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')    
+                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
 
             const { model_id } = configuration
             const configuration_ID = ID
@@ -403,10 +385,10 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             if (!model_id)
                 throw new ValidationError('CARCONFIGURATION_MODEL_NOT_SELECTED')
 
-            await db.delete(SelectableModelRestrictions, { configuration_ID})
+            await db.delete(SelectableModelRestrictions, { configuration_ID })
 
-            const source = db.read(ModelRestrictions).where({model_id})
-            
+            const source = db.read(ModelRestrictions).where({ model_id })
+
             await db.create(SelectableModelRestrictions).columns(
                 'configuration_ID',
                 'modelRestriction_model_id',
@@ -770,17 +752,21 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             if (!configuration)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
 
-            const { exteriorColor_id: exterior_id, interiorColor_id: interior_id, roofColor_id: roof_id } = configuration
+            let { exteriorColor_id, interiorColor_id, roofColor_id } = configuration
             const configuration_ID = ID
+
+            if (!exteriorColor_id) exteriorColor_id = ''
+            if (!interiorColor_id) interiorColor_id = ''
+            if (!roofColor_id) roofColor_id = ''
 
             await db.update(SelectableColors, { configuration_ID }).set({ selectable: false })
             await db.update(Configurations.drafts, { ID }).set({ hasValidColorCombination: false })
 
             const source = db.read(SelectableColorCombinations).where({ configuration_ID })
 
-            if (exterior_id) source.where({ exterior_id })
-            if (interior_id) source.where({ interior_id })
-            if (roof_id) source.where({ roof_id })
+            if (exteriorColor_id) source.where({ exterior_id: exteriorColor_id })
+            if (interiorColor_id) source.where({ interior_id: interiorColor_id })
+            if (roofColor_id) source.where({ roof_id: roofColor_id })
 
             const combinations = await source
 
@@ -794,8 +780,8 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
 
             await db.update(SelectableColors, { configuration_ID, color_id: Object.keys(colors) }).set({ selectable: true })
 
-            if (combinations?.length === 1 && colors[exterior_id] && colors[interior_id] && colors[roof_id || ''])
-                await db.update(Configurations.drafts, { ID }).set({ hasValidColorCombination: true })
+            if (combinations?.length === 1 && colors[exteriorColor_id] && colors[interiorColor_id] && colors[roofColor_id])
+                await db.update(Configurations.drafts, { ID }).set({ hasValidColorCombination: true, exteriorColor_id, interiorColor_id, roofColor_id })
         }
 
         const checkConfigurationSaveable = async ({ ID }) => {
@@ -820,46 +806,39 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             if (!ID)
                 throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_GIVEN')
 
-            const configuration = await db.read(Configurations, ID, config => {
-                config.configuredAt, config.model_id, config.exteriorColor_id, config.interiorColor_id, config.roofColor_id, config.equipments(equipment => {
-                    equipment.equipment_id,
-                    equipment.salesPriceConstraintEquipment_id,
-                    equipment.salesPriceConstraintColor_id
+            const configuration = await db.read(Configurations, ID).columns(
+                'configuredAt',
+                'model_id',
+                'exteriorColor_id',
+                'exteriorColorSalesPriceConstraintEquipment_id',
+                'exteriorColorSalesPriceConstraintColor_id',
+                'interiorColor_id',
+                'interiorColorSalesPriceConstraintEquipment_id',
+                'interiorColorSalesPriceConstraintColor_id',
+                'roofColor_id',
+                'roofColorSalesPriceConstraintEquipment_id',
+                'roofColorSalesPriceConstraintColor_id'
+            ).columns(config => {
+                config.equipments(equipment => {
+                    equipment.equipment_id.as('id'),
+                        equipment.salesPriceConstraintEquipment_id,
+                        equipment.salesPriceConstraintColor_id
                 })
             })
 
             if (!configuration)
                 throw new ValidationError('CARCONFIGURATION_CONFGURATION_NOT_EXISTS')
 
-            const {
-              configuredAt,
-              model_id,
-              exteriorColor_id,
-              interiorColor_id,
-              roofColor_id,
-              exteriorColorSalesPriceConstraintEquipment_id,
-              exteriorColorSalesPriceConstraintColor_id,
-              interiorColorSalesPriceConstraintEquipment_id,
-              interiorColorSalesPriceConstraintColor_id,
-              roofColorSalesPriceConstraintEquipment_id,
-              roofColorSalesPriceConstraintColo_id,
-              equipments,
-            } = configuration;
+            return configuration
+        }
 
-            return {
-                configuredAt,
-                model_id,
-                exteriorColor_id,
-                interiorColor_id,
-                roofColor_id,
-                exteriorColorSalesPriceConstraintEquipment_id,
-                exteriorColorSalesPriceConstraintColor_id,
-                interiorColorSalesPriceConstraintEquipment_id,
-                interiorColorSalesPriceConstraintColor_id,
-                roofColorSalesPriceConstraintEquipment_id,
-                roofColorSalesPriceConstraintColo_id,
-                equipments: equipments
-            }
+        const calculateSalesPrices = async ({ ID }) => {
+            const salesPriceService = await cds.connect.to('PricingSalesPriceService')
+
+            return salesPriceService.send('calculate', {
+                table: Configurations.drafts.name,
+                ID
+            })
         }
 
         return super.init()

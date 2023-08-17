@@ -21,21 +21,6 @@ annotate service.Offers with {
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
-    carConfigurationExteriorColor @Common                         : {
-        Text           : carConfigurationExteriorColor.name,
-        TextArrangement: #TextFirst,
-        ValueListWithFixedValues
-    };
-    carConfigurationInteriorColor @Common                         : {
-        Text           : carConfigurationInteriorColor.name,
-        TextArrangement: #TextFirst,
-        ValueListWithFixedValues
-    };
-    carConfigurationRoofColor     @Common                         : {
-        Text           : carConfigurationRoofColor.name,
-        TextArrangement: #TextFirst,
-        ValueListWithFixedValues
-    };
 };
 
 annotate service.SalesPartners with {

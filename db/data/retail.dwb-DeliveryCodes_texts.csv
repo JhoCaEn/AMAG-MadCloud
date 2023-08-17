@@ -5,8 +5,8 @@ code,locale,name
 1,de,Fahrzeug liefern
 1,fr,Livrer véhicule
 1,it,fornire il veicolo
-2,de,Nicht liefern – Blockiert
-2,fr,Ne pas livrer – bloqué
+2,de,Nicht liefern - Blockiert
+2,fr,Ne pas livrer - bloqué
 2,it,Non consegnare - bloccato
 9,de,Gemäss separater Info
 9,fr,Selon informations séparées

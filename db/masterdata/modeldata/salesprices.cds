@@ -12,3 +12,9 @@ entity ModelSalesPrices : replicated {
 };
 
 type ModelSalesPrice : Association to ModelSalesPrices;
+
+entity CurrentModelSalesPrices as projection on ModelSalesPrices {
+    key model,
+        value,
+        currency
+} where $now between validFrom and validTo;

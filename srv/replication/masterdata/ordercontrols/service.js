@@ -6,7 +6,7 @@ module.exports = class ReplicationMasterdataOrderControlsService extends cds.App
         const db = await cds.connect.to('db')
         const client = await require('../connect')()
 
-        const { OrderControls } = db.entities('retail.dwb')
+        const { OrderControls, Partners } = db.entities('retail.dwb')
         const { NotFoundError } = require('../errors')
 
         this.on('replication-masterdata:ordercontrol/created', async ({ data: { VEHICLEUSAGE, CUSTOMERSTATUS, ENDCUSTOMERSTATUS } = {} } = {}) => replicate(VEHICLEUSAGE, CUSTOMERSTATUS, ENDCUSTOMERSTATUS))
@@ -50,9 +50,32 @@ module.exports = class ReplicationMasterdataOrderControlsService extends cds.App
 
             const exists = await db.exists(OrderControls, { vehicleUsage_code, customerState_code, endCustomerState_code }).forUpdate()
 
-            return exists
+            await (exists
                 ? db.update(OrderControls, { vehicleUsage_code, customerState_code, endCustomerState_code }).set(data)
                 : db.create(OrderControls, data)
+            );
+
+            let orderPartners = [];
+            ['soldToPartner_id', 'shipToPartner_id', 'billToPartner_id', 'paidByPartner_id'].forEach(property => {
+                if (data[property]) orderPartners.push(data[property])
+            })
+
+            if (!orderPartners.length)
+                return
+
+            orderPartners = [...new Set(orderPartners)]
+
+            const knownPartners = await db.read(Partners, ['id']).where({ id: orderPartners })
+                .then(result => result.map(({ id }) => id))
+
+            const missingPartners = orderPartners.filter(id => !knownPartners.includes(id))
+
+            if (!missingPartners.length)
+                return
+
+            await db.create(Partners, missingPartners.map(id => ({ id })))
+
+            await Promise.all(missingPartners.map(id => this.emit('partner/replicate', { id })))                
         }
 
         const remove = async (vehicleUsage_code, customerState_code, endCustomerState_code) => {

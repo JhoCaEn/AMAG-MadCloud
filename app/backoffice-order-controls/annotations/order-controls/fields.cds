@@ -1,59 +1,51 @@
 using AppBackofficeOrderControlsService as service from '../../../../srv';
 
 annotate service.OrderControls with {
-    vehicleUsage     @title           : '{i18n>VehicleUsage}';
     vehicleUsage     @Common          : {
         Text           : vehicleUsage.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    customerState    @title           : '{i18n>CustomerState}';
     customerState    @Common          : {
         Text           : customerState.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    endCustomerState @title           : '{i18n>EndCustomerState}';
     endCustomerState @Common          : {
         Text           : endCustomerState.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    soldToSource     @title           : '{i18n>OrderControls.soldToSource}';
     soldToSource     @Common          : {
         Text           : soldToSource.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    shipToSource     @title           : '{i18n>OrderControls.shipToSource}';
     shipToSource     @Common          : {
         Text           : shipToSource.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    billToSource     @title           : '{i18n>OrderControls.billToSource}';
     billToSource     @Common          : {
         Text           : billToSource.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    paidBySource     @title           : '{i18n>OrderControls.paidBySource}';
     paidBySource     @Common          : {
         Text           : paidBySource.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
 
-    availability     @title           : '{i18n>VehicleAvailability}';
     availability     @Common          : {
         Text           : availability.name,
-        TextArrangement: #TextOnly,
+        TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
@@ -86,7 +78,7 @@ annotate service.OrderControls with {
     };
 
     billToPartner    @Common          : {
-        Text           : soldToPartner.name,
+        Text           : billToPartner.name,
         TextArrangement: #TextFirst
     };
     billToPartner    @Common.ValueList: {
@@ -110,8 +102,51 @@ annotate service.OrderControls with {
             ValueListProperty: 'id'
         }]
     };
+
+    orderType     @Common          : {
+        Text           : orderType.name,
+        TextArrangement: #TextFirst,
+        ValueListWithFixedValues
+    }; 
+
+    deliveryCode     @Common          : {
+        Text           : deliveryCode.name,
+        TextArrangement: #TextFirst,
+        ValueListWithFixedValues
+    };        
 };
 
+annotate service.OrderControls with @UI: {
+    HeaderInfo                  : {
+        $Type         : 'UI.HeaderInfoType',
+        TypeName      : '{i18n>OrderControl}',
+        TypeNamePlural: '{i18n>OrderControls}',
+        Title         : {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target: '@UI.ConnectedFields#HeaderTitle',
+        }
+    },
+
+    ConnectedFields #HeaderTitle: {
+        $Type   : 'UI.ConnectedFieldsType',
+        Template: '{vehicleUsage_name} / {customerState_name} / {endCustomerState_name}',
+        Data    : {
+            $Type            : 'Core.Dictionary',
+            vehicleUsage_name: {
+                $Type: 'UI.DataField',
+                Value: vehicleUsage.name,
+            },            
+            customerState_name: {
+                $Type: 'UI.DataField',
+                Value: customerState.name,
+            },            
+            endCustomerState_name: {
+                $Type: 'UI.DataField',
+                Value: endCustomerState.name,
+            }
+        }
+    }
+};
 
 annotate service.OrderControls with @Capabilities: {FilterRestrictions: {
     $Type                       : 'Capabilities.FilterRestrictionsType',

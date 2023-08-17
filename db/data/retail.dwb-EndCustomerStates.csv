@@ -1,11 +1,11 @@
 ﻿code,name
-1,Händler
-2,Mitvertreter
-3,Privatkunde
-4,Importeur
-5,Ständiger Vermittler
-6,Servicepartner
-7,Firmenkunde (Wagenpark < 4)
+01,Händler
+02,Mitvertreter
+03,Privatkunde
+04,Importeur
+05,Ständiger Vermittler
+06,Servicepartner
+07,Firmenkunde (Wagenpark < 4)
 10,AMAG Leasing
 11,AMAG Services
 14,Fremdgarage

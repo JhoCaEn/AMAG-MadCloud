@@ -33,7 +33,16 @@ annotate service.Partners with @UI: {
                     ID    : 'GeneralFacet',
                     Target: '@UI.FieldGroup#General'
                 }]
-            },{
+            }, {
+                $Type : 'UI.CollectionFacet',
+                ID    : 'CommunicationSubSection',
+                Label : '{i18n>BackofficePartners.FieldGroup.Communication}',
+                Facets: [{
+                    $Type : 'UI.ReferenceFacet',
+                    ID    : 'CommunicationFacet',
+                    Target: '@UI.FieldGroup#Communication'
+                }]
+            }, {
                 $Type : 'UI.CollectionFacet',
                 ID    : 'PartnerBrandsSubSection',
                 Label : '{i18n>BackofficePartners.PartnerBrands}',
@@ -133,6 +142,41 @@ annotate service.Partners with @UI: {
                 $Type: 'UI.DataField',
                 Value: modifiedAt,
                 Label: '{i18n>General.FieldGroup.Synchronised.modifiedAt}'
+            },
+        ]
+    },
+
+    FieldGroup #Communication     : {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>BackofficePartners.FieldGroup.Communication}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: fullName
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: streetName
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: houseNumber,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: postalCode,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: cityName,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: phoneNumber,
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: emailAddress,
             },
         ]
     },

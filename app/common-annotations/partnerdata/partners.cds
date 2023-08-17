@@ -8,6 +8,13 @@ annotate db.Partners with {
     isSalesPartner       @title: '{i18n>Partner.isSalesPartner}';
     validFrom            @title: '{i18n>General.validFrom}';
     validTo              @title: '{i18n>General.validTo}';
+    fullName             @title: '{i18n>Partner.fullName}';
+    streetName           @title: '{i18n>Partner.streetName}';
+    houseNumber          @title: '{i18n>Partner.houseNumber}';
+    postalCode           @title: '{i18n>Partner.postalCode}';
+    cityName             @title: '{i18n>Partner.cityName}';
+    phoneNumber          @title: '{i18n>Partner.phoneNumber}';
+    emailAddress         @title: '{i18n>Partner.emailAddress}';
     usedInSoldToPartners @title: '{i18n>Partner.usedInSoldToPartners}';
     usedInShipToPartners @title: '{i18n>Partner.usedInShipToPartners}';
     usedInBillToPartners @title: '{i18n>Partner.usedInBillToPartners}';

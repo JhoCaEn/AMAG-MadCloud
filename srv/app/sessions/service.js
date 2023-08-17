@@ -44,7 +44,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             if (isPrepared)
                 throw new ValidationError('SESSION_ALREADY_PREPARED')
 
-            await db.update(Sessions, ID).set({ isPrepared: true })
+            await db.update(Sessions, ID).set({ isPrepared: true, callbackURL })
 
             const callback_ID = await callbackService.send('createCallback', {
                 semantic: 'session-display',

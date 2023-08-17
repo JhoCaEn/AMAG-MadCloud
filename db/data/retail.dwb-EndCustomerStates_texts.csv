@@ -1,26 +1,26 @@
 ﻿code,locale,name
-1,de,Händler
-1,fr,Concessionnaire
-1,it,Concessionario
-2,de,Mitvertreter
-2,fr,Coagent
-2,it,Coagente
-3,de,Privatkunde
-3,en,private customer
-3,fr,Client privé
-3,it,Cliente privato
-4,de,Importeur
-4,fr,Importateur
-4,it,Importatore
-5,de,Ständiger Vermittler
-5,fr,Intermédiaire permanent
-5,it,Intermediario permanente
-6,de,Servicepartner
-6,fr,prestataire de service
-6,it,partner di servizio
-7,de,Firmenkunde (Wagenpark < 4)
-7,fr,Client d'entreprise
-7,it,Cliente aziendale
+01,de,Händler
+01,fr,Concessionnaire
+01,it,Concessionario
+02,de,Mitvertreter
+02,fr,Coagent
+02,it,Coagente
+03,de,Privatkunde
+03,en,private customer
+03,fr,Client privé
+03,it,Cliente privato
+04,de,Importeur
+04,fr,Importateur
+04,it,Importatore
+05,de,Ständiger Vermittler
+05,fr,Intermédiaire permanent
+05,it,Intermediario permanente
+06,de,Servicepartner
+06,fr,prestataire de service
+06,it,partner di servizio
+07,de,Firmenkunde (Wagenpark < 4)
+07,fr,Client d'entreprise
+07,it,Cliente aziendale
 10,de,AMAG Leasing
 10,fr,AMAG Leasing
 10,it,AMAG Leasing

@@ -11,6 +11,13 @@ entity Partners : replicated {
         isSalesPartner       : Boolean default false;
         validFrom            : Date default '1970-01-01';
         validTo              : Date default '1970-01-01';
+        fullName             : String(80);
+        streetName           : String(60);
+        houseNumber          : String(10);
+        postalCode           : String(10);
+        cityName             : String(40);
+        phoneNumber          : String(30);
+        emailAddress         : String(241);
 
         brands               : Composition of many db.PartnerBrands
                                    on brands.partner = $self;

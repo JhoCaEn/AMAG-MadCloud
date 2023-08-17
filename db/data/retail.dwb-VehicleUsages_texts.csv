@@ -1,29 +1,29 @@
 ﻿code,locale,name
-1,de,Kundenfahrzeug
-1,en,Customer vehicle
-1,fr,Véhicule de client
-1,it,Veicolo cliente
-2,de,Lagerfahrzeug
-2,fr,Véhicule en stock
-2,it,Veicolo in stock
-3,de,Wettbewerb
-3,fr,Compétition
-3,it,Concorso
-5,de,Konsignation
-5,fr,Consignation
-5,it,Consegna
-6,de,Dienstwagen
-6,fr,Véhicule de service
-6,it,Veicolo di servizio
-7,de,Einsatzwagen
-7,fr,Véhicule d'intervention
-7,it,Veicolo d'intervento
-8,de,Vorführwagen
-8,fr,Véhicule démonstration
-8,it,Veicolo di dimostrazione
-9,de,Sponsorfahrzeug
-9,fr,Véhicule sponsorisation
-9,it,Veicolo sponsor
+01,de,Kundenfahrzeug
+01,en,Customer vehicle
+01,fr,Véhicule de client
+01,it,Veicolo cliente
+02,de,Lagerfahrzeug
+02,fr,Véhicule en stock
+02,it,Veicolo in stock
+03,de,Wettbewerb
+03,fr,Compétition
+03,it,Concorso
+05,de,Konsignation
+05,fr,Consignation
+05,it,Consegna
+06,de,Dienstwagen
+06,fr,Véhicule de service
+06,it,Veicolo di servizio
+07,de,Einsatzwagen
+07,fr,Véhicule d'intervention
+07,it,Veicolo d'intervento
+08,de,Vorführwagen
+08,fr,Véhicule démonstration
+08,it,Veicolo di dimostrazione
+09,de,Sponsorfahrzeug
+09,fr,Véhicule sponsorisation
+09,it,Veicolo sponsor
 10,de,Pressefahrzeug
 10,fr,Véhicule de presse
 10,it,Veicolo stampa

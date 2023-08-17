@@ -29,11 +29,15 @@ module.exports = (raw = [], brand_code) => {
         }
 
         equipment.isPackage = equipment.packageContent.length > 0
+
         equipment.restrictions.push(...transformEquipmentRestrictions(entry._Restrictions, brand_code))
         equipment.restrictions.push(...transformEquipmentConstraints(entry._ConstraintRestrictions, brand_code))
+
         equipment.salesPrices.push(...transformEquipmentsSalesPrices(entry._SalesPrices))
-        equipment.salesPrices.push(...transformEquipmentsSalesPricesConstraints(entry._ConstraintSalesPrices))
-        
+        equipment.salesPrices.push(...transformEquipmentsSalesPrices(entry._ConstraintSalesPrices))
+
+        equipment.salesPrices.sort((a, b) => a.weighting < b.weighting ? -1 : 1).forEach((price, index) => price.weighting = index)
+
         transformed.push(equipment)
     })
 
@@ -65,4 +69,3 @@ const transformPackageContent = (raw = []) => {
 const transformEquipmentRestrictions = require('./transformEquipmentRestrictions')
 const transformEquipmentConstraints = require('./transformEquipmentConstraints')
 const transformEquipmentsSalesPrices = require('./transformEquipmentsSalesPrices')
-const transformEquipmentsSalesPricesConstraints = require('./transformEquipmentsSalesPricesConstraints')

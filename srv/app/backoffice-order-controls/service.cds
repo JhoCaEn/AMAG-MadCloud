@@ -42,4 +42,16 @@ service AppBackofficeOrderControlsService {
         id,
         name
     }
+
+    @readonly
+    entity DeliveryCodes         as projection on db.DeliveryCodes {
+        code,
+        name
+    }
+
+    @readonly
+    entity OrderTypes            as projection on db.OrderTypes {
+        code,
+        name
+    }
 }

@@ -4,7 +4,7 @@ annotate service.Configurations actions {
     prepare           @Common.SideEffects: {
         TargetProperties: [
             'in/isPrepared',
-            'in/model_id',
+            'in/model_id',            
             'in/exteriorColor_id',
             'in/interiorColor_id',
             'in/roofColor_id',
@@ -29,7 +29,11 @@ annotate service.Configurations actions {
             'in/selectableColorTypes',
             'in/selectableColorCombinations',
             'in/selectableEquipmentChapters',
-            'in/selectableModelRestrictions'
+            'in/selectableModelRestrictions',
+            'in/modelSalesPrice',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'            
         ]
     };
 
@@ -44,7 +48,7 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'            
+            'in/roofColorSalesPriceConstraintColor_id'
         ],
         TargetEntities  : [
             'in/selectableModels',
@@ -54,7 +58,11 @@ annotate service.Configurations actions {
             'in/selectableEquipments',
             'in/selectableEquipmentChapters',
             'in/selectableEquipmentCategories',
-            'in/selectableModelRestrictions'
+            'in/selectableModelRestrictions',
+            'in/modelSalesPrice',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'
         ]
     };
 
@@ -64,7 +72,6 @@ annotate service.Configurations actions {
             'in/interiorColor_id',
             'in/roofColor_id',
             'in/hasValidColorCombination',
-            'in/selectableColorTypes',
             'in/exteriorColorSalesPriceConstraintEquipment_id',
             'in/exteriorColorSalesPriceConstraintColor_id',
             'in/interiorColorSalesPriceConstraintEquipment_id',
@@ -72,7 +79,13 @@ annotate service.Configurations actions {
             'in/roofColorSalesPriceConstraintEquipment_id',
             'in/roofColorSalesPriceConstraintColor_id'
         ],
-        TargetEntities  : ['in/selectableColors']
+        TargetEntities  : [
+            'in/selectableColorTypes',
+            'in/selectableColors',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'
+        ]
     };
 
     unselectColor     @Common.SideEffects: {
@@ -81,7 +94,6 @@ annotate service.Configurations actions {
             'in/interiorColor_id',
             'in/roofColor_id',
             'in/hasValidColorCombination',
-            'in/selectableColorTypes',
             'in/exteriorColorSalesPriceConstraintEquipment_id',
             'in/exteriorColorSalesPriceConstraintColor_id',
             'in/interiorColorSalesPriceConstraintEquipment_id',
@@ -89,39 +101,51 @@ annotate service.Configurations actions {
             'in/roofColorSalesPriceConstraintEquipment_id',
             'in/roofColorSalesPriceConstraintColor_id'
         ],
-        TargetEntities  : ['in/selectableColors']
+        TargetEntities  : [
+            'in/selectableColorTypes',
+            'in/selectableColors',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'
+        ]
     };
 
     selectEquipment   @Common.SideEffects: {
-        TargetEntities: [
-            'in/equipments',
-            'in/selectableEquipments',
-            'in/selectableEquipmentCategories'
-        ],
         TargetProperties: [
             'in/exteriorColorSalesPriceConstraintEquipment_id',
             'in/exteriorColorSalesPriceConstraintColor_id',
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'            
+            'in/roofColorSalesPriceConstraintColor_id'
+        ],
+        TargetEntities  : [
+            'in/equipments',
+            'in/selectableEquipments',
+            'in/selectableEquipmentCategories',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'
         ]
     };
 
     unselectEquipment @Common.SideEffects: {
-        TargetEntities: [
-            'in/equipments',
-            'in/selectableEquipments',
-            'in/selectableEquipmentCategories'
-        ],
         TargetProperties: [
             'in/exteriorColorSalesPriceConstraintEquipment_id',
             'in/exteriorColorSalesPriceConstraintColor_id',
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'            
-        ]
+            'in/roofColorSalesPriceConstraintColor_id'
+        ],
+        TargetEntities  : [
+            'in/equipments',
+            'in/selectableEquipments',
+            'in/selectableEquipmentCategories',
+            'in/exteriorColorSalesPrice',
+            'in/interiorColorSalesPrice',
+            'in/roofColorSalesPrice'
+        ]        
     };
 
 }

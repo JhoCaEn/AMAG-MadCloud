@@ -1,8 +1,11 @@
 module.exports = class AppBackofficeEquipmentsService extends cds.ApplicationService {
     async init() {
-        const replicationEquipmentService = await cds.connect.to('ReplicationMasterdataEquipmentService')
 
-        this.on('synchronise', async ({ params: [{ id } = {}] = [] } = {}) => replicationEquipmentService.send('replicate', { id }))
+        this.on('synchronise', async ({ params: [{ id } = {}] = [] } = {}) => {
+            const replication = await cds.connect.to('ReplicationMasterdataEquipmentService')
+
+            return replication.send('replicate', { id })
+        })
         
         return super.init()
     }

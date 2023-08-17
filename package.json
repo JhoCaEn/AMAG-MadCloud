@@ -192,10 +192,10 @@
         "app/callbacks",
         "app/backoffice-order-controls",
         "app/backoffice-vehicles",
-        "app/backoffice-sales-order-states"
+        "app/backoffice-sales-order-states",
+        "app/backoffice-purchase-order-states"
     ],
     "launchpad": {
-        "version": "1.114.0",
         "groups": {
             "backoffice": [
                 "app/backoffice-engines",

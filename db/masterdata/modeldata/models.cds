@@ -24,10 +24,9 @@ entity Models : replicated {
         transmission              : db.Transmission    @assert.integrity: false;
         bodyType                  : db.BodyType        @assert.integrity: false;
         modelSeries               : db.ModelSeriesType @assert.integrity: false;
-        
-        salesPrice                : Association to one db.ModelSalesPrices
-                                        on  salesPrice.model =       $self
-                                        and current_date     between salesPrice.validFrom and salesPrice.validTo;
+
+        salesPrice                : Association to one db.CurrentModelSalesPrices
+                                        on salesPrice.model = $self;
 
         colors                    : Composition of many db.ModelColors
                                         on colors.model = $self;

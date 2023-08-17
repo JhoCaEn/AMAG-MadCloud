@@ -354,7 +354,6 @@
                     "options": {
                         "settings": {
                             "entitySet": "ModelExtraEquipment",
-                            "sectionLayout": "Tabs",
                             "navigation": {
                                 "restrictions": {
                                     "detail": {

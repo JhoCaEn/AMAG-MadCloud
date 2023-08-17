@@ -1,17 +1,18 @@
 using {retail.dwb as db} from '../../../../db';
 
 annotate db.ModelColorCombinationSalesPrices with {
-    colorCombination    @title: '{i18n>ColorCombination}';
-    type                @title: '{i18n>ColorType}';
-    constraintEquipment @title: '{i18n>ModelColorCombinationSalesPrices.constraintEquipment}';
-    constraintColor     @title: '{i18n>ModelColorCombinationSalesPrices.constraintColor}';
-    validFrom           @title: '{i18n>General.validFrom}';
-    validTo             @title: '{i18n>General.validTo}';
-    currency            @title: '{i18n>General.currency}';
-    value               @title: '{i18n>General.value}';
-    weighting           @title: '{i18n>General.weighting}';
-    createdAt           @title: '{i18n>replicated.createdAt}';
-    modifiedAt          @title: '{i18n>replicated.modifiedAt}';
+    colorCombination    @title               : '{i18n>ColorCombination}';
+    type                @title               : '{i18n>ColorType}';
+    constraintEquipment @title               : '{i18n>SalesPrice.constraintEquipment}';
+    constraintColor     @title               : '{i18n>SalesPrice.constraintColor}';
+    validFrom           @title               : '{i18n>General.validFrom}';
+    validTo             @title               : '{i18n>General.validTo}';
+    value               @title               : '{i18n>SalesPrice.value}';
+    value               @Measures.ISOCurrency: currency;    
+    currency            @UI.Hidden;
+    weighting           @title               : '{i18n>SalesPrice.weighting}';
+    createdAt           @title               : '{i18n>replicated.createdAt}';
+    modifiedAt          @title               : '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelColorCombinationSalesPrices with @Common.SemanticKey: [

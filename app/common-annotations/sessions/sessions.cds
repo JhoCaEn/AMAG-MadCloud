@@ -12,6 +12,7 @@ annotate db.Sessions with {
     ocd                       @title: '{i18n>Offers.ocd}';
     isPrepared                @title: '{i18n>Sessions.isPrepared}';
     forwardToOffer            @title: '{i18n>Sessions.forwardToOffer}';
+    callbackURL               @title: '{i18n>Callback}';
     offer                     @title: '{i18n>Offer}';
 };
 

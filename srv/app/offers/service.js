@@ -240,22 +240,25 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 ID: carConfigurationID
             })
 
-            await db.update(Offers.drafts, ID).set({
-                carConfigurationConfiguredAt: carConfiguration.configuredAt,
-                carConfigurationModel_id: carConfiguration.model_id,
-                carConfigurationExteriorColor_id: carConfiguration.exteriorColor_id,
-                carConfigurationInteriorColor_id: carConfiguration.interiorColor_id,
-                carConfigurationRoofColor_id: carConfiguration.roofColor_id,
-                carConfigurationEquipments: carConfiguration.equipments?.map(equipment => ({
-                    offer_ID: ID,
-                    equipment_id: equipment.equipment_id,
-                    DraftAdministrativeData_DraftUUID,
-                    IsActiveEntity: false,
-                    HasActiveEntity: false,
-                    HasDraftEntity: false
-                })) || [],
-                carConfigurationIsValid: true
-            })
+            const configuration = Object.keys(carConfiguration).reduce((result, key) => ({ 
+                ...result, 
+                [`carConfiguration${key.charAt(0).toUpperCase()}${key.slice(1)}`]: carConfiguration[key]
+            }), {})
+
+            configuration.carConfigurationEquipments = carConfiguration.equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id }) => ({
+                offer_ID: ID,
+                equipment_id,
+                salesPriceConstraintEquipment_id,
+                salesPriceConstraintColor_id,
+                DraftAdministrativeData_DraftUUID,
+                IsActiveEntity: false,
+                HasActiveEntity: false,
+                HasDraftEntity: false
+            })) || []
+
+            configuration.carConfigurationIsValid = true
+
+            await db.update(Offers.drafts, ID).set(configuration)
         }
 
         return super.init()

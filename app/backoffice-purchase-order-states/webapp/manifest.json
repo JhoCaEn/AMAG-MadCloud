@@ -20,7 +20,7 @@
 		"description": "{{AppSubtitle}}",
 		"dataSources": {
 			"mainService": {
-				"uri": "/app/backend/backoffice/purchase-order-states",
+				"uri": "app/backend/backoffice/purchase-order-states/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"
@@ -90,62 +90,54 @@
 			"routes": [
 				{
                     "pattern": ":?query:",
-                    "name": "PurchaseOrderStates",
-                    "target": "PurchaseOrderStates"
+                    "name": "States",
+                    "target": "States"
                 },
 				{
-                    "pattern": "PurchaseOrderStates({key}):?query:",
-                    "name": "PurchaseOrderState",
-                    "target": "PurchaseOrderState"
+                    "pattern": "States({key}):?query:",
+                    "name": "State",
+                    "target": "State"
                 }
 			],
 			"targets": {
-				"PurchaseOrderStates": {
+				"States": {
                     "type": "Component",
-                    "id": "PurchaseOrderStates",
+                    "id": "States",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "PurchaseOrderStates",
+                            "entitySet": "States",
                             "variantManagement": "Page",
                             "initialLoad": true,
                             "navigation": {
-								"PurchaseOrderStates": {
+								"States": {
                                     "detail": {
-                                        "route": "PurchaseOrderState"
+                                        "route": "State"
                                     }
                                 }
-                            }
+                            },
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
                         }
                     },
                     "contextPattern": ""
                 },
-				"PurchaseOrderState": {
+				"State": {
                     "type": "Component",
-                    "id": "PurchaseOrderState",
+                    "id": "State",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "PurchaseOrderStates",
+                            "entitySet": "States",
                             "editableHeaderContent": false
                         }
                     },
-                    "contextPattern": "/PurchaseOrderStates({key})"
+                    "contextPattern": "/States({key})"
                 }
-			},
-			"config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
-				},
-				"routerClass": "sap.f.routing.Router"
 			}
-		},
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
 		},
 		"contentDensities": {
 			"compact": true,

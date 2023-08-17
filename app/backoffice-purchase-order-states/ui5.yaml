@@ -1,7 +1,7 @@
 specVersion: "3.0"
 type: application
 metadata:
-  name: backoffice-purchase-order-state
+  name: backoffice-purchase-order-states
 
 builder:
   resources:

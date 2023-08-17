@@ -74,12 +74,15 @@ module.exports = class ReplicationPartnerdataPartnerService extends cds.Applicat
         const getSalesPartner = async (id) => {
             return client.getSalesPartner({
                 id,
-                $expand: '_BrandCharacteristics,_Roles($expand=_RolePartner($select=Partner))'
+                $expand: '_BrandCharacteristics,_Roles($expand=_RolePartner($select=Partner)),_DefaultAddress($select=FullName,StreetName,HouseNumber,PostalCode,CityName,PhoneNumber,EmailAddress)'
             })
         }
 
         const getPartner = async (id) => {
-            return client.getPartner({ id })
+            return client.getPartner({
+                id,
+                $expand: '_DefaultAddress($select=FullName,StreetName,HouseNumber,PostalCode,CityName,PhoneNumber,EmailAddress)'
+            })
         }
 
         const save = async (data) => {

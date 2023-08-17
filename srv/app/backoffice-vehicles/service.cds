@@ -39,7 +39,9 @@ service AppBackofficeVehiclesService {
         interiorColorSalesPrice,
         roofColorSalesPrice,
         createdAt,
+        createdBy,
         modifiedAt,
+        modifiedBy,
         equipments
     } actions {
         action synchronise(in : $self);
@@ -85,21 +87,19 @@ service AppBackofficeVehiclesService {
     entity SalesTypes            as projection on db.SalesTypes {
         brand,
         id,
-        material,
-        salesOrganisation,
         name
     };
 
     @readonly
     entity Colors                as projection on db.Colors {
         id,
-        name
+        displayName as name
     };
 
     @readonly
     entity Equipments            as projection on db.Equipments {
         id,
-        name
+        displayName as name
     };
 
     @readonly
@@ -109,7 +109,7 @@ service AppBackofficeVehiclesService {
     }
 
     @readonly
-    entity VehicleEchipments     as projection on db.VehicleEquipments {
+    entity VehicleEquipments     as projection on db.VehicleEquipments {
         equipment,
         vehicle,
         equipment.id,

@@ -7,19 +7,32 @@ entity VehicleEquipments {
     key equipment                     : db.Equipment @assert.integrity: false;
         salesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
         salesPriceConstraintColor     : db.Color     @assert.integrity: false;
+        salesPrice                    : Association to one VehicleEquipmentSalesPrices
+                                            on  salesPrice.vehicle   = vehicle
+                                            and salesPrice.equipment = equipment
 }
 
-entity VehicleEquipmentsView as projection on VehicleEquipments {
+entity VehicleEquipmentSalesPricesPrepare as projection on VehicleEquipments {
     key vehicle,
     key equipment,
         vehicle.model,
-        salesPriceConstraintEquipment,
-        salesPriceConstraintColor,
-        salesPrice : Association to one db.ModelEquipmentSalesPrices on salesPrice.equipment.model     =       model
-                     and                                                salesPrice.equipment.equipment =       equipment
-                     and                                                salesPrice.constraintEquipment =       salesPriceConstraintEquipment
-                     and                                                salesPrice.constraintColor     =       salesPriceConstraintColor
-                     and                                                current_date                   between salesPrice.validFrom and salesPrice.validTo
+        salesPriceConstraintEquipment as constraintEquipment,
+        salesPriceConstraintColor     as constraintColor
 }
+
+entity VehicleEquipmentSalesPrices        as
+    select from VehicleEquipmentSalesPricesPrepare as e
+    inner join db.ModelEquipmentSalesPrices as p
+        on  p.equipment.model     =       e.model
+        and p.equipment.equipment =       e.equipment
+        and p.constraintEquipment =       e.constraintEquipment
+        and p.constraintColor     =       e.constraintColor
+        and current_date          between p.validFrom and p.validTo
+    {
+        key e.vehicle,
+        key e.equipment,
+            p.value,
+            p.currency
+    };
 
 type VehicleEquipment : Association to VehicleEquipments;

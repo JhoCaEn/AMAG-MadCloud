@@ -15,29 +15,71 @@ annotate service.OrderControls with @UI: {
         Target: '@UI.FieldGroup#Synchronised'
     }, ],
 
-    Facets                  : [
-        {
-            $Type : 'UI.CollectionFacet',
-            ID    : 'GeneralSection',
-            Label : '{i18n>General.FieldGroup.General}',
-            Facets: [
-                {
-                    $Type : 'UI.CollectionFacet',
-                    ID    : 'GeneralSubSection',
-                    Label : '{i18n>General.FieldGroup.General}',
-                    Facets: [{
-                        $Type : 'UI.ReferenceFacet',
-                        ID    : 'GeneralFacet',
-                        Target: '@UI.FieldGroup#General'
-                    }]
-                }
-            ]
-        }
-    ],
+    Facets                  : [{
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'GeneralFacet',
+        Label : '{i18n>General.FieldGroup.General}',
+        Target: '@UI.FieldGroup#General'
+    },{
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'DefaultsFacet',
+        Label : '{i18n>BackofficeOrderControls.FieldGroup.Defaults}',
+        Target: '@UI.FieldGroup#Defaults'
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'PartnerRolesFacet',
+        Label : '{i18n>BackofficeOrderControls.FieldGroup.PartnerRoles}',
+        Target: '@UI.FieldGroup#PartnerRoles'
+    },
+    {
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'VisibilitiesFacet',
+        Label : '{i18n>BackofficeOrderControls.FieldGroup.Visibilities}',
+        Target: '@UI.FieldGroup#Visibilities'
+    }],
 
-    FieldGroup #General     : {
+    FieldGroup #General      : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.General}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: vehicleUsage_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: customerState_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: endCustomerState_code
+            }
+        ]
+    },
+
+    FieldGroup #Defaults     : {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>BackofficeOrderControls.FieldGroup.Defaults}',
+        Data : [
+            {
+                $Type: 'UI.DataField',
+                Value: deliveryCode_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderType_code
+            },                       
+            {
+                $Type: 'UI.DataField',
+                Value: availability_code
+            }
+        ]
+    },
+
+    FieldGroup #PartnerRoles: {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>BackofficeOrderControls.FieldGroup.PartnerRoles}',
         Data : [
             {
                 $Type: 'UI.DataField',
@@ -70,7 +112,14 @@ annotate service.OrderControls with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: paidByPartner_id
-            },
+            }
+        ]
+    },
+
+    FieldGroup #Visibilities: {
+        $Type: 'UI.FieldGroupType',
+        Label: '{i18n>BackofficeOrderControls.FieldGroup.Visibilities}',
+        Data : [
             {
                 $Type: 'UI.DataField',
                 Value: releasedForPartner
@@ -78,10 +127,6 @@ annotate service.OrderControls with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: forEmployee
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: availability_code
             }
         ]
     },
@@ -100,25 +145,6 @@ annotate service.OrderControls with @UI: {
                 Value: modifiedAt,
                 Label: '{i18n>General.FieldGroup.Synchronised.modifiedAt}'
             },
-        ]
-    },
-
-    FieldGroup #Header      : {
-        $Type: 'UI.FieldGroupType',
-        Label: '{i18n>General.FieldGroup.Header}',
-        Data : [
-            {
-                $Type: 'UI.DataField',
-                Value: vehicleUsage_code
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: customerState_code
-            },
-            {
-                $Type: 'UI.DataField',
-                Value: endCustomerState_code
-            }
         ]
     },
 };

@@ -7,17 +7,30 @@ entity CarConfigurationEquipments {
     key equipment                     : db.Equipment;
         salesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
         salesPriceConstraintColor     : db.Color     @assert.integrity: false;
+        salesPrice                    : Association to one CarConfigurationEquipmentSalesPrices
+                                            on  salesPrice.configuration = configuration
+                                            and salesPrice.equipment     = equipment
+
 }
 
-entity CarConfigurationEquipmentsView as projection on CarConfigurationEquipments {
+entity CarConfigurationEquipmentSalesPricesPrepare as projection on CarConfigurationEquipments {
     key configuration,
     key equipment,
         configuration.model,
-        salesPriceConstraintEquipment,
-        salesPriceConstraintColor,
-        salesPrice : Association to one db.ModelEquipmentSalesPrices on salesPrice.equipment.model     =       model
-                     and                                                salesPrice.equipment.equipment =       equipment
-                     and                                                salesPrice.constraintEquipment =       salesPriceConstraintEquipment
-                     and                                                salesPrice.constraintColor     =       salesPriceConstraintColor
-                     and                                                current_date                   between salesPrice.validFrom and salesPrice.validTo
+        salesPriceConstraintEquipment as constraintEquipment,
+        salesPriceConstraintColor     as constraintColor
 }
+
+entity CarConfigurationEquipmentSalesPrices        as
+    select from CarConfigurationEquipmentSalesPricesPrepare as e
+    inner join db.CurrentModelEquipmentSalesPrices as p
+        on  p.model               = e.model
+        and p.equipment           = e.equipment
+        and p.constraintEquipment = e.constraintEquipment
+        and p.constraintColor     = e.constraintColor
+    {
+        key e.configuration,
+        key e.equipment,
+            p.value,
+            p.currency
+    };

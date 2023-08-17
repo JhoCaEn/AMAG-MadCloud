@@ -18,8 +18,14 @@ annotate service.Offers actions {
             'in/carConfigurationConfiguredAt',
             'in/carConfigurationModel_id',
             'in/carConfigurationExteriorColor_id',
+            'in/carConfigurationExteriorColorSalesPriceConstraintEquipment_id',
+            'in/carConfigurationExteriorColorSalesPriceConstraintColor_id',
             'in/carConfigurationInteriorColor_id',
-            'in/carConfigurationRoofColor_id'
+            'in/carConfigurationInteriorColorSalesPriceConstraintEquipment_id',
+            'in/carConfigurationInteriorColorSalesPriceConstraintColor_id',
+            'in/carConfigurationRoofColor_id',
+            'in/carConfigurationRoofColorSalesPriceConstraintEquipment_id',
+            'in/carConfigurationRoofColorSalesPriceConstraintColor_id'
         ],
         TargetEntities  : ['in/carConfigurationEquipments']
     };

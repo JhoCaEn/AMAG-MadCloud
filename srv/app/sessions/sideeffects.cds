@@ -5,7 +5,8 @@ annotate service.Sessions actions {
         TargetProperties: [
             'in/isPrepared',
             'in/offer_ID',
-            'in/forwardToOffer'
+            'in/forwardToOffer',
+            'in/callbackURL'
         ]
     };
 

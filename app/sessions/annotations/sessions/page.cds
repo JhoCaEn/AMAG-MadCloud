@@ -96,6 +96,10 @@ annotate service.Sessions with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: offer_ID
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: callbackURL
             }
         ]
     },

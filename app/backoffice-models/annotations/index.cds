@@ -30,3 +30,5 @@ using from './color-types';
 using from './colors';
 using from './equipments';
 using from './equipment-chapters';
+using from './model-color-combinations-sales-prices';
+using from './model-equipment-sales-prices';
