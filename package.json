@@ -1,220 +1,214 @@
 {
-    "name": "sap_cap_retail_dwb",
-    "version": "1.0.0",
-    "description": "DWB",
-    "repository": "git@gitlab.com:amag_web/sap/cap/retail/sap_cap_retail_dwb.git",
-    "license": "UNLICENSED",
-    "private": true,
-    "engines": {
-        "node": "14 || 16 || 18"
+  "name": "sap_cap_retail_dwb",
+  "version": "1.0.0",
+  "description": "DWB",
+  "repository": "git@gitlab.com:amag_web/sap/cap/retail/sap_cap_retail_dwb.git",
+  "license": "UNLICENSED",
+  "private": true,
+  "engines": {
+    "node": "14 || 16 || 18"
+  },
+  "dependencies": {
+    "@amag-ch/sap_cap_common_http": "^3",
+    "@amag-ch/sap_cap_common_messaging": "^3",
+    "@sap/cds": "^6",
+    "@sap/xsenv": "^3",
+    "@sap/xssec": "^3",
+    "express": "^4",
+    "hdb": "^0",
+    "passport": "^0"
+  },
+  "devDependencies": {
+    "@amag-ch/sap_cap_common_launchpad": "^1.1.0",
+    "sqlite3": "^5",
+    "tunnel-agent": "^0.6.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "eslint": "eslint .",
+    "build:cds": "cds build --production && $(cp yarn.lock gen/srv/ || true)",
+    "build:mta": "mbt build -p=cf --strict=true --source=. --target=. --mtar deployment.mtar && rm -rf gen",
+    "cf:target": "cf target -o amag-dev -s Retail",
+    "cf:deploy": "cf deploy deployment.mtar"
+  },
+  "cds": {
+    "i18n": {
+      "languages": [
+        "de",
+        "it",
+        "fr",
+        "en"
+      ],
+      "default_language": "de",
+      "for_sqlite": [
+        "de",
+        "it",
+        "fr",
+        "en"
+      ]
     },
-    "dependencies": {
-        "@amag-ch/sap_cap_common_http": "^3",
-        "@amag-ch/sap_cap_common_messaging": "^3",
-        "@sap/cds": "^6",
-        "@sap/xsenv": "^3",
-        "@sap/xssec": "^3",
-        "express": "^4",
-        "hdb": "^0",
-        "passport": "^0"
-    },
-    "devDependencies": {
-        "@amag-ch/sap_cap_common_launchpad": "^1.1.0",
-        "sqlite3": "^5",
-        "tunnel-agent": "^0.6.0"
-    },
-    "scripts": {
-        "start": "cds-serve",
-        "eslint": "eslint .",
-        "build:cds": "cds build --production && $(cp yarn.lock gen/srv/ || true)",
-        "build:mta": "mbt build -p=cf --strict=true --source=. --target=. --mtar deployment.mtar && rm -rf gen",
-        "cf:target": "cf target -o amag-dev -s Retail",
-        "cf:deploy": "cf deploy deployment.mtar"
-    },
-    "cds": {
-        "i18n": {
-            "languages": [
-                "de",
-                "it",
-                "fr",
-                "en"
-            ],
-            "default_language": "de",
-            "for_sqlite": [
-                "de",
-                "it",
-                "fr",
-                "en"
-            ]
-        },
-        "log": {
-            "levels": {
-                "odata": "warn",
-                "[development]": {
-                    "odata": "info",
-                    "auth": "debug"
-                }
-            }
-        },
-        "requires": {
-            "middlewares": true,
-            "db": {
-                "kind": "sql",
-                "credentials": {
-                    "database": "db/local.sqlite"
-                },
-                "[production]": {
-                    "kind": "hana-cloud",
-                    "pool": {
-                        "acquireTimeoutMillis": 60000
-                    }
-                }
-            },
-            "auth": {
-                "kind": "xsuaa",
-                "[development]": {
-                    "kind": "mocked-auth"
-                }
-            },
-            "messaging": {
-                "kind": "composite-messaging",
-                "impl": "@amag-ch/sap_cap_common_messaging/composite.js",
-                "default": "messaging-default",
-                "credentials": {
-                    "namespace": "cap/retail/dwb"
-                },
-                "routes": {
-                    "messaging-replication-masterdata": [
-                        "replication-masterdata:**"
-                    ],
-                    "messaging-replication-partnerdata": [
-                        "replication-partnerdata:**"
-                    ]
-                }
-            },
-            "messaging-default": {
-                "kind": "file-based-messaging",
-                "[production]": {
-                    "kind": "enterprise-messaging-http"
-                },
-                "[hybrid]": {
-                    "kind": "enterprise-messaging-http"
-                }
-            },
-            "messaging-replication-partnerdata": {
-                "kind": "enterprise-messaging-http",
-                "subscribePrefix": "erp/s4/100/ce/sap/s4/beh/businesspartner/v1/"
-            },
-            "messaging-replication-masterdata": {
-                "kind": "enterprise-messaging-http",
-                "subscribePrefix": "erp/s4/100/ce/sap/eee/znwimaster/v1/"
-            },
-            "remote-erp-masterdata": {
-                "kind": "odata-v4",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata4/sap/zint_oda_dwb_mda/srvd_a2x/sap/zint_oda_dwb_mda/0001"
-                }
-            },
-            "remote-erp-partnerdata": {
-                "kind": "odata-v4",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata4/sap/zint_oda_dwb_bpa/srvd_a2x/sap/zint_oda_dwb_bpa/0001"
-                }
-            },
-            "remote-erp-quotation": {
-                "kind": "odata-v2",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata/sap/zint_oda_dwb_ord_quotation_srv"
-                }
-            },
-            "remote-erp-vehicles": {
-                "kind": "odata-v4",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata4/sap/zint_oda_dwb_vms_vehicle/srvd/sap/api_vmsvehicle/0001"
-                }
-            },
-            "remote-erp-vehicleactions": {
-                "kind": "odata-v2",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata/sap/zint_oda_dwb_vms_action_srv"
-                }
-            },
-            "remote-erp-forms": {
-                "kind": "odata-v2",
-                "credentials": {
-                    "destination": "erp-s4-tech",
-                    "[development]": {
-                        "destination": "erp-s4-tech-apim"
-                    },
-                    "path": "/sap/opu/odata/sap/zint_oda_dwb_forms_srv"
-                }
-            }
+    "log": {
+      "levels": {
+        "odata": "warn",
+        "[development]": {
+          "odata": "info",
+          "auth": "debug"
         }
+      }
     },
-    "sapux": [
-        "app/offers",
-        "app/orders",
-        "app/order-releases",
-        "app/sales-messages",
-        "app/sales-message-releases",
-        "app/fleet-applications",
-        "app/vehicles",
-        "app/marketplace",
+    "requires": {
+      "middlewares": true,
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/local.sqlite"
+        }
+      },
+      "auth": {
+        "kind": "xsuaa",
+        "[development]": {
+          "kind": "mocked-auth"
+        }
+      },
+      "messaging": {
+        "kind": "composite-messaging",
+        "impl": "@amag-ch/sap_cap_common_messaging/composite.js",
+        "default": "messaging-default",
+        "credentials": {
+          "namespace": "cap/retail/dwb"
+        },
+        "routes": {
+          "messaging-replication-masterdata": [
+            "replication-masterdata:**"
+          ],
+          "messaging-replication-partnerdata": [
+            "replication-partnerdata:**"
+          ]
+        }
+      },
+      "messaging-default": {
+        "kind": "file-based-messaging",
+        "[production]": {
+          "kind": "enterprise-messaging-http"
+        },
+        "[hybrid]": {
+          "kind": "enterprise-messaging-http"
+        }
+      },
+      "messaging-replication-partnerdata": {
+        "kind": "enterprise-messaging-http",
+        "subscribePrefix": "erp/s4/100/ce/sap/s4/beh/businesspartner/v1/"
+      },
+      "messaging-replication-masterdata": {
+        "kind": "enterprise-messaging-http",
+        "subscribePrefix": "erp/s4/100/ce/sap/eee/znwimaster/v1/"
+      },
+      "remote-erp-masterdata": {
+        "kind": "odata-v4",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata4/sap/zint_oda_dwb_mda/srvd_a2x/sap/zint_oda_dwb_mda/0001"
+        }
+      },
+      "remote-erp-partnerdata": {
+        "kind": "odata-v4",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata4/sap/zint_oda_dwb_bpa/srvd_a2x/sap/zint_oda_dwb_bpa/0001"
+        }
+      },
+      "remote-erp-quotation": {
+        "kind": "odata-v2",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata/sap/zint_oda_dwb_ord_quotation_srv"
+        }
+      },
+      "remote-erp-vehicles": {
+        "kind": "odata-v4",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata4/sap/zint_oda_dwb_vms_vehicle/srvd/sap/api_vmsvehicle/0001"
+        }
+      },
+      "remote-erp-vehicleactions": {
+        "kind": "odata-v2",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata/sap/zint_oda_dwb_vms_action_srv"
+        }
+      },
+      "remote-erp-forms": {
+        "kind": "odata-v2",
+        "credentials": {
+          "destination": "erp-s4-tech",
+          "[development]": {
+            "destination": "erp-s4-tech-apim"
+          },
+          "path": "/sap/opu/odata/sap/zint_oda_dwb_forms_srv"
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/offers",
+    "app/orders",
+    "app/order-releases",
+    "app/sales-messages",
+    "app/sales-message-releases",
+    "app/fleet-applications",
+    "app/vehicles",
+    "app/marketplace",
+    "app/backoffice-partners",
+    "app/backoffice-brands",
+    "app/backoffice-engines",
+    "app/backoffice-transmissions",
+    "app/backoffice-equipments",
+    "app/backoffice-colors",
+    "app/backoffice-models",
+    "app/carconfigurator",
+    "app/sessions",
+    "app/callbacks",
+    "app/backoffice-order-controls",
+    "app/backoffice-vehicles",
+    "app/backoffice-sales-order-states",
+    "app/backoffice-purchase-order-states"
+  ],
+  "launchpad": {
+    "groups": {
+      "backoffice": [
+        "app/backoffice-engines",
+        "app/backoffice-models",
         "app/backoffice-partners",
         "app/backoffice-brands",
-        "app/backoffice-engines",
         "app/backoffice-transmissions",
         "app/backoffice-equipments",
         "app/backoffice-colors",
-        "app/backoffice-models",
+        "app/backoffice-order-controls",
+        "app/backoffice-purchase-order-states",
+        "app/backoffice-vehicles",
+        "app/backoffice-sales-order-states"
+      ],
+      "technical": [
         "app/carconfigurator",
         "app/sessions",
-        "app/callbacks",
-        "app/backoffice-order-controls",
-        "app/backoffice-vehicles",
-        "app/backoffice-sales-order-states",
-        "app/backoffice-purchase-order-states"
-    ],
-    "launchpad": {
-        "groups": {
-            "backoffice": [
-                "app/backoffice-engines",
-                "app/backoffice-models",
-                "app/backoffice-partners",
-                "app/backoffice-brands",
-                "app/backoffice-transmissions",
-                "app/backoffice-equipments",
-                "app/backoffice-colors",
-                "app/backoffice-order-controls",
-                "app/backoffice-purchase-order-states",
-                "app/backoffice-vehicles",
-                "app/backoffice-sales-order-states"
-            ],
-            "technical": [
-                "app/carconfigurator",
-                "app/sessions",
-                "app/callbacks"
-            ]
-        }
+        "app/callbacks"
+      ]
     }
+  }
 }

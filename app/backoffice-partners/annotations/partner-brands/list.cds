@@ -35,6 +35,11 @@ annotate service.PartnerBrands with @(UI: {
             ![@UI.Importance]: #High
         },
         {
+            $Type            : 'UI.DataField',
+            Value            : createdAt,
+            ![@UI.Importance]: #High
+        },
+        {
             $Type                : 'UI.DataField',
             Value                : hasContracts,
             ![@UI.Importance]    : #Low,

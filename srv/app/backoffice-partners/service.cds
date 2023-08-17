@@ -41,6 +41,7 @@ service AppBackofficePartnersService {
         validTo,
         isRepresentative,
         hasContracts,
+        createdAt,
         contracts,
         soldToPartners : redirected to PartnerBrandSoldToPartners,
         shipToPartners : redirected to PartnerBrandShipToPartners,
