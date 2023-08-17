@@ -40,5 +40,10 @@ annotate service.PartnerBrands with @(UI: {
             ![@UI.Importance]    : #Low,
             ![@HTML5.CssDefaults]: {width: 'auto'}
         },
+        {
+            $Type            : 'UI.DataField',
+            Value            : createdAt,
+            ![@UI.Importance]: #High
+        },
     ]
 });

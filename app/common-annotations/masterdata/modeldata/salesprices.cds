@@ -8,7 +8,6 @@ annotate db.ModelSalesPrices with {
     value      @Measures.ISOCurrency: currency;
     currency   @UI.Hidden;
     createdAt  @title               : '{i18n>replicated.createdAt}';
-    modifiedAt @title               : '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelSalesPrices with @Common.SemanticKey: [

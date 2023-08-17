@@ -11,8 +11,6 @@ annotate db.ModelEquipmentSalesPrices with {
     currency            @UI.Hidden;    
     weighting           @title               : '{i18n>SalesPrice.weighting}';
     createdAt           @title               : '{i18n>replicated.createdAt}';
-    modifiedAt          @title               : '{i18n>replicated.modifiedAt}';
-    
 };
 
 annotate db.ModelEquipmentSalesPrices with @Common.SemanticKey: [

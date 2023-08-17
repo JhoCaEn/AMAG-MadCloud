@@ -2,22 +2,26 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../../db';
 using {replicated} from '../../../db';
+using {replicatedComposition} from '../../../db';using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../../db';
 
-entity ModelColorCombinationSalesPrices : replicated {
+entity ModelColorCombinationSalesPrices : replicatedComposition {
     key colorCombination    : db.ModelColorCombination @assert.integrity: false;
     key type                : db.ColorType             @assert.integrity: false;
     key constraintEquipment : db.Equipment             @assert.integrity: false;
     key constraintColor     : db.Color                 @assert.integrity: false;
     key validFrom           : Date default '1970-01-01';
         validTo             : Date default '9999-12-31';
-        value               : Decimal(11, 2);
-        currency            : String(5);
+        value               : SalesPriceValue;
+        currency            : SalesPriceCurrency;
         weighting           : Integer;
 };
 
 type ModelColorCombinationSalesPrice : Association to ModelColorCombinationSalesPrices;
 
-entity CurrentModelColorCombinationSalesPrices as projection on ModelColorCombinationSalesPrices {
+entity CurrentModelColorCombinationSalesPrices         as projection on ModelColorCombinationSalesPrices {
     key colorCombination.model,
     key colorCombination.exterior,
     key colorCombination.interior,
@@ -54,7 +58,7 @@ entity CurrentModelColorCombinationInteriorSalesPrices as projection on CurrentM
         weighting
 } where type.code = 'I';
 
-entity CurrentModelColorCombinationRoofSalesPrices as projection on CurrentModelColorCombinationSalesPrices {
+entity CurrentModelColorCombinationRoofSalesPrices     as projection on CurrentModelColorCombinationSalesPrices {
     key model,
     key exterior,
     key interior,

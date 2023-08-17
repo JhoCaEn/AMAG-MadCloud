@@ -4,7 +4,6 @@ annotate db.ModelRestrictions with {
     model      @title: '{i18n>Model}';
     id         @title: '{i18n>General.ID}';
     createdAt  @title: '{i18n>replicated.createdAt}';
-    modifiedAt @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelRestrictions with @Common.SemanticKey: [

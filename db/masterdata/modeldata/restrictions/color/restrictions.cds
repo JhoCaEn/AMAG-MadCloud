@@ -2,8 +2,9 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../../../../db';
 using {replicated} from '../../../../../db';
+using {replicatedComposition} from '../../../../../db';
 
-entity ModelColorRestrictions : replicated {
+entity ModelColorRestrictions : replicatedComposition {
     key colorCombination : db.ModelColorCombination @assert.integrity: false;
     key type             : db.ColorType             @assert.integrity: false;
     key constraint       : String;

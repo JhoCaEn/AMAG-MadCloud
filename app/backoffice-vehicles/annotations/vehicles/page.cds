@@ -132,6 +132,22 @@ annotate service.Vehicles with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: availability_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderType_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: purchaseState_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: deliveryCode_code
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: orderState_code
             }
         ]
     },

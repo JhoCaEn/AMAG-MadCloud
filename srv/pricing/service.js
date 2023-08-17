@@ -6,7 +6,8 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
 
         const {
             CurrentModelEquipmentSalesPrices,
-            CurrentModelColorCombinationSalesPrices
+            CurrentModelColorCombinationSalesPrices,
+            CurrentModelSalesPrices
         } = db.entities('retail.dwb')
 
         this.on('calculate', async ({ data } = {}) => calculate(data))
@@ -28,25 +29,33 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
 
             const colorPrices = await readColorPrices({ model_id, exteriorColor_id, interiorColor_id, roofColor_id })
             const equipmentPrices = await readEquipmentPrices({ model_id, equipments })
+            const modelPrices = await readModelPrices({ model_id })
 
             const calculations = prepareCalculations({ equipments, colorPrices, equipmentPrices })
             calculatePrices({ calculations, colors: [exteriorColor_id, interiorColor_id, roofColor_id], equipments })
 
-            return updateConstraints({ table, ID, equipments, calculations })
+            return updateConstraints({ table, ID, equipments, calculations, modelPrices })
         }
 
         const readColorPrices = async ({ model_id, exteriorColor_id: exterior_id, interiorColor_id: interior_id, roofColor_id: roof_id }) => {
-            return db.read(CurrentModelColorCombinationSalesPrices, ['type_code as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
+            return db.read(CurrentModelColorCombinationSalesPrices, ['type_code as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting', 'value', 'currency'])
                 .where({ model_id, exterior_id, interior_id, roof_id })
-                .orderBy( 'weighting desc' )
+                .orderBy('weighting desc')
         }
 
         const readEquipmentPrices = async ({ model_id, equipments }) => {
             if (!equipments?.length) return []
 
-            return db.read(CurrentModelEquipmentSalesPrices, ['equipment_id as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting'])
+            return db.read(CurrentModelEquipmentSalesPrices, ['equipment_id as id', 'constraintEquipment_id', 'constraintColor_id', 'weighting', 'value', 'currency'])
                 .where({ model_id, equipment_id: equipments })
-                .orderBy( 'weighting desc' )
+                .orderBy('weighting desc')
+        }
+
+        const readModelPrices = async ({ model_id }) => {
+            if (!model_id) return []
+
+            return db.read(CurrentModelSalesPrices, ['value', 'currency'])
+                .where({ model_id })
         }
 
         const prepareCalculations = ({ equipments, colorPrices, equipmentPrices }) => {
@@ -54,23 +63,31 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
                 E: {
                     constraintEquipment_id: '',
                     constraintColor_id: '',
+                    salesPriceValue: null,
+                    salesPriceValueCurrency: null,
                     prices: []
                 },
                 I: {
                     constraintEquipment_id: '',
                     constraintColor_id: '',
+                    salesPriceValue: null,
+                    salesPriceValueCurrency: null,
                     prices: []
                 },
                 R: {
                     constraintEquipment_id: '',
                     constraintColor_id: '',
+                    salesPriceValue: null,
+                    salesPriceValueCurrency: null,
                     prices: []
                 },
-                ...equipments.reduce((current, id) => ({ 
+                ...equipments.reduce((current, id) => ({
                     ...current,
                     [id]: {
                         constraintEquipment_id: '',
                         constraintColor_id: '',
+                        salesPriceValue: null,
+                        salesPriceValueCurrency: null,
                         prices: []
                     }
                 }), {})
@@ -86,7 +103,7 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
             Object.keys(calculations).forEach(id => {
                 const calculation = calculations[id]
 
-                for ( const {constraintEquipment_id, constraintColor_id } of calculation.prices ) {
+                for (const { constraintEquipment_id, constraintColor_id, value, currency } of calculation.prices) {
 
                     if (constraintEquipment_id && !equipments?.includes(constraintEquipment_id))
                         continue
@@ -96,26 +113,38 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
 
                     calculation.constraintEquipment_id = constraintEquipment_id
                     calculation.constraintColor_id = constraintColor_id
+                    calculation.salesPriceValue = value
+                    calculation.salesPriceValueCurrency = currency
 
                     break
                 }
             })
         }
 
-        const updateConstraints = async ({ table, ID, equipments, calculations }) => {
+        const updateConstraints = async ({ table, ID, equipments, calculations, modelPrices }) => {
             return db.update(table, { ID }).set({
                 ID: ID,
+                modelSalesPriceValue: modelPrices?.[0].value,
+                modelSalesPriceCurrency: modelPrices?.[0].currency,
                 exteriorColorSalesPriceConstraintEquipment_id: calculations.E.constraintEquipment_id,
                 exteriorColorSalesPriceConstraintColor_id: calculations.E.constraintColor_id,
+                exteriorColorSalesPriceValue: calculations.E.salesPriceValue,
+                exteriorColorSalesPriceCurrency: calculations.E.salesPriceValueCurrency,
                 interiorColorSalesPriceConstraintEquipment_id: calculations.I.constraintEquipment_id,
-                interiorColorSalesPriceConstraintColor_id: calculations.I.constraintColor_id,                
+                interiorColorSalesPriceConstraintColor_id: calculations.I.constraintColor_id,
+                interiorColorSalesPriceValue: calculations.I.salesPriceValue,
+                interiorColorSalesPriceCurrency: calculations.I.salesPriceValueCurrency,
                 roofColorSalesPriceConstraintEquipment_id: calculations.R.constraintEquipment_id,
                 roofColorSalesPriceConstraintColor_id: calculations.R.constraintColor_id,
+                roofSalesPriceValue: calculations.R.salesPriceValue,
+                roofSalesPriceCurrency: calculations.R.salesPriceValueCurrency,
                 equipments: equipments.map(id => ({
                     equipment_id: id,
                     salesPriceConstraintEquipment_id: calculations[id].constraintEquipment_id,
-                    salesPriceConstraintColor_id: calculations[id].constraintColor_id
-                })),                
+                    salesPriceConstraintColor_id: calculations[id].constraintColor_id,
+                    salesPriceValue: calculations[id].salesPriceValue,
+                    salesPriceValueCurrency: calculations[id].salesPriceValueCurrency
+                })),
             })
         }
 

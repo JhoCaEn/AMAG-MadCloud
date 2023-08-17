@@ -1,12 +1,19 @@
 namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
 entity OfferCarConfigurationEquipments {
     key offer                         : db.Offer;
     key equipment                     : db.Equipment;
         salesPriceConstraintEquipment : db.Equipment;
         salesPriceConstraintColor     : db.Color;
+        salesPriceValue               : SalesPriceValue;
+        salesPriceValueCurrency       : SalesPriceCurrency;
+
         salesPrice                    : Association to one OfferCarConfigurationEquipmentSalesPrices
                                             on  salesPrice.offer     = offer
                                             and salesPrice.equipment = equipment

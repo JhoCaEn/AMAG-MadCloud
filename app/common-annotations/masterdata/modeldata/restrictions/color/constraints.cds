@@ -4,7 +4,6 @@ annotate db.ModelColorRestrictionConstraints with {
     restriction @title: '{i18n>ModelColorCombinationRestriction}';
     equipment   @title: '{i18n>Equipment}';
     createdAt   @title: '{i18n>replicated.createdAt}';
-    modifiedAt  @title: '{i18n>replicated.createdAt}';
 };
 
 annotate db.ModelColorRestrictionConstraints with @Common.SemanticKey: [

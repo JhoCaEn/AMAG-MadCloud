@@ -31,6 +31,30 @@ annotate service.Vehicles with {
         ValueListWithFixedValues
     };
 
+    orderType                                  @Common          : {
+        Text           : orderType.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
+    purchaseState                              @Common          : {
+        Text           : purchaseState.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
+    deliveryCode                               @Common          : {
+        Text           : deliveryCode.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
+    orderState                                 @Common          : {
+        Text           : orderState.name,
+        TextArrangement: #TextOnly,
+        ValueListWithFixedValues
+    };
+
     salesPartner                               @Common          : {
         Text           : salesPartner.name,
         TextArrangement: #TextFirst

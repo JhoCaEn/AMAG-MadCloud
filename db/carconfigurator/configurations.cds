@@ -2,6 +2,10 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
 using {cuid} from '@sap/cds/common';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
 entity CarConfigurations : cuid {
     configuredAt                               : Date;
@@ -10,15 +14,24 @@ entity CarConfigurations : cuid {
     salesOrganisation                          : String(4);
     isNewConfiguration                         : Boolean default false;
     model                                      : db.Model     @assert.integrity: false;
+    modelSalesPriceValue                       : SalesPriceValue;
+    modelSalesPriceCurrency                    : SalesPriceCurrency;
     exteriorColor                              : db.Color     @assert.integrity: false;
     exteriorColorSalesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
     exteriorColorSalesPriceConstraintColor     : db.Color     @assert.integrity: false;
+    exteriorColorSalesPriceValue               : SalesPriceValue;
+    exteriorColorSalesPriceCurrency            : SalesPriceCurrency;
     interiorColor                              : db.Color     @assert.integrity: false;
     interiorColorSalesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
     interiorColorSalesPriceConstraintColor     : db.Color     @assert.integrity: false;
+    interiorColorSalesPriceValue               : SalesPriceValue;
+    interiorColorSalesPriceCurrency            : SalesPriceCurrency;
     roofColor                                  : db.Color     @assert.integrity: false;
     roofColorSalesPriceConstraintEquipment     : db.Equipment @assert.integrity: false;
     roofColorSalesPriceConstraintColor         : db.Color     @assert.integrity: false;
+    roofColorSalesPriceValue                   : SalesPriceValue;
+    roofColorSalesPriceCurrency                : SalesPriceCurrency;
+
     equipments                                 : Composition of many db.CarConfigurationEquipments
                                                      on equipments.configuration = $self;
 

@@ -17,15 +17,25 @@ service AppCarConfiguratorService {
         interiorColorSalesPriceConstraintColor_id : db.Colors:id;
         roofColorSalesPriceConstraintEquipment_id : db.Equipments:id;
         roofColorSalesPriceConstraintColo_id : db.Colors:id;
+        exteriorColorSalesPriceValue : db.CarConfiguration:exteriorColorSalesPriceValue;
+        exteriorColorSalesPriceCurrency : db.CarConfiguration:exteriorColorSalesPriceCurrency;
+        interiorColorSalesPriceValue : db.CarConfiguration:interiorColorSalesPriceValue;
+        interiorColorSalesPriceCurrency : db.CarConfiguration:interiorColorSalesPriceCurrency;
+        roofColorSalesPriceValue : db.CarConfiguration:roofColorSalesPriceValue;
+        roofColorSalesPriceCurrency : db.CarConfiguration:roofColorSalesPriceCurrency;
+        modelSalesPriceValue : db.CarConfiguration:modelSalesPriceValue;
+        modelSalesPriceCurrency : db.CarConfiguration:modelSalesPriceCurrency;
         equipments : many {
             id : db.Equipments:id;
             salesPriceConstraintEquipment_id : db.Equipments:id;
             salesPriceConstraintColor_id : db.Colors:id;
+            salesPriceValue : db.CarConfigurationEquipments:salesPriceValue;
+            salesPriceValueCurrency : db.CarConfigurationEquipments:salesPriceValueCurrency;
         };
     };
 
     @odata.draft.enabled
-    entity Configurations                       as projection on db.CarConfigurations {
+    entity Configurations                           as projection on db.CarConfigurations {
         ID,
         configuredAt,
         partner,
@@ -67,7 +77,15 @@ service AppCarConfiguratorService {
         selectableEquipments,
         selectableEquipmentChapters,
         selectableEquipmentCategories,
-        selectableModelRestrictions
+        selectableModelRestrictions,
+        exteriorColorSalesPriceValue,
+        exteriorColorSalesPriceCurrency,
+        interiorColorSalesPriceValue,
+        interiorColorSalesPriceCurrency,
+        roofColorSalesPriceValue,
+        roofColorSalesPriceCurrency,
+        modelSalesPriceValue,
+        modelSalesPriceCurrency
     } actions {
         action prepare(in : $self);
         action selectModel(in : $self, id : db.Model:id);
@@ -77,16 +95,19 @@ service AppCarConfiguratorService {
         action unselectEquipment(in : $self, id : db.Equipments:id);
     };
 
-    entity ConfigurationEquipments              as projection on db.CarConfigurationEquipments {
+    @readonly
+    entity ConfigurationEquipments                  as projection on db.CarConfigurationEquipments {
         configuration,
         equipment,
         salesPriceConstraintEquipment,
         salesPriceConstraintColor,
+        salesPriceValue,
+        salesPriceValueCurrency,
         salesPrice
     };
 
     @readonly
-    entity PreselectedEquipments                as projection on db.CarConfigurationPreselectedEquipments {
+    entity PreselectedEquipments                    as projection on db.CarConfigurationPreselectedEquipments {
         key configuration,
         key equipment,
             equipment.displayName
@@ -94,21 +115,21 @@ service AppCarConfiguratorService {
 
 
     @readonly
-    entity SelectableModelCategories            as projection on db.CarConfigurationSelectableModelCategories {
+    entity SelectableModelCategories                as projection on db.CarConfigurationSelectableModelCategories {
         key configuration,
         key category.code,
             category.name
     };
 
     @readonly
-    entity SelectableSalesTypes                 as projection on db.CarConfigurationSelectableSalesTypes {
+    entity SelectableSalesTypes                     as projection on db.CarConfigurationSelectableSalesTypes {
         key configuration,
         key salesType.id,
             salesType.name
     }
 
     @readonly
-    entity SelectableModels                     as projection on db.CarConfigurationSelectableModels {
+    entity SelectableModels                         as projection on db.CarConfigurationSelectableModels {
         key configuration,
         key model.id,
             model.name,
@@ -129,7 +150,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableColors                     as projection on db.CarConfigurationSelectableColors {
+    entity SelectableColors                         as projection on db.CarConfigurationSelectableColors {
         key configuration,
         key color.id,
             color.code,
@@ -141,7 +162,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableColorTypes                 as projection on db.CarConfigurationSelectableColorTypes {
+    entity SelectableColorTypes                     as projection on db.CarConfigurationSelectableColorTypes {
         key configuration,
         key type.code,
             type.name,
@@ -152,7 +173,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableColorCombinations          as projection on db.CarConfigurationSelectableColorCombinations {
+    entity SelectableColorCombinations              as projection on db.CarConfigurationSelectableColorCombinations {
         key configuration,
         key exterior.id as exterior_id,
         key interior.id as interior_id,
@@ -160,7 +181,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableEquipments                 as projection on db.CarConfigurationSelectableEquipments {
+    entity SelectableEquipments                     as projection on db.CarConfigurationSelectableEquipments {
         key configuration,
         key equipment.id,
             equipment.code,
@@ -173,7 +194,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableEquipmentChapters          as projection on db.CarConfigurationSelectableEquipmentChapters {
+    entity SelectableEquipmentChapters              as projection on db.CarConfigurationSelectableEquipmentChapters {
         key configuration,
         key chapter.id,
             chapter.name,
@@ -182,7 +203,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableEquipmentCategories        as projection on db.CarConfigurationSelectableEquipmentCategories {
+    entity SelectableEquipmentCategories            as projection on db.CarConfigurationSelectableEquipmentCategories {
         key configuration,
         key category.id,
             category.name,
@@ -191,7 +212,7 @@ service AppCarConfiguratorService {
     };
 
     @readonly
-    entity SelectableModelRestrictions          as projection on db.CarConfigurationSelectableModelRestrictions {
+    entity SelectableModelRestrictions              as projection on db.CarConfigurationSelectableModelRestrictions {
         key configuration,
         key modelRestriction.model,
             modelRestriction.id
@@ -199,21 +220,21 @@ service AppCarConfiguratorService {
 
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
-    entity ModelSalesPrices                     as projection on db.CurrentModelSalesPrices;
-    
+    entity ModelSalesPrices                         as projection on db.CurrentModelSalesPrices;
+
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
     entity ModelColorCombinationExteriorSalesPrices as projection on db.CurrentModelColorCombinationExteriorSalesPrices;
 
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
-    entity ModelColorCombinationInteriorSalesPrices as projection on db.CurrentModelColorCombinationInteriorSalesPrices;    
+    entity ModelColorCombinationInteriorSalesPrices as projection on db.CurrentModelColorCombinationInteriorSalesPrices;
 
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
-    entity ModelColorCombinationRoofSalesPrices as projection on db.CurrentModelColorCombinationRoofSalesPrices; 
+    entity ModelColorCombinationRoofSalesPrices     as projection on db.CurrentModelColorCombinationRoofSalesPrices;
 
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
-    entity ConfigurationEquipmentSalesPrices as projection on db.CarConfigurationEquipmentSalesPrices;   
+    entity ConfigurationEquipmentSalesPrices        as projection on db.CarConfigurationEquipmentSalesPrices;
 }

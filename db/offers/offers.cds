@@ -5,6 +5,10 @@ using {
     cuid,
     managed
 } from '@sap/cds/common';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
 @assert.unique: {businessKey: [ocd]}
 entity Offers : cuid, managed {
@@ -20,9 +24,13 @@ entity Offers : cuid, managed {
     carConfigurationIsValid                                    : Boolean default false;
     carConfigurationConfiguredAt                               : Date;
     carConfigurationModel                                      : db.Model;
+    carConfigurationModelSalesPriceValue                       : SalesPriceValue;
+    carConfigurationModelSalesPriceCurrency                    : SalesPriceCurrency;
     carConfigurationExteriorColor                              : db.Color;
     carConfigurationExteriorColorSalesPriceConstraintEquipment : db.Equipment;
     carConfigurationExteriorColorSalesPriceConstraintColor     : db.Color;
+    carConfigurationExteriorColorSalesPriceValue               : SalesPriceValue;
+    carConfigurationExteriorColorSalesPriceCurrency            : SalesPriceCurrency;
     carConfigurationExteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
                                                                      on  carConfigurationExteriorColorSalesPrice.colorCombination.model    =       carConfigurationModel
                                                                      and carConfigurationExteriorColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
@@ -36,6 +44,8 @@ entity Offers : cuid, managed {
     carConfigurationInteriorColor                              : db.Color;
     carConfigurationInteriorColorSalesPriceConstraintEquipment : db.Equipment;
     carConfigurationInteriorColorSalesPriceConstraintColor     : db.Color;
+    carConfigurationInteriorColorSalesPriceValue               : SalesPriceValue;
+    carConfigurationInteriorColorSalesPriceCurrency            : SalesPriceCurrency;
     carConfigurationInteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
                                                                      on  carConfigurationInteriorColorSalesPrice.colorCombination.model    =       carConfigurationModel
                                                                      and carConfigurationInteriorColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
@@ -49,6 +59,8 @@ entity Offers : cuid, managed {
     carConfigurationRoofColor                                  : db.Color;
     carConfigurationRoofColorSalesPriceConstraintEquipment     : db.Equipment;
     carConfigurationRoofColorSalesPriceConstraintColor         : db.Color;
+    carConfigurationRoofColorSalesPriceValue                   : SalesPriceValue;
+    carConfigurationRoofColorSalesPriceCurrency                : SalesPriceCurrency;
     carConfigurationRoofColorSalesPrice                        : Association to one db.ModelColorCombinationSalesPrices
                                                                      on  carConfigurationRoofColorSalesPrice.colorCombination.model    =       carConfigurationModel
                                                                      and carConfigurationRoofColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
@@ -57,7 +69,7 @@ entity Offers : cuid, managed {
                                                                      and carConfigurationRoofColorSalesPrice.type.code                 =       'R'
                                                                      and carConfigurationRoofColorSalesPrice.constraintColor           =       carConfigurationRoofColorSalesPriceConstraintColor
                                                                      and carConfigurationRoofColorSalesPrice.constraintEquipment       =       carConfigurationRoofColorSalesPriceConstraintEquipment
-                                                                     and current_date                                                      between carConfigurationRoofColorSalesPrice.validFrom and carConfigurationRoofColorSalesPrice.validTo;
+                                                                     and current_date                                                  between carConfigurationRoofColorSalesPrice.validFrom and carConfigurationRoofColorSalesPrice.validTo;
     callback                                                   : db.Callback;
     projectType                                                : db.ProjectType;
 

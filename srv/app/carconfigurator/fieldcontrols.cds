@@ -32,6 +32,10 @@ annotate service.Configurations with {
     exteriorColorSalesPrice                    @Core.Computed;
     interiorColorSalesPrice                    @Core.Computed;
     roofColorSalesPrice                        @Core.Computed;
+    exteriorColorSalesPriceValue               @Core.Computed;
+    interiorColorSalesPriceValue               @Core.Computed;
+    roofColorSalesPriceValue                   @Core.Computed;
+    modelSalesPriceValue                       @Core.Computed;
 };
 
 annotate service.ConfigurationEquipments with {

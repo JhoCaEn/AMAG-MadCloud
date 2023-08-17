@@ -1,4 +1,5 @@
 using from './aspects';
+using from './types';
 
 using from './codelists';
 using from './partnerdata';

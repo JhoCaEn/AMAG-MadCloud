@@ -33,7 +33,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         })
 
         const createOffer = async ({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } = {}) => {
-            
+
             const offer = await this.send({
                 event: 'NEW',
                 query: db.create(Offers, {})
@@ -51,14 +51,14 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             })
 
             if (salesPartner_id) {
-               await selectSalesPartner({ ID, id: salesPartner_id })
+                await selectSalesPartner({ ID, id: salesPartner_id })
 
-               if(brand_code)
+                if (brand_code)
                     await selectBrand({ ID, code: brand_code })
             }
-            
-            
-            
+
+
+
 
             return ID
         }
@@ -78,10 +78,10 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             const { ID, salesPartner_id, brand_code } = offer
 
             if (salesPartner_id)
-                await selectSalesPartner({ ID, id : salesPartner_id }, true)
+                await selectSalesPartner({ ID, id: salesPartner_id }, true)
 
             if (brand_code)
-                await selectBrand({ ID, code : brand_code })
+                await selectBrand({ ID, code: brand_code })
 
             return offer
         }
@@ -106,7 +106,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 throw new ValidationError('OFFERS_NO_BRAND')
 
             const callback_ID = await callbackService.send('createCallback', {
-                semantic : 'offer-manage',
+                semantic: 'offer-manage',
                 parameters: JSON.stringify({
                     ID,
                     carConfigurationDone: true
@@ -240,16 +240,18 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 ID: carConfigurationID
             })
 
-            const configuration = Object.keys(carConfiguration).reduce((result, key) => ({ 
-                ...result, 
+            const configuration = Object.keys(carConfiguration).reduce((result, key) => ({
+                ...result,
                 [`carConfiguration${key.charAt(0).toUpperCase()}${key.slice(1)}`]: carConfiguration[key]
             }), {})
 
-            configuration.carConfigurationEquipments = carConfiguration.equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id }) => ({
+            configuration.carConfigurationEquipments = carConfiguration.equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id, salesPriceValue, salesPriceValueCurrency }) => ({
                 offer_ID: ID,
                 equipment_id,
                 salesPriceConstraintEquipment_id,
                 salesPriceConstraintColor_id,
+                salesPriceValue,
+                salesPriceValueCurrency,
                 DraftAdministrativeData_DraftUUID,
                 IsActiveEntity: false,
                 HasActiveEntity: false,

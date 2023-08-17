@@ -1,1 +1,10 @@
-using AppOrderReleasesService as service from '../../../srv';
+using from './order-releases';
+using from './brands';
+using from './customer-states';
+using from './end-customer-states';
+using from './vehicle-availabilities';
+using from './vehicle-usages';
+using from './order-types';
+using from './delivery-codes';
+using from './purchase-order-states';
+using from './sales-order-states';

@@ -1,11 +1,14 @@
 using {retail.dwb as db} from '../../../db';
 
 annotate db.CarConfigurationEquipments with {
-    equipment                     @title: '{i18n>Equipment}';
-    configuration                 @title: '{i18n>CarConfiguration}';
-    salesPriceConstraintEquipment @title: '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintEquipment}';
-    salesPriceConstraintColor     @title: '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintColor}';
-    salesPrice                    @title: '{i18n>ModelSalesPrice}';
+    equipment                     @title               : '{i18n>Equipment}';
+    configuration                 @title               : '{i18n>CarConfiguration}';
+    salesPriceConstraintEquipment @title               : '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintEquipment}';
+    salesPriceConstraintColor     @title               : '{i18n>CarConfigurations.exteriorColorSalesPriceConstraintColor}';
+    salesPriceValue               @title               : '{i18n>General.priceValue}';
+    salesPriceValue               @Measures.ISOCurrency: salesPriceValueCurrency;
+    salesPriceValueCurrency       @UI.Hidden;
+    salesPrice                    @title               : '{i18n>ModelSalesPrice}';
 }
 
 annotate db.CarConfigurationEquipments with @UI: {HeaderInfo: {

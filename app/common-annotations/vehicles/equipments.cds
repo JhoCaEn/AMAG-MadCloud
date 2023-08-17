@@ -6,6 +6,7 @@ annotate db.VehicleEquipments with {
     salesPriceConstraintEquipment @title: '{i18n>Vehicles.salesPriceConstraintEquipment}';
     salesPriceConstraintColor     @title: '{i18n>Vehicles.salesPriceConstraintColor}';
     salesPrice                    @title: '{i18n>VehicleEquipments.salesPrice}';
+    createdAt                     @title: '{i18n>replicated.createdAt}';
 };
 
 annotate db.VehicleEquipments with @Common.SemanticKey: [

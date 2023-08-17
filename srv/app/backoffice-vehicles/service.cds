@@ -42,7 +42,13 @@ service AppBackofficeVehiclesService {
         createdBy,
         modifiedAt,
         modifiedBy,
-        equipments
+        equipments,
+        orderType,
+        deliveryCode,
+        purchaseState,
+        orderState,
+        orderCreated,
+        orderReleased
     } actions {
         action synchronise(in : $self);
     };
@@ -114,5 +120,29 @@ service AppBackofficeVehiclesService {
         vehicle,
         equipment.id,
         equipment.displayName
+    }
+
+    @readonly
+    entity OrderTypes             as projection on db.OrderTypes {
+        code,
+        name
+    }
+
+    @readonly
+    entity DeliveryCodes            as projection on db.DeliveryCodes {
+        code,
+        name
+    }
+
+    @readonly
+    entity PurchaseOrderStates            as projection on db.PurchaseOrderStates {
+        code,
+        name
+    }
+
+    @readonly
+    entity SalesOrderStates            as projection on db.SalesOrderStates {
+        code,
+        name
     }
 }

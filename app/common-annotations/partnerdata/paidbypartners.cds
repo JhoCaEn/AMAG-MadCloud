@@ -7,7 +7,6 @@ annotate db.PartnerBrandPaidByPartners with {
     validTo    @title: '{i18n>General.validTo}';
     isDefault  @title: '{i18n>PartnerRoles.isDefault}';
     createdAt  @title: '{i18n>replicated.createdAt}';
-    modifiedAt @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.PartnerBrandPaidByPartners with @Common.SemanticKey: [

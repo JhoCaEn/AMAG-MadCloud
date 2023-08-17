@@ -41,10 +41,24 @@ annotate service.Offers with @UI: {
                     }]
                 },
                 {
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'WiP_CarConfigurationSalesPrices',
-                    Label : 'WiP: CarConfiguration Sales Prices',
-                    Target: '@UI.FieldGroup#WiPSalesPrices'
+                    $Type        : 'UI.ReferenceFacet',
+                    ID           : 'WiP_CarConfigurationSalesPrices_NotDraft',
+                    Label        : 'WiP: CarConfiguration Sales Prices',
+                    Target       : '@UI.FieldGroup#WiPSalesPrices_NotDraft',
+                    ![@UI.Hidden]: {$edmJson: {$Eq: [
+                        {$Path: 'IsActiveEntity'},
+                        false
+                    ]}}
+                },
+                {
+                    $Type        : 'UI.ReferenceFacet',
+                    ID           : 'WiP_CarConfigurationSalesPrices_Draft',
+                    Label        : 'WiP: CarConfiguration Sales Prices',
+                    Target       : '@UI.FieldGroup#WiPSalesPrices_Draft',
+                    ![@UI.Hidden]: {$edmJson: {$Eq: [
+                        {$Path: 'IsActiveEntity'},
+                        true
+                    ]}}
                 },
                 {
                     $Type : 'UI.CollectionFacet',
@@ -73,14 +87,32 @@ annotate service.Offers with @UI: {
                 },
                 {
                     $Type : 'UI.CollectionFacet',
-                    ID    : 'WiP_CarConfigurationEquipmentsSection',
+                    ID    : 'WiP_CarConfigurationEquipmentsSection_NotDraft',
                     Label : 'WiP: Car Configuration Equipments',
                     Facets: [{
-                        $Type : 'UI.ReferenceFacet',
-                        ID    : 'WiP_CarConfigurationEquipments',
-                        Target: 'carConfigurationEquipments/@UI.LineItem'
+                        $Type        : 'UI.ReferenceFacet',
+                        ID           : 'WiP_CarConfigurationEquipments_NotDraft',
+                        Target       : 'carConfigurationEquipments/@UI.LineItem#NotDraft',
+                        ![@UI.Hidden]: {$edmJson: {$Eq: [
+                            {$Path: 'IsActiveEntity'},
+                            false
+                        ]}}
                     }]
                 },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'WiP_CarConfigurationEquipmentsSection_Draft',
+                    Label : 'WiP: Car Configuration Equipments',
+                    Facets: [{
+                        $Type        : 'UI.ReferenceFacet',
+                        ID           : 'WiP_CarConfigurationEquipments_Draft',
+                        Target       : 'carConfigurationEquipments/@UI.LineItem#Draft',
+                        ![@UI.Hidden]: {$edmJson: {$Eq: [
+                            {$Path: 'IsActiveEntity'},
+                            true
+                        ]}}
+                    }]
+                }
             ]
         },
         {
@@ -156,7 +188,7 @@ annotate service.Offers with @UI: {
         {Value: carConfigurationRoofColorSalesPriceConstraintColor_id},
     ]},
 
-    FieldGroup #WiPSalesPrices                   : {Data: [
+    FieldGroup #WiPSalesPrices_NotDraft          : {Data: [
         {
             Value: carConfigurationModel.salesPrice.value,
             Label: '{i18n>Model}'
@@ -171,6 +203,25 @@ annotate service.Offers with @UI: {
         },
         {
             Value: carConfigurationRoofColorSalesPrice.value,
+            Label: '{i18n>RoofColor}'
+        }
+    ]},
+
+    FieldGroup #WiPSalesPrices_Draft             : {Data: [
+        {
+            Value: carConfigurationModelSalesPriceValue,
+            Label: '{i18n>Model}'
+        },
+        {
+            Value: carConfigurationExteriorColorSalesPriceValue,
+            Label: '{i18n>ExteriorColor}'
+        },
+        {
+            Value: carConfigurationInteriorColorSalesPriceValue,
+            Label: '{i18n>InteriorColor}'
+        },
+        {
+            Value: carConfigurationRoofColorSalesPriceValue,
             Label: '{i18n>RoofColor}'
         }
     ]},

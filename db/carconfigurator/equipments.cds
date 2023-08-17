@@ -1,16 +1,22 @@
 namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
 entity CarConfigurationEquipments {
     key configuration                 : db.CarConfiguration;
     key equipment                     : db.Equipment;
         salesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
         salesPriceConstraintColor     : db.Color     @assert.integrity: false;
+        salesPriceValue               : SalesPriceValue;
+        salesPriceValueCurrency       : SalesPriceCurrency;
+
         salesPrice                    : Association to one CarConfigurationEquipmentSalesPrices
                                             on  salesPrice.configuration = configuration
                                             and salesPrice.equipment     = equipment
-
 }
 
 entity CarConfigurationEquipmentSalesPricesPrepare as projection on CarConfigurationEquipments {

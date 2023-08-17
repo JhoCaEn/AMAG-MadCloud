@@ -8,7 +8,6 @@ annotate db.PartnerBrands with {
     hasContracts     @title: '{i18n>Partner.hasContracts}';
     isRepresentative @title: '{i18n>Partner.isRepresentative}';
     createdAt        @title: '{i18n>replicated.createdAt}';
-    modifiedAt       @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.PartnerBrands with @Common.SemanticKey: [

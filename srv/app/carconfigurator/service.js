@@ -817,12 +817,22 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 'interiorColorSalesPriceConstraintColor_id',
                 'roofColor_id',
                 'roofColorSalesPriceConstraintEquipment_id',
-                'roofColorSalesPriceConstraintColor_id'
+                'roofColorSalesPriceConstraintColor_id',
+                'exteriorColorSalesPriceValue',
+                'exteriorColorSalesPriceCurrency',
+                'interiorColorSalesPriceValue',
+                'interiorColorSalesPriceCurrency',
+                'roofColorSalesPriceValue',
+                'roofColorSalesPriceCurrency',
+                'modelSalesPriceValue',
+                'modelSalesPriceCurrency'
             ).columns(config => {
                 config.equipments(equipment => {
                     equipment.equipment_id.as('id'),
                         equipment.salesPriceConstraintEquipment_id,
-                        equipment.salesPriceConstraintColor_id
+                        equipment.salesPriceConstraintColor_id,
+                        equipment.salesPriceValue,
+                        equipment.salesPriceValueCurrency
                 })
             })
 

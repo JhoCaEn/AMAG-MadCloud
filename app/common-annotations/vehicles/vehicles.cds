@@ -34,18 +34,22 @@ annotate db.Vehicles with {
     interiorColorSalesPrice                    @title: '{i18n>Vehicles.interiorColorSalesPrice}';
     roofColorSalesPrice                        @title: '{i18n>Vehicles.roofColorSalesPrice}';
     equipments                                 @title: '{i18n>Equipments}';
+    orderType                                  @title: '{i18n>OrderType}';
+    deliveryCode                               @title: '{i18n>DeliveryCode}';
+    purchaseState                              @title: '{i18n>PurchaseOrderState}';
+    orderState                                 @title: '{i18n>SalesOrderState}';
+    orderCreated                               @title: '{i18n>Vehicles.orderCreated}';
+    orderReleased                              @title: '{i18n>Vehicles.orderReleased}';
 };
 
 annotate db.Vehicles with @Common.SemanticKey: [ID];
 
-annotate db.Vehicles with @UI: {
-    HeaderInfo                        : {
-        $Type         : 'UI.HeaderInfoType',
-        TypeName      : '{i18n>Vehicle}',
-        TypeNamePlural: '{i18n>Vehicles}',
-        Title         : {
-            $Type: 'UI.DataField',
-            Value: ID
-        }
+annotate db.Vehicles with @UI: {HeaderInfo: {
+    $Type         : 'UI.HeaderInfoType',
+    TypeName      : '{i18n>Vehicle}',
+    TypeNamePlural: '{i18n>Vehicles}',
+    Title         : {
+        $Type: 'UI.DataField',
+        Value: ID
     }
-};
+}};

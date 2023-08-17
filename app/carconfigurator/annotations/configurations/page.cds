@@ -15,11 +15,25 @@ annotate service.Configurations with @UI: {
             Target: '@UI.FieldGroup#WiP'
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'WiP_SalesPrices',
-            Label : 'WiP: SalesPrices',
-            Target: '@UI.FieldGroup#WiPSalesPrices'
-        },        
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'WiP_SalesPrices_NotDraft',
+            Label        : 'WiP: SalesPrices',
+            Target       : '@UI.FieldGroup#WiPSalesPricesNotDraft',
+            ![@UI.Hidden]: {$edmJson: {$Eq: [
+                {$Path: 'IsActiveEntity'},
+                false
+            ]}}
+        },
+        {
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'WiP_SalesPrices_Draft',
+            Label        : 'WiP: SalesPrices',
+            Target       : '@UI.FieldGroup#WiPSalesPricesDraft',
+            ![@UI.Hidden]: {$edmJson: {$Eq: [
+                {$Path: 'IsActiveEntity'},
+                true
+            ]}}
+        },
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'WiP_SalesPriceConstraints',
@@ -46,10 +60,24 @@ annotate service.Configurations with @UI: {
             ]
         },
         {
-            $Type : 'UI.ReferenceFacet',
-            ID    : 'WiP_Equipments',
-            Label : 'WiP: Equipments',
-            Target: 'equipments/@UI.LineItem'
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'WiP_Equipments_NotDraft',
+            Label        : 'WiP: Equipments',
+            Target       : 'equipments/@UI.LineItem#NotDraft',
+            ![@UI.Hidden]: {$edmJson: {$Eq: [
+                {$Path: 'IsActiveEntity'},
+                false
+            ]}}
+        },
+        {
+            $Type        : 'UI.ReferenceFacet',
+            ID           : 'WiP_Equipments_Draft',
+            Label        : 'WiP: Equipments',
+            Target       : 'equipments/@UI.LineItem#Draft',
+            ![@UI.Hidden]: {$edmJson: {$Eq: [
+                {$Path: 'IsActiveEntity'},
+                true
+            ]}}
         },
         {
             $Type : 'UI.ReferenceFacet',
@@ -220,7 +248,7 @@ annotate service.Configurations with @UI: {
     FieldGroup #salesPriceExteriorColorConstrains: {Data: [
         {Value: exteriorColorSalesPriceConstraintColor_id},
         {Value: exteriorColorSalesPriceConstraintEquipment_id}
-        
+
     ]},
 
     FieldGroup #salesPriceInteriorColorConstrains: {Data: [
@@ -233,14 +261,44 @@ annotate service.Configurations with @UI: {
         {Value: roofColorSalesPriceConstraintEquipment_id}
     ]},
 
-    FieldGroup#WiPSalesPrices : {
-        Data: [
-            {Value: modelSalesPrice.value, Label: '{i18n>Model}'},
-            {Value: exteriorColorSalesPrice.value, Label: '{i18n>ExteriorColor}'},
-            {Value: interiorColorSalesPrice.value, Label: '{i18n>InteriorColor}'},
-            {Value: roofColorSalesPrice.value, Label: '{i18n>RoofColor}'}
-        ]
-    }
+    FieldGroup #WiPSalesPricesNotDraft           : {Data: [
+        {
+            Value: modelSalesPrice.value,
+            Label: '{i18n>Model}'
+        },
+        {
+            Value: exteriorColorSalesPrice.value,
+            Label: '{i18n>ExteriorColor}'
+        },
+        {
+            Value: interiorColorSalesPrice.value,
+            Label: '{i18n>InteriorColor}'
+        },
+        {
+            Value: roofColorSalesPrice.value,
+            Label: '{i18n>RoofColor}'
+        }
+    ]},
+
+    FieldGroup #WiPSalesPricesDraft              : {Data: [
+        {
+            Value: modelSalesPriceValue,
+            Label: '{i18n>Model}'
+        },
+        {
+            Value: exteriorColorSalesPriceValue,
+            Label: '{i18n>ExteriorColor}'
+        },
+        {
+            Value: interiorColorSalesPriceValue,
+            Label: '{i18n>InteriorColor}'
+        },
+        {
+            Value: roofColorSalesPriceValue,
+            Label: '{i18n>RoofColor}'
+        }
+    ]}
+
 };
 
 annotate service.Configurations with @UI.Identification: [

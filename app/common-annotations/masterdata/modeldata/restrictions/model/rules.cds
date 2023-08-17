@@ -9,7 +9,6 @@ annotate db.ModelRestrictionRules with {
     isRequired  @title: '{i18n>RestrictionRules.isRequired}';
     isForbidden @title: '{i18n>RestrictionRules.isForbidden}';
     createdAt   @title: '{i18n>replicated.createdAt}';
-    modifiedAt  @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelRestrictionRules with @Common.SemanticKey: [

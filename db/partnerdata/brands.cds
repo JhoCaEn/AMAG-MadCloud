@@ -2,8 +2,9 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
 using {replicated} from '../../db';
+using {replicatedComposition} from '../../db';
 
-entity PartnerBrands : replicated {
+entity PartnerBrands : replicatedComposition {
     key partner          : db.Partner;
     key brand            : db.Brand;
     key validFrom        : Date default '1970-01-01';

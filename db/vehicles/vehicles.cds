@@ -5,6 +5,10 @@ using {
     cuid,
     managed
 } from '@sap/cds/common';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
 entity Vehicles : cuid, managed {
     erpID                                      : UUID;
@@ -22,6 +26,8 @@ entity Vehicles : cuid, managed {
     brand                                      : db.Brand               @assert.integrity: false;
     salesType                                  : db.SalesType           @assert.integrity: false;
     model                                      : db.Model               @assert.integrity: false;
+    modelSalesPriceValue                       : SalesPriceValue;
+    modelSalesPriceCurrency                    : SalesPriceCurrency;
     usage                                      : db.VehicleUsage        @assert.integrity: false;
     customerState                              : db.CustomerState       @assert.integrity: false;
     endCustomerState                           : db.EndCustomerState    @assert.integrity: false;
@@ -29,12 +35,18 @@ entity Vehicles : cuid, managed {
     exteriorColor                              : db.Color               @assert.integrity: false;
     exteriorColorSalesPriceConstraintEquipment : db.Equipment           @assert.integrity: false;
     exteriorColorSalesPriceConstraintColor     : db.Color               @assert.integrity: false;
+    exteriorColorSalesPriceValue               : SalesPriceValue;
+    exteriorColorSalesPriceCurrency            : SalesPriceCurrency;
     interiorColor                              : db.Color               @assert.integrity: false;
     interiorColorSalesPriceConstraintEquipment : db.Equipment           @assert.integrity: false;
     interiorColorSalesPriceConstraintColor     : db.Color               @assert.integrity: false;
+    interiorColorSalesPriceValue               : SalesPriceValue;
+    interiorColorSalesPriceCurrency            : SalesPriceCurrency;
     roofColor                                  : db.Color               @assert.integrity: false;
     roofColorSalesPriceConstraintEquipment     : db.Equipment           @assert.integrity: false;
     roofColorSalesPriceConstraintColor         : db.Color               @assert.integrity: false;
+    roofColorSalesPriceValue                   : SalesPriceValue;
+    roofColorSalesPriceCurrency                : SalesPriceCurrency;
     orderType                                  : db.OrderType           @assert.integrity: false;
     deliveryCode                               : db.DeliveryCode        @assert.integrity: false;
     purchaseState                              : db.PurchaseOrderState  @assert.integrity: false;

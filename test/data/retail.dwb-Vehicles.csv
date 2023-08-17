@@ -1,2 +1,5 @@
-ID,erpID,salesOrganisation,distributionChannel,organizationDivision
-7854d7f5-6ab2-4f3b-b051-aedec6cf7a47,1234,1000,10,20
+ID,erpID,salesOrganisation,distributionChannel,organizationDivision,orderCreated,orderReleased,model_id,brand_code
+7854d7f5-6ab2-4f3b-b051-aedec6cf7a47,1234,1000,10,20,true,false,MD000204,VW
+d86a2a54-ac87-4632-a64e-563afe3df9f8,5678,2000,20,30,true,false,MD000204,SKOD
+7d0148a9-5093-4b36-817d-7722094668f4,5678,2000,20,30,false,false,MD000204,VW
+9d2a1499-5ea0-4442-9987-ee3eabb60a6a,5678,2000,20,30,true,true,MD000204,VW

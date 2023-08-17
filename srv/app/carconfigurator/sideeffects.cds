@@ -15,7 +15,8 @@ annotate service.Configurations actions {
             'in/hasSelectableExteriorColors',
             'in/hasSelectableInteriorColors',
             'in/hasSelectableRoofColors',
-            'in/hasValidColorCombination'
+            'in/hasValidColorCombination',
+            'in/modelSalesPriceValue'
         ],
         TargetEntities  : [
             'in/selectableModelCategories',
@@ -48,7 +49,11 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'
+            'in/roofColorSalesPriceConstraintColor_id',
+            'in/exteriorColorSalesPriceValue',
+            'in/interiorColorSalesPriceValue',
+            'in/roofColorSalesPriceValue',
+            'in/modelSalesPriceValue'
         ],
         TargetEntities  : [
             'in/selectableModels',
@@ -77,7 +82,10 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'
+            'in/roofColorSalesPriceConstraintColor_id',
+            'in/exteriorColorSalesPriceValue',
+            'in/interiorColorSalesPriceValue',
+            'in/roofColorSalesPriceValue'
         ],
         TargetEntities  : [
             'in/selectableColorTypes',
@@ -99,7 +107,10 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'
+            'in/roofColorSalesPriceConstraintColor_id',
+            'in/exteriorColorSalesPriceValue',
+            'in/interiorColorSalesPriceValue',
+            'in/roofColorSalesPriceValue'
         ],
         TargetEntities  : [
             'in/selectableColorTypes',
@@ -117,7 +128,10 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'
+            'in/roofColorSalesPriceConstraintColor_id',
+            'in/exteriorColorSalesPriceValue',
+            'in/interiorColorSalesPriceValue',
+            'in/roofColorSalesPriceValue'
         ],
         TargetEntities  : [
             'in/equipments',
@@ -136,7 +150,10 @@ annotate service.Configurations actions {
             'in/interiorColorSalesPriceConstraintEquipment_id',
             'in/interiorColorSalesPriceConstraintColor_id',
             'in/roofColorSalesPriceConstraintEquipment_id',
-            'in/roofColorSalesPriceConstraintColor_id'
+            'in/roofColorSalesPriceConstraintColor_id',
+            'in/exteriorColorSalesPriceValue',
+            'in/interiorColorSalesPriceValue',
+            'in/roofColorSalesPriceValue'
         ],
         TargetEntities  : [
             'in/equipments',

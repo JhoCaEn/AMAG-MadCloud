@@ -2,8 +2,9 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../../../../db';
 using {replicated} from '../../../../../db';
+using {replicatedComposition} from '../../../../../db';
 
-entity ModelRestrictionRules : replicated {
+entity ModelRestrictionRules : replicatedComposition {
     key restriction : db.ModelRestriction  @assert.integrity: false;
     key id          : Integer;
         category    : db.EquipmentCategory @assert.integrity: false;

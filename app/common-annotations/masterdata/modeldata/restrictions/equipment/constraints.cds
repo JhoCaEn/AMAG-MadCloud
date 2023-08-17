@@ -4,7 +4,6 @@ annotate db.ModelEquipmentRestrictionConstraints with {
     restriction @title: '{i18n>ModelEquipmentRestriction}';
     equipment   @title: '{i18n>Equipment}';
     createdAt   @title: '{i18n>replicated.createdAt}';
-    modifiedAt  @title: '{i18n>replicated.createdAt}';
 };
 
 annotate db.ModelEquipmentRestrictionConstraints with @Common.SemanticKey: [

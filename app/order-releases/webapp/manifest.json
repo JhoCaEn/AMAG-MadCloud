@@ -30,12 +30,12 @@
 		"crossNavigation": {
 			"inbounds": {
 				"DWBOrder-release": {
-                    "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
-                    },
-                    "semanticObject": "DWBOrder",
-                    "action": "release",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "DWBOrder",
+					"action": "release",
 					"title": "{{AppTitle}}",
 					"subTitle": "{{AppSubtitle}}",
 					"icon": ""
@@ -64,17 +64,17 @@
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
-                "settings": {
-                    "bundleUrl": "i18n/i18n.properties",
-                    "supportedLocales": [
-                        "de",
-                        "it",
-                        "fr",
-                        "en"
-                    ],
-                    "fallbackLocale": "de"
-                }
-			},			
+				"settings": {
+					"bundleUrl": "i18n/i18n.properties",
+					"supportedLocales": [
+						"de",
+						"it",
+						"fr",
+						"en"
+					],
+					"fallbackLocale": "de"
+				}
+			},
 			"": {
 				"dataSource": "mainService",
 				"preload": true,
@@ -88,22 +88,56 @@
 		},
 		"routing": {
 			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "Orders",
+					"target": "Orders"
+				},
+				{
+					"pattern": "OrderReleases({key}):?query:",
+					"name": "Order",
+					"target": "Order"
+				}
 			],
 			"targets": {
-			},
-			"config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
+				"Orders": {
+					"type": "Component",
+					"id": "Orders",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "OrderReleases",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"OrderReleases": {
+									"detail": {
+										"route": "Order"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.SelectionFields": {
+									"showClearButton": true
+								}
+							}
+						}
+					},
+					"contextPattern": ""
 				},
-				"routerClass": "sap.f.routing.Router"
+				"Order": {
+					"type": "Component",
+					"id": "Order",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"sectionLayout": "Tabs",
+							"entitySet": "OrderReleases"
+						}
+					},
+					"contextPattern": "/OrderReleases({key})"
+				}
 			}
-		},
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
 		},
 		"contentDensities": {
 			"compact": true,

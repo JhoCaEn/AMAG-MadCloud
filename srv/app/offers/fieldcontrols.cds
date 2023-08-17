@@ -24,6 +24,8 @@ annotate service.Offers with {
     carConfigurationRoofColorSalesPriceConstraintColor         @Core.Computed;
     hasSalesPartner                                            @Core.Computed;
     callback                                                   @readonly;
+    carConfigurationExteriorColorSalesPriceValue               @Core.Computed;
+    carConfigurationInteriorColorSalesPriceValue               @Core.Computed;
+    carConfigurationRoofColorSalesPriceValue                   @Core.Computed;
+    carConfigurationModelSalesPriceValue                       @Core.Computed;
 };
-
-

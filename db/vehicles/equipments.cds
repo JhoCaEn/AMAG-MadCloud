@@ -1,12 +1,20 @@
 namespace retail.dwb;
 
 using {retail.dwb as db} from '../../db';
+using {replicatedComposition} from '../../db';
+using {
+    SalesPriceValue,
+    SalesPriceCurrency
+} from '../../db';
 
-entity VehicleEquipments {
+entity VehicleEquipments : replicatedComposition{
     key vehicle                       : db.Vehicle   @assert.integrity: false;
     key equipment                     : db.Equipment @assert.integrity: false;
         salesPriceConstraintEquipment : db.Equipment @assert.integrity: false;
         salesPriceConstraintColor     : db.Color     @assert.integrity: false;
+        salesPriceValue               : SalesPriceValue;
+        salesPriceCurrency            : SalesPriceCurrency;
+
         salesPrice                    : Association to one VehicleEquipmentSalesPrices
                                             on  salesPrice.vehicle   = vehicle
                                             and salesPrice.equipment = equipment

@@ -4,7 +4,6 @@ annotate db.ModelColorRestrictionOptions with {
     restriction @title: '{i18n>ModelColorRestriction}';
     id          @title: '{i18n>General.ID}';
     createdAt   @title: '{i18n>replicated.createdAt}';
-    modifiedAt  @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelColorRestrictionOptions with @Common.SemanticKey: [

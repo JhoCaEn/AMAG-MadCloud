@@ -9,7 +9,6 @@ annotate db.ModelColorRestrictionOptionRules with {
     isRequired  @title: '{i18n>RestrictionRules.isRequired}';
     isForbidden @title: '{i18n>RestrictionRules.isForbidden}';
     createdAt   @title: '{i18n>replicated.createdAt}';
-    modifiedAt  @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelColorRestrictionOptionRules with @Common.SemanticKey: [

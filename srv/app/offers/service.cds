@@ -20,7 +20,6 @@ service AppOffersService {
     action createOffer(salesPartner_id : db.Partners:id, brand_code : db.Brands:code, customerProjectName : String, projectType_code : db.ProjectTypes:code, customerProjectNumber : String, fleetProjectNumber : String, fleetProjectCompanyNumber : String, callback_ID : db.Callbacks:ID) returns db.Offers:ID;
 
     @readonly
-
     entity CarConfigurationEquipments                as projection on db.OfferCarConfigurationEquipments;
 
     @readonly
