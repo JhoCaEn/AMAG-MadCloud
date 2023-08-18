@@ -11,6 +11,7 @@ entity PartnerBrands : replicatedComposition {
         validTo          : Date default '1970-01-01';
         hasContracts     : Boolean default false;
         isRepresentative : Boolean default false;
+        dealerPartner    : db.DealerPartner;
 
         contracts        : Composition of many db.PartnerBrandContracts
                                on contracts.brand = $self;
