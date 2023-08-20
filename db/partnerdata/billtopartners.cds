@@ -12,4 +12,10 @@ entity PartnerBrandBillToPartners : replicatedComposition {
         isDefault : Boolean default false;
 }
 
-type PartnerBrandBillToPartner : Association to PartnerBrandBillToPartners;
+type PartnerBrandBillToPartner        : Association to PartnerBrandBillToPartners;
+
+entity CurrentPartnerBrandBillToPartners as projection on PartnerBrandBillToPartners {
+    key partner.id
+} where $now between validFrom and validTo;
+
+type CurrentPartnerBrandBillToPartner : Association to CurrentPartnerBrandBillToPartners;
