@@ -15,6 +15,7 @@ service AppOffersService {
         action selectBrand(in : $self, code : Offers:brand.code);
         action createCarConfiguration(in : $self) returns Offers:carConfigurationID;
         action finishCarConfiguration(in : $self);
+        action order(in: $self) returns db.Vehicles:ID;
     };
 
     action createOffer(salesPartner_id : db.Partners:id, brand_code : db.Brands:code, customerProjectName : String, projectType_code : db.ProjectTypes:code, customerProjectNumber : String, fleetProjectNumber : String, fleetProjectCompanyNumber : String, callback_ID : db.Callbacks:ID) returns db.Offers:ID;

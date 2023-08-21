@@ -10,8 +10,8 @@ sap.ui.define([
             routing: {
                 onAfterBinding: async function (callback) {
 
-                    const isActiveEntity = await callback.requestObject('IsActiveEntity')
-                    if (!isActiveEntity) return
+                    // const isActiveEntity = await callback.requestObject('IsActiveEntity')
+                    // if (!isActiveEntity) return
 
                     const semantic = await callback.requestObject('semantic_code')
 

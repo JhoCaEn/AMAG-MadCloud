@@ -88,22 +88,51 @@
 		},
 		"routing": {
 			"routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "Orders",
+                    "target": "Orders"
+                },                
+                {
+                    "pattern": "Orders({key}):?query:",
+                    "name": "Order",
+                    "target": "Order"
+                }				
 			],
 			"targets": {
-			},
-			"config": {
-				"flexibleColumnLayout": {
-					"defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
-					"defaultThreeColumnLayoutType": "ThreeColumnsBeginExpanded"
-				},
-				"routerClass": "sap.f.routing.Router"
+				"Orders": {
+					"type": "Component",
+					"id": "Orders",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"entitySet": "Orders",
+							"variantManagement": "Page",
+							"initialLoad": true,
+							"navigation": {
+								"Orders": {
+									"detail": {
+										"route": "Order"
+									}
+								}
+							}
+						}
+					},
+					"contextPattern": ""
+				},                
+                "Order": {
+                    "type": "Component",
+                    "id": "Order",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Orders",
+                            "editableHeaderContent": false
+                        }
+                    },
+                    "contextPattern": "/Orders({key})"
+                }
 			}
-		},
-		"rootView": {
-			"viewName": "sap.fe.templates.RootContainer.view.Fcl",
-			"type": "XML",
-			"async": true,
-			"id": "appRootView"
 		},
 		"contentDensities": {
 			"compact": true,

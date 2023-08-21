@@ -1,1 +1,3 @@
-using AppOrdersService as service from '../../../srv';
+
+using from './orders';
+using from './vehicle-equipments';

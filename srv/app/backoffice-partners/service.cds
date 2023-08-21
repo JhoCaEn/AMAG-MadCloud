@@ -40,6 +40,7 @@ service AppBackofficePartnersService {
         validFrom,
         validTo,
         isRepresentative,
+        dealerPartner,
         hasContracts,
         createdAt,
         contracts,

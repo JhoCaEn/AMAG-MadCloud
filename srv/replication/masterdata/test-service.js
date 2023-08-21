@@ -32,7 +32,7 @@ module.exports = class ReplicationMasterdataTestService extends cds.ApplicationS
         this.on('testStaticTransmission', async () => replicate(transmission, { id: 'GE000152' }))
 
         this.on('testBrandCharacteristic', async ({ data }) => replicate(brandCharacteristic, data))
-        this.on('testStaticBrandCharacteristic', async () => replicate(brandCharacteristic, { brand: 'SEAT', type: 'MO' }))
+        this.on('testStaticBrandCharacteristic', async () => replicate(brandCharacteristic, { brand: 'SEAT', type: 'K1' }))
 
         this.on('testSalesType', async ({ data }) => replicate(salesType, data))
         this.on('testStaticSalesType', async () => replicate(salesType, { brand: 'AUDI', id: 'A6AV' }))

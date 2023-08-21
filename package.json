@@ -89,6 +89,9 @@
                     ],
                     "messaging-replication-partnerdata": [
                         "replication-partnerdata:**"
+                    ],
+                    "messaging-replication-vehicledata": [
+                        "replication-vehicledata:**"
                     ]
                 }
             },
@@ -108,6 +111,10 @@
             "messaging-replication-masterdata": {
                 "kind": "enterprise-messaging-http",
                 "subscribePrefix": "erp/s4/100/ce/sap/eee/znwimaster/v1/"
+            },
+            "messaging-replication-vehicledata": {
+                "kind": "enterprise-messaging-http",
+                "subscribePrefix": "erp/s4/100/ce/sap/s4/beh/vmsvehicle/v1/"
             },
             "remote-erp-masterdata": {
                 "kind": "odata-v4",
@@ -212,6 +219,7 @@
             ],
             "technical": [
                 "app/carconfigurator",
+                "app/orders",
                 "app/sessions",
                 "app/callbacks"
             ]

@@ -48,6 +48,10 @@
 				"Callback": {
 					"semanticObject": "DWBCallback",
 					"action": "execute"					
+				},
+				"Order": {
+					"semanticObject": "DWBOrder",
+					"action": "manage"
 				}
 			}
 		}
@@ -165,6 +169,18 @@
 											"press": "ch.amag.retail.dwb.offers.actions.createCarConfiguration.invoke",
 											"visible": "{= ${IsActiveEntity} === false }",
 											"enabled": "{= ${hasSalesPartner} === true }"
+										}
+									}
+								}
+							},
+							"content": {
+								"header": {
+									"actions": {
+										"createOrder": {
+											"text": "{i18n>actions.createOrder}",
+											"press": "ch.amag.retail.dwb.offers.actions.createOrder.invoke",
+											"visible": "{= ${IsActiveEntity} === true }",
+											"enabled": "{= ${IsActiveEntity} === true }"
 										}
 									}
 								}

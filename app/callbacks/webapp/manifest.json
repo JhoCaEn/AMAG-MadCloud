@@ -49,6 +49,10 @@
                 "session-display": {
                     "semanticObject": "DWBSession",
                     "action": "display"
+                },
+                "order-manage": {
+                    "semanticObject": "DWBOrder",
+                    "action": "manage"
                 }
             }
         }

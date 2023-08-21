@@ -3,6 +3,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
 
         const db = await cds.connect.to('db')
         const carConfiguratorService = await cds.connect.to('AppCarConfiguratorService')
+        const orderService = await cds.connect.to('AppOrdersService')
         const callbackService = await cds.connect.to('AppCallbacksService')
 
         const { ValidationError } = require('../../lib/errors')
@@ -23,6 +24,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         this.on('selectBrand', async ({ params: [{ ID } = {}] = [], data: { code } = {} } = {}) => selectBrand({ ID, code }))
         this.on('createCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => createCarConfiguration({ ID }))
         this.on('finishCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => finishCarConfiguration({ ID }))
+        this.on('order', async ({ params: [{ ID } = {}] = [] } = {}) => order({ ID }))
         this.on('createOffer', async ({ data: { salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID }))
 
         this.before('CREATE', Offers, async ({ data: { ID } = {} } = {}) => checkOfferSaveable(ID))
@@ -220,7 +222,65 @@ module.exports = class AppOffersService extends cds.ApplicationService {
 
                 await selectBrand({ ID, code: brand_code })
             }
+        } 
+
+        const order = async ({ ID : ID } = {}) => {
+            if (!ID)
+                throw new ValidationError('OFFERS_OFFER_ID_NOT_GIVEN')   
+                
+            const offer = await db.read(Offers, ID, offer => {
+                offer.carConfigurationID, offer.brand_code
+            })
+
+            if (!offer)
+                throw new ValidationError('OFFERS_DRAFT_NOT_FOUND')
+
+            const { carConfigurationID, brand_code } = offer
+
+            if (!carConfigurationID)
+                throw new ValidationError('OFFERS_NO_VALID_CAR_CONFIGURATION')
+            
+
+            const carConfiguration = await carConfiguratorService.send('readConfiguration', {
+                ID: carConfigurationID
+            })
+
+            const {
+                configuredAt,
+                model_id,
+                exteriorColor_id,
+                exteriorColorSalesPriceConstraintEquipment_id,
+                exteriorColorSalesPriceConstraintColor_id,
+                interiorColor_id,
+                interiorColorSalesPriceConstraintEquipment_id,
+                interiorColorSalesPriceConstraintColor_id,
+                roofColor_id,
+                roofColorSalesPriceConstraintEquipment_id,
+                roofColorSalesPriceConstraintColor_id,
+                equipments
+            } = carConfiguration
+
+            const orderId = await orderService.send('createOrder', {
+                configuredAt,
+                brand_code,
+                salesOrganisation: '1000',
+                model_id,
+                exteriorColor_id,
+                exteriorColorSalesPriceConstraintEquipment_id,
+                exteriorColorSalesPriceConstraintColor_id,
+                interiorColor_id,
+                interiorColorSalesPriceConstraintEquipment_id,
+                interiorColorSalesPriceConstraintColor_id,
+                roofColor_id,
+                roofColorSalesPriceConstraintEquipment_id,
+                roofColorSalesPriceConstraintColor_id,
+                equipments: equipments
+            })
+
+            return orderId;
         }
+
+        
 
         const finishCarConfiguration = async ({ ID: ID } = {}) => {
             if (!ID)

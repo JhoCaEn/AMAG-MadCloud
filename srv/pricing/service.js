@@ -124,8 +124,8 @@ module.exports = class PricingSalesPriceService extends cds.ApplicationService {
         const updateConstraints = async ({ table, ID, equipments, calculations, modelPrices }) => {
             return db.update(table, { ID }).set({
                 ID: ID,
-                modelSalesPriceValue: modelPrices?.[0].value,
-                modelSalesPriceCurrency: modelPrices?.[0].currency,
+                modelSalesPriceValue: modelPrices?.[0].value || null,
+                modelSalesPriceCurrency: modelPrices?.[0].currency || null,
                 exteriorColorSalesPriceConstraintEquipment_id: calculations.E.constraintEquipment_id,
                 exteriorColorSalesPriceConstraintColor_id: calculations.E.constraintColor_id,
                 exteriorColorSalesPriceValue: calculations.E.salesPriceValue,

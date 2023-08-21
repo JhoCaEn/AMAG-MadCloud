@@ -50,6 +50,6 @@ annotate db.Vehicles with @UI: {HeaderInfo: {
     TypeNamePlural: '{i18n>Vehicles}',
     Title         : {
         $Type: 'UI.DataField',
-        Value: ID
+        Value: brand_code
     }
 }};

@@ -19,7 +19,7 @@ const characteristics = {
     AU: 'exteriorColor',
     IN: 'interiorColor',
     VD: 'roofColor',
-    KI: 'equipment',
+    K1: 'equipment',
     Z1: 'internalWork',
     Z2: 'additionalWork'
 }
