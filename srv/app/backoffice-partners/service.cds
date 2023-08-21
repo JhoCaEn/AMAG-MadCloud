@@ -4,7 +4,7 @@ using {retail.dwb as db} from '../../../db';
 service AppBackofficePartnersService {
 
     @readonly
-    entity Partners                         as projection on db.Partners {
+    entity Partners                                   as projection on db.Partners {
         id,
         cast(
             id as Integer
@@ -25,16 +25,17 @@ service AppBackofficePartnersService {
         createdAt,
         modifiedAt,
         brands,
-        usedInSoldToPartners : redirected to PartnerUsedInSoldToPartners,
-        usedInShipToPartners : redirected to PartnerUsedInShipToPartners,
-        usedInBillToPartners : redirected to PartnerUsedInBillToPartners,
-        usedInPaidByPartners : redirected to PartnerUsedInPaidByPartners
+        usedInSoldToPartners                : redirected to PartnerUsedInSoldToPartners,
+        usedInShipToPartners                : redirected to PartnerUsedInShipToPartners,
+        usedInBillToPartners                : redirected to PartnerUsedInBillToPartners,
+        usedInPaidByPartners                : redirected to PartnerUsedInPaidByPartners,
+        usedInOrderControlsAsSoldToPartners : redirected to PartnerUsedInOrderControlsAsSoldToPartners
     } actions {
         action synchronise(in : $self);
     };
 
     @readonly
-    entity PartnerBrands                    as projection on db.PartnerBrands {
+    entity PartnerBrands                              as projection on db.PartnerBrands {
         partner,
         brand,
         validFrom,
@@ -51,7 +52,7 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrandSoldToPartners       as projection on db.PartnerBrandSoldToPartners {
+    entity PartnerBrandSoldToPartners                 as projection on db.PartnerBrandSoldToPartners {
         brand,
         partner,
         partner.id,
@@ -63,7 +64,7 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrandShipToPartners       as projection on db.PartnerBrandShipToPartners {
+    entity PartnerBrandShipToPartners                 as projection on db.PartnerBrandShipToPartners {
         brand,
         partner,
         partner.id,
@@ -75,20 +76,7 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrandBillToPartners       as projection on db.PartnerBrandBillToPartners {
-        brand,
-        brand.brand.code,
-        partner,
-        partner.id,
-        partner.name,
-        validFrom,
-        validTo,
-        isDefault,
-        createdAt
-    };
-
-    @readonly
-    entity PartnerBrandPaidByPartners       as projection on db.PartnerBrandPaidByPartners {
+    entity PartnerBrandBillToPartners                 as projection on db.PartnerBrandBillToPartners {
         brand,
         brand.brand.code,
         partner,
@@ -101,7 +89,20 @@ service AppBackofficePartnersService {
     };
 
     @readonly
-    entity PartnerBrandContracts            as projection on db.PartnerBrandContracts {
+    entity PartnerBrandPaidByPartners                 as projection on db.PartnerBrandPaidByPartners {
+        brand,
+        brand.brand.code,
+        partner,
+        partner.id,
+        partner.name,
+        validFrom,
+        validTo,
+        isDefault,
+        createdAt
+    };
+
+    @readonly
+    entity PartnerBrandContracts                      as projection on db.PartnerBrandContracts {
         brand,
         type,
         type.code,
@@ -113,7 +114,7 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity PartnerUsedInSoldToPartners      as projection on db.PartnerUsedInSoldToPartners {
+    entity PartnerUsedInSoldToPartners                as projection on db.PartnerUsedInSoldToPartners {
         soldToPartner,
         partner,
         brand,
@@ -123,7 +124,16 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity PartnerUsedInShipToPartners      as projection on db.PartnerUsedInShipToPartners {
+    entity PartnerUsedInOrderControlsAsSoldToPartners as projection on db.PartnerUsedInOrderControlsAsSoldToPartners {
+        soldToPartner,
+        vehicleUsage,
+        customerState,
+        endCustomerState,
+        createdAt
+    }
+
+    @readonly
+    entity PartnerUsedInShipToPartners                as projection on db.PartnerUsedInShipToPartners {
         shipToPartner,
         partner,
         brand,
@@ -133,7 +143,7 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity PartnerUsedInBillToPartners      as projection on db.PartnerUsedInBillToPartners {
+    entity PartnerUsedInBillToPartners                as projection on db.PartnerUsedInBillToPartners {
         billToPartner,
         partner,
         brand,
@@ -143,7 +153,7 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity PartnerUsedInPaidByPartners      as projection on db.PartnerUsedInPaidByPartners {
+    entity PartnerUsedInPaidByPartners                as projection on db.PartnerUsedInPaidByPartners {
         paidByPartner,
         partner,
         brand,
@@ -153,20 +163,20 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity Brands                           as projection on db.Brands {
+    entity Brands                                     as projection on db.Brands {
         code,
         name
     }
 
     @readonly
-    entity BrandContractTypes               as projection on db.BrandContractTypes {
+    entity BrandContractTypes                         as projection on db.BrandContractTypes {
         brand,
         code,
         name
     }
 
     @readonly
-    entity BrandContractTypeModelCategories as projection on db.BrandContractTypeModelCategories {
+    entity BrandContractTypeModelCategories           as projection on db.BrandContractTypeModelCategories {
         brandContractType as type,
         modelCategory @cds.api.ignore,
         modelCategory.code,
@@ -174,7 +184,7 @@ service AppBackofficePartnersService {
     }
 
     @readonly
-    entity ModelCategories                  as projection on db.ModelCategories {
+    entity ModelCategories                            as projection on db.ModelCategories {
         code,
         name
     }

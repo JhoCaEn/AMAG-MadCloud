@@ -4,6 +4,7 @@ using from '../partner-used-in-sold-to-partners/list';
 using from '../partner-used-in-ship-to-partners/list';
 using from '../partner-used-in-bill-to-partners/list';
 using from '../partner-used-in-paid-by-partners/list';
+using from '../partner-used-in-order-controls-as-sold-to-partners/list';
 
 annotate service.Partners with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
@@ -12,46 +13,50 @@ annotate service.Partners with @UI.Identification: [{
 }];
 
 annotate service.Partners with @UI: {
-    HeaderFacets            : [{
+    HeaderFacets             : [{
         $Type : 'UI.ReferenceFacet',
         ID    : 'SynchronisedFacet',
         Label : '{i18n>General.FieldGroup.Synchronised}',
         Target: '@UI.FieldGroup#Synchronised'
     }, ],
 
-    Facets                  : [
+    Facets                   : [
         {
             $Type : 'UI.CollectionFacet',
             ID    : 'GeneralSection',
             Label : '{i18n>General.FieldGroup.General}',
-            Facets: [{
-                $Type : 'UI.CollectionFacet',
-                ID    : 'GeneralSubSection',
-                Label : '{i18n>General.FieldGroup.General}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'GeneralFacet',
-                    Target: '@UI.FieldGroup#General'
-                }]
-            }, {
-                $Type : 'UI.CollectionFacet',
-                ID    : 'CommunicationSubSection',
-                Label : '{i18n>BackofficePartners.FieldGroup.Communication}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'CommunicationFacet',
-                    Target: '@UI.FieldGroup#Communication'
-                }]
-            }, {
-                $Type : 'UI.CollectionFacet',
-                ID    : 'PartnerBrandsSubSection',
-                Label : '{i18n>BackofficePartners.PartnerBrands}',
-                Facets: [{
-                    $Type : 'UI.ReferenceFacet',
-                    ID    : 'PartnerBrandsFacet',
-                    Target: 'brands/@UI.PresentationVariant'
-                }]
-            }, ],
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'GeneralSubSection',
+                    Label : '{i18n>General.FieldGroup.General}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'GeneralFacet',
+                        Target: '@UI.FieldGroup#General'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'CommunicationSubSection',
+                    Label : '{i18n>BackofficePartners.FieldGroup.Communication}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'CommunicationFacet',
+                        Target: '@UI.FieldGroup#Communication'
+                    }]
+                },
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'PartnerBrandsSubSection',
+                    Label : '{i18n>BackofficePartners.PartnerBrands}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'PartnerBrandsFacet',
+                        Target: 'brands/@UI.PresentationVariant'
+                    }]
+                },
+            ],
         },
         {
             $Type : 'UI.CollectionFacet',
@@ -100,9 +105,26 @@ annotate service.Partners with @UI: {
                 }
             ]
         },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'UsedInOrderControlsSection',
+            Label : '{i18n>BackofficePartners.UsedInOrderControls}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInOrderControlsSubSection',
+                    Label : '{i18n>PartnerUsedInOrderControlsAsSoldToPartner}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInOrderControlsAsSoldToPartnersFacet',
+                        Target: 'usedInOrderControlsAsSoldToPartners/@UI.PresentationVariant'
+                    }]
+                }
+            ]
+        },
     ],
 
-    FieldGroup #General     : {
+    FieldGroup #General      : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.General}',
         Data : [
@@ -129,7 +151,7 @@ annotate service.Partners with @UI: {
         ]
     },
 
-    FieldGroup #Synchronised: {
+    FieldGroup #Synchronised : {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>General.FieldGroup.Synchronised}',
         Data : [
@@ -146,7 +168,7 @@ annotate service.Partners with @UI: {
         ]
     },
 
-    FieldGroup #Communication     : {
+    FieldGroup #Communication: {
         $Type: 'UI.FieldGroupType',
         Label: '{i18n>BackofficePartners.FieldGroup.Communication}',
         Data : [
