@@ -5,7 +5,6 @@ annotate db.ModelEquipmentPackageContents with {
     equipment  @title: '{i18n>Equipment}';
     place      @title: '{i18n>ModelEquipmentPackageContents.place}';
     createdAt  @title: '{i18n>replicated.createdAt}';
-    modifiedAt @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelEquipmentPackageContents with @Common.SemanticKey: [

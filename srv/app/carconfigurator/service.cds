@@ -78,6 +78,7 @@ service AppCarConfiguratorService {
         selectableEquipmentChapters,
         selectableEquipmentCategories,
         selectableModelRestrictions,
+        selectableModelRestrictionsRules,
         exteriorColorSalesPriceValue,
         exteriorColorSalesPriceCurrency,
         interiorColorSalesPriceValue,
@@ -219,6 +220,17 @@ service AppCarConfiguratorService {
     };
 
     @readonly
+    entity SelectableModelRestrictionsRules         as projection on db.CarConfigurationSelectableModelRestrictionsRules {
+        key configuration,
+        key modelRestrictionRule.id,
+            modelRestrictionRule.category.id as categoryId,
+            modelRestrictionRule.color,
+            modelRestrictionRule.equipment,
+            modelRestrictionRule.isRequired,
+            modelRestrictionRule.isForbidden
+    };
+
+    @readonly
     @Capabilities.ReadRestrictions.Readable: false
     entity ModelSalesPrices                         as projection on db.CurrentModelSalesPrices;
 
@@ -237,4 +249,10 @@ service AppCarConfiguratorService {
     @readonly
     @Capabilities.ReadRestrictions.Readable: false
     entity ConfigurationEquipmentSalesPrices        as projection on db.CarConfigurationEquipmentSalesPrices;
+
+
+    @topic: 'callback/deleted'
+    event ![callback/deleted] {
+        ID: db.Callbacks:ID
+    }
 }

@@ -2,8 +2,9 @@ namespace retail.dwb;
 
 using {retail.dwb as db} from '../../../db';
 using {replicated} from '../../../db';
+using {replicatedComposition} from '../../../db';
 
-entity ModelEquipments : replicated {
+entity ModelEquipments : replicatedComposition {
     key model          : db.Model;
     key equipment      : db.Equipment @assert.integrity: false;
         isStandard     : Boolean default false;

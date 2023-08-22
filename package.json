@@ -153,7 +153,7 @@
                     "[development]": {
                         "destination": "erp-s4-tech-apim"
                     },
-                    "path": "/sap/opu/odata4/sap/zint_oda_dwb_vms_vehicle/srvd/sap/api_vmsvehicle/0001"
+                    "path": "/sap/opu/odata4/sap/zint_oda_dwb_vms_vehicle/srvd/sap/zapi_vmsvehicle/0001"
                 }
             },
             "remote-erp-vehicleactions": {

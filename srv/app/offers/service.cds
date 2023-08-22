@@ -52,4 +52,10 @@ service AppOffersService {
     @readonly
     entity ModelSalesPrices                          as projection on db.CurrentModelSalesPrices;
 
+
+    @topic: 'callback/deleted'
+    event ![callback/deleted] {
+        ID: db.Callbacks:ID
+    }
+
 }

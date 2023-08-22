@@ -117,6 +117,12 @@ annotate service.Configurations with @UI: {
         },
         {
             $Type : 'UI.ReferenceFacet',
+            ID    : 'WiP_SelectableModelRestrictionsRules',
+            Label : 'WiP: Selectable Model Restrictions Rules',
+            Target: 'selectableModelRestrictionsRules/@UI.LineItem'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
             ID    : 'WiP_SelectableColorTypes',
             Label : 'WiP: Selectable ColorTypes',
             Target: 'selectableColorTypes/@UI.LineItem'

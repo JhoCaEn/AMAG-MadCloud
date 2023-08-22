@@ -98,6 +98,8 @@ entity CarConfigurations : cuid {
                                                      on selectableEquipmentCategories.configuration = $self;
     selectableModelRestrictions                : Association to many db.CarConfigurationSelectableModelRestrictions
                                                      on selectableModelRestrictions.configuration = $self;
+    selectableModelRestrictionsRules           : Association to many db.CarConfigurationSelectableModelRestrictionsRules
+                                                     on selectableModelRestrictionsRules.configuration = $self;
 }
 
 type CarConfiguration : Association to CarConfigurations;

@@ -23,19 +23,19 @@ sap.ui.define([
                     if (offer) {
                         const { IsActiveEntity: isActiveEntity } = offer.getObject()
 
-                        let location = window.location.href
+                        let hash = window.location.hash
 
                         if (!isActiveEntity && carConfigurationDone) {
                             await finishCarConfiguration.invoke(offer, this.base.getExtensionAPI())
 
-                            location = location.replace('carConfigurationDone=true', '')
+                            hash = hash.replace('carConfigurationDone=true', '')
                         }
 
-                        location = location.replace(`ID=${ID}`, '')
-                        location = location.replace(/\?[&]*/, '?')
-                        location = location.replace('/?', `${offer.getCanonicalPath()}?`)
+                        hash = hash.replace(`ID=${ID}`, '')
+                        hash = hash.replace(/\?[&]*/, '?')
+                        hash = hash.replace('/?', `${offer.getCanonicalPath()}?`)
 
-                        window.location = location
+                        window.location.hash = hash
                     }
                 }
             }

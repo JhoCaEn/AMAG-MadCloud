@@ -7,6 +7,7 @@ using from './selectable-model-categories';
 using from './selectable-sales-types';
 using from './selectable-models';
 using from './selectable-model-restrictions';
+using from './selectable-model-restrictions-rules';
 
 using from './selectable-colors';
 using from './selectable-color-types';

@@ -1,10 +1,12 @@
 using AppOrdersService as service from '.';
 
 annotate service.Orders with {
+    configuredAt                               @Core.Immutable;
+    configuredAt                               @mandatory;
+    salesPartner                               @Core.Immutable;
+    salesPartner                               @mandatory;
     brand                                      @Core.Immutable;
     brand                                      @mandatory;
-    salesOrganisation                          @Core.Immutable;
-    salesOrganisation                          @mandatory;
     model                                      @Core.Immutable;
     model                                      @mandatory;
     interiorColor                              @Core.Computed;

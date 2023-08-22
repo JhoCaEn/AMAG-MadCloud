@@ -26,6 +26,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         this.on('finishCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => finishCarConfiguration({ ID }))
         this.on('order', async ({ params: [{ ID } = {}] = [] } = {}) => order({ ID }))
         this.on('createOffer', async ({ data: { salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID }))
+        this.on('self:callback/deleted', async ({ data: { ID } = {} } = {}) => deleteCallback(ID))
 
         this.before('CREATE', Offers, async ({ data: { ID } = {} } = {}) => checkOfferSaveable(ID))
         this.on('CREATE', Offers, async (req, next) => save(req, next))
@@ -224,60 +225,31 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             }
         } 
 
-        const order = async ({ ID : ID } = {}) => {
+        const order = async ({ ID } = {}) => {
             if (!ID)
                 throw new ValidationError('OFFERS_OFFER_ID_NOT_GIVEN')   
                 
-            const offer = await db.read(Offers, ID, offer => {
-                offer.carConfigurationID, offer.brand_code
-            })
+            const offer = await db.read(Offers, ID, [
+                'brand_code', 
+                'salesPartner_id',
+                'carConfigurationConfiguredAt as configuredAt',
+                'carConfigurationModel_id as model_id',
+                'carConfigurationExteriorColor_id as exteriorColor_id',
+                'carConfigurationInteriorColor_id as interiorColor_id',
+                'carConfigurationRoofColor_id as roofColor_id'
+            ]).columns( o => o.carConfigurationEquipments( e => {
+                e.equipment_id.as('id')
+            }))
+
+            offer.equipments = offer.carConfigurationEquipments || []
+            delete offer.carConfigurationEquipments
 
             if (!offer)
                 throw new ValidationError('OFFERS_DRAFT_NOT_FOUND')
 
-            const { carConfigurationID, brand_code } = offer
+            const orderID = await orderService.send('createOrder', offer)
 
-            if (!carConfigurationID)
-                throw new ValidationError('OFFERS_NO_VALID_CAR_CONFIGURATION')
-            
-
-            const carConfiguration = await carConfiguratorService.send('readConfiguration', {
-                ID: carConfigurationID
-            })
-
-            const {
-                configuredAt,
-                model_id,
-                exteriorColor_id,
-                exteriorColorSalesPriceConstraintEquipment_id,
-                exteriorColorSalesPriceConstraintColor_id,
-                interiorColor_id,
-                interiorColorSalesPriceConstraintEquipment_id,
-                interiorColorSalesPriceConstraintColor_id,
-                roofColor_id,
-                roofColorSalesPriceConstraintEquipment_id,
-                roofColorSalesPriceConstraintColor_id,
-                equipments
-            } = carConfiguration
-
-            const orderId = await orderService.send('createOrder', {
-                configuredAt,
-                brand_code,
-                salesOrganisation: '1000',
-                model_id,
-                exteriorColor_id,
-                exteriorColorSalesPriceConstraintEquipment_id,
-                exteriorColorSalesPriceConstraintColor_id,
-                interiorColor_id,
-                interiorColorSalesPriceConstraintEquipment_id,
-                interiorColorSalesPriceConstraintColor_id,
-                roofColor_id,
-                roofColorSalesPriceConstraintEquipment_id,
-                roofColorSalesPriceConstraintColor_id,
-                equipments: equipments
-            })
-
-            return orderId;
+            return orderID;
         }
 
         
@@ -321,6 +293,11 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             configuration.carConfigurationIsValid = true
 
             await db.update(Offers.drafts, ID).set(configuration)
+        }
+
+        const deleteCallback = async (ID) => {
+            await db.update(Offers).set({ callback_ID: null }).where({callback_ID: ID})
+            await db.update(Offers.drafts).set({ callback_ID: null }).where({callback_ID: ID})
         }
 
         return super.init()

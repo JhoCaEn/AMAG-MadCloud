@@ -9,7 +9,6 @@ sap.ui.define(['sap/m/MessageToast'],
                 const intentBasedNavigation = this.intentBasedNavigation || extensionAPI.intentBasedNavigation
 
                 const brand_code = await offer.requestProperty('brand_code')
-                const offerId = await offer.requestProperty('ID')
 
                 if (!brand_code) {
                     routing.navigateToRoute('SelectableBrands', {
@@ -25,7 +24,7 @@ sap.ui.define(['sap/m/MessageToast'],
                     contexts: offer
                 })
                     .then(result => result.getProperty('value'))
-                    .then(ID => intentBasedNavigation.navigateOutbound('CarConfigurator', { ID, offerId}))
+                    .then(ID => intentBasedNavigation.navigateOutbound('CarConfigurator', { ID }))
 
                 return editFlow.securedExecution(async function () {
                     MessageToast.show('Start car configurator')

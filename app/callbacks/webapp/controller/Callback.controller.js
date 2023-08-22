@@ -10,13 +10,11 @@ sap.ui.define([
             routing: {
                 onAfterBinding: async function (callback) {
 
-                    // const isActiveEntity = await callback.requestObject('IsActiveEntity')
-                    // if (!isActiveEntity) return
-
-                    const semantic = await callback.requestObject('semantic_code')
+                    const [semantic, parameters] = await callback.requestProperty(['semantic_code', 'parameters'])
 
                     if (semantic) {
-                        const parameters = await callback.requestObject('parameters')
+                        //delete callback before navigation
+                        await callback.delete()
 
                         this.base.getExtensionAPI().intentBasedNavigation.navigateOutbound(
                             semantic,

@@ -27,7 +27,7 @@ sap.ui.define([
                     if (!isActiveEntity && startupParameters.carConfigurationDone?.[0] === 'true') {
                         await finishCarConfiguration.invoke(offer, extensionAPI)
 
-                        window.location = window.location.href.replace('carConfigurationDone=true', '')
+                        window.location.hash = window.location.hash.replace('carConfigurationDone=true', '')
                     }
                 }
             }

@@ -12,6 +12,7 @@ module.exports = class AppCallbacksService extends cds.ApplicationService {
 
         this.on('createCallback', async ({ data } = {}) => createCallback(data))
         this.before('SAVE', Callbacks, async ({ data } = {}) => checkCallbackSaveable(data))
+        this.before('DELETE', Callbacks, async({data} = {}) => deleteCallback(data))
 
         const createCallback = async ({ semantic: semantic_code, parameters } = {}) => {
             LOG._debug && LOG.debug('semantic', semantic)
@@ -37,6 +38,10 @@ module.exports = class AppCallbacksService extends cds.ApplicationService {
                     LOG._debug && LOG.debug('Parameters parse error', err.message)
                     throw new ValidationError('CALLBACK_NO_VALID_PARAMETERS', [err.message])
                 }
+        }
+
+        const deleteCallback = async ({ID}) => {
+                this.emit("callback/deleted", {ID})
         }
 
         return super.init()

@@ -31,6 +31,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
             ModelColorCombinations,
             CarConfigurationModelEquipmentsPrepared: ModelEquipments,
             CarConfigurationSelectableEquipmentsPrepared: SelectableEquipmentsPrepared,
+            CarConfigurationSelectableModelRestrictionsRules: SelectableModelRestrictionsRules
         } = db.entities('retail.dwb')
 
 
@@ -43,6 +44,7 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
         this.on('selectEquipment', async ({ params: [{ ID } = {}] = [], data: { id } = {} } = {}) => selectEquipment({ ID, id }))
         this.on('unselectEquipment', async ({ params: [{ ID } = {}] = [], data: { id } = {} } = {}) => unselectEquipment({ ID, id }))
         this.before('CREATE', Configurations, async ({ data: { ID } = {} } = {}) => checkConfigurationSaveable({ ID }))
+        this.on('self:callback/deleted', async ({ data: { ID } = {} } = {}) => deleteCallback(ID))
 
         this.before('NEW', Configurations, async (req) => {
             if (!req.data.configuredAt)
@@ -398,6 +400,83 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 'model_id as modelRestriction_model_id',
                 'id as modelRestriction_id'
             ))
+
+            await prepareSelectableModelRestrictionsRules({ ID })
+        }
+
+        const prepareSelectableModelRestrictionsRules = async ({ ID }) => {
+            if (!ID)
+                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_GIVEN')
+
+            const configuration = await db.read(Configurations.drafts, ID, ['model_id'])
+            if (!configuration)
+                throw new ValidationError('CARCONFIGURATION_CONFIG_ID_NOT_VALID')
+
+            const { model_id } = configuration
+            const configuration_ID = ID
+
+            if (!model_id)
+                throw new ValidationError('CARCONFIGURATION_MODEL_NOT_SELECTED')
+
+            const restrictions = await db.read(SelectableModelRestrictions, x => { x.modelRestriction(y => { y.id, y.rules('*') }) }).where({ configuration_ID })
+
+            const validRules = restrictions.map(item => item.modelRestriction.id).reduce((acc, value) => {
+                return { ...acc, [value]: [] };
+            }, {})
+
+            for (const restriction of restrictions) {
+                for (const rule of restriction.modelRestriction.rules) {
+                    if (rule.color_id) {
+                        const { color_id } = rule
+                        const colorExists = await db.exists(SelectableColors, { configuration_ID, color_id })
+
+                        if (colorExists) validRules[restriction.modelRestriction.id].push({
+                            modelRestrictionRule_restriction_id: rule.restriction_id,
+                            modelRestrictionRule_restriction_model_id: rule.restriction_model_id,
+                            modelRestrictionRule_id: rule.id,
+                            configuration_ID
+                        })
+                    }
+
+                    if (rule.equipment_id) {
+                        const { equipment_id } = rule
+                        const equipmentExists = await db.exists(SelectableEquipments, { configuration_ID, equipment_id })
+
+                        if (equipmentExists) validRules[restriction.modelRestriction.id].push({
+                            modelRestrictionRule_restriction_id: rule.restriction_id,
+                            modelRestrictionRule_restriction_model_id: rule.restriction_model_id,
+                            modelRestrictionRule_id: rule.id,
+                            configuration_ID
+                        })
+                    }
+
+                    if (rule.category_id) {
+                        const { category_id, category_brand_code } = rule
+                        const categoryExists = await db.exists(SelectableEquipmentCategories, { configuration_ID, category_id, category_brand_code })
+
+                        if (categoryExists) validRules[restriction.modelRestriction.id].push({
+                            modelRestrictionRule_restriction_id: rule.restriction_id,
+                            modelRestrictionRule_restriction_model_id: rule.restriction_model_id,
+                            modelRestrictionRule_id: rule.id,
+                            configuration_ID
+                        })
+                    }
+                }
+            }
+
+            await db.delete(SelectableModelRestrictionsRules, { configuration_ID })
+
+            const rules = Object.values(validRules).reduce((arr, value) => {
+                return arr.concat(value)
+            }, [])
+
+            if (rules)
+                await db.create(SelectableModelRestrictionsRules, rules)
+
+            const emptyRestrictions = Object.keys(validRules).filter(restriction => validRules[restriction].length == 0)
+
+            if (emptyRestrictions.length)
+                await db.delete(SelectableModelRestrictions, { configuration_ID, modelRestriction_id: emptyRestrictions, modelRestriction_model_id: model_id })
         }
 
         const prepareSelectableModelCategories = async ({ ID }) => {
@@ -849,6 +928,11 @@ module.exports = class AppCarConfiguratorService extends cds.ApplicationService 
                 table: Configurations.drafts.name,
                 ID
             })
+        }
+
+        const deleteCallback = async (ID) => {
+            await db.update(Configurations).set({ callback_ID: null }).where({callback_ID: ID})
+            await db.update(Configurations.drafts).set({ callback_ID: null }).where({callback_ID: ID})
         }
 
         return super.init()

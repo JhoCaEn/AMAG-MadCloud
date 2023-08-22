@@ -10,14 +10,11 @@ sap.ui.define([
                 onAfterBinding: async function (configuration) {
                     if(!configuration) return
 
-                    const isActiveEntity = await configuration.requestProperty('IsActiveEntity')
-
-                    const isPrepared = await configuration.requestProperty('isPrepared')
+                    const [isActiveEntity, isPrepared, callback_ID] = await configuration.requestProperty(['IsActiveEntity', 'isPrepared', 'callback_ID'])
 
                     if (!isActiveEntity && !isPrepared)
                         return prepare.invoke(configuration, this.base.getExtensionAPI())
 
-                    const callback_ID = await configuration.requestProperty('callback_ID')
                     if (isActiveEntity && callback_ID)
                         this.base.getExtensionAPI().intentBasedNavigation.navigateOutbound('Callback', { ID: callback_ID })
                 }

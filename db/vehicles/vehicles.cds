@@ -17,6 +17,7 @@ entity Vehicles : cuid, managed {
     organizationDivision                       : String(2);
     material                                   : String(40);
     plant                                      : String(4);
+    configuredAt                               : Date;
     salesPartner                               : db.Partner             @assert.integrity: false;
     dealerPartner                              : db.Partner             @assert.integrity: false;
     soldToPartner                              : db.Partner             @assert.integrity: false;

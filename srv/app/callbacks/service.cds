@@ -10,12 +10,16 @@ service AppCallbacksService {
         UpdateRestrictions.Updatable : false,
         DeleteRestrictions.Deletable : true
     }
-    // @odata.draft.enabled
     entity Callbacks         as projection on db.Callbacks;
 
     @readonly
     entity CallbackSemantics as projection on db.CallbackSemantics {
         code,
         name
+    }
+
+    @topic: 'callback/deleted'
+    event ![callback/deleted] {
+        ID: db.Callbacks:ID
     }
 }

@@ -12,3 +12,4 @@ using from './selectableEquipmentChapters';
 using from './selectableEquipmentCategories';
 using from './preselectedEquipments';
 using from './selectableModelRestrictions';
+using from './selectableModelRestrictionRules';

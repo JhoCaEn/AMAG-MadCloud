@@ -16,6 +16,35 @@ module.exports = class Client {
     }
 
     /**
+     * Get Vehicle data
+     * 
+     * @param {{erpID: String, $select?: String, $expand?: String}}
+     * @returns {Promise<Object>}
+     * @throws {Error|VehicleNotFound}
+     */
+    getVehicle = async ({ ID, $select, $expand }) => {
+        if (!ID) throw new Error('No vehicle id provided')
+
+        LOG._debug && LOG.debug('Get vehicle data for', ID)
+
+        const response = await this.#get(`/ZA_VMSVehicle`, {
+            params: {
+                $filter: `VMSVehicleUUID eq ${ID} and Plant eq '1000' and VMSVehiclePrimaryStatus ne 'L010' and VMSVehicleIsArchived eq false and VMSVehicleIsVisible eq true`,
+                $top: 1,
+                $select,
+                $expand
+            }
+        })
+
+        LOG._debug && LOG.debug('Vehicle data data for', ID, response)
+
+        if (!response?.length)
+            throw new VehicleNotFound(`Vehicle ${ID} not found`)
+
+        return response[0]
+    }
+
+    /**
      * @param {string} path
      * @param {Object} options 
      * @returns {Promise<any>}

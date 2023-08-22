@@ -1,0 +1,12 @@
+@authentication = Basic alice:
+@basePath = http://localhost:4004
+@servicePath = {{basePath}}/interfaces-vehicle-actions
+
+
+POST {{servicePath}}/createOrder
+Authorization: {{authentication}}
+Content-Type: application/json
+
+{
+    "ID": "34d5b139-e143-463d-ad80-714e7b6d9eef"
+}

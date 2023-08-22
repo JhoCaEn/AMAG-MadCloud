@@ -49,8 +49,9 @@ annotate service.Orders with @UI: {
         }
     ],
     FieldGroup #WiP                              : {Data: [
+        {Value: configuredAt},
+        {Value: salesPartner_id},
         {Value: brand_code},
-        {Value: salesOrganisation},
         {Value: model_id},
         {Value: exteriorColor_id},
         {Value: interiorColor_id},

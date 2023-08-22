@@ -10,23 +10,20 @@ module.exports = class AppOrdersService extends cds.ApplicationService {
 
         this.on('createOrder', async ({ data } = {}) => createOrder(data))
 
-        const createOrder = async ({ configuredAt, brand_code, salesOrganisation, model_id, exteriorColor_id,
-            exteriorColorSalesPriceConstraintColor_id, exteriorColorSalesPriceConstraintEquipment_id, interiorColor_id,
-            interiorColorSalesPriceConstraintColor_id, interiorColorSalesPriceConstraintEquipment_id, roofColor_id,
-            roofColorSalesPriceConstraintColor_id, roofColorSalesPriceConstraintEquipment_id,
-            equipments }) => {
+        this.before('CREATE', Orders, async ({ data } = {}) => setOrderFlags(data))
+        this.after('CREATE', Orders, async ({ ID } = {}) => createERPOrder(ID))
+
+        const createOrder = async ({ configuredAt, salesPartner_id, brand_code, model_id, exteriorColor_id, interiorColor_id, roofColor_id, equipments }) => {
 
             if (!brand_code)
                 throw new ValidationError('CARCONFIGURATION_BRAND_NOT_GIVEN')
 
-            if (!salesOrganisation)
-                throw new ValidationError('CARCONFIGURATION_SALES_ORGANISATION_NOT_GIVEN')
-
             const order = await this.send({
                 event: 'NEW',
                 query: db.create(Orders, {
+                    configuredAt,
+                    salesPartner_id,
                     brand_code,
-                    salesOrganisation,
                     model_id
                 })
             })
@@ -35,19 +32,12 @@ module.exports = class AppOrdersService extends cds.ApplicationService {
 
             await db.update(Orders.drafts, ID).set({
                 exteriorColor_id,
-                exteriorColorSalesPriceConstraintColor_id,
-                exteriorColorSalesPriceConstraintEquipment_id,
                 interiorColor_id,
-                interiorColorSalesPriceConstraintColor_id,
-                interiorColorSalesPriceConstraintEquipment_id,
                 roofColor_id,
-                roofColorSalesPriceConstraintColor_id,
-                roofColorSalesPriceConstraintEquipment_id,
-                equipments: equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id }) => ({
+                configuredAt,
+                equipments: equipments?.map(({ id: equipment_id }) => ({
                     vehicle_ID: ID,
                     equipment_id,
-                    salesPriceConstraintEquipment_id,
-                    salesPriceConstraintColor_id,
                     DraftAdministrativeData_DraftUUID,
                     IsActiveEntity: false,
                     HasActiveEntity: false,
@@ -56,6 +46,16 @@ module.exports = class AppOrdersService extends cds.ApplicationService {
             })
 
             return ID
+        }
+
+        const setOrderFlags = (data) => {
+            data.orderCreated = true
+        }
+
+        const createERPOrder = async (ID) => {
+            const interfaceVehicleActions = await cds.connect.to('InterfacesVehicleActionsService')
+
+            await interfaceVehicleActions.send('createOrder', { ID })
         }
 
         return super.init()

@@ -64,6 +64,7 @@ annotate service.Configurations actions {
             'in/selectableEquipmentChapters',
             'in/selectableEquipmentCategories',
             'in/selectableModelRestrictions',
+            'in/selectableModelRestrictionsRules',
             'in/modelSalesPrice',
             'in/exteriorColorSalesPrice',
             'in/interiorColorSalesPrice',

@@ -10,7 +10,6 @@ annotate db.ModelEquipments with {
     orderableFrom @title: '{i18n>General.orderableFrom}';
     orderableTo   @title: '{i18n>General.orderableTo}';
     createdAt     @title: '{i18n>replicated.createdAt}';
-    modifiedAt    @title: '{i18n>replicated.modifiedAt}';
 };
 
 annotate db.ModelEquipments with @Common.SemanticKey: [
