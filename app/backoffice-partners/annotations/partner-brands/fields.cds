@@ -1,9 +1,11 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
 annotate service.PartnerBrands with {
-    partner @UI.Hidden;
-    brand   @title : '{i18n>Brand}';
-    brand   @Common: {
+    partner         @UI.Hidden;
+    dealerPartner   @UI.Hidden;
+    brand           @title : '{i18n>Brand}';
+    dealerPartnerID @title : '{i18n>Partner.dealerPartner}';
+    brand           @Common: {
         Text           : brand.name,
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
