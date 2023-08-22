@@ -4,6 +4,7 @@ using from '../partner-used-in-sold-to-partners/list';
 using from '../partner-used-in-ship-to-partners/list';
 using from '../partner-used-in-bill-to-partners/list';
 using from '../partner-used-in-paid-by-partners/list';
+using from '../partner-used-in-order-controls-as-ship-to-partners/list';
 
 annotate service.Partners with @UI.Identification: [{
     $Type : 'UI.DataFieldForAction',
@@ -96,6 +97,23 @@ annotate service.Partners with @UI: {
                         $Type : 'UI.ReferenceFacet',
                         ID    : 'UsedInPaidByPartnersFacet',
                         Target: 'usedInPaidByPartners/@UI.PresentationVariant'
+                    }]
+                }
+            ]
+        },
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'UsedInOrderControlsSection',
+            Label : '{i18n>BackofficePartners.UsedInOrderControls}',
+            Facets: [
+                {
+                    $Type : 'UI.CollectionFacet',
+                    ID    : 'UsedInOrderControlsAsShipToPartnersSubSection',
+                    Label : '{i18n>PartnerUsedInOrderControlsAsSoldToPartner}',
+                    Facets: [{
+                        $Type : 'UI.ReferenceFacet',
+                        ID    : 'UsedInOrderControlsAsShipToPartnersFacet',
+                        Target: 'usedInOrderControlsAsShipToPartners/@UI.PresentationVariant'
                     }]
                 }
             ]
