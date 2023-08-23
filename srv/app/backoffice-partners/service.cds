@@ -30,7 +30,8 @@ service AppBackofficePartnersService {
         usedInBillToPartners : redirected to PartnerUsedInBillToPartners,
         usedInPaidByPartners : redirected to PartnerUsedInPaidByPartners,
         usedInOrderControlsAsSoldToPartners : redirected to PartnerUsedInOrderControlsAsSoldToPartners,
-        usedInOrderControlsAsShipToPartners : redirected to PartnerUsedInOrderControlsAsShipToPartners
+        usedInOrderControlsAsShipToPartners : redirected to PartnerUsedInOrderControlsAsShipToPartners,
+        usedInOrderControlsAsPaidByPartners : redirected to PartnerUsedInOrderControlsAsPaidByPartners
     } actions {
         action synchronise(in : $self);
     };
@@ -137,6 +138,15 @@ service AppBackofficePartnersService {
     @readonly
     entity PartnerUsedInOrderControlsAsShipToPartners as projection on db.PartnerUsedInOrderControlsAsShipToPartners {
         shipToPartner,
+        vehicleUsage,
+        customerState,
+        endCustomerState,
+        createdAt
+    }
+    
+    @readonly
+    entity PartnerUsedInOrderControlsAsPaidByPartners as projection on db.PartnerUsedInOrderControlsAsPaidByPartners {
+        paidByPartner,
         vehicleUsage,
         customerState,
         endCustomerState,
