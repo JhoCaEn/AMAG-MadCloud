@@ -12,3 +12,4 @@ using from './usedinbilltopartners';
 using from './usedinpaidbypartners';
 using from './usedinordercontrolsassoldtopartners';
 using from './usedinordercontrolsasshiptopartners';
+using from './usedinordercontrolsasbilltopartners';

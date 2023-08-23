@@ -34,6 +34,8 @@ entity Partners : replicated {
                                                   on usedInOrderControlsAsSoldToPartners.soldToPartner = $self;
         usedInOrderControlsAsShipToPartners : Composition of many db.PartnerUsedInOrderControlsAsShipToPartners
                                                   on usedInOrderControlsAsShipToPartners.shipToPartner = $self;
+        usedInOrderControlsAsBillToPartners : Composition of many db.PartnerUsedInOrderControlsAsBillToPartners
+                                                  on usedInOrderControlsAsBillToPartners.billToPartner = $self;
 }
 
 type Partner : Association to Partners;
