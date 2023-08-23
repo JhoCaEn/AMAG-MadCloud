@@ -1,29 +1,29 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
-annotate service.PartnerUsedInShipToPartners with @(UI: {
+annotate service.PartnerUsedInOrderControlsAsShipToPartners with @(UI: {
 
     PresentationVariant: {
         $Type         : 'UI.PresentationVariantType',
         Visualizations: ['@UI.LineItem'],
         RequestAtLeast: [
-            partner_id,
-            brand_code,
-            validFrom
+            vehicleUsage_code,
+            customerState_code,
+            endCustomerState_code
         ],
         SortOrder     : [
             {
                 $Type     : 'Common.SortOrderType',
-                Property  : partner_id,
+                Property  : vehicleUsage_code,
                 Descending: false,
             },
             {
                 $Type     : 'Common.SortOrderType',
-                Property  : brand_code,
+                Property  : customerState_code,
                 Descending: false,
             },
             {
                 $Type     : 'Common.SortOrderType',
-                Property  : validFrom,
+                Property  : endCustomerState_code,
                 Descending: false,
             },
         ]
@@ -32,29 +32,23 @@ annotate service.PartnerUsedInShipToPartners with @(UI: {
     LineItem           : [
         {
             $Type            : 'UI.DataField',
-            Value            : partner_id,
+            Value            : vehicleUsage_code,
             ![@UI.Importance]: #High
         },
         {
             $Type            : 'UI.DataField',
-            Value            : brand_code,
+            Value            : customerState_code,
             ![@UI.Importance]: #High
         },
         {
             $Type            : 'UI.DataField',
-            Value            : validFrom,
+            Value            : endCustomerState_code,
             ![@UI.Importance]: #Low
         },
         {
             $Type            : 'UI.DataField',
-            Value            : validTo,
+            Value            : createdAt,
             ![@UI.Importance]: #Low
-        },
-        {
-            $Type                : 'UI.DataField',
-            Value                : name,
-            ![@UI.Importance]    : #Low,
-            ![@HTML5.CssDefaults]: {width: 'auto'}
         }
     ]
 });

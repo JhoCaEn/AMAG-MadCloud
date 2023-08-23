@@ -36,7 +36,7 @@ annotate service.PartnerBrands with @(UI: {
         },
         {
             $Type            : 'UI.DataField',
-            Value            : dealerPartner_id,
+            Value            : dealerPartnerID,
             ![@UI.Importance]: #High
         },
         {

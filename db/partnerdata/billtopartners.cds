@@ -15,7 +15,8 @@ entity PartnerBrandBillToPartners : replicatedComposition {
 type PartnerBrandBillToPartner : Association to PartnerBrandBillToPartners;
 
 entity CurrentPartnerBrandBillToPartners as projection on PartnerBrandBillToPartners {
-    key partner.id
+    key partner,
+    key brand
 } where $now between validFrom and validTo;
 
 type CurrentPartnerBrandBillToPartner : Association to CurrentPartnerBrandBillToPartners;

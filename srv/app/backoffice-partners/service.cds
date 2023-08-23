@@ -43,6 +43,7 @@ service AppBackofficePartnersService {
         validTo,
         isRepresentative,
         dealerPartner,
+        dealerPartner.partner.id as dealerPartnerID,
         hasContracts,
         createdAt,
         contracts,
