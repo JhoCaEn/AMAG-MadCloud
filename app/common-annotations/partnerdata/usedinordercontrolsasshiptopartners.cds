@@ -10,7 +10,7 @@ annotate db.PartnerUsedInOrderControlsAsShipToPartners with @Common.SemanticKey:
 annotate db.PartnerUsedInOrderControlsAsShipToPartners with @UI: {HeaderInfo: {
     $Type         : 'UI.HeaderInfoType',
     TypeName      : '{i18n>PartnerUsedInOrderControlsAsShipToPartner}',
-    TypeNamePlural: '{i18n>PartnerUsedInOrderControlsAsShipToPartner}',
+    TypeNamePlural: '{i18n>PartnerUsedInOrderControlsAsShipToPartners}',
     Title         : {
         $Type: 'UI.DataField',
         Value: shipToPartner_id

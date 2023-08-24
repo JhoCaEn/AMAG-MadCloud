@@ -23,7 +23,7 @@ entity OfferCarConfigurationEquipments {
 entity OfferCarConfigurationEquipmentSalesPricesPrepare as projection on OfferCarConfigurationEquipments {
     key offer,
     key equipment,
-        offer.carConfigurationModel   as model,
+        offer.model   as model,
         salesPriceConstraintEquipment as constraintEquipment,
         salesPriceConstraintColor     as constraintColor
 }

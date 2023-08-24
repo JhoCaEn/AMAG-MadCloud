@@ -13,63 +13,66 @@ using {
 @assert.unique: {businessKey: [ocd]}
 entity Offers : cuid, managed {
     ocd                                                        : Integer;
-    customerProjectName                                        : String(160);
+    projectCustomerName                                        : String(160);
     customerProjectNumber                                      : String(50);
     fleetProjectNumber                                         : String(50);
-    fleetProjectCompanyNumber                                  : String(10);
+    fleetCompanyNumber                                  : String(10);
     createdBySalesSystem                                       : Boolean default false;
     brand                                                      : db.Brand;
+    isVanConfigurable                                          : Boolean default false;
+    isCustomerConfigurationRequestable                         : Boolean default false;
+    isOrdered                                                  : Boolean default false;
     salesPartner                                               : db.SalesPartner;
     carConfigurationID                                         : db.CarConfiguration:ID;
     carConfigurationIsValid                                    : Boolean default false;
-    carConfigurationConfiguredAt                               : Date;
-    carConfigurationModel                                      : db.Model;
-    carConfigurationModelSalesPriceValue                       : SalesPriceValue;
-    carConfigurationModelSalesPriceCurrency                    : SalesPriceCurrency;
-    carConfigurationExteriorColor                              : db.Color;
-    carConfigurationExteriorColorSalesPriceConstraintEquipment : db.Equipment;
-    carConfigurationExteriorColorSalesPriceConstraintColor     : db.Color;
-    carConfigurationExteriorColorSalesPriceValue               : SalesPriceValue;
-    carConfigurationExteriorColorSalesPriceCurrency            : SalesPriceCurrency;
-    carConfigurationExteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
-                                                                     on  carConfigurationExteriorColorSalesPrice.colorCombination.model    =       carConfigurationModel
-                                                                     and carConfigurationExteriorColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
-                                                                     and carConfigurationExteriorColorSalesPrice.colorCombination.interior =       carConfigurationInteriorColor
-                                                                     and carConfigurationExteriorColorSalesPrice.colorCombination.roof     =       carConfigurationRoofColor
-                                                                     and carConfigurationExteriorColorSalesPrice.type.code                 =       'E'
-                                                                     and carConfigurationExteriorColorSalesPrice.constraintColor           =       carConfigurationExteriorColorSalesPriceConstraintColor
-                                                                     and carConfigurationExteriorColorSalesPrice.constraintEquipment       =       carConfigurationExteriorColorSalesPriceConstraintEquipment
-                                                                     and current_date                                                      between carConfigurationExteriorColorSalesPrice.validFrom and carConfigurationExteriorColorSalesPrice.validTo;
+    configuredAt                               : Date;
+    model                                      : db.Model;
+    modelSalesPriceValue                       : SalesPriceValue;
+    modelSalesPriceCurrency                    : SalesPriceCurrency;
+    exteriorColor                              : db.Color;
+    exteriorColorSalesPriceConstraintEquipment : db.Equipment;
+    exteriorColorSalesPriceConstraintColor     : db.Color;
+    exteriorColorSalesPriceValue               : SalesPriceValue;
+    exteriorColorSalesPriceCurrency            : SalesPriceCurrency;
+    exteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
+                                                                     on  exteriorColorSalesPrice.colorCombination.model    =       model
+                                                                     and exteriorColorSalesPrice.colorCombination.exterior =       exteriorColor
+                                                                     and exteriorColorSalesPrice.colorCombination.interior =       interiorColor
+                                                                     and exteriorColorSalesPrice.colorCombination.roof     =       roofColor
+                                                                     and exteriorColorSalesPrice.type.code                 =       'E'
+                                                                     and exteriorColorSalesPrice.constraintColor           =       exteriorColorSalesPriceConstraintColor
+                                                                     and exteriorColorSalesPrice.constraintEquipment       =       exteriorColorSalesPriceConstraintEquipment
+                                                                     and current_date                                                      between exteriorColorSalesPrice.validFrom and exteriorColorSalesPrice.validTo;
 
-    carConfigurationInteriorColor                              : db.Color;
-    carConfigurationInteriorColorSalesPriceConstraintEquipment : db.Equipment;
-    carConfigurationInteriorColorSalesPriceConstraintColor     : db.Color;
-    carConfigurationInteriorColorSalesPriceValue               : SalesPriceValue;
-    carConfigurationInteriorColorSalesPriceCurrency            : SalesPriceCurrency;
-    carConfigurationInteriorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
-                                                                     on  carConfigurationInteriorColorSalesPrice.colorCombination.model    =       carConfigurationModel
-                                                                     and carConfigurationInteriorColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
-                                                                     and carConfigurationInteriorColorSalesPrice.colorCombination.interior =       carConfigurationInteriorColor
-                                                                     and carConfigurationInteriorColorSalesPrice.colorCombination.roof     =       carConfigurationRoofColor
-                                                                     and carConfigurationInteriorColorSalesPrice.type.code                 =       'I'
-                                                                     and carConfigurationInteriorColorSalesPrice.constraintColor           =       carConfigurationInteriorColorSalesPriceConstraintColor
-                                                                     and carConfigurationInteriorColorSalesPrice.constraintEquipment       =       carConfigurationInteriorColorSalesPriceConstraintEquipment
-                                                                     and current_date                                                      between carConfigurationInteriorColorSalesPrice.validFrom and carConfigurationInteriorColorSalesPrice.validTo;
+    interiorColor                              : db.Color;
+    interiorColorSalesPriceConstraintEquipment : db.Equipment;
+    interiorColorSalesPriceConstraintColor     : db.Color;
+    interiorColorSalesPriceValue               : SalesPriceValue;
+    interiorColorSalesPriceCurrency            : SalesPriceCurrency;
+    interiorColorSalesPrice                    : Association to one db.ModelColorCombinationSalesPrices
+                                                                     on  interiorColorSalesPrice.colorCombination.model    =       model
+                                                                     and interiorColorSalesPrice.colorCombination.exterior =       exteriorColor
+                                                                     and interiorColorSalesPrice.colorCombination.interior =       interiorColor
+                                                                     and interiorColorSalesPrice.colorCombination.roof     =       roofColor
+                                                                     and interiorColorSalesPrice.type.code                 =       'I'
+                                                                     and interiorColorSalesPrice.constraintColor           =       interiorColorSalesPriceConstraintColor
+                                                                     and interiorColorSalesPrice.constraintEquipment       =       interiorColorSalesPriceConstraintEquipment
+                                                                     and current_date                                                      between interiorColorSalesPrice.validFrom and interiorColorSalesPrice.validTo;
 
-    carConfigurationRoofColor                                  : db.Color;
-    carConfigurationRoofColorSalesPriceConstraintEquipment     : db.Equipment;
-    carConfigurationRoofColorSalesPriceConstraintColor         : db.Color;
-    carConfigurationRoofColorSalesPriceValue                   : SalesPriceValue;
-    carConfigurationRoofColorSalesPriceCurrency                : SalesPriceCurrency;
-    carConfigurationRoofColorSalesPrice                        : Association to one db.ModelColorCombinationSalesPrices
-                                                                     on  carConfigurationRoofColorSalesPrice.colorCombination.model    =       carConfigurationModel
-                                                                     and carConfigurationRoofColorSalesPrice.colorCombination.exterior =       carConfigurationExteriorColor
-                                                                     and carConfigurationRoofColorSalesPrice.colorCombination.interior =       carConfigurationInteriorColor
-                                                                     and carConfigurationRoofColorSalesPrice.colorCombination.roof     =       carConfigurationRoofColor
-                                                                     and carConfigurationRoofColorSalesPrice.type.code                 =       'R'
-                                                                     and carConfigurationRoofColorSalesPrice.constraintColor           =       carConfigurationRoofColorSalesPriceConstraintColor
-                                                                     and carConfigurationRoofColorSalesPrice.constraintEquipment       =       carConfigurationRoofColorSalesPriceConstraintEquipment
-                                                                     and current_date                                                  between carConfigurationRoofColorSalesPrice.validFrom and carConfigurationRoofColorSalesPrice.validTo;
+    roofColor                                  : db.Color;
+    roofColorSalesPriceConstraintEquipment     : db.Equipment;
+    roofColorSalesPriceConstraintColor         : db.Color;
+    roofColorSalesPriceValue                   : SalesPriceValue;
+    roofColorSalesPriceCurrency                : SalesPriceCurrency;
+    roofColorSalesPrice                        : Association to one db.ModelColorCombinationSalesPrices
+                                                                     on  roofColorSalesPrice.colorCombination.model    =       model
+                                                                     and roofColorSalesPrice.colorCombination.exterior =       exteriorColor
+                                                                     and roofColorSalesPrice.colorCombination.interior =       interiorColor
+                                                                     and roofColorSalesPrice.colorCombination.roof     =       roofColor
+                                                                     and roofColorSalesPrice.type.code                 =       'R'
+                                                                     and roofColorSalesPrice.constraintColor           =       roofColorSalesPriceConstraintColor
+                                                                     and roofColorSalesPrice.constraintEquipment       =       roofColorSalesPriceConstraintEquipment
+                                                                     and current_date                                                  between roofColorSalesPrice.validFrom and roofColorSalesPrice.validTo;
     callback                                                   : db.Callback;
     projectType                                                : db.ProjectType;
 
@@ -77,8 +80,8 @@ entity Offers : cuid, managed {
     selectableBrands                                           : Association to many db.OfferSelectableBrands
                                                                      on selectableBrands.offer = $self;
 
-    carConfigurationEquipments                                 : Composition of many db.OfferCarConfigurationEquipments
-                                                                     on carConfigurationEquipments.offer = $self;
+    equipments                                 : Composition of many db.OfferCarConfigurationEquipments
+                                                                     on equipments.offer = $self;
 
     hasSalesPartner                                            : Boolean default false;
 };

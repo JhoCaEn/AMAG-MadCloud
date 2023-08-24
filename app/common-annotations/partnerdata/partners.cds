@@ -8,6 +8,8 @@ annotate db.Partners with {
     isSalesPartner       @title: '{i18n>Partner.isSalesPartner}';
     validFrom            @title: '{i18n>General.validFrom}';
     validTo              @title: '{i18n>General.validTo}';
+    company              @title: '{i18n>Partner.company}';
+    department           @title: '{i18n>Partner.department}';
     fullName             @title: '{i18n>Partner.fullName}';
     streetName           @title: '{i18n>Partner.streetName}';
     houseNumber          @title: '{i18n>Partner.houseNumber}';
@@ -21,6 +23,7 @@ annotate db.Partners with {
     usedInPaidByPartners @title: '{i18n>Partner.usedInPaidByPartners}';
     createdAt            @title: '{i18n>replicated.createdAt}';
     modifiedAt           @title: '{i18n>replicated.modifiedAt}';
+    isAMAGRetail         @title: '{i18n>Partner.isAMAGRetail}';
 };
 
 annotate db.Partners with @Common.SemanticKey: [id];

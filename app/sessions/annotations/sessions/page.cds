@@ -55,7 +55,7 @@ annotate service.Sessions with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: customerProjectName
+                Value: projectCustomerName
             },
             {
                 $Type: 'UI.DataField',
@@ -67,7 +67,7 @@ annotate service.Sessions with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: fleetProjectCompanyNumber
+                Value: fleetCompanyNumber
             },
         ]
     },

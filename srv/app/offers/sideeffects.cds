@@ -15,19 +15,19 @@ annotate service.Offers actions {
     finishCarConfiguration @Common.SideEffects: {
         TargetProperties: [
             'in/carConfigurationIsValid',
-            'in/carConfigurationConfiguredAt',
-            'in/carConfigurationModel_id',
-            'in/carConfigurationExteriorColor_id',
-            'in/carConfigurationExteriorColorSalesPriceConstraintEquipment_id',
-            'in/carConfigurationExteriorColorSalesPriceConstraintColor_id',
-            'in/carConfigurationInteriorColor_id',
-            'in/carConfigurationInteriorColorSalesPriceConstraintEquipment_id',
-            'in/carConfigurationInteriorColorSalesPriceConstraintColor_id',
-            'in/carConfigurationRoofColor_id',
-            'in/carConfigurationRoofColorSalesPriceConstraintEquipment_id',
-            'in/carConfigurationRoofColorSalesPriceConstraintColor_id'
+            'in/configuredAt',
+            'in/model_id',
+            'in/exteriorColor_id',
+            'in/exteriorColorSalesPriceConstraintEquipment_id',
+            'in/exteriorColorSalesPriceConstraintColor_id',
+            'in/interiorColor_id',
+            'in/interiorColorSalesPriceConstraintEquipment_id',
+            'in/interiorColorSalesPriceConstraintColor_id',
+            'in/roofColor_id',
+            'in/roofColorSalesPriceConstraintEquipment_id',
+            'in/roofColorSalesPriceConstraintColor_id'
         ],
-        TargetEntities  : ['in/carConfigurationEquipments']
+        TargetEntities  : ['in/equipments']
     };
 
 };

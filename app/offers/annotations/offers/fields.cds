@@ -16,8 +16,8 @@ annotate service.Offers with {
         TextArrangement: #TextOnly,
         ValueListWithFixedValues
     };
-    carConfigurationModel         @Common                         : {
-        Text           : carConfigurationModel.name,
+    model         @Common                         : {
+        Text           : model.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };

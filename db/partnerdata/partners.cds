@@ -12,6 +12,8 @@ entity Partners : replicated {
         isAMAGRetail                        : Boolean default false;
         validFrom                           : Date default '1970-01-01';
         validTo                             : Date default '1970-01-01';
+        company                             : String(40);
+        department                          : String(40);
         fullName                            : String(80);
         streetName                          : String(60);
         houseNumber                         : String(10);
@@ -34,6 +36,10 @@ entity Partners : replicated {
                                                   on usedInOrderControlsAsSoldToPartners.soldToPartner = $self;
         usedInOrderControlsAsShipToPartners : Composition of many db.PartnerUsedInOrderControlsAsShipToPartners
                                                   on usedInOrderControlsAsShipToPartners.shipToPartner = $self;
+        usedInOrderControlsAsBillToPartners : Composition of many db.PartnerUsedInOrderControlsAsBillToPartners
+                                                  on usedInOrderControlsAsBillToPartners.billToPartner = $self;
+        usedInOrderControlsAsPaidByPartners : Composition of many db.PartnerUsedInOrderControlsAsPaidByPartners
+                                                  on usedInOrderControlsAsPaidByPartners.paidByPartner = $self;
 }
 
 type Partner : Association to Partners;

@@ -3,7 +3,7 @@ using {retail.dwb as db} from '../../../db';
 @path: '/app/backend/sessions'
 service AppSessionsService {
 
-    action createSession(salesPartner_id : SalesPartners:id, brand_code : Brands:code, projectType_code : ProjectTypes:code, customerProjectName : String, customerProjectNumber : String, fleetProjectNumber : String, fleetProjectCompanyNumber : String, ocd : Integer) returns db.Sessions:ID;
+    action createSession(salesPartner_id : SalesPartners:id, brand_code : Brands:code, projectType_code : ProjectTypes:code, projectCustomerName : String, customerProjectNumber : String, fleetProjectNumber : String, fleetCompanyNumber : String, ocd : Integer) returns db.Sessions:ID;
 
     @odata.draft.enabled
     entity Sessions      as projection on db.Sessions actions {

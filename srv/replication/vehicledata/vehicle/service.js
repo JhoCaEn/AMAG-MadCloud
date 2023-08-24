@@ -9,8 +9,8 @@ module.exports = class ReplicationVehicledataVehicleService extends cds.Applicat
         const { Vehicles } = db.entities('retail.dwb')
         const { NotFoundError } = require('../errors')
 
-        this.on('replication-vehicledata:VMSVehicle/Created', async ({ data: { VMSVehicleUUID } = {} } = {}) => replicate(VMSVehicleUUID))
-        this.on('replication-vehicledata:VMSVehicle/Changed', async ({ data: { VMSVehicleUUID } = {} } = {}) => replicate(VMSVehicleUUID))
+        this.on('replication-vehicledata:VMSVehicle/Created/v1', async ({ data: { VMSVehicleUUID } = {} } = {}) => replicate(VMSVehicleUUID))
+        this.on('replication-vehicledata:VMSVehicle/Changed/v1', async ({ data: { VMSVehicleUUID } = {} } = {}) => replicate(VMSVehicleUUID))
         this.on('replicate', async ({ data: { erpID } = {} } = {}) => replicate(erpID))
 
         const replicate = async (ID) => {
@@ -39,8 +39,7 @@ module.exports = class ReplicationVehicledataVehicleService extends cds.Applicat
         const get = async (ID) => {
             return client.getVehicle({
                 ID,
-                $select: 'VMSVehicleUUID,VMSVehicleUsageStatus,VMSVehicleAvailabilityStatus',
-                $expand: '_Extension($select=DWBKey,CustomerStatus,EndCustomerStatus,DeliveryCode)'
+                $expand: '_Extension'
             })
         }
 
@@ -51,7 +50,10 @@ module.exports = class ReplicationVehicledataVehicleService extends cds.Applicat
                 value: ID
             }
 
-            let exists = await db.exists(Vehicles, { ID }).forUpdate()
+            let exists = false
+
+            if (ID)
+                exists = await db.exists(Vehicles, { ID }).forUpdate()
 
             if (!exists) {
                 exists = await db.exists(Vehicles, { erpID }).forUpdate()

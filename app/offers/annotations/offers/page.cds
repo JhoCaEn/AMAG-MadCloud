@@ -106,7 +106,7 @@ annotate service.Offers with @UI: {
                     Facets: [{
                         $Type        : 'UI.ReferenceFacet',
                         ID           : 'WiP_CarConfigurationEquipments_Draft',
-                        Target       : 'carConfigurationEquipments/@UI.LineItem#Draft',
+                        Target       : 'equipments/@UI.LineItem#Draft',
                         ![@UI.Hidden]: {$edmJson: {$Eq: [
                             {$Path: 'IsActiveEntity'},
                             true
@@ -151,10 +151,10 @@ annotate service.Offers with @UI: {
 
     FieldGroup #WiP                              : {Data: [
         {Value: ocd},
-        {Value: customerProjectName},
+        {Value: projectCustomerName},
         {Value: customerProjectNumber},
         {Value: fleetProjectNumber},
-        {Value: fleetProjectCompanyNumber},
+        {Value: fleetCompanyNumber},
         {Value: createdBySalesSystem},
         {Value: brand_code},
         {Value: salesPartner_id},
@@ -165,63 +165,63 @@ annotate service.Offers with @UI: {
     FieldGroup #WiP_CarConfiguration             : {Data: [
         {Value: carConfigurationID},
         {Value: carConfigurationIsValid},
-        {Value: carConfigurationConfiguredAt},
-        {Value: carConfigurationModel_id},
-        {Value: carConfigurationExteriorColor_id},
-        {Value: carConfigurationInteriorColor_id},
-        {Value: carConfigurationRoofColor_id}
+        {Value: configuredAt},
+        {Value: model_id},
+        {Value: exteriorColor_id},
+        {Value: interiorColor_id},
+        {Value: roofColor_id}
     ]},
 
     FieldGroup #salesPriceExteriorColorConstrains: {Data: [
-        {Value: carConfigurationExteriorColorSalesPriceConstraintEquipment_id},
-        {Value: carConfigurationExteriorColorSalesPriceConstraintColor_id},
+        {Value: exteriorColorSalesPriceConstraintEquipment_id},
+        {Value: exteriorColorSalesPriceConstraintColor_id},
 
     ]},
 
     FieldGroup #salesPriceInteriorColorConstrains: {Data: [
-        {Value: carConfigurationInteriorColorSalesPriceConstraintEquipment_id},
-        {Value: carConfigurationInteriorColorSalesPriceConstraintColor_id},
+        {Value: interiorColorSalesPriceConstraintEquipment_id},
+        {Value: interiorColorSalesPriceConstraintColor_id},
     ]},
 
     FieldGroup #salesPriceRoofColorConstrains    : {Data: [
-        {Value: carConfigurationRoofColorSalesPriceConstraintEquipment_id},
-        {Value: carConfigurationRoofColorSalesPriceConstraintColor_id},
+        {Value: roofColorSalesPriceConstraintEquipment_id},
+        {Value: roofColorSalesPriceConstraintColor_id},
     ]},
 
     FieldGroup #WiPSalesPrices_NotDraft          : {Data: [
         {
-            Value: carConfigurationModel.salesPrice.value,
+            Value: model.salesPrice.value,
             Label: '{i18n>Model}'
         },
         {
-            Value: carConfigurationExteriorColorSalesPrice.value,
+            Value: exteriorColorSalesPrice.value,
             Label: '{i18n>ExteriorColor}'
         },
         {
-            Value: carConfigurationInteriorColorSalesPrice.value,
+            Value: interiorColorSalesPrice.value,
             Label: '{i18n>InteriorColor}'
         },
         {
-            Value: carConfigurationRoofColorSalesPrice.value,
+            Value: roofColorSalesPrice.value,
             Label: '{i18n>RoofColor}'
         }
     ]},
 
     FieldGroup #WiPSalesPrices_Draft             : {Data: [
         {
-            Value: carConfigurationModelSalesPriceValue,
+            Value: modelSalesPriceValue,
             Label: '{i18n>Model}'
         },
         {
-            Value: carConfigurationExteriorColorSalesPriceValue,
+            Value: exteriorColorSalesPriceValue,
             Label: '{i18n>ExteriorColor}'
         },
         {
-            Value: carConfigurationInteriorColorSalesPriceValue,
+            Value: interiorColorSalesPriceValue,
             Label: '{i18n>InteriorColor}'
         },
         {
-            Value: carConfigurationRoofColorSalesPriceValue,
+            Value: roofColorSalesPriceValue,
             Label: '{i18n>RoofColor}'
         }
     ]},
@@ -236,7 +236,7 @@ annotate service.Offers with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: customerProjectName
+                Value: projectCustomerName
             },
             {
                 $Type: 'UI.DataField',
@@ -248,7 +248,7 @@ annotate service.Offers with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: fleetProjectCompanyNumber
+                Value: fleetCompanyNumber
             },
         ]
     },
@@ -262,7 +262,7 @@ annotate service.Offers with @UI: {
             },
             {
                 $Type: 'UI.DataField',
-                Value: carConfigurationConfiguredAt
+                Value: configuredAt
             }
         ]
     },

@@ -1,70 +1,70 @@
-id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo,fullName,streetName,houseNumber,postalCode,cityName,phoneNumber,emailAddress
-1,AMAG Schinznach,true,true,true,2023-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Schinznach,Aarauerstr.,22,5116,Schinznach Bad,056 463 92 92,info.retail-schinznach@amag.ch
-100,AMAG RETAIL Bern,true,true,true,2005-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Bern,Wankdorffeldstrasse,60,3000,Bern 22,031 337 55 11,amag-bern@amag.ch
-1000,AMAG Import AG,false,false,false,1970-01-01,9999-12-31,AMAG Import AG,Alte Steinhauserstrasse,12,6330,Cham,056 463 91 91,11111@1.1
-10001,AMAG (NW),false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG (NW),Alte Steinhauserstrasse,12,6330,Cham,,
-106,Garage R. Grünig AG,false,true,false,2023-03-17,9999-12-31,Garage R. Grünig AG,Bielstrasse,14,3053,Münchenbuchsee,031 868 06 26,info@garage-gruenig.ch
-124,APAG Automobile AG,false,false,false,1970-01-01,1970-01-01,APAG Automobile AG,Gsteigstrasse 180,,3784,Feutersoey,,
-126,Garage Gautschi AG,true,true,true,2005-01-01,9999-12-31,Garage Gautschi AG,Buetzbergstrasse,98,4900,Langenthal,062 919 13 13,garage@gautschi.ch
-129,AMAG Liestal,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Liestal,Rheinstrasse,107,4410,Liestal,+41 61 906 99 88,liestal@amag.ch
-137,AMAG Muttenz,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Muttenz,Birsfelderstrasse,50,4132,Muttenz,061 465 41 41,muttenz@amag.ch
-165,AMAG RETAIL Chur,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG RETAIL Chur,Rossbodenstrasse,16,7000,Chur,081 286 48 48,info.chur@amag.ch
-184,Garage Gautschi AG,false,false,false,1970-01-01,9999-12-31,Garage Gautschi AG,Bern-Zürichstrasse 44,,4900,Langenthal,062 919 14 14,it@gautschi.ch
-2008576,Avis Budget Autovermietung AG,false,false,false,1970-01-01,9999-12-31,Avis Budget Autovermietung AG,Hofwisenstrasse 36,,8153,Rümlang,044 809 18 18,
-21,Garage G. Bürgisser,true,true,true,2023-06-01,9999-12-31,Garage G. Bürgisser TEST DEBMAS,Stiegenackerstrasse 2,,5634,Merenschwand,056 675 10 60,buchhaltung@buergisser-garage.ch
-2156782,Sixt rent-a-car AG,false,false,false,1970-01-01,9999-12-31,Sixt rent-a-car AG,Schwarzwaldallee,242,4058,Basel,061 325 15 58,
-220,AMAG RETAIL Fribourg,false,false,false,1970-01-01,9999-12-31,AMAG Automobiles et Moteurs SA AMAG RETAIL Fribourg,Rte de Villars,103,1701,Fribourg,026 408 41 41,fribourg@amag.ch
-2237979,Helvetic Motion AG,false,false,false,1970-01-01,9999-12-31,Helvetic Motion AG,Werftstrasse,80,8302,Kloten,058 122 04 02,finance@mssag.ch
-2280409,Europcar,false,false,false,1970-01-01,9999-12-31,AMAG Services AG Europcar,Steinackerstrasse,20,8302,Kloten,044 813 20 44,info.utoquai@amag.ch
-2280426,Herold Fahrzeugvermietung AG,false,false,false,1970-01-01,9999-12-31,Herold Fahrzeugvermietung AG,Flughofstrasse,37,8152,Glattbrugg,044 732 11 11,kreditoren@emilfrey.ch
-2280427,Credit Suisse (Schweiz) AG,false,false,false,1970-01-01,9999-12-31,Credit Suisse (Schweiz) AG Leasing / SGSL411,,,8070,Zürich,,
-2280428, Sixt rent-a-car AG,false,false,false,1970-01-01,9999-12-31, Sixt rent-a-car AG,Pfingstweidstrasse,3,8005,Zürich,044 445 90 90,
-2280429,Credit Suisse (Schweiz) AG,false,false,false,1970-01-01,9999-12-31,Credit Suisse (Schweiz) AG Leasing / SGSL411,,,8070,Zürich,044 334 27 98,
-24,Garage Gloor AG,true,true,true,2023-01-01,9999-12-31,Garage Gloor AG,Dorfstrasse 489,,5728,Gontenschwil,062 773 12 61,info@garage-gloor.ch
-254,AMAG Châtelaine Centre Audi,false,false,false,1970-01-01,1970-01-01,AMAG Automobiles et Moteurs SA AMAG Châtelaine Centre Audi,Chemin J.-Ph. De-Sauvage 44 -,,1219,Châtelaine,022 970 36 36,chatelaine@amag.ch
-30,Auto Käppeli AG,false,false,false,1970-01-01,9999-12-31,Auto Käppeli AG,Industriestrasse 16,,5610,Wohlen AG,056 618 35 40,buchhaltung@autokaeppeli.ch
-320,AMAG Lausanne,false,false,false,1970-01-01,9999-12-31,AMAG Automobiles et Moteurs SA AMAG Lausanne,Av. de Provence,2,1007,Lausanne 20,,lausanne@amag.ch
-3250,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,Automobiles Senn SA,Champ-de-la-Croix 6,,2075,Thielle,032 756 02 02,info@sennautos.ch
-340,TOGNETTI AUTO SA,false,false,false,1970-01-01,9999-12-31,TOGNETTI AUTO SA,Via San Gottardo 139,,6596,Gordola,091 735 15 50,dispo@tognetti.ch
-3518,Garage F. Heggli AG,false,false,false,1970-01-01,9999-12-31,Garage F. Heggli AG,Luzernerstrasse 37,,5630,Muri AG,056 664 25 24,info@garage-heggli.ch
-3537,AMAG RETAIL Aarau,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Aarau,Rohrerstrasse,29,5000,Aarau,062 836 80 20,info.aarau@amag.ch
-3606,Nidfeld-Garage AG,false,false,false,1970-01-01,9999-12-31,Nidfeld-Garage AG,Arsenalstrasse,35,6010,Kriens,041 310 91 81,nidfeld@windlin.ch
-3654,Garage Blaser AG,false,false,false,1970-01-01,9999-12-31,Garage Blaser AG,Feldmattstrasse,12,6032,Emmen,041 260 30 50,info@garage-blaser.ch
-373,AMAG Noranco,false,false,false,1970-01-01,9999-12-31,AMAG Automobili e motori SA AMAG Noranco,Via Pian Scairolo,36,6915,Pambio-Noranco,091 961 21 71,amag.noranco@amag.ch
-376,AMAG RETAIL Sursee,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Sursee,Neuweidstrasse,1,6208,Oberkirch,041 926 80 40,info.amag-sursee@amag.ch
-380,AMAG Buchrain,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG Buchrain,Eisihof,1,6035,Perlen,041 444 44 44,buchrain@amag.ch
-400,AMAG Audi Center Luzern,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG Audi Center Luzern,Grabenhofstrasse 10,,6010,Kriens,041 348 09 09,info.amag-kriens@amag.ch
-404,Auto Inderbitzin AG,true,true,true,2023-01-01,9999-12-31,Auto Inderbitzin AG,Gotthardstrasse,18,6414,Oberarth,041 825 13 13,t.russi@auto-inderbitzin.ch
-430,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,Automobiles Senn SA,Rue de la Pierre-a-Mazel 25,,2000,Neuchâtel,032 723 97 97,info@sennautos.ch
-493,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Schärischachen 808,,3550,Langnau i. E.,034 402 38 38,buchhaltung@autorueger.ch
-506,Garage Baschnagel AG,true,true,true,2005-01-01,9999-12-31,Garage Baschnagel AG,Oltenstrasse,50,4702,Oensingen,062 388 08 68,oensingen@baschnagel.ch
-523,AMAG RETAIL Heerbrugg,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG RETAIL Heerbrugg,Auerstrasse,20,9435,Heerbrugg,071 727 27 27,info.heerbrugg@amag.ch
-524,Schmid-Garage AG,false,false,false,1970-01-01,9999-12-31,Schmid-Garage AG,Kirchbergerstrasse,36,9534,Gähwil,071 931 20 31,info@schmidgarage.ch
-536,Kreuz-Garage E. Bischof AG,false,false,false,1970-01-01,9999-12-31,Kreuz-Garage E. Bischof AG,Trogenerstrasse,1,9042,Speicher,071 344 29 90,p.bischof@autobischof.ch
-577,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Hauptstrasse 7,,3860,Meiringen,033 972 44 00,buchhaltung@autorueger.ch
-581,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Thunstrasse 6,,3506,Grosshöchstetten,031 711 02 67,buchhaltung@autorueger.ch
-582,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Industriestrasse,12,3812,Wilderswil,+41 33 822 77 88,buchhaltung@autorueger.ch
-604,Gachnang SA,false,false,false,1970-01-01,9999-12-31,Gachnang SA,Chemin des Orlons,1,1860,Aigle,024 468 60 80,a.buco@gachnang-sa.ch
-619,Garage Gmür AG,false,false,false,1970-01-01,9999-12-31,Garage Gmür AG,Dorfstrasse 62,,8873,Amden,055 611 18 86,garage.gmuer@bluewin.ch
-635,Audi Center AMAG Zug,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG Audi Center AMAG Zug,Alte Steinhauserstrasse 1,,6330,Cham,041 748 57 57,zug@amag.ch
-645,AMAG RETAIL Cham,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Cham,Alte Steinhauserstrasse,1,6330,Cham,041 748 57 57,zug@amag.ch
-6470,Garage Olympic A. Antille Sierre SA,true,true,true,2023-02-01,9999-12-31,Garage Olympic A. Antille Sierre SA Porsche Zentrum Sierre,Av. de France 52,,3960,Sierre,027 455 33 33,c.cottini@garageolympic.ch
-655,AMAG Occasions Center Sihlbrugg,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Occasions Center Sihlbrugg,Zugerstrasse 2,,6340,Sihlbrugg,041 748 67 48,info.sihlbrugg@amag.ch
-666,Auto Sauter AG,false,false,false,1970-01-01,9999-12-31,Auto Sauter AG,Landstrasse 6,,8754,Netstal,055 645 52 72,info@auto-sauter.ch
-6831,AMAG Uster,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Uster,Pfäffikerstrasse,32,8610,Uster,044 943 16 88,info.nutzfahrzeuge.uster@amag.ch
-6878,Mastercar Automobiltechnik,true,true,true,2022-01-01,9999-12-31,Mastercar Automobiltechnik Daniel Hertig,Chefistrasse,55,8637,Laupen ZH,055 246 50 00,info@mastercar.ch
-6892,P356 Sagl,true,true,true,2022-12-01,9999-12-31,P356 Sagl,Via alla Stampa 6B,,6964,Lugano Davesco,,
-69,Dorfgarage A. Tommer AG,false,false,false,1970-01-01,9999-12-31,Dorfgarage A. Tommer AG,Landstrasse 62,,5426,Lengnau AG,056 266 44 33,info@dorfgarage.ch
-698,AMAG RETAIL Autowelt Zürich,true,true,true,2005-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Autowelt Zürich,Giessenstrasse,4,8600,Dübendorf,044 325 45 45,autowelt@amag.ch
-715,JENATSCHGARAGE J. Nadlinger AG,true,true,true,2023-03-01,9999-12-31,JENATSCHGARAGE J. Nadlinger AG,Seestrasse 102,,8002,Zürich,044 202 88 86,hans.nadlinger@jenatschgarage.ch
-720,Scania Schweiz AG,false,false,false,1970-01-01,9999-12-31,Scania Schweiz AG,Steinackerstrasse,57,8302,Kloten,044 800 14 00,invoice.ch1@scania.com
-724,Auto Brander AG,true,true,true,2005-01-01,9999-12-31,Auto Brander AG,Schwerzistrasse 8,,8807,Freienbach,055 415 62 00,brander@auto-brander.ch
-760,AMAG RETAIL Jona,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Jona,St. Gallerstrasse,101,8645,Jona,055 225 05 05,info.jona@amag.ch
-794,Autocenter Bülach-Süd AG,false,false,false,1970-01-01,9999-12-31,Autocenter Bülach-Süd AG,Laenggenstrasse 36,,8184,Bachenbülach,044 851 80 00,info@autocenterbuelach.ch
-798,Audi Center AMAG Zürich,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG Audi Center AMAG Zürich,Giessenstrasse,4,8600,Dübendorf,044 325 45 45,autowelt@amag.ch
-81,hoffmann automobile ag,false,true,false,2023-01-01,9999-12-31,hoffmann automobile ag,Butthollenring 1-3,,4147,Aesch,061 706 84 84,zanolari@hoffmann-automobile.ch
-84,Garage Ruedi Strub AG,false,false,false,1970-01-01,9999-12-31,Garage Ruedi Strub AG,Weiermatt 1,,4446,Buckten,062 285 00 20,rechnungen@ruedistrub.ch
-90,AMAG Bellinzona,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Bellinzona,via San Gottardo,71,6500,Bellinzona,091 820 60 40,amag.bellinzona@amag.ch
-9080,movon AG,false,false,false,1970-01-01,1970-01-01,movon AG,Alte Steinhauserstrasse,12,8330,Cham,0848 25 24 22,contact@movon.swiss
-943,Europcar,false,false,false,1970-01-01,9999-12-31,AMAG Services AG Europcar,Steinackerstrasse,20,8302,Kloten,044 804 46 46,viktoria.kiss@amag.ch
-954,AMAG Leasing AG,false,false,false,1970-01-01,9999-12-31,AMAG Leasing AG,Alte Steinhauserstrasse,12,6330,Cham,,
+id,name,hasBrands,hasContracts,isSalesPartner,validFrom,validTo,fullName,streetName,houseNumber,postalCode,cityName,phoneNumber,emailAddress,isAMAGRetail,company,department
+1,AMAG Schinznach,true,true,true,2023-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Schinznach,Aarauerstr.,22,5116,Schinznach Bad,056 463 92 92,info.retail-schinznach@amag.ch,true,AMAG,Retail
+100,AMAG RETAIL Bern,true,true,true,2005-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Bern,Wankdorffeldstrasse,60,3000,Bern 22,031 337 55 11,amag-bern@amag.ch,true,AMAG,Retail
+1000,AMAG Import AG,false,false,false,1970-01-01,9999-12-31,AMAG Import AG,Alte Steinhauserstrasse,12,6330,Cham,056 463 91 91,11111@1.1,true,AMAG,Retail
+10001,AMAG (NW),false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG (NW),Alte Steinhauserstrasse,12,6330,Cham,,,true,AMAG,Retail
+106,Garage R. Grünig AG,false,true,false,2023-03-17,9999-12-31,Garage R. Grünig AG,Bielstrasse,14,3053,Münchenbuchsee,031 868 06 26,info@garage-gruenig.ch,true,,
+124,APAG Automobile AG,false,false,false,1970-01-01,1970-01-01,APAG Automobile AG,Gsteigstrasse 180,,3784,Feutersoey,,,true,,
+126,Garage Gautschi AG,true,true,true,2005-01-01,9999-12-31,Garage Gautschi AG,Buetzbergstrasse,98,4900,Langenthal,062 919 13 13,garage@gautschi.ch,true,,
+129,AMAG Liestal,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Liestal,Rheinstrasse,107,4410,Liestal,+41 61 906 99 88,liestal@amag.ch,false,AMAG,Import
+137,AMAG Muttenz,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Muttenz,Birsfelderstrasse,50,4132,Muttenz,061 465 41 41,muttenz@amag.ch,false,AMAG,Import
+165,AMAG RETAIL Chur,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG RETAIL Chur,Rossbodenstrasse,16,7000,Chur,081 286 48 48,info.chur@amag.ch,false,AMAG,Import
+184,Garage Gautschi AG,false,false,false,1970-01-01,9999-12-31,Garage Gautschi AG,Bern-Zürichstrasse 44,,4900,Langenthal,062 919 14 14,it@gautschi.ch,false,,
+2008576,Avis Budget Autovermietung AG,false,false,false,1970-01-01,9999-12-31,Avis Budget Autovermietung AG,Hofwisenstrasse 36,,8153,Rümlang,044 809 18 18,,false,,
+21,Garage G. Bürgisser,true,true,true,2023-06-01,9999-12-31,Garage G. Bürgisser TEST DEBMAS,Stiegenackerstrasse 2,,5634,Merenschwand,056 675 10 60,buchhaltung@buergisser-garage.ch,false,,
+2156782,Sixt rent-a-car AG,false,false,false,1970-01-01,9999-12-31,Sixt rent-a-car AG,Schwarzwaldallee,242,4058,Basel,061 325 15 58,,false,,
+220,AMAG RETAIL Fribourg,false,false,false,1970-01-01,9999-12-31,AMAG Automobiles et Moteurs SA AMAG RETAIL Fribourg,Rte de Villars,103,1701,Fribourg,026 408 41 41,fribourg@amag.ch,false,,
+2237979,Helvetic Motion AG,false,false,false,1970-01-01,9999-12-31,Helvetic Motion AG,Werftstrasse,80,8302,Kloten,058 122 04 02,finance@mssag.ch,false,,
+2280409,Europcar,false,false,false,1970-01-01,9999-12-31,AMAG Services AG Europcar,Steinackerstrasse,20,8302,Kloten,044 813 20 44,info.utoquai@amag.ch,false,,
+2280426,Herold Fahrzeugvermietung AG,false,false,false,1970-01-01,9999-12-31,Herold Fahrzeugvermietung AG,Flughofstrasse,37,8152,Glattbrugg,044 732 11 11,kreditoren@emilfrey.ch,false,,
+2280427,Credit Suisse (Schweiz) AG,false,false,false,1970-01-01,9999-12-31,Credit Suisse (Schweiz) AG Leasing / SGSL411,,,8070,Zürich,,,false,,
+2280428, Sixt rent-a-car AG,false,false,false,1970-01-01,9999-12-31, Sixt rent-a-car AG,Pfingstweidstrasse,3,8005,Zürich,044 445 90 90,,false,,
+2280429,Credit Suisse (Schweiz) AG,false,false,false,1970-01-01,9999-12-31,Credit Suisse (Schweiz) AG Leasing / SGSL411,,,8070,Zürich,044 334 27 98,,false,,
+24,Garage Gloor AG,true,true,true,2023-01-01,9999-12-31,Garage Gloor AG,Dorfstrasse 489,,5728,Gontenschwil,062 773 12 61,info@garage-gloor.ch,false,,
+254,AMAG Châtelaine Centre Audi,false,false,false,1970-01-01,1970-01-01,AMAG Automobiles et Moteurs SA AMAG Châtelaine Centre Audi,Chemin J.-Ph. De-Sauvage 44 -,,1219,Châtelaine,022 970 36 36,chatelaine@amag.ch,false,,
+30,Auto Käppeli AG,false,false,false,1970-01-01,9999-12-31,Auto Käppeli AG,Industriestrasse 16,,5610,Wohlen AG,056 618 35 40,buchhaltung@autokaeppeli.ch,false,,
+320,AMAG Lausanne,false,false,false,1970-01-01,9999-12-31,AMAG Automobiles et Moteurs SA AMAG Lausanne,Av. de Provence,2,1007,Lausanne 20,,lausanne@amag.ch,false,,
+3250,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,Automobiles Senn SA,Champ-de-la-Croix 6,,2075,Thielle,032 756 02 02,info@sennautos.ch,false,,
+340,TOGNETTI AUTO SA,false,false,false,1970-01-01,9999-12-31,TOGNETTI AUTO SA,Via San Gottardo 139,,6596,Gordola,091 735 15 50,dispo@tognetti.ch,false,,
+3518,Garage F. Heggli AG,false,false,false,1970-01-01,9999-12-31,Garage F. Heggli AG,Luzernerstrasse 37,,5630,Muri AG,056 664 25 24,info@garage-heggli.ch,false,,
+3537,AMAG RETAIL Aarau,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Aarau,Rohrerstrasse,29,5000,Aarau,062 836 80 20,info.aarau@amag.ch,false,,
+3606,Nidfeld-Garage AG,false,false,false,1970-01-01,9999-12-31,Nidfeld-Garage AG,Arsenalstrasse,35,6010,Kriens,041 310 91 81,nidfeld@windlin.ch,false,,
+3654,Garage Blaser AG,false,false,false,1970-01-01,9999-12-31,Garage Blaser AG,Feldmattstrasse,12,6032,Emmen,041 260 30 50,info@garage-blaser.ch,false,,
+373,AMAG Noranco,false,false,false,1970-01-01,9999-12-31,AMAG Automobili e motori SA AMAG Noranco,Via Pian Scairolo,36,6915,Pambio-Noranco,091 961 21 71,amag.noranco@amag.ch,false,,
+376,AMAG RETAIL Sursee,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Sursee,Neuweidstrasse,1,6208,Oberkirch,041 926 80 40,info.amag-sursee@amag.ch,false,,
+380,AMAG Buchrain,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG Buchrain,Eisihof,1,6035,Perlen,041 444 44 44,buchrain@amag.ch,false,,
+400,AMAG Audi Center Luzern,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG Audi Center Luzern,Grabenhofstrasse 10,,6010,Kriens,041 348 09 09,info.amag-kriens@amag.ch,false,,
+404,Auto Inderbitzin AG,true,true,true,2023-01-01,9999-12-31,Auto Inderbitzin AG,Gotthardstrasse,18,6414,Oberarth,041 825 13 13,t.russi@auto-inderbitzin.ch,false,,
+430,Automobiles Senn SA,false,false,false,1970-01-01,9999-12-31,Automobiles Senn SA,Rue de la Pierre-a-Mazel 25,,2000,Neuchâtel,032 723 97 97,info@sennautos.ch,false,,
+493,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Schärischachen 808,,3550,Langnau i. E.,034 402 38 38,buchhaltung@autorueger.ch,false,,
+506,Garage Baschnagel AG,true,true,true,2005-01-01,9999-12-31,Garage Baschnagel AG,Oltenstrasse,50,4702,Oensingen,062 388 08 68,oensingen@baschnagel.ch,false,,
+523,AMAG RETAIL Heerbrugg,false,false,false,1970-01-01,1970-01-01,AMAG Automobil und Motoren AG AMAG RETAIL Heerbrugg,Auerstrasse,20,9435,Heerbrugg,071 727 27 27,info.heerbrugg@amag.ch,false,,
+524,Schmid-Garage AG,false,false,false,1970-01-01,9999-12-31,Schmid-Garage AG,Kirchbergerstrasse,36,9534,Gähwil,071 931 20 31,info@schmidgarage.ch,false,,
+536,Kreuz-Garage E. Bischof AG,false,false,false,1970-01-01,9999-12-31,Kreuz-Garage E. Bischof AG,Trogenerstrasse,1,9042,Speicher,071 344 29 90,p.bischof@autobischof.ch,false,,
+577,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Hauptstrasse 7,,3860,Meiringen,033 972 44 00,buchhaltung@autorueger.ch,false,,
+581,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Thunstrasse 6,,3506,Grosshöchstetten,031 711 02 67,buchhaltung@autorueger.ch,false,,
+582,Auto Rüger AG,false,false,false,1970-01-01,9999-12-31,Auto Rüger AG,Industriestrasse,12,3812,Wilderswil,+41 33 822 77 88,buchhaltung@autorueger.ch,false,,
+604,Gachnang SA,false,false,false,1970-01-01,9999-12-31,Gachnang SA,Chemin des Orlons,1,1860,Aigle,024 468 60 80,a.buco@gachnang-sa.ch,false,,
+619,Garage Gmür AG,false,false,false,1970-01-01,9999-12-31,Garage Gmür AG,Dorfstrasse 62,,8873,Amden,055 611 18 86,garage.gmuer@bluewin.ch,false,,
+635,Audi Center AMAG Zug,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG Audi Center AMAG Zug,Alte Steinhauserstrasse 1,,6330,Cham,041 748 57 57,zug@amag.ch,false,,
+645,AMAG RETAIL Cham,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Cham,Alte Steinhauserstrasse,1,6330,Cham,041 748 57 57,zug@amag.ch,false,,
+6470,Garage Olympic A. Antille Sierre SA,true,true,true,2023-02-01,9999-12-31,Garage Olympic A. Antille Sierre SA Porsche Zentrum Sierre,Av. de France 52,,3960,Sierre,027 455 33 33,c.cottini@garageolympic.ch,false,,
+655,AMAG Occasions Center Sihlbrugg,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Occasions Center Sihlbrugg,Zugerstrasse 2,,6340,Sihlbrugg,041 748 67 48,info.sihlbrugg@amag.ch,false,,
+666,Auto Sauter AG,false,false,false,1970-01-01,9999-12-31,Auto Sauter AG,Landstrasse 6,,8754,Netstal,055 645 52 72,info@auto-sauter.ch,false,,
+6831,AMAG Uster,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Uster,Pfäffikerstrasse,32,8610,Uster,044 943 16 88,info.nutzfahrzeuge.uster@amag.ch,false,,
+6878,Mastercar Automobiltechnik,true,true,true,2022-01-01,9999-12-31,Mastercar Automobiltechnik Daniel Hertig,Chefistrasse,55,8637,Laupen ZH,055 246 50 00,info@mastercar.ch,false,,
+6892,P356 Sagl,true,true,true,2022-12-01,9999-12-31,P356 Sagl,Via alla Stampa 6B,,6964,Lugano Davesco,,,false,,
+69,Dorfgarage A. Tommer AG,false,false,false,1970-01-01,9999-12-31,Dorfgarage A. Tommer AG,Landstrasse 62,,5426,Lengnau AG,056 266 44 33,info@dorfgarage.ch,false,,
+698,AMAG RETAIL Autowelt Zürich,true,true,true,2005-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Autowelt Zürich,Giessenstrasse,4,8600,Dübendorf,044 325 45 45,autowelt@amag.ch,false,,
+715,JENATSCHGARAGE J. Nadlinger AG,true,true,true,2023-03-01,9999-12-31,JENATSCHGARAGE J. Nadlinger AG,Seestrasse 102,,8002,Zürich,044 202 88 86,hans.nadlinger@jenatschgarage.ch,false,,
+720,Scania Schweiz AG,false,false,false,1970-01-01,9999-12-31,Scania Schweiz AG,Steinackerstrasse,57,8302,Kloten,044 800 14 00,invoice.ch1@scania.com,false,,
+724,Auto Brander AG,true,true,true,2005-01-01,9999-12-31,Auto Brander AG,Schwerzistrasse 8,,8807,Freienbach,055 415 62 00,brander@auto-brander.ch,false,,
+760,AMAG RETAIL Jona,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG RETAIL Jona,St. Gallerstrasse,101,8645,Jona,055 225 05 05,info.jona@amag.ch,false,,
+794,Autocenter Bülach-Süd AG,false,false,false,1970-01-01,9999-12-31,Autocenter Bülach-Süd AG,Laenggenstrasse 36,,8184,Bachenbülach,044 851 80 00,info@autocenterbuelach.ch,false,,
+798,Audi Center AMAG Zürich,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG Audi Center AMAG Zürich,Giessenstrasse,4,8600,Dübendorf,044 325 45 45,autowelt@amag.ch,false,,
+81,hoffmann automobile ag,false,true,false,2023-01-01,9999-12-31,hoffmann automobile ag,Butthollenring 1-3,,4147,Aesch,061 706 84 84,zanolari@hoffmann-automobile.ch,false,,
+84,Garage Ruedi Strub AG,false,false,false,1970-01-01,9999-12-31,Garage Ruedi Strub AG,Weiermatt 1,,4446,Buckten,062 285 00 20,rechnungen@ruedistrub.ch,false,,
+90,AMAG Bellinzona,false,false,false,1970-01-01,9999-12-31,AMAG Automobil und Motoren AG AMAG Bellinzona,via San Gottardo,71,6500,Bellinzona,091 820 60 40,amag.bellinzona@amag.ch,false,,
+9080,movon AG,false,false,false,1970-01-01,1970-01-01,movon AG,Alte Steinhauserstrasse,12,8330,Cham,0848 25 24 22,contact@movon.swiss,false,,
+943,Europcar,false,false,false,1970-01-01,9999-12-31,AMAG Services AG Europcar,Steinackerstrasse,20,8302,Kloten,044 804 46 46,viktoria.kiss@amag.ch,false,,
+954,AMAG Leasing AG,false,false,false,1970-01-01,9999-12-31,AMAG Leasing AG,Alte Steinhauserstrasse,12,6330,Cham,,,false,,

@@ -1,7 +1,7 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
-annotate service.PartnerUsedInOrderControlsAsShipToPartners with {
-    shipToPartner    @UI.Hidden;
+annotate service.PartnerUsedInOrderControlsAsPaidByPartners with {
+    paidByPartner    @UI.Hidden;
 
     vehicleUsage     @Common: {
         Text           : vehicleUsage.name,

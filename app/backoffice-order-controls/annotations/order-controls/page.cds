@@ -127,6 +127,14 @@ annotate service.OrderControls with @UI: {
             {
                 $Type: 'UI.DataField',
                 Value: forEmployee
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForFreePartner
+            },
+            {
+                $Type: 'UI.DataField',
+                Value: releasedForAMAGPartner
             }
         ]
     },

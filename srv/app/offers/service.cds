@@ -18,7 +18,7 @@ service AppOffersService {
         action order(in: $self) returns db.Vehicles:ID;
     };
 
-    action createOffer(salesPartner_id : db.Partners:id, brand_code : db.Brands:code, customerProjectName : String, projectType_code : db.ProjectTypes:code, customerProjectNumber : String, fleetProjectNumber : String, fleetProjectCompanyNumber : String, callback_ID : db.Callbacks:ID) returns db.Offers:ID;
+    action createOffer(salesPartner_id : db.Partners:id, brand_code : db.Brands:code, projectCustomerName : String, projectType_code : db.ProjectTypes:code, customerProjectNumber : String, fleetProjectNumber : String, fleetCompanyNumber : String, callback_ID : db.Callbacks:ID) returns db.Offers:ID;
 
     @readonly
     entity CarConfigurationEquipments                as projection on db.OfferCarConfigurationEquipments;

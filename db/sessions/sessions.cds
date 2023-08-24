@@ -10,10 +10,10 @@ entity Sessions : cuid, managed {
     salesPartner              : db.SalesPartner;
     brand                     : db.Brand;
     projectType               : db.ProjectType;
-    customerProjectName       : String(160);
+    projectCustomerName       : String(160);
     customerProjectNumber     : String(50);
     fleetProjectNumber        : String(50);
-    fleetProjectCompanyNumber : String(50);
+    fleetCompanyNumber : String(50);
     ocd                       : Integer;
     callbackURL               : String;
     isPrepared                : Boolean;

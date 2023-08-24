@@ -8,6 +8,8 @@ module.exports = (raw) => {
         billToPartner_id: transformPartnerId(raw.BillToParty),
         paidByPartner_id: transformPartnerId(raw.PaidByParty),
         releasedForPartner: !raw.OnlyForImporter,
+        releasedForFreePartner: raw.ForFreeDealer,
+        releasedForAMAGPartner: raw.ForAMAGDealer,
         forEmployee: raw.ForEmployee,
         availability_code: raw.VehicleAvailability,
         deliveryCode_code: raw.DeliveryCode,

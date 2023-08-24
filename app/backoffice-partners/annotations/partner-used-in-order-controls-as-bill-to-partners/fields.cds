@@ -1,23 +1,24 @@
 using AppBackofficePartnersService as service from '../../../../srv';
 
-annotate service.PartnerUsedInOrderControlsAsShipToPartners with {
-    shipToPartner    @UI.Hidden;
-
-    vehicleUsage     @Common: {
+annotate service.PartnerUsedInOrderControlsAsBillToPartners with {
+    billToPartner @UI.Hidden;
+    
+    vehicleUsage     @Common          : {
         Text           : vehicleUsage.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    customerState    @Common: {
+    customerState    @Common          : {
         Text           : customerState.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 
-    endCustomerState @Common: {
+    endCustomerState @Common          : {
         Text           : endCustomerState.name,
         TextArrangement: #TextFirst,
         ValueListWithFixedValues
     };
 };
+

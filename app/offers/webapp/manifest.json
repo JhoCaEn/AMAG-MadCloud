@@ -115,7 +115,7 @@
 					"target": "Offer"
 				},
 				{
-					"pattern": "Offers({key})/carConfigurationEquipments({key2}):?query:",
+					"pattern": "Offers({key})/equipments({key2}):?query:",
 					"name": "CarConfigurationEquipments",
 					"target": "CarConfigurationEquipments"
 				},
@@ -199,7 +199,7 @@
 							"entitySet": "CarConfigurationEquipments"
 						}
 					},
-					"contextPattern": "/Offers({key})/carConfigurationEquipments({key2})"				
+					"contextPattern": "/Offers({key})/equipments({key2})"				
 				},
 				"SelectableBrands": {
 					"type": "Component",

@@ -15,16 +15,16 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
         this.on('createSession', async ({ data } = {}) => createSession(data))
         this.on('prepare', async ({ params: [{ ID } = {}] = [], data: { callbackURL } = {} } = {}) => prepare({ ID , callbackURL }))
 
-        const createSession = async ({ salesPartner_id, brand_code, projectType_code, customerProjectName, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, ocd } = {}) => {
+        const createSession = async ({ salesPartner_id, brand_code, projectType_code, projectCustomerName, customerProjectNumber, fleetProjectNumber, fleetCompanyNumber, ocd } = {}) => {
 
             const session = await this.create(Sessions, {
                 salesPartner_id,
                 brand_code,
                 projectType_code,
-                customerProjectName,
+                projectCustomerName,
                 customerProjectNumber,
                 fleetProjectNumber,
-                fleetProjectCompanyNumber,
+                fleetCompanyNumber,
                 ocd
             })
 
@@ -39,7 +39,7 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
             if (!session)
                 throw new ValidationError('SESSION_ID_NOT_VALID', [ID])
 
-            const { isPrepared, ocd, salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber } = session
+            const { isPrepared, ocd, salesPartner_id, brand_code, projectCustomerName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetCompanyNumber } = session
 
             if (isPrepared)
                 throw new ValidationError('SESSION_ALREADY_PREPARED')
@@ -58,11 +58,11 @@ module.exports = class AppSessionsService extends cds.ApplicationService {
                 const offer_ID = await offerService.send('createOffer', {
                     salesPartner_id,
                     brand_code,
-                    customerProjectName,
+                    projectCustomerName,
                     projectType_code,
                     customerProjectNumber,
                     fleetProjectNumber,
-                    fleetProjectCompanyNumber,
+                    fleetCompanyNumber,
                     callback_ID
                 })
 

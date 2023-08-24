@@ -25,7 +25,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         this.on('createCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => createCarConfiguration({ ID }))
         this.on('finishCarConfiguration', async ({ params: [{ ID } = {}] = [] } = {}) => finishCarConfiguration({ ID }))
         this.on('order', async ({ params: [{ ID } = {}] = [] } = {}) => order({ ID }))
-        this.on('createOffer', async ({ data: { salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID }))
+        this.on('createOffer', async ({ data: { salesPartner_id, brand_code, projectCustomerName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetCompanyNumber, callback_ID } } = {}) => createOffer({ salesPartner_id, brand_code, projectCustomerName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetCompanyNumber, callback_ID }))
         this.on('self:callback/deleted', async ({ data: { ID } = {} } = {}) => deleteCallback(ID))
 
         this.before('CREATE', Offers, async ({ data: { ID } = {} } = {}) => checkOfferSaveable(ID))
@@ -35,7 +35,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             req.data.equipment_id = 'PR001852'
         })
 
-        const createOffer = async ({ salesPartner_id, brand_code, customerProjectName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetProjectCompanyNumber, callback_ID } = {}) => {
+        const createOffer = async ({ salesPartner_id, brand_code, projectCustomerName, projectType_code, customerProjectNumber, fleetProjectNumber, fleetCompanyNumber, callback_ID } = {}) => {
 
             const offer = await this.send({
                 event: 'NEW',
@@ -45,11 +45,11 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             const { ID } = offer
 
             await db.update(Offers.drafts, ID).set({
-                customerProjectName,
+                projectCustomerName,
                 projectType_code,
                 customerProjectNumber,
                 fleetProjectNumber,
-                fleetProjectCompanyNumber,
+                fleetCompanyNumber,
                 callback_ID,
             })
 
@@ -92,7 +92,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
         const createCarConfiguration = async ({ ID } = {}) => {
 
             const offer = await db.read(Offers.drafts, ID, offer => {
-                offer.salesPartner_id, offer.brand_code, offer.carConfigurationModel_id, offer.carConfigurationExteriorColor_id, offer.carConfigurationInteriorColor_id, offer.carConfigurationRoofColor_id, offer.carConfigurationEquipments(equipment => {
+                offer.salesPartner_id, offer.brand_code, offer.model_id, offer.exteriorColor_id, offer.interiorColor_id, offer.roofColor_id, offer.equipments(equipment => {
                     equipment.equipment_id
                 })
             })
@@ -100,7 +100,7 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             if (!offer)
                 throw new ValidationError('OFFERS_DRAFT_NOT_FOUND')
 
-            const { salesPartner_id: partner_id, brand_code, carConfigurationModel_id: model_id, carConfigurationExteriorColor_id: exteriorColor_id, carConfigurationInteriorColor_id: interiorColor_id, carConfigurationRoofColor_id: roofColor_id, carConfigurationEquipments: equipments } = offer
+            const { salesPartner_id: partner_id, brand_code, model_id: model_id, exteriorColor_id: exteriorColor_id, interiorColor_id: interiorColor_id, roofColor_id: roofColor_id, equipments: equipments } = offer
 
             if (!partner_id)
                 throw new ValidationError('OFFERS_NO_SALES_PARTNER')
@@ -232,17 +232,17 @@ module.exports = class AppOffersService extends cds.ApplicationService {
             const offer = await db.read(Offers, ID, [
                 'brand_code', 
                 'salesPartner_id',
-                'carConfigurationConfiguredAt as configuredAt',
-                'carConfigurationModel_id as model_id',
-                'carConfigurationExteriorColor_id as exteriorColor_id',
-                'carConfigurationInteriorColor_id as interiorColor_id',
-                'carConfigurationRoofColor_id as roofColor_id'
-            ]).columns( o => o.carConfigurationEquipments( e => {
+                'configuredAt as configuredAt',
+                'model_id as model_id',
+                'exteriorColor_id as exteriorColor_id',
+                'interiorColor_id as interiorColor_id',
+                'roofColor_id as roofColor_id'
+            ]).columns( o => o.equipments( e => {
                 e.equipment_id.as('id')
             }))
 
-            offer.equipments = offer.carConfigurationEquipments || []
-            delete offer.carConfigurationEquipments
+            offer.equipments = offer.equipments || []
+            delete offer.equipments
 
             if (!offer)
                 throw new ValidationError('OFFERS_DRAFT_NOT_FOUND')
@@ -272,12 +272,12 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 ID: carConfigurationID
             })
 
-            const configuration = Object.keys(carConfiguration).reduce((result, key) => ({
-                ...result,
-                [`carConfiguration${key.charAt(0).toUpperCase()}${key.slice(1)}`]: carConfiguration[key]
-            }), {})
+            // const configuration = Object.keys(carConfiguration).reduce((result, key) => ({
+            //     ...result,
+            //     [`carConfiguration${key.charAt(0).toUpperCase()}${key.slice(1)}`]: carConfiguration[key]
+            // }), {})
 
-            configuration.carConfigurationEquipments = carConfiguration.equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id, salesPriceValue, salesPriceValueCurrency }) => ({
+            carConfiguration.equipments = carConfiguration.equipments?.map(({ id: equipment_id, salesPriceConstraintEquipment_id, salesPriceConstraintColor_id, salesPriceValue, salesPriceValueCurrency }) => ({
                 offer_ID: ID,
                 equipment_id,
                 salesPriceConstraintEquipment_id,
@@ -290,9 +290,9 @@ module.exports = class AppOffersService extends cds.ApplicationService {
                 HasDraftEntity: false
             })) || []
 
-            configuration.carConfigurationIsValid = true
+            carConfiguration.carConfigurationIsValid = true
 
-            await db.update(Offers.drafts, ID).set(configuration)
+            await db.update(Offers.drafts, ID).set(carConfiguration)
         }
 
         const deleteCallback = async (ID) => {
