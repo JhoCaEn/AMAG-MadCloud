@@ -109,7 +109,7 @@ annotate service.Partners with @UI: {
             Facets: [
                 {
                     $Type : 'UI.CollectionFacet',
-                    ID    : 'UsedInOrderControlsSubSection',
+                    ID    : 'UsedInOrderControlsAsSoldToPartnersSubSection',
                     Label : '{i18n>PartnerUsedInOrderControlsAsSoldToPartner}',
                     Facets: [{
                         $Type : 'UI.ReferenceFacet',
