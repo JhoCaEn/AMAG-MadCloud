@@ -127,6 +127,7 @@ service AppBackofficePartnersService {
         brand,
         validFrom,
         validTo,
+        createdAt,
         partner.name
     }
 
@@ -173,6 +174,7 @@ service AppBackofficePartnersService {
         brand,
         validFrom,
         validTo,
+        createdAt,
         partner.name
     }
 
@@ -183,6 +185,7 @@ service AppBackofficePartnersService {
         brand,
         validFrom,
         validTo,
+        createdAt,
         partner.name
     }
 
@@ -193,6 +196,7 @@ service AppBackofficePartnersService {
         brand,
         validFrom,
         validTo,
+        createdAt,
         partner.name
     }
 

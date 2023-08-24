@@ -51,6 +51,11 @@ annotate service.PartnerUsedInSoldToPartners with @(UI: {
             ![@UI.Importance]: #Low
         },
         {
+            $Type            : 'UI.DataField',
+            Value            : createdAt,
+            ![@UI.Importance]: #Low
+        },
+        {
             $Type                : 'UI.DataField',
             Value                : name,
             ![@UI.Importance]    : #Low,

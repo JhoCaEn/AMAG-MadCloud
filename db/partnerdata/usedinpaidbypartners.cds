@@ -7,5 +7,6 @@ entity PartnerUsedInPaidByPartners as projection on db.PartnerBrandPaidByPartner
     key brand.partner,
     key brand.brand as brand,
     key validFrom,
-        validTo
+        validTo,
+        createdAt
 }
