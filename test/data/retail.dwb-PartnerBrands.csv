@@ -1,7 +1,7 @@
-partner_id,brand_code,validFrom,validTo,hasContracts,isRepresentative
-1,AUDI,2023-01-01,9999-12-31,true,false
-100,AUDI,2005-01-01,9999-12-31,true,false
-100,SKOD,2011-11-25,9999-12-31,true,false
+partner_id,brand_code,validFrom,validTo,hasContracts,isRepresentative,dealerPartner_partner_id,dealerPartner_brand_partner_id,dealerPartner_brand_brand_code
+1,AUDI,2023-01-01,9999-12-31,true,false,1,AUDI,1
+100,AUDI,2005-01-01,9999-12-31,true,false,1,AUDI,1
+100,SKOD,2011-11-25,9999-12-31,true,false,1,AUDI,1
 100,VW,2005-01-01,9999-12-31,true,false
 100,VWNF,2005-01-01,9999-12-31,true,false
 126,AUDI,2023-01-01,9999-12-31,true,false
