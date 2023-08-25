@@ -172,6 +172,26 @@
                                     "detail": {
                                         "outbound": "Partner"
                                     }
+                                },
+                                "usedInOrderControlsAsSoldToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInOrderControlsAsShipToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInOrderControlsAsBillToPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
+                                },
+                                "usedInOrderControlsAsPaidByPartners": {
+                                    "detail": {
+                                        "outbound": "Partner"
+                                    }
                                 }
                             }
                         }
